@@ -29,6 +29,9 @@ import org.springframework.jdbc.core.RowCallbackHandler;
  */
 public final class CaseRepository {
 
+    /** Shared demo capacity for imported and manually retained cases. */
+    public static final int MAX_CASES = 5_000;
+
     private static final String CASE_SELECT =
             """
             SELECT

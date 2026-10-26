@@ -29,8 +29,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class ImportService {
 
-    static final int MAX_CASES = 5_000;
-
     private final ImportRepository imports;
     private final CaseRepository cases;
     private final Database database;
@@ -81,7 +79,7 @@ public class ImportService {
         }
 
         long currentCount = cases.count();
-        if (currentCount + newCases.size() > MAX_CASES) {
+        if (currentCount + newCases.size() > CaseRepository.MAX_CASES) {
             throw new BusinessException(
                     409,
                     "KNOWLEDGE_BASE_LIMIT_EXCEEDED",

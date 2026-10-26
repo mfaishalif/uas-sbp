@@ -4,26 +4,32 @@ import id.ac.finresolve.api.CasesApi;
 import id.ac.finresolve.api.model.CaseDetail;
 import id.ac.finresolve.api.model.CasePage;
 import id.ac.finresolve.api.model.RetainCaseRequest;
+import id.ac.finresolve.categories.CategoryValues;
 import id.ac.finresolve.http.ApiMapper;
 import id.ac.finresolve.http.BusinessException;
 import id.ac.finresolve.http.BusinessException.Problem;
+import java.net.URI;
 import java.util.List;
 import java.util.Locale;
 import java.util.UUID;
+import org.openapitools.jackson.nullable.JsonNullable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-/** Contract-generated case reads plus explicit temporary mutation placeholders. */
+/** Contract-generated case reads, retention, and full replacement. */
 @RestController
 @RequestMapping("/api")
 public class CasesController implements CasesApi {
 
     private final CaseReadService reads;
+    private final RetentionService retention;
     private final ApiMapper mapper;
 
-    public CasesController(CaseReadService reads, ApiMapper mapper) {
+    public CasesController(
+            CaseReadService reads, RetentionService retention, ApiMapper mapper) {
         this.reads = reads;
+        this.retention = retention;
         this.mapper = mapper;
     }
 
@@ -43,13 +49,44 @@ public class CasesController implements CasesApi {
 
     @Override
     public ResponseEntity<CaseDetail> retainCase(RetainCaseRequest retainCaseRequest) {
-        throw unavailable();
+        CaseRecord created = retention.create(command(retainCaseRequest));
+        return ResponseEntity.created(URI.create("/api/cases/" + created.id()))
+                .body(mapper.caseDetail(created));
     }
 
     @Override
     public ResponseEntity<CaseDetail> replaceAnalystCase(
             UUID id, RetainCaseRequest retainCaseRequest) {
-        throw unavailable();
+        return ResponseEntity.ok(
+                mapper.caseDetail(retention.replace(id, command(retainCaseRequest))));
+    }
+
+    private static RetainCommand command(RetainCaseRequest request) {
+        ComplaintInput complaint = new ComplaintInput(
+                new CategoryValues(
+                        request.getProduct(),
+                        nullable(request.getSubProduct()),
+                        request.getIssue(),
+                        nullable(request.getSubIssue())),
+                request.getNarrative(),
+                nullable(request.getReceivedDate()),
+                nullable(request.getCompany()),
+                nullable(request.getCompanyResponse()));
+        CaseRecord.Notes notes = new CaseRecord.Notes(
+                request.getHandlingNotes(),
+                request.getOutcomeAssessment() == null
+                        ? null
+                        : CaseRecord.Outcome.valueOf(
+                                request.getOutcomeAssessment().getValue()),
+                nullable(request.getEvaluationNotes()));
+        List<UUID> references = request.getReferenceCaseIds() == null
+                ? List.of()
+                : List.copyOf(request.getReferenceCaseIds());
+        return new RetainCommand(complaint, notes, references);
+    }
+
+    private static <T> T nullable(JsonNullable<T> value) {
+        return value == null || !value.isPresent() ? null : value.get();
     }
 
     private static int validatePage(Integer page) {
@@ -90,13 +127,5 @@ public class CasesController implements CasesApi {
                 "VALIDATION_ERROR",
                 "Parameter permintaan tidak valid.",
                 List.of(new Problem(field, code, message)));
-    }
-
-    private static BusinessException unavailable() {
-        return new BusinessException(
-                503,
-                "SERVICE_UNAVAILABLE",
-                "Endpoint retensi belum tersedia.",
-                List.of());
     }
 }

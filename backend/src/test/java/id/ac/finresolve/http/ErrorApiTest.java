@@ -171,26 +171,26 @@ class ErrorApiTest {
     }
 
     @Test
-    void temporaryMutationEndpointsReturnServiceUnavailableAndDoNotWrite() throws Exception {
+    void mutationEndpointsDoNotWriteWhenCatalogIsEmptyOrTargetIsMissing() throws Exception {
         long before = caseCount();
 
         ApiResponse created = request(
                 "POST", "/api/cases", Map.of("Content-Type", "application/json"), VALID_RETAIN_BODY);
-        assertGlobalError(created, 503, "SERVICE_UNAVAILABLE");
+        assertGlobalError(created, 409, "EMPTY_CATEGORY_CATALOG");
 
         ApiResponse replaced = request(
                 "PUT",
                 "/api/cases/00000000-0000-4000-8000-000000000000",
                 Map.of("Content-Type", "application/json"),
                 VALID_RETAIN_BODY);
-        assertGlobalError(replaced, 503, "SERVICE_UNAVAILABLE");
+        assertGlobalError(replaced, 404, "CASE_NOT_FOUND");
 
         assertThat(caseCount()).isEqualTo(before);
         assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM analyst_notes", Long.class)).isZero();
     }
 
     @Test
-    void wrongContentTypeStillWinsOverTheTemporary503() throws Exception {
+    void wrongContentTypeStillWinsOverRetentionValidation() throws Exception {
         assertGlobalError(
                 request("PUT", "/api/cases/00000000-0000-4000-8000-000000000000",
                         Map.of("Content-Type", "text/plain"), VALID_RETAIN_BODY),
@@ -249,7 +249,7 @@ class ErrorApiTest {
         root.addAppender(appender);
         try {
             ApiResponse response = postJson(body);
-            assertGlobalError(response, 503, "SERVICE_UNAVAILABLE");
+            assertGlobalError(response, 409, "EMPTY_CATEGORY_CATALOG");
             assertThat(response.body()).doesNotContain(SENTINEL);
 
             assertGlobalError(get("/api/test/failure"), 500, "INTERNAL_ERROR");
