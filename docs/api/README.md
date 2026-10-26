@@ -1,8 +1,8 @@
 # Kontrak API FinResolve
 
-Status: **kontrak `0.1.0` disetujui pengguna pada 26 Oktober 2026; backend belum tersedia**. Pengguna meminta berhenti sebelum implementasi dan generation. Kontrak ini melengkapi [desain backend](../superpowers/specs/2026-10-26-finresolve-backend-design.md). [openapi.json](openapi.json) adalah acuan nama field, tipe, batas input, enum, endpoint, dan bentuk respons. Dokumen ini menjelaskan aturan bisnis dan penggunaan dari frontend. Perubahan kontrak saat implementasi harus memperbarui kedua dokumen secara bersamaan.
+Status: **kontrak `0.1.0` disetujui pengguna pada 26 Oktober 2026; backend, client TypeScript, dan live contract test sudah diimplementasikan dan diverifikasi**. Kontrak ini melengkapi [desain backend](../superpowers/specs/2026-10-26-finresolve-backend-design.md). [openapi.json](openapi.json) adalah acuan nama field, tipe, batas input, enum, endpoint, dan bentuk respons. Dokumen ini menjelaskan aturan bisnis dan penggunaan dari frontend. Perubahan kontrak harus memperbarui kedua dokumen secara bersamaan.
 
-Format menggunakan [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0.html). File dapat dibuka di alat yang mendukung versi tersebut untuk melihat skema atau menyiapkan client dan mock. Semua contoh di OpenAPI bersifat sintetis, termasuk ID CFPB dan skor; kategori aktual harus diambil dari API. Tidak ada server mock atau client yang diimplementasikan dalam perubahan dokumentasi ini.
+Format menggunakan [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0.html). File dapat dibuka di alat yang mendukung versi tersebut untuk melihat skema atau menyiapkan client dan mock. Semua contoh di OpenAPI bersifat sintetis, termasuk ID CFPB dan skor; kategori aktual harus diambil dari API. Server nyata dan generated client tersedia; UI Next.js belum.
 
 **Kebutuhan generation:** backend dan frontend wajib menggunakan kode HTTP yang dihasilkan dari kontrak ini. [Rancangan generation](generation.md) menetapkan output Java/TypeScript, batas kode manual, dan pemeriksaan sinkronisasi di CI. Alat yang disetujui dalam desain adalah OpenAPI Generator untuk kedua sisi. Pembuatan paket client termasuk tahap backend; pembangunan UI Next.js tetap tahap berikutnya.
 
@@ -145,35 +145,43 @@ Error aplikasi memiliki bentuk tetap:
 
 `fieldErrors` selalu array, boleh kosong untuk error global. Nama field memakai camelCase/dotted path untuk request JSON, misalnya `metadata.periodEnd` atau `referenceCaseIds[0]`. Laporan error per-record impor memakai nama header CSV. Jangan menampilkan SQL, path lokal, atau stacktrace. Kegagalan jaringan/CORS atau proxy yang tidak mengembalikan JSON harus ditangani sebagai kegagalan transport terpisah.
 
-Contoh `fetch` di dokumen ini menjelaskan protokol HTTP. Implementasi frontend nantinya wajib memakai client hasil generation melalui adapter aplikasi; contoh ini bukan instruksi membuat ulang endpoint atau DTO secara manual. Adapter menangani pesan error, base URL, dan kebutuhan UI tanpa menduplikasi serialisasi request/response.
+Contoh `fetch` di atas hanya menjelaskan protokol HTTP. Frontend wajib memakai client hasil generation melalui adapter `createClient` di package `@finresolve/api-client`; jangan membuat ulang DTO atau panggilan endpoint secara manual. Adapter menangani base URL `/api`, serialisasi, dan pemetaan error.
 
-```js
-const apiBase = process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8080/api";
-
-async function requestJson(path, options = {}) {
-  const response = await fetch(`${apiBase}${path}`, {
-    ...options,
-    headers: { Accept: "application/json", ...options.headers },
-  });
-  const payload = await response.json().catch(() => null);
-  if (!response.ok) {
-    const error = new Error(payload?.message ?? `Request gagal (${response.status}).`);
-    error.status = response.status;
-    error.code = payload?.code ?? "TRANSPORT_ERROR";
-    error.fieldErrors = payload?.fieldErrors ?? [];
-    throw error;
-  }
-  if (payload === null) throw new Error("Respons server bukan JSON yang diharapkan.");
-  return payload;
-}
-
-// form berisi product/issue/narrative serta subkategori opsional dari katalog.
-const result = await requestJson("/search", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ ...form, limit: 5 }),
-});
-// Periksa result.status; results kosong merupakan hasil sukses yang sah.
+```bash
+npm run client:build
 ```
 
-Frontend dapat menyiapkan form dan mock dari kontrak ini. Saat implementasi, tipe dan panggilan HTTP berasal dari paket generated client. Pengujian client terhadap server nyata tetap menunggu implementasi backend dan verifikasi kesesuaian respons dengan kontrak.
+```ts
+import { ApiClientError, createClient } from '@finresolve/api-client';
+
+const client = createClient('http://localhost:8080');
+try {
+  const result = await client.search.searchCases({
+    searchRequest: {
+      product: 'Checking or savings account',
+      issue: 'Managing an account',
+      narrative: 'My transfer is missing from my checking account.',
+      limit: 5,
+    },
+  });
+  // result.status: MATCHES | NO_RELEVANT_CASES | EMPTY_KNOWLEDGE_BASE.
+} catch (error) {
+  if (error instanceof ApiClientError) {
+    // error.status, error.code, error.fieldErrors.
+    // status 0 + TRANSPORT_ERROR berarti tidak ada respons JSON yang dapat dibaca.
+  }
+}
+```
+
+`createClient` mengembalikan instance `SystemApi`, `CategoriesApi`, `CasesApi`, `SearchApi`, dan `ImportsApi` yang berbagi satu `Configuration`. Mutasi tidak di-retry otomatis. Package memakai ESM dengan import relatif berakhiran `.js`; build menghasilkan `packages/api-client/dist/` dan tidak di-commit.
+
+Verifikasi kontrak dan client terhadap server nyata:
+
+```bash
+npm run api:check
+npm run client:typecheck
+npm run test:contract
+npm run verify
+```
+
+`api:check` membandingkan pohon TypeScript hasil generation dengan yang di-commit. `test:contract` menjalankan packaged jar dengan database sementara, memvalidasi setiap respons terhadap skema operasi/status di `docs/api/openapi.json`, lalu menguji adapter client. `verify` menjalankan seluruh rangkaian termasuk 194 tes backend. Pengujian ini tidak mengunduh arsip CFPB.

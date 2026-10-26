@@ -1,6 +1,6 @@
 # Rancangan generation dari kontrak FinResolve
 
-Status: **diimplementasikan dan diverifikasi pada 26 Oktober 2026**. Task 1 membuktikan kontrak `docs/api/openapi.json` menghasilkan batas Java yang dikompilasi dan client TypeScript yang di-commit serta lolos typecheck. Logika CBR, SQLite, controller, dan UI tetap bukan bagian generation. Bagian rancangan di bawah dipertahankan; bagian "Implementasi dan bukti Task 1" mencatat hasil nyata.
+Status: **diimplementasikan dan diverifikasi pada 26 Oktober 2026**. Task 1 membuktikan kontrak `docs/api/openapi.json` menghasilkan batas Java yang dikompilasi dan client TypeScript yang di-commit serta lolos typecheck. Task 10 menambahkan client ESM, adapter, live contract test, dan CI. Logika CBR dan UI tetap bukan bagian generation. Bagian rancangan di bawah dipertahankan; bagian bukti mencatat hasil nyata.
 
 ## Implementasi dan bukti Task 1
 
@@ -91,7 +91,33 @@ Konfigurasi opsi generator Java ada di `tools/openapi/java.json`, lalu `openapi-
 
 ### Batas yang belum dibuktikan Task 1
 
-Generation dan kompilasi tidak membuktikan perilaku HTTP nyata, aturan bisnis CBR, akses SQLite, atau kesesuaian UI. Pengujian respons nyata, controller, repository, dan client adapter tetap menjadi task berikutnya.
+Generation dan kompilasi tidak membuktikan perilaku HTTP nyata, aturan bisnis CBR, akses SQLite, atau kesesuaian UI. Pengujian respons nyata, controller, repository, dan client adapter dikerjakan pada Task 10 dan tercatat di bawah.
+
+## Implementasi dan bukti Task 10
+
+### Client ESM dan adapter
+
+- `tools/openapi/typescript.json` memakai `importFileExtension: ".js"` agar import relatif generated valid di Node ESM. `packages/api-client/package.json` bertipe `module`; `npm run client:build` mengompilasi `src/` ke `dist/` (di-ignore Git) dengan deklarasi tipe.
+- `packages/api-client/src/client.ts` menyediakan `createClient(baseUrl, fetchApi?)` dan `ApiClientError`. Adapter menambahkan `/api` sekali, memakai satu `Configuration`, mengubah `ApiError` menjadi `status/code/fieldErrors`, memetakan kegagalan non-JSON/jaringan ke `TRANSPORT_ERROR`, dan tidak me-retry mutasi. Middleware meneruskan error asli agar runtime generated tidak membungkusnya menjadi `FetchError`.
+- `packages/api-client/src/index.ts` mengekspor generated API/model dan adapter. Root package memakai npm workspace agar test dapat mengimpor `@finresolve/api-client` tanpa path relatif rapuh.
+
+### Live contract test
+
+- `tools/test-server.mjs` menjalankan packaged jar pada `127.0.0.1` dengan port loopback acak dan database sementara; `stop()` idempoten dan menghapus SQLite/WAL/SHM serta direktori sementara.
+- `tests/contract/schema.mjs` memuat `docs/api/openapi.json`, mengompilasi skema respons per `operationId`/status dengan Ajv 2020 + formats, serta memeriksa header yang dideklarasikan (termasuk `Location`) dan body JSON sebelum deserialisasi generated.
+- `tests/contract/api.test.mjs` menguji health, pencarian kosong, impor/replay, kategori, daftar/detail, pencarian MATCHES/OOV, retensi+referensi, PUT penuh, CORS, serta kelas error 400/404/405/409/413/415/500/503. Kapasitas diuji dengan fixture lokal; arsip CFPB tidak diunduh.
+- `tests/contract/client.test.ts` membuktikan adapter mengarah ke `/api` sekali, memetakan `ApiError`, menangani respons non-JSON/jaringan, dan tidak me-retry mutasi.
+- `.github/workflows/ci.yml` memakai Java 21 + Node 24, `npm ci`, lalu `npm run verify`, `git diff --check`, dan memastikan working tree tidak berubah.
+
+### Perintah dan hasil
+
+```bash
+npm run test:generation   # 13 tes
+npm run test:contract     # 5 tes (1 live + 4 adapter)
+npm run verify            # generation, client, 194 tes backend, package, live contract
+```
+
+`npm run verify` selesai sukses pada 26 Oktober 2026 dan tidak mengubah file generated yang di-track. `docs/api/openapi.json` tetap sumber tunggal; `api:check` membandingkan pohon TypeScript hasil generation dengan yang di-commit.
 
 ## Sumber dan kepemilikan
 
@@ -122,7 +148,7 @@ Pendekatan pertama dipakai dalam rancangan di bawah. Versi engine Maven dan CLI 
 - Generator frontend memakai `typescript-fetch`, nama properti mengikuti kontrak, parameter method berbentuk objek, dan tanggal dipertahankan sebagai string (`dateLibrary=string` pada versi yang mendukung). Ini menghindari pergeseran tanggal kalender karena konversi zona waktu. Required-nullable harus tetap dapat dibedakan dari optional.
 - Tiap generation membersihkan direktori output khususnya terlebih dahulu agar file endpoint/model yang dihapus tidak tersisa. Pembersihan tidak boleh menyentuh kode manual. Timestamp generation dinonaktifkan; konfigurasi/urutan output harus deterministik.
 - Nama operasi pada client berasal dari `operationId` kontrak. UI mengimpor metode dan tipe hasil generation; wrapper aplikasi tidak menulis ulang kontrak sebagai interface TypeScript atau melakukan `fetch` terpisah per endpoint.
-- Konfigurasi script akan menyediakan satu perintah dari root untuk validasi+generation kedua sisi, serta satu perintah pemeriksaan tanpa mengubah working tree. Nama perintah final ditentukan pada implementasi dan ditulis ke panduan; perintah itu belum tersedia saat dokumen ini dibuat.
+- Konfigurasi script menyediakan perintah root untuk validasi+generation kedua sisi (`npm run api:generate`) dan pemeriksaan tanpa mengubah working tree (`npm run api:check`); perintah tersebut sudah tersedia dan diuji.
 - Backend build tetap bisa berjalan melalui Maven Wrapper. Typecheck client dapat berjalan sendiri tanpa Next.js; setelah frontend tersedia, build frontend juga menjalankan pemeriksaan tipe terhadap paket client yang sama.
 
 ## Kompatibilitas yang harus dibuktikan

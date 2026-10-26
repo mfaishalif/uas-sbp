@@ -10,7 +10,7 @@ Ketika ada pengaduan baru, sistem mencari pengaduan terdahulu yang relevan, memp
 
 Dokumen desain awal proyek ini berjudul *Sistem CBR Keluhan Konsumen*.
 
-Proyek saat ini berada pada tahap perumusan spesifikasi. README ini mencatat arah produk dan keputusan implementasi yang sudah dipilih; aplikasi belum diimplementasikan.
+Proyek saat ini memiliki **backend Java yang dapat dijalankan, kontrak OpenAPI 3.1, dan client TypeScript hasil generation**. Frontend Next.js, autentikasi, dan deployment publik belum diimplementasikan. README ini mencatat arah produk, keputusan implementasi yang sudah diverifikasi, dan batas demo lokal.
 
 ## Masalah dan tujuan
 
@@ -22,15 +22,18 @@ Pengguna utama yang dibayangkan adalah **analis atau petugas penanganan pengadua
 
 | Aspek | Pilihan |
 | --- | --- |
-| Bentuk aplikasi | Web full stack |
-| Frontend | Next.js |
-| Bahasa backend | Java |
-| Pencarian kasus | Gabungan kemiripan kategori dan kemiripan teks pengaduan |
-| Bahasa input pengaduan | Mengikuti bahasa narasi dataset sumber |
-| Sumber kasus historis | Arsip resmi narasi CFPB |
+| Bentuk aplikasi | Web full stack; backend sudah ada, frontend belum |
+| Frontend | Next.js (belum diimplementasikan pada repository ini) |
+| Bahasa backend | Java 21 |
+| Framework backend | Spring Boot 4.1.2, Maven Wrapper 3.9.11 |
+| Database | SQLite dengan migrasi berversi, WAL, dan satu koneksi tulis |
+| Kontrak API | OpenAPI 3.1; batas Java dan client TypeScript dihasilkan dari kontrak yang sama |
+| Pencarian kasus | Gabungan kemiripan kategori dan TF-IDF cosine (`tfidf-cosine-v1`) |
+| Bahasa input pengaduan | Mengikuti bahasa narasi dataset sumber (Inggris) |
+| Sumber kasus historis | Arsip resmi narasi CFPB, sampel tetap 500 kasus |
 | Retensi kasus baru | Penyimpanan manual oleh analis, tanpa peran verifikator atau alur persetujuan khusus |
 
-Frontend menyediakan antarmuka kerja analis. Backend menangani proses CBR dan pengelolaan kasus, sementara penyimpanan persisten menampung basis kasus serta catatan analis. Framework Java dan teknologi database belum ditetapkan.
+Frontend akan menyediakan antarmuka kerja analis. Backend menangani proses CBR dan pengelolaan kasus; SQLite menyimpan basis kasus serta catatan analis. Frontend belum dibuat, sehingga repository ini bukan aplikasi web yang siap dipakai pengguna akhir.
 
 ## Lingkungan pengembangan
 
@@ -54,9 +57,9 @@ Cara menggunakan:
 3. Buka Command Palette (`Ctrl+Shift+P`) dan pilih **Dev Containers: Reopen in Container**. Pembuatan pertama membutuhkan koneksi internet untuk mengunduh image, runtime, dan build tools.
 4. Setelah container siap, buka terminal di VS Code. Jalankan `codex` untuk memakai Codex CLI atau `opencode` untuk memakai OpenCode CLI dari folder proyek. Hubungkan provider AI lewat perintah `/connect` di OpenCode. Versi kedua CLI beserta toolchain diperiksa otomatis saat container pertama kali dibuat.
 
-Devcontainer saat ini menyiapkan toolchain saja karena aplikasi belum diimplementasikan. Instalasi dependensi dan server pengembangan belum dijalankan otomatis. Setelah frontend tersedia, jalankan server Next.js dengan bind ke `0.0.0.0` (misalnya `npm run dev -- --hostname 0.0.0.0` dari folder frontend) agar dapat diakses melalui port yang diteruskan. Backend dapat menggunakan port `8080` saat framework sudah dipilih. Untuk build Java, utamakan Maven Wrapper atau Gradle Wrapper setelah tersedia di proyek agar versi build tool konsisten.
+Devcontainer menyiapkan toolchain pengembangan. Backend sudah dapat dijalankan dari repository ini; frontend Next.js belum tersedia. Setelah frontend ditambahkan, jalankan server Next.js dengan bind ke `0.0.0.0` (misalnya `npm run dev -- --hostname 0.0.0.0` dari folder frontend) agar dapat diakses melalui port yang diteruskan. Backend memakai port `8080`. Build Java memakai Maven Wrapper yang sudah di-commit agar versi build tool konsisten.
 
-Layanan database akan ditambahkan setelah teknologi penyimpanan dipilih. Jika konfigurasi devcontainer diubah, pilih **Dev Containers: Rebuild Container** melalui Command Palette.
+SQLite adalah database demo. File default `backend/data/finresolve.db` dibuat otomatis saat backend dijalankan dari folder `backend/`; lokasi absolut dicatat pada log startup dan dapat diubah melalui `FINRESOLVE_DB_PATH`. Jika konfigurasi devcontainer diubah, pilih **Dev Containers: Rebuild Container** melalui Command Palette.
 
 Codex dan OpenCode berjalan di terminal container dan membaca proyek dari lingkungan pengembangan tersebut. Dokumentasi resmi: [Codex CLI](https://developers.openai.com/codex/cli) dan [OpenCode CLI](https://dev.opencode.ai/v2/docs).
 
@@ -70,11 +73,13 @@ Pemilihan arsip diperlukan karena narasi pengaduan telah dihapus dari database a
 
 Pemeriksaan awal terhadap sebagian arsip November–Desember 2024 menemukan data produk, subproduk, masalah, submasalah, narasi pengaduan, perusahaan, kategori respons perusahaan, dan ID pengaduan. Contoh narasi yang diperiksa berbahasa Inggris dan mencakup pengaduan rekening serta transfer uang. Pemeriksaan ini belum merupakan evaluasi kualitas seluruh arsip.
 
-Basis kasus awal akan menggunakan **sampel tetap yang memiliki narasi**, dengan sumber arsip, periode, dan ID pengaduan dicatat agar asal kasus dapat ditelusuri. Jumlah sampel dan periode final ditentukan setelah eksplorasi data. Bahasa input mengikuti narasi sumber; bahasa antarmuka belum ditetapkan.
+Basis kasus awal memakai **sampel tetap yang memiliki narasi**. Sampel yang di-commit berisi 500 kasus dari arsip CFPB periode `2024-11-01` sampai `2024-12-31`, produk **Checking or savings account** dan **Money transfer, virtual currency, or money service**. Sumber arsip, periode, ID pengaduan, dan checksum dicatat agar asal kasus dapat ditelusuri. Bahasa input mengikuti narasi sumber; bahasa antarmuka belum ditetapkan.
 
 ### Menyiapkan sampel demo
 
-Sampel tetap dibangun dari satu arsip CFPB yang telah ditetapkan. Unduhan hanya dilakukan melalui perintah eksplisit berikut; pengujian otomatis tidak mengunduh arsip. Jalankan dari folder proyek:
+Sampel tetap yang dipakai demo sudah tersedia di repository: `data/cfpb/sample.csv` (500 baris) dan `data/cfpb/manifest.json`. Untuk demo offline, gunakan kedua file tersebut; tidak perlu mengunduh arsip lagi.
+
+Regenerasi hanya dilakukan melalui perintah eksplisit berikut, membutuhkan internet, dan tidak dijalankan oleh pengujian otomatis. Jalankan dari folder proyek:
 
 ```bash
 cd backend
@@ -82,6 +87,110 @@ cd backend
 ```
 
 Perintah ini menulis `data/cfpb/sample.csv` dan `data/cfpb/manifest.json` secara atomik. Manifest mencatat URL sumber, nama arsip dan entri CSV, periode `2024-11-01` sampai `2024-12-31`, filter yang dipakai, batas 500 kasus, waktu pengambilan, checksum SHA-256 arsip dan sampel, serta ID kasus terpilih. Arsip ZIP tidak disimpan atau di-commit. Narasi dipertahankan apa adanya; tidak ada klaim anonimisasi tambahan.
+
+Checksum sampel yang di-commit adalah `682bb04cf77a7df10104c822ab24af4bd42e1a088cd2678c7c72921b7983a644`; checksum arsip sumber adalah `24b3326a954c0edeff33318b157d12eef5a59547f6f274f9236f1ceaba988a74`. `manifest.json` adalah acuan bila nilai berubah setelah regenerasi.
+
+## Menjalankan backend
+
+Kebutuhan: **Java 21** dan **Node.js 24** (dengan npm). Maven tidak perlu dipasang global karena repository memakai Maven Wrapper 3.9.11. Unduhan dependensi pertama membutuhkan internet; demo setelahnya dapat berjalan offline dengan sampel yang sudah di-commit.
+
+```bash
+npm ci
+npm run verify                 # kontrak, generation, backend, client, dan live contract
+cd backend && ./mvnw test      # hanya tes backend
+```
+
+`npm run verify` menjalankan validasi kontrak, generation check, 194 tes backend, pembuatan packaged jar, serta contract/client test terhadap server nyata. Perintah ini tidak mengunduh arsip CFPB.
+
+Menjalankan server dengan database default:
+
+```bash
+cd backend
+./mvnw -DskipTests package
+java -jar target/finresolve-backend-0.1.0.jar
+```
+
+Server mendengarkan `http://127.0.0.1:8080` dan membuat `backend/data/finresolve.db`. Log startup mencatat lokasi absolut database. Untuk database sementara:
+
+```bash
+FINRESOLVE_DB_PATH=/tmp/finresolve-demo.db \
+  java -jar backend/target/finresolve-backend-0.1.0.jar
+```
+
+Bind default adalah loopback. Di devcontainer, gunakan `SERVER_ADDRESS=0.0.0.0` hanya bila port perlu diteruskan ke host; jangan memakai bind publik untuk demo tanpa autentikasi.
+
+### Impor sampel, pencarian, dan retensi
+
+```bash
+curl -sS -X POST http://127.0.0.1:8080/api/imports/cfpb \
+  -F 'file=@data/cfpb/sample.csv;type=text/csv' \
+  -F 'metadata={"archiveUrl":"https://files.consumerfinance.gov/f/documents/CCDB_Export_8_November_2024_through_December_2024.zip","sourceFileName":"finresolve-sample.csv","periodStart":"2024-11-01","periodEnd":"2024-12-31"};type=application/json'
+```
+
+Impor pertama menghasilkan **201** dengan `processed=500, imported=500, duplicates=0, rejected=0`. Mengulang byte CSV dan metadata yang sama menghasilkan **200** dengan `replayed=true` dan hitungan asli, bukan tambahan.
+
+```bash
+curl -sS -X POST http://127.0.0.1:8080/api/search \
+  -H 'Content-Type: application/json' \
+  -d '{"product":"Checking or savings account","subProduct":"Checking account","issue":"Managing an account","subIssue":"Deposits and withdrawals","narrative":"Money left my bank balance twice even though I only authorized one payment.","limit":5}'
+```
+
+Respons sukses berstatus 200 dengan `status` `MATCHES`, `NO_RELEVANT_CASES`, atau `EMPTY_KNOWLEDGE_BASE`. `results=[]` pada dua status terakhir bukan kegagalan HTTP. Skor adalah kemiripan, bukan probabilitas keberhasilan.
+
+Retensi membutuhkan katalog yang sudah terisi. Ambil satu UUID CFPB dari `GET /api/cases?source=CFPB`, lalu:
+
+```bash
+curl -sS -i -X POST http://127.0.0.1:8080/api/cases \
+  -H 'Content-Type: application/json' \
+  -d '{"product":"Checking or savings account","subProduct":"Checking account","issue":"Managing an account","subIssue":null,"narrative":"My transfer is missing from my checking account.","handlingNotes":"Reviewed transfer evidence and requested a trace.","outcomeAssessment":"UNKNOWN","referenceCaseIds":["<UUID-CFPB>"]}'
+```
+
+Sukses adalah **201** dengan header `Location: /api/cases/{id}`. `POST` tidak idempoten: klik ganda atau retry otomatis dapat membuat dua kasus. `PUT /api/cases/{id}` mengganti lengkap kasus ANALYST; field opsional yang dihilangkan menjadi `null`/`[]`, `createdAt` dipertahankan, `updatedAt` diperbarui, dan penulisan terakhir menang. Kasus CFPB tidak dapat diubah (**409** `IMMUTABLE_CFPB_CASE`).
+
+### Client TypeScript hasil generation
+
+```bash
+npm run client:build
+```
+
+```ts
+import { ApiClientError, createClient } from '@finresolve/api-client';
+
+const client = createClient('http://localhost:8080');
+try {
+  const result = await client.search.searchCases({
+    searchRequest: {
+      product: 'Checking or savings account',
+      issue: 'Managing an account',
+      narrative: 'My transfer is missing from my checking account.',
+    },
+  });
+  // Baca result.status; jangan menganggap results selalu berisi.
+} catch (error) {
+  if (error instanceof ApiClientError) {
+    // error.status, error.code, error.fieldErrors
+  }
+}
+```
+
+Client membawa `basePath` `/api` sekali, tidak mengulang mutasi, dan memetakan kegagalan transport/non-JSON ke `TRANSPORT_ERROR`. Repositori ini tidak menyertakan UI Next.js; client hanya dapat diperiksa melalui typecheck, tes, dan live contract test.
+
+### Konfigurasi, batas, dan operasi
+
+- Lokasi database: `FINRESOLVE_DB_PATH` (default `backend/data/finresolve.db` bila dijalankan dari `backend/`). Log startup mencetak path absolut.
+- Backup: hentikan server terlebih dahulu, lalu salin file database beserta sidecar `-wal` dan `-shm` bila ada. Jangan menyalin hanya file utama saat server masih menulis.
+- Kapasitas total: 5.000 kasus gabungan CFPB dan ANALYST. Impor/retensi yang melewati batas dibatalkan dengan **409** `KNOWLEDGE_BASE_LIMIT_EXCEEDED`.
+- Impor: file maksimum 20 MiB, request multipart 21 MiB, 5.000 record per file. Narasi maksimum 50.000 karakter; perusahaan 500; respons perusahaan 2.000.
+- Retensi: `handlingNotes` wajib maksimum 10.000 karakter; `evaluationNotes` opsional maksimum 10.000; maksimum 20 referensi berbeda.
+- Pencarian: `limit` default 5, maksimum 20. Tidak ada pagination pencarian. Korpus dan TF-IDF dibangun ulang pada setiap pencarian; tidak ada cache query atau penyimpanan query.
+- Konfigurasi skor ada di `finresolve.similarity.*` pada `backend/src/main/resources/application.yml` (bobot kategori/teks, bobot empat field, ambang 0.50, limit). Nilai tidak valid membuat startup gagal. Batas kontrak tidak dapat dinaikkan oleh konfigurasi.
+- Ambang dan bobot awal **belum dikalibrasi**. Respons historis adalah konteks, bukan bukti keberhasilan penanganan.
+- Katalog kategori hanya berasal dari kasus CFPB yang diimpor; retensi ANALYST tidak memperluas katalog. Sebelum impor, katalog kosong dan retensi ditolak **409** `EMPTY_CATEGORY_CATALOG`.
+- Tidak ada autentikasi, peran, deployment publik, atau UI pada demo ini.
+
+## Evaluasi relevansi
+
+Panduan walkthrough dan lembar evaluasi manual ada di [docs/evaluation/README.md](docs/evaluation/README.md). Label relevansi **belum diisi**; jangan mengutip precision@5 atau kualitas relevansi sebelum ada penilaian manusia. Hasil pengujian otomatis hanya membuktikan kontrak dan perilaku teknis, bukan kualitas pencarian.
 
 Penting untuk membedakan **respons yang tercatat** dengan **solusi yang terbukti berhasil**. Label respons dari CFPB tidak otomatis menjelaskan langkah investigasi, prosedur internal, atau tingkat kepuasan konsumen. Jika proyek kelak memberikan rekomendasi tindakan, rekomendasi tersebut membutuhkan sumber prosedur atau verifikasi tambahan.
 
@@ -98,7 +207,7 @@ Pencarian menggabungkan dua komponen:
 - **Kemiripan kategori:** membandingkan jenis layanan dan masalah pengaduan.
 - **Kemiripan teks:** membandingkan detail deskripsi kasus baru dengan narasi kasus historis.
 
-Rancangan awal menghitung kedua komponen secara terpisah, lalu menggabungkannya untuk mengurutkan kasus. Metode pengolahan teks, bobot setiap komponen, jumlah hasil, dan ambang relevansi belum ditetapkan. Pilihan tersebut perlu diuji menggunakan sampel data dan penilaian manusia atas relevansi hasil.
+Implementasi memakai `tfidf-cosine-v1`: TF-IDF yang hanya dilatih pada narasi kasus, cosine yang dinormalisasi, bobot kategori 0.4 dan teks 0.6, empat bobot field kategori 0.35/0.15/0.35/0.15, ambang awal 0.50, serta syarat tumpang tindih teks. Kandidat dengan skor di bawah ambang tidak ditampilkan. Nilai ini adalah titik awal yang belum dikalibrasi; respons server selalu memuat konfigurasi aktual dan peringatan.
 
 Respons perusahaan merupakan informasi historis yang ditampilkan bersama kasus hasil pencarian, bukan informasi yang harus diketahui analis ketika memasukkan pengaduan baru.
 
@@ -129,15 +238,12 @@ Keberhasilan proyek terutama berkaitan dengan **relevansi dan kegunaan preseden*
 
 ## Ruang keputusan yang masih terbuka
 
-README ini menjadi dasar penyusunan spesifikasi implementasi. Keputusan yang masih terbuka meliputi:
+Keputusan yang sudah ditetapkan meliputi Spring Boot 4.1.2 + Java 21, SQLite, OpenAPI 3.1 sebagai sumber kontrak, client TypeScript hasil generation, formula `tfidf-cosine-v1`, batas demo 5.000 kasus, dan retensi manual tanpa verifikator. Yang masih terbuka:
 
-- Framework Java, teknologi database, rancangan API, dan deployment.
-- Kebutuhan autentikasi serta hak akses selain keputusan untuk tidak memakai verifikator khusus.
-- Periode arsip, jumlah sampel, cakupan produk dan subproduk, serta pembersihan data.
-- Metode kemiripan teks, bobot kategori dan teks, penanganan atribut kosong, serta ambang relevansi.
-- Desain dan bahasa antarmuka, termasuk rincian interaksi evaluasi serta retensi kasus.
-- Skenario pengujian dan metode evaluasi relevansi pencarian oleh manusia.
-
-Pilihan tersebut dapat ditetapkan berdasarkan eksplorasi data dan kebutuhan implementasi, dengan tetap mengikuti keputusan yang sudah dicatat di atas.
+- Frontend Next.js, desain dan bahasa antarmuka, serta rincian interaksi evaluasi dan retensi.
+- Autentikasi, hak akses, dan deployment publik.
+- Kalibrasi bobot/ambang relevansi berdasarkan penilaian manusia; nilai 0.4/0.6 dan 0.50 belum diklaim optimal.
+- Perluasan cakupan produk/periode dan pembersihan data di luar sampel demo 500 kasus.
+- Skenario evaluasi tambahan selain precision@5 manual yang sudah disediakan.
 
 **Acuan:** dokumen *Sistem CBR Keluhan Konsumen.pdf* dan arah proyek FinResolve yang telah didiskusikan. Rancangan awal merupakan referensi, bukan spesifikasi yang harus diikuti tanpa peninjauan.
