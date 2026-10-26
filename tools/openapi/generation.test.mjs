@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { generateAll, verifySha256 } from './generate.mjs';
+import { generateAll, loadToolchain, verifySha256 } from './generate.mjs';
 import { compareTrees } from './check.mjs';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
@@ -217,6 +217,45 @@ test('generated Java interfaces are abstract and contain no default endpoint imp
       assert.doesNotMatch(source, /\bdefault\s+ResponseEntity</, `${interfaceFile} has a default endpoint`);
     }
   });
+});
+
+test('Maven plugin consumes the shared Java generator configuration', async () => {
+  const pom = await readFile(path.join(repoRoot, 'backend', 'pom.xml'), 'utf8');
+  assert.ok(
+    pom.includes(
+      '<configurationFile>${project.basedir}/../tools/openapi/java.json</configurationFile>',
+    ),
+    'backend/pom.xml must load tools/openapi/java.json',
+  );
+  assert.doesNotMatch(pom, /<configOptions>/, 'generator options must stay in java.json');
+  assert.doesNotMatch(pom, /<typeMappings>/, 'type mappings must stay in java.json');
+  assert.doesNotMatch(
+    pom,
+    /<(apiPackage|modelPackage|invokerPackage)>/,
+    'package options must stay in java.json',
+  );
+
+  const javaOptions = JSON.parse(
+    await readFile(path.join(here, 'java.json'), 'utf8'),
+  );
+  assert.equal(javaOptions.generatorName, 'spring');
+  assert.ok(
+    pom.includes(`<generatorName>${javaOptions.generatorName}</generatorName>`),
+    'Maven generator name must match java.json',
+  );
+  assert.equal(javaOptions.typeMappings.null, 'Void');
+
+  const toolchain = await loadToolchain();
+  assert.equal(
+    path.resolve(repoRoot, toolchain.templates.java),
+    path.join(repoRoot, 'backend', 'src', 'main', 'resources', 'openapi-templates'),
+  );
+  assert.ok(
+    pom.includes(
+      '<templateDirectory>${project.basedir}/src/main/resources/openapi-templates</templateDirectory>',
+    ),
+    'Maven template path must match the shared template directory',
+  );
 });
 
 test('the source contract is not modified by generation', async () => {

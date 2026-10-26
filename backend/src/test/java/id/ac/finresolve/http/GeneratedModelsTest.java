@@ -15,6 +15,7 @@ import java.lang.reflect.Method;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Stream;
 import org.junit.jupiter.api.Test;
 import org.openapitools.jackson.nullable.JsonNullableJackson3Module;
@@ -48,9 +49,10 @@ class GeneratedModelsTest {
         assertThat(cfpb.getAnalystNotes()).isNull();
         assertThat(cfpb.getReferenceCaseIds()).isEmpty();
 
-        JsonNode roundTrip = mapper.readTree(mapper.writeValueAsString(detail));
+        String serialized = mapper.writeValueAsString(detail);
+        JsonNode roundTrip = mapper.readTree(serialized);
 
-        assertThat(sourceKeyCount(roundTrip)).isEqualTo(1);
+        assertThat(sourceKeyCount(serialized)).isEqualTo(1);
         assertThat(roundTrip.get("source").asString()).isEqualTo("CFPB");
         assertThat(roundTrip.has("subProduct")).isTrue();
         assertThat(roundTrip.get("subProduct").asString()).isEqualTo("Checking account");
@@ -80,9 +82,10 @@ class GeneratedModelsTest {
         assertThat(analyst.getReceivedDate().get()).isNull();
         assertThat(analyst.getReferenceCaseIds()).hasSize(1);
 
-        JsonNode roundTrip = mapper.readTree(mapper.writeValueAsString(detail));
+        String serialized = mapper.writeValueAsString(detail);
+        JsonNode roundTrip = mapper.readTree(serialized);
 
-        assertThat(sourceKeyCount(roundTrip)).isEqualTo(1);
+        assertThat(sourceKeyCount(serialized)).isEqualTo(1);
         assertThat(roundTrip.get("source").asString()).isEqualTo("ANALYST");
         assertThat(roundTrip.has("provenance")).isTrue();
         assertThat(roundTrip.get("provenance").isNull()).isTrue();
@@ -135,9 +138,7 @@ class GeneratedModelsTest {
         return mapper.writeValueAsString(value);
     }
 
-    private static long sourceKeyCount(JsonNode node) {
-        return node.properties().stream()
-                .filter(entry -> entry.getKey().equals("source"))
-                .count();
+    private static long sourceKeyCount(String serializedJson) {
+        return Pattern.compile("\"source\"\\s*:").matcher(serializedJson).results().count();
     }
 }

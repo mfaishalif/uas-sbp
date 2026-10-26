@@ -10,6 +10,9 @@
     "sha256": "0d7125e8c91097b36edb990ea5934e6c68b4440eef4ea96510a0f6815e7eeadb"
   },
   "sourceContract": "docs/api/openapi.json",
+  "templates": {
+    "java": "backend/src/main/resources/openapi-templates"
+  },
   "outputs": {
     "java": "backend/target/generated-sources/openapi",
     "typescript": "packages/api-client/src/generated"

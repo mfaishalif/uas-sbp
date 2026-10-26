@@ -3,7 +3,6 @@
   "apiPackage": "id.ac.finresolve.api",
   "modelPackage": "id.ac.finresolve.api.model",
   "invokerPackage": "id.ac.finresolve.api.invoker",
-  "templateDirectory": "backend/src/main/resources/openapi-templates",
   "typeMappings": {
     "null": "Void"
   },

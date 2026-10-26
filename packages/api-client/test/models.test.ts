@@ -40,8 +40,8 @@ function own(json: Record<string, unknown>, key: string): boolean {
   return Object.prototype.hasOwnProperty.call(json, key);
 }
 
-function sourceKeyCount(json: Record<string, unknown>): number {
-  return Object.keys(json).filter((key) => key === 'source').length;
+function sourceKeyCount(serializedJson: string): number {
+  return [...serializedJson.matchAll(/"source"\s*:/g)].length;
 }
 
 test('generated CfpbCase deserializes and serializes its contract example', () => {
@@ -56,9 +56,10 @@ test('generated CfpbCase deserializes and serializes its contract example', () =
   assert.equal(cfpb.analystNotes, null);
   assert.deepEqual(cfpb.referenceCaseIds, []);
 
-  const json = CaseDetailToJSON(detail) as Record<string, unknown>;
+  const serialized = JSON.stringify(CaseDetailToJSON(detail));
+  assert.equal(sourceKeyCount(serialized), 1);
+  const json = JSON.parse(serialized) as Record<string, unknown>;
   assert.equal(json.source, 'CFPB');
-  assert.equal(sourceKeyCount(json), 1);
   assert.ok(own(json, 'subProduct'));
   assert.equal(json.subProduct, 'Checking account');
   assert.ok(own(json, 'subIssue'));
@@ -83,9 +84,10 @@ test('generated AnalystCase deserializes and serializes its contract example', (
     '11111111-1111-4111-8111-111111111111',
   ]);
 
-  const json = CaseDetailToJSON(detail) as Record<string, unknown>;
+  const serialized = JSON.stringify(CaseDetailToJSON(detail));
+  assert.equal(sourceKeyCount(serialized), 1);
+  const json = JSON.parse(serialized) as Record<string, unknown>;
   assert.equal(json.source, 'ANALYST');
-  assert.equal(sourceKeyCount(json), 1);
   assert.ok(own(json, 'provenance'));
   assert.equal(json.provenance, null);
   assert.ok(own(json, 'receivedDate'));

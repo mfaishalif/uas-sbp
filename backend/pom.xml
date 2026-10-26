@@ -79,30 +79,10 @@
                             <inputSpec>${project.basedir}/../docs/api/openapi.json</inputSpec>
                             <generatorName>spring</generatorName>
                             <output>${project.build.directory}/generated-sources/openapi</output>
-                            <apiPackage>id.ac.finresolve.api</apiPackage>
-                            <modelPackage>id.ac.finresolve.api.model</modelPackage>
-                            <invokerPackage>id.ac.finresolve.api.invoker</invokerPackage>
+                            <!-- Shared generator options: api/model packages, type mappings, and additional properties. -->
+                            <configurationFile>${project.basedir}/../tools/openapi/java.json</configurationFile>
+                            <!-- Maven runs from backend/; generate.mjs resolves the same directory from toolchain.json. -->
                             <templateDirectory>${project.basedir}/src/main/resources/openapi-templates</templateDirectory>
-                            <typeMappings>
-                                <typeMapping>null=Void</typeMapping>
-                            </typeMappings>
-                            <configOptions>
-                                <interfaceOnly>true</interfaceOnly>
-                                <skipDefaultInterface>true</skipDefaultInterface>
-                                <useTags>true</useTags>
-                                <useSpringBoot4>true</useSpringBoot4>
-                                <useSpringBoot3>false</useSpringBoot3>
-                                <useJackson3>true</useJackson3>
-                                <useJakartaEe>true</useJakartaEe>
-                                <useOneOfInterfaces>true</useOneOfInterfaces>
-                                <useBeanValidation>true</useBeanValidation>
-                                <useResponseEntity>true</useResponseEntity>
-                                <annotationLibrary>none</annotationLibrary>
-                                <documentationProvider>none</documentationProvider>
-                                <hideGenerationTimestamp>true</hideGenerationTimestamp>
-                                <generateJsonIncludeAnnotations>false</generateJsonIncludeAnnotations>
-                                <generateJsonSetterNullsAnnotations>false</generateJsonSetterNullsAnnotations>
-                            </configOptions>
                         </configuration>
                     </execution>
                 </executions>

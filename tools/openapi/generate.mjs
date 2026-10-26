@@ -104,8 +104,8 @@ async function runGenerator({ jarPath, inputSpec, output, config }) {
   if (config.apiPackage) args.push('--api-package', config.apiPackage);
   if (config.modelPackage) args.push('--model-package', config.modelPackage);
   if (config.invokerPackage) args.push('--invoker-package', config.invokerPackage);
-  if (config.templateDirectory) {
-    args.push('-t', path.resolve(repoRoot, config.templateDirectory));
+  if (config.templateDir) {
+    args.push('-t', path.resolve(repoRoot, config.templateDir));
   }
 
   const properties = additionalProperties(config.additionalProperties);
@@ -154,10 +154,11 @@ export async function generateAll(outputRoot) {
   await mkdir(typescriptOutput, { recursive: true });
 
   const jarPath = await ensureGeneratorJar(toolchain);
-  const [javaConfig, typescriptConfig] = await Promise.all([
+  const [javaOptions, typescriptConfig] = await Promise.all([
     readJson(javaConfigPath),
     readJson(typescriptConfigPath),
   ]);
+  const javaConfig = { ...javaOptions, templateDir: toolchain.templates.java };
 
   await runGenerator({
     jarPath,
