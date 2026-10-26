@@ -6,7 +6,7 @@ Tanggal: 26 Oktober 2026. Status: rancangan untuk persetujuan pengguna.
 
 Backend mendukung demo UAS Sistem Berbasis Pengetahuan: analis memasukkan pengaduan, membandingkan preseden, lalu menyimpan kasus yang telah ditangani beserta penilaiannya. Kemiripan dan respons historis adalah bahan pertimbangan, bukan bukti keberhasilan suatu solusi.
 
-Keputusan pengguna: implementasi backend berdasarkan README, target demo lokal dengan penyimpanan permanen, dan database **SQLite**. Java serta sumber narasi CFPB mengikuti README. Semua rincian berikut yang belum disebut pengguna adalah usulan teknis penulis untuk ditinjau, bukan keputusan pengguna yang diasumsikan telah disetujui.
+Keputusan pengguna: implementasi backend berdasarkan README, target demo lokal dengan penyimpanan permanen, database **SQLite**, dan kontrak API agar frontend dapat diintegrasikan kemudian. Java serta sumber narasi CFPB mengikuti README. Semua rincian berikut yang belum disebut pengguna adalah usulan teknis penulis untuk ditinjau, bukan keputusan pengguna yang diasumsikan telah disetujui.
 
 Ini pembangunan backend baru, bukan perubahan kecil. Repositori saat diperiksa hanya berisi README, konfigurasi devcontainer, dan log. Perubahan README serta file lokal yang sudah ada harus dipertahankan.
 
@@ -89,6 +89,12 @@ Untuk batas demo 5.000 kasus, bangun snapshot TF-IDF dari seluruh korpus pada se
 
 ## Kontrak API dan alur analis
 
+Kontrak terperinci tersedia dalam [OpenAPI 3.1](../../api/openapi.json) dan [panduan integrasi frontend](../../api/README.md). OpenAPI menetapkan endpoint, DTO, nullability, enum, batas input, pagination, status HTTP, dan contoh sintetis request/response; panduan menetapkan semantik bisnis dan contoh `fetch`, termasuk multipart. Keduanya adalah bagian desain ini dan menjadi acuan implementasi. Status kontrak `0.1.0-draft` tidak berarti endpoint sudah tersedia.
+
+JSON memakai camelCase tanpa envelope `data`. Field nullable pada respons selalu hadir; koleksi kosong berupa array. UUID kasus dan ID CFPB keduanya string. PUT mengganti lengkap kasus ANALYST dan mengosongkan field opsional yang dihilangkan. POST retensi tidak idempoten. Respons pencarian memuat konfigurasi yang benar-benar digunakan; hasil kosong tetap HTTP 200. Angka, ID dan skor contoh dokumentasi bersifat sintetis.
+
+Rincian yang ditetapkan kontrak: maksimum label kategori/company 500 karakter, companyResponse 2.000 karakter, file CSV 20 MiB dan total multipart 21 MiB. Part metadata wajib application/json. CSV Date received menerima YYYY-MM-DD atau MM/DD/YYYY; API memakai tanggal ISO. CSV hanya header ditolak, sedangkan file dengan seluruh record invalid menghasilkan laporan batch dengan imported=0. Validasi record mendahului pemeriksaan duplikat. CORS mencakup preflight OPTIONS dan mengekspos header Location setelah retensi.
+
 | Endpoint | Perilaku |
 | --- | --- |
 | `GET /api/health` | Status layanan dan keterhubungan database; tanpa membuka lokasi file |
@@ -111,6 +117,7 @@ Untuk demo lokal, server bind loopback secara default; dokumentasikan override `
 - Unit test rumus kategori, optional/null, stopword/redaksi, IDF, cosine nol, urutan seri, threshold dan konfigurasi bobot.
 - Integration test memakai SQLite file sementara sungguhan: migrasi, foreign key, restart/persistensi, duplikasi impor, parser CSV multiline/BOM, rollback file invalid, batas total, dan transaksi retensi/referensi.
 - API test alur impor → kategori → pencarian → detail → retain → pencarian ulang → update; input invalid, korpus kosong, tidak relevan, dan larangan update sumber CFPB.
+- Verifikasi implementasi terhadap OpenAPI: nama/type field, required/null, diskriminator sumber, response error, status pencarian kosong, pagination, multipart, replay impor, dan semantik penggantian PUT. Contoh kontrak sintetis tidak boleh diperlakukan sebagai pengukuran kualitas algoritme.
 - Smoke test Maven Wrapper build dan menjalankan server port 8080 dengan database sementara. Jangan menulis test yang mengunduh arsip internet.
 - Dataset test kecil boleh sintetis dan harus jelas terpisah dari sampel demo CFPB. Demo tidak boleh mengklaim fixture sintetis berasal dari arsip.
 - Sediakan lembar evaluasi manual minimal 10 query Inggris yang mencakup kasus relevan, variasi kata, atribut opsional, dan tidak relevan. Penilai memberi label relevansi pada top-5; dokumentasikan precision@5 dengan penyebut 5 (hasil kurang dari 5 dianggap slot kosong tidak relevan), jumlah hasil, serta kasus kegagalan. Belum ada klaim kualitas sebelum penilaian manusia dilakukan.
@@ -118,7 +125,7 @@ Untuk demo lokal, server bind loopback secara default; dokumentasikan override `
 
 ## Diserahkan kepada pembuat
 
-Nama package/class, versi dependency stabil yang kompatibel, detail DTO JSON selain field yang ditetapkan, pustaka migrasi, organisasi fixture, dan perintah persiapan data boleh dipilih saat perencanaan. Keputusan itu tidak boleh memperluas scope atau mengubah rumus, asal data, penyimpanan manual, dan kontrak perilaku di atas. Bila inspeksi penuh data menemukan ketidakcocokan material, laporkan bukti dan sesuaikan desain secara terbuka sebelum mengubah cakupan.
+Nama package/class, versi dependency stabil yang kompatibel, pustaka migrasi, organisasi fixture, dan perintah persiapan data boleh dipilih saat perencanaan. DTO publik mengikuti OpenAPI; nama field, tipe, enum, status, dan semantik integrasi bukan lagi keputusan bebas pembuat. Keputusan implementasi tidak boleh memperluas scope atau mengubah rumus, asal data, penyimpanan manual, dan kontrak perilaku di atas. Bila inspeksi penuh data menemukan ketidakcocokan material, laporkan bukti dan sesuaikan desain secara terbuka sebelum mengubah cakupan.
 
 ## Referensi yang diperiksa
 

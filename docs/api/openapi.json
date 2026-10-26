@@ -1,0 +1,2200 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "FinResolve Backend API",
+    "version": "0.1.0-draft",
+    "description": "Kontrak rancangan untuk integrasi frontend. Backend belum diimplementasikan. Semua contoh ID, narasi, hitungan dan skor bersifat sintetis, bukan klaim data/hasil CFPB. JSON camelCase; respons tanpa envelope data. Nullable field respons selalu hadir. Semua endpoint lokal tanpa autentikasi. Lihat docs/api/README.md untuk aturan integrasi, validasi bisnis dan status HTTP."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/api",
+      "description": "Demo lokal; frontend memakai base URL yang dapat dikonfigurasi."
+    }
+  ],
+  "security": [],
+  "tags": [
+    {
+      "name": "System"
+    },
+    {
+      "name": "Categories"
+    },
+    {
+      "name": "Cases"
+    },
+    {
+      "name": "Search"
+    },
+    {
+      "name": "Imports"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "getHealth",
+        "tags": [
+          "System"
+        ],
+        "summary": "Memeriksa layanan dan database",
+        "responses": {
+          "200": {
+            "description": "Layanan dan koneksi database tersedia.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                },
+                "examples": {
+                  "healthy": {
+                    "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                    "value": {
+                      "status": "UP",
+                      "database": "UP"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    },
+    "/categories": {
+      "get": {
+        "operationId": "getCategories",
+        "tags": [
+          "Categories"
+        ],
+        "summary": "Mengambil pilihan kategori dari sampel CFPB",
+        "description": "Tuple unik, diurutkan product/subProduct/issue/subIssue menaik dengan perbandingan Unicode, null sebelum string. items=[] jika belum ada impor. Frontend menghitung pilihan dependen dari tuple; null bukan pilihan wajib.",
+        "responses": {
+          "200": {
+            "description": "Katalog sampel; bukan seluruh taksonomi CFPB.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Categories"
+                },
+                "examples": {
+                  "populated": {
+                    "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                    "value": {
+                      "items": [
+                        {
+                          "product": "Checking or savings account",
+                          "subProduct": "Checking account",
+                          "issue": "Managing an account",
+                          "subIssue": null
+                        }
+                      ],
+                      "scope": "IMPORTED_CFPB_SAMPLE"
+                    }
+                  },
+                  "empty": {
+                    "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                    "value": {
+                      "items": [],
+                      "scope": "IMPORTED_CFPB_SAMPLE"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    },
+    "/cases": {
+      "get": {
+        "operationId": "listCases",
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Daftar kasus dengan pagination",
+        "description": "Urutan tetap createdAt menurun lalu id menaik. Halaman di luar jangkauan mengembalikan items=[] dengan metadata total yang benar. totalPages=ceil(totalElements/size), 0 jika kosong. hasNext=(page+1)<totalPages. Filter diterapkan sebelum menghitung total. Halaman bukan snapshot lintas-request.",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 20
+            }
+          },
+          {
+            "name": "source",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "CFPB",
+                "ANALYST"
+              ]
+            },
+            "description": "Hilangkan untuk semua sumber; string kosong atau enum tidak dikenal ditolak."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Ringkasan tanpa narasi, provenance lengkap, dan catatan.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CasePage"
+                },
+                "examples": {
+                  "page": {
+                    "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                    "value": {
+                      "items": [
+                        {
+                          "id": "11111111-1111-4111-8111-111111111111",
+                          "source": "CFPB",
+                          "product": "Checking or savings account",
+                          "subProduct": "Checking account",
+                          "issue": "Managing an account",
+                          "subIssue": null,
+                          "receivedDate": "2024-11-12",
+                          "company": "Example Bank (synthetic)",
+                          "companyResponse": "Closed with explanation",
+                          "createdAt": "2026-10-26T10:00:00Z",
+                          "updatedAt": "2026-10-26T10:00:00Z"
+                        }
+                      ],
+                      "page": 0,
+                      "size": 20,
+                      "totalElements": 1,
+                      "totalPages": 1,
+                      "hasNext": false
+                    }
+                  },
+                  "empty": {
+                    "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                    "value": {
+                      "items": [],
+                      "page": 0,
+                      "size": 20,
+                      "totalElements": 0,
+                      "totalPages": 0,
+                      "hasNext": false
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      },
+      "post": {
+        "operationId": "retainCase",
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Menyimpan kasus ANALYST secara manual",
+        "description": "Tidak idempoten. Mengulang request membuat kasus baru. Tidak membutuhkan pencarian sebelumnya. Validasi kategori/referensi dan simpan kasus+catatan+referensi secara atomik. Katalog kosong atau kapasitas >5.000 adalah 409.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetainCaseRequest"
+              },
+              "examples": {
+                "retain": {
+                  "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                  "value": {
+                    "product": "Checking or savings account",
+                    "subProduct": "Checking account",
+                    "issue": "Managing an account",
+                    "subIssue": null,
+                    "narrative": "My transfer is missing from my checking account.",
+                    "receivedDate": null,
+                    "company": null,
+                    "companyResponse": null,
+                    "handlingNotes": "Reviewed transfer evidence and requested a trace.",
+                    "outcomeAssessment": "UNKNOWN",
+                    "evaluationNotes": "Awaiting confirmation from the consumer.",
+                    "referenceCaseIds": [
+                      "11111111-1111-4111-8111-111111111111"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Kasus tersimpan; Location menunjuk detail kasus.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseDetail"
+                },
+                "examples": {
+                  "created": {
+                    "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                    "value": {
+                      "id": "22222222-2222-4222-8222-222222222222",
+                      "source": "ANALYST",
+                      "product": "Checking or savings account",
+                      "subProduct": "Checking account",
+                      "issue": "Managing an account",
+                      "subIssue": null,
+                      "receivedDate": null,
+                      "company": null,
+                      "companyResponse": null,
+                      "createdAt": "2026-10-26T10:00:00Z",
+                      "updatedAt": "2026-10-26T10:00:00Z",
+                      "narrative": "My transfer is missing from my checking account.",
+                      "provenance": null,
+                      "analystNotes": {
+                        "handlingNotes": "Reviewed transfer evidence and requested a trace.",
+                        "outcomeAssessment": "UNKNOWN",
+                        "evaluationNotes": "Awaiting confirmation from the consumer."
+                      },
+                      "referenceCaseIds": [
+                        "11111111-1111-4111-8111-111111111111"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Location": {
+                "description": "Path relatif /api/cases/{id}. Diekspos melalui CORS.",
+                "required": true,
+                "schema": {
+                  "type": "string"
+                },
+                "example": "/api/cases/22222222-2222-4222-8222-222222222222"
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    },
+    "/cases/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "description": "UUID internal kasus; bukan Complaint ID CFPB."
+        }
+      ],
+      "get": {
+        "operationId": "getCase",
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Detail kasus dan asal informasinya",
+        "responses": {
+          "200": {
+            "description": "Detail sesuai diskriminator source. Nullable field selalu hadir.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseDetail"
+                },
+                "examples": {
+                  "cfpb": {
+                    "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                    "value": {
+                      "id": "11111111-1111-4111-8111-111111111111",
+                      "source": "CFPB",
+                      "product": "Checking or savings account",
+                      "subProduct": "Checking account",
+                      "issue": "Managing an account",
+                      "subIssue": null,
+                      "receivedDate": "2024-11-12",
+                      "company": "Example Bank (synthetic)",
+                      "companyResponse": "Closed with explanation",
+                      "createdAt": "2026-10-26T10:00:00Z",
+                      "updatedAt": "2026-10-26T10:00:00Z",
+                      "narrative": "A transfer is missing from my checking account.",
+                      "provenance": {
+                        "complaintId": "999999999",
+                        "importBatchId": "33333333-3333-4333-8333-333333333333",
+                        "archiveUrl": "https://files.consumerfinance.gov/f/documents/CCDB_Export_8_November_2024_through_December_2024.zip",
+                        "sourceFileName": "finresolve-sample.csv",
+                        "periodStart": "2024-11-01",
+                        "periodEnd": "2024-12-31",
+                        "csvSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                      },
+                      "analystNotes": null,
+                      "referenceCaseIds": []
+                    }
+                  },
+                  "analyst": {
+                    "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                    "value": {
+                      "id": "22222222-2222-4222-8222-222222222222",
+                      "source": "ANALYST",
+                      "product": "Checking or savings account",
+                      "subProduct": "Checking account",
+                      "issue": "Managing an account",
+                      "subIssue": null,
+                      "receivedDate": null,
+                      "company": null,
+                      "companyResponse": null,
+                      "createdAt": "2026-10-26T10:00:00Z",
+                      "updatedAt": "2026-10-26T10:00:00Z",
+                      "narrative": "My transfer is missing from my checking account.",
+                      "provenance": null,
+                      "analystNotes": {
+                        "handlingNotes": "Reviewed transfer evidence and requested a trace.",
+                        "outcomeAssessment": "UNKNOWN",
+                        "evaluationNotes": "Awaiting confirmation from the consumer."
+                      },
+                      "referenceCaseIds": [
+                        "11111111-1111-4111-8111-111111111111"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      },
+      "put": {
+        "operationId": "replaceAnalystCase",
+        "tags": [
+          "Cases"
+        ],
+        "summary": "Mengganti lengkap kasus ANALYST",
+        "description": "Hanya ANALYST. Field opsional yang dihilangkan dihapus menjadi null atau []; referensi lama diganti seluruhnya. createdAt dipertahankan, updatedAt diperbarui. Tanpa ETag/version lock; penulisan terakhir menang untuk demo satu analis. Bukan upsert: ID yang belum ada menghasilkan 404.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RetainCaseRequest"
+              },
+              "examples": {
+                "replacement": {
+                  "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                  "value": {
+                    "product": "Checking or savings account",
+                    "subProduct": "Checking account",
+                    "issue": "Managing an account",
+                    "subIssue": null,
+                    "narrative": "My transfer is missing from my checking account.",
+                    "receivedDate": null,
+                    "company": null,
+                    "companyResponse": null,
+                    "handlingNotes": "Reviewed transfer evidence and requested a trace.",
+                    "outcomeAssessment": "UNKNOWN",
+                    "evaluationNotes": "Awaiting confirmation from the consumer.",
+                    "referenceCaseIds": [
+                      "11111111-1111-4111-8111-111111111111"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Detail kasus sesudah penggantian.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CaseDetail"
+                },
+                "examples": {
+                  "updated": {
+                    "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                    "value": {
+                      "id": "22222222-2222-4222-8222-222222222222",
+                      "source": "ANALYST",
+                      "product": "Checking or savings account",
+                      "subProduct": "Checking account",
+                      "issue": "Managing an account",
+                      "subIssue": null,
+                      "receivedDate": null,
+                      "company": null,
+                      "companyResponse": null,
+                      "createdAt": "2026-10-26T10:00:00Z",
+                      "updatedAt": "2026-10-26T10:00:00Z",
+                      "narrative": "My transfer is missing from my checking account.",
+                      "provenance": null,
+                      "analystNotes": {
+                        "handlingNotes": "Reviewed transfer evidence and requested a trace.",
+                        "outcomeAssessment": "UNKNOWN",
+                        "evaluationNotes": "Awaiting confirmation from the consumer."
+                      },
+                      "referenceCaseIds": [
+                        "11111111-1111-4111-8111-111111111111"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    },
+    "/search": {
+      "post": {
+        "operationId": "searchCases",
+        "tags": [
+          "Search"
+        ],
+        "summary": "Mencari preseden tanpa menyimpan query",
+        "description": "Validasi tipe/batas/token terlebih dahulu. Jika korpus kosong, kembalikan EMPTY_KNOWLEDGE_BASE tanpa validasi keanggotaan kategori; jika ada data, validasi kategori. Skor dihitung dari snapshot semua kasus, termasuk ANALYST; urut score turun lalu id naik. Hanya score>=threshold dan textScore>0 dikembalikan. Respons memuat konfigurasi aktual server; frontend tidak mengasumsikan nilai default tetap.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SearchRequest"
+              },
+              "examples": {
+                "query": {
+                  "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                  "value": {
+                    "product": "Checking or savings account",
+                    "subProduct": "Checking account",
+                    "issue": "Managing an account",
+                    "subIssue": null,
+                    "narrative": "My transfer is missing from my checking account.",
+                    "limit": 5
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Semua status pencarian adalah respons sukses.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResponse"
+                },
+                "examples": {
+                  "matches": {
+                    "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                    "value": {
+                      "status": "MATCHES",
+                      "message": "Ditemukan preseden yang memenuhi ambang awal.",
+                      "results": [
+                        {
+                          "case": {
+                            "id": "11111111-1111-4111-8111-111111111111",
+                            "source": "CFPB",
+                            "product": "Checking or savings account",
+                            "subProduct": "Checking account",
+                            "issue": "Managing an account",
+                            "subIssue": null,
+                            "receivedDate": "2024-11-12",
+                            "company": "Example Bank (synthetic)",
+                            "companyResponse": "Closed with explanation",
+                            "createdAt": "2026-10-26T10:00:00Z",
+                            "updatedAt": "2026-10-26T10:00:00Z",
+                            "narrative": "A transfer is missing from my checking account.",
+                            "provenance": {
+                              "complaintId": "999999999",
+                              "importBatchId": "33333333-3333-4333-8333-333333333333",
+                              "archiveUrl": "https://files.consumerfinance.gov/f/documents/CCDB_Export_8_November_2024_through_December_2024.zip",
+                              "sourceFileName": "finresolve-sample.csv",
+                              "periodStart": "2024-11-01",
+                              "periodEnd": "2024-12-31",
+                              "csvSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                            },
+                            "analystNotes": null,
+                            "referenceCaseIds": []
+                          },
+                          "score": 0.58,
+                          "categoryScore": 1,
+                          "textScore": 0.3,
+                          "categoryExplanation": [
+                            {
+                              "field": "product",
+                              "queryValue": "Checking or savings account",
+                              "caseValue": "Checking or savings account",
+                              "status": "MATCH",
+                              "configuredWeight": 0.35,
+                              "effectiveWeight": 0.4117647058823529,
+                              "contribution": 0.4117647058823529
+                            },
+                            {
+                              "field": "subProduct",
+                              "queryValue": "Checking account",
+                              "caseValue": "Checking account",
+                              "status": "MATCH",
+                              "configuredWeight": 0.15,
+                              "effectiveWeight": 0.17647058823529413,
+                              "contribution": 0.17647058823529413
+                            },
+                            {
+                              "field": "issue",
+                              "queryValue": "Managing an account",
+                              "caseValue": "Managing an account",
+                              "status": "MATCH",
+                              "configuredWeight": 0.35,
+                              "effectiveWeight": 0.4117647058823529,
+                              "contribution": 0.4117647058823529
+                            },
+                            {
+                              "field": "subIssue",
+                              "queryValue": null,
+                              "caseValue": null,
+                              "status": "NOT_USED",
+                              "configuredWeight": 0.15,
+                              "effectiveWeight": 0,
+                              "contribution": 0
+                            }
+                          ],
+                          "sharedTerms": [
+                            {
+                              "term": "transfer",
+                              "contribution": 0.2
+                            },
+                            {
+                              "term": "account",
+                              "contribution": 0.1
+                            }
+                          ]
+                        }
+                      ],
+                      "returnedCount": 1,
+                      "limit": 5,
+                      "corpusSize": 500,
+                      "configuration": {
+                        "categoryWeight": 0.4,
+                        "textWeight": 0.6,
+                        "categoryFieldWeights": {
+                          "product": 0.35,
+                          "subProduct": 0.15,
+                          "issue": 0.35,
+                          "subIssue": 0.15
+                        },
+                        "threshold": 0.5,
+                        "requiresTextOverlap": true,
+                        "algorithmVersion": "tfidf-cosine-v1"
+                      },
+                      "warnings": [
+                        "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Bobot serta ambang awal belum dikalibrasi."
+                      ]
+                    }
+                  },
+                  "noRelevantCases": {
+                    "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                    "value": {
+                      "status": "NO_RELEVANT_CASES",
+                      "message": "Tidak ada preseden yang cukup relevan; penilaian tetap dilakukan analis.",
+                      "results": [],
+                      "returnedCount": 0,
+                      "limit": 5,
+                      "corpusSize": 500,
+                      "configuration": {
+                        "categoryWeight": 0.4,
+                        "textWeight": 0.6,
+                        "categoryFieldWeights": {
+                          "product": 0.35,
+                          "subProduct": 0.15,
+                          "issue": 0.35,
+                          "subIssue": 0.15
+                        },
+                        "threshold": 0.5,
+                        "requiresTextOverlap": true,
+                        "algorithmVersion": "tfidf-cosine-v1"
+                      },
+                      "warnings": [
+                        "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Bobot serta ambang awal belum dikalibrasi."
+                      ]
+                    }
+                  },
+                  "emptyKnowledgeBase": {
+                    "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                    "value": {
+                      "status": "EMPTY_KNOWLEDGE_BASE",
+                      "message": "Basis kasus masih kosong; impor sampel CFPB terlebih dahulu.",
+                      "results": [],
+                      "returnedCount": 0,
+                      "limit": 5,
+                      "corpusSize": 0,
+                      "configuration": {
+                        "categoryWeight": 0.4,
+                        "textWeight": 0.6,
+                        "categoryFieldWeights": {
+                          "product": 0.35,
+                          "subProduct": 0.15,
+                          "issue": 0.35,
+                          "subIssue": 0.15
+                        },
+                        "threshold": 0.5,
+                        "requiresTextOverlap": true,
+                        "algorithmVersion": "tfidf-cosine-v1"
+                      },
+                      "warnings": [
+                        "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Bobot serta ambang awal belum dikalibrasi."
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    },
+    "/imports/cfpb": {
+      "post": {
+        "operationId": "importCfpb",
+        "tags": [
+          "Imports"
+        ],
+        "summary": "Mengimpor CSV CFPB dengan metadata sumber",
+        "description": "Sinkron, bukan job background. file maksimal 20 MiB, request multipart maksimal 21 MiB, maksimal 5.000 record. Validasi file sebelum transaksi; error file membatalkan semua penulisan. Error per-record dilaporkan pada respons sukses. Replay dikenali dari SHA-256 byte CSV beserta seluruh nilai metadata setelah trim. Duplicate ID dalam file atau database dilewati setelah validasi record. CSV sumber mendukung BOM, kutipan dan newline. Content-Type file text/csv atau application/octet-stream; metadata harus application/json.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/ImportRequest"
+              },
+              "encoding": {
+                "file": {
+                  "contentType": "text/csv, application/octet-stream"
+                },
+                "metadata": {
+                  "contentType": "application/json"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Replay file+metadata yang identik. Angka merupakan laporan batch asli.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportReport"
+                },
+                "examples": {
+                  "replay": {
+                    "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                    "value": {
+                      "batchId": "33333333-3333-4333-8333-333333333333",
+                      "replayed": true,
+                      "metadata": {
+                        "archiveUrl": "https://files.consumerfinance.gov/f/documents/CCDB_Export_8_November_2024_through_December_2024.zip",
+                        "sourceFileName": "finresolve-sample.csv",
+                        "periodStart": "2024-11-01",
+                        "periodEnd": "2024-12-31"
+                      },
+                      "csvSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                      "processed": 500,
+                      "imported": 495,
+                      "duplicates": 3,
+                      "rejected": 2,
+                      "errors": [
+                        {
+                          "recordNumber": 7,
+                          "field": "Consumer complaint narrative",
+                          "code": "REQUIRED",
+                          "message": "Narasi wajib diisi."
+                        },
+                        {
+                          "recordNumber": 11,
+                          "field": "Complaint ID",
+                          "code": "INVALID_FORMAT",
+                          "message": "ID pengaduan harus bilangan bulat positif."
+                        }
+                      ],
+                      "errorsTruncated": false,
+                      "importedAt": "2026-10-26T10:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "201": {
+            "description": "Batch baru tersimpan; lihat rejected/imported sebelum menganggap semua baris berhasil.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImportReport"
+                },
+                "examples": {
+                  "imported": {
+                    "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                    "value": {
+                      "batchId": "33333333-3333-4333-8333-333333333333",
+                      "replayed": false,
+                      "metadata": {
+                        "archiveUrl": "https://files.consumerfinance.gov/f/documents/CCDB_Export_8_November_2024_through_December_2024.zip",
+                        "sourceFileName": "finresolve-sample.csv",
+                        "periodStart": "2024-11-01",
+                        "periodEnd": "2024-12-31"
+                      },
+                      "csvSha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+                      "processed": 500,
+                      "imported": 495,
+                      "duplicates": 3,
+                      "rejected": 2,
+                      "errors": [
+                        {
+                          "recordNumber": 7,
+                          "field": "Consumer complaint narrative",
+                          "code": "REQUIRED",
+                          "message": "Narasi wajib diisi."
+                        },
+                        {
+                          "recordNumber": 11,
+                          "field": "Complaint ID",
+                          "code": "INVALID_FORMAT",
+                          "message": "ID pengaduan harus bilangan bulat positif."
+                        }
+                      ],
+                      "errorsTruncated": false,
+                      "importedAt": "2026-10-26T10:00:00Z"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "405": {
+            "$ref": "#/components/responses/MethodNotAllowed"
+          },
+          "409": {
+            "$ref": "#/components/responses/Conflict"
+          },
+          "413": {
+            "$ref": "#/components/responses/PayloadTooLarge"
+          },
+          "415": {
+            "$ref": "#/components/responses/UnsupportedMediaType"
+          },
+          "500": {
+            "$ref": "#/components/responses/InternalError"
+          },
+          "503": {
+            "$ref": "#/components/responses/Unavailable"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ApiError": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "enum": [
+              "VALIDATION_ERROR",
+              "MALFORMED_REQUEST",
+              "INVALID_CATEGORY",
+              "INVALID_REFERENCE",
+              "INVALID_CSV",
+              "IMPORT_LIMIT_EXCEEDED",
+              "CASE_NOT_FOUND",
+              "ROUTE_NOT_FOUND",
+              "IMMUTABLE_CFPB_CASE",
+              "EMPTY_CATEGORY_CATALOG",
+              "KNOWLEDGE_BASE_LIMIT_EXCEEDED",
+              "PAYLOAD_TOO_LARGE",
+              "METHOD_NOT_ALLOWED",
+              "UNSUPPORTED_MEDIA_TYPE",
+              "DATABASE_BUSY",
+              "SERVICE_UNAVAILABLE",
+              "INTERNAL_ERROR"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "description": "Pesan Indonesia untuk manusia; logika frontend memakai code, bukan message."
+          },
+          "fieldErrors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FieldError"
+            }
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Waktu UTC RFC 3339 dengan akhiran Z."
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "fieldErrors",
+          "timestamp"
+        ]
+      },
+      "FieldError": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "type": "string",
+            "description": "Nama field camelCase atau path seperti referenceCaseIds[0], metadata.periodEnd, file, page, id, body."
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "REQUIRED",
+              "INVALID_FORMAT",
+              "OUT_OF_RANGE",
+              "INVALID_VALUE",
+              "UNKNOWN_FIELD",
+              "DUPLICATE",
+              "NOT_FOUND",
+              "TOO_LONG",
+              "NO_MEANINGFUL_TOKENS"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "field",
+          "code",
+          "message"
+        ]
+      },
+      "Health": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string",
+            "const": "UP"
+          },
+          "database": {
+            "type": "string",
+            "const": "UP"
+          }
+        },
+        "required": [
+          "status",
+          "database"
+        ]
+      },
+      "CategoryTuple": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "product": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "subProduct": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "issue": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "subIssue": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          }
+        },
+        "required": [
+          "product",
+          "subProduct",
+          "issue",
+          "subIssue"
+        ]
+      },
+      "Categories": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CategoryTuple"
+            }
+          },
+          "scope": {
+            "type": "string",
+            "const": "IMPORTED_CFPB_SAMPLE"
+          }
+        },
+        "required": [
+          "items",
+          "scope"
+        ]
+      },
+      "SearchRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "product": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "subProduct": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "issue": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "subIssue": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "narrative": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50000,
+            "description": "Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak."
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20,
+            "default": 5
+          }
+        },
+        "required": [
+          "product",
+          "issue",
+          "narrative"
+        ],
+        "description": "Subproduk/submasalah boleh dihilangkan atau null; string blank dinormalisasi ke null. Properti lain ditolak. Limit null ditolak."
+      },
+      "RetainCaseRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "product": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "subProduct": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "issue": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "subIssue": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "narrative": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50000,
+            "description": "Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak."
+          },
+          "receivedDate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "company": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "companyResponse": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 2000
+          },
+          "handlingNotes": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 10000
+          },
+          "outcomeAssessment": {
+            "type": "string",
+            "enum": [
+              "UNKNOWN",
+              "RESOLVED",
+              "PARTIALLY_RESOLVED",
+              "UNRESOLVED"
+            ]
+          },
+          "evaluationNotes": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 10000
+          },
+          "referenceCaseIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "maxItems": 20,
+            "uniqueItems": true,
+            "default": []
+          }
+        },
+        "required": [
+          "product",
+          "issue",
+          "narrative",
+          "handlingNotes",
+          "outcomeAssessment"
+        ],
+        "description": "POST membuat kasus ANALYST. PUT mengganti lengkap: field opsional yang dihilangkan dihapus menjadi null atau []; bukan PATCH. referenceCaseIds null ditolak. Semua referensi wajib ada dan bukan ID kasus itu sendiri. source, id, provenance, timestamps tidak boleh dikirim."
+      },
+      "ArchiveProvenance": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "complaintId": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$",
+            "description": "ID CFPB dikirim sebagai string agar tidak kehilangan presisi di JavaScript."
+          },
+          "importBatchId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "archiveUrl": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://"
+          },
+          "sourceFileName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255
+          },
+          "periodStart": {
+            "type": "string",
+            "format": "date"
+          },
+          "periodEnd": {
+            "type": "string",
+            "format": "date"
+          },
+          "csvSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "required": [
+          "complaintId",
+          "importBatchId",
+          "archiveUrl",
+          "sourceFileName",
+          "periodStart",
+          "periodEnd",
+          "csvSha256"
+        ]
+      },
+      "AnalystNotes": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "handlingNotes": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 10000
+          },
+          "outcomeAssessment": {
+            "type": "string",
+            "enum": [
+              "UNKNOWN",
+              "RESOLVED",
+              "PARTIALLY_RESOLVED",
+              "UNRESOLVED"
+            ]
+          },
+          "evaluationNotes": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 10000
+          }
+        },
+        "required": [
+          "handlingNotes",
+          "outcomeAssessment",
+          "evaluationNotes"
+        ]
+      },
+      "CaseSummary": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "CFPB",
+              "ANALYST"
+            ]
+          },
+          "product": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "subProduct": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "issue": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "subIssue": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "receivedDate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "company": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "companyResponse": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 2000
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Waktu UTC RFC 3339 dengan akhiran Z."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Waktu UTC RFC 3339 dengan akhiran Z."
+          }
+        },
+        "required": [
+          "id",
+          "source",
+          "product",
+          "subProduct",
+          "issue",
+          "subIssue",
+          "receivedDate",
+          "company",
+          "companyResponse",
+          "createdAt",
+          "updatedAt"
+        ]
+      },
+      "CfpbCase": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "source": {
+            "type": "string",
+            "const": "CFPB"
+          },
+          "product": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "subProduct": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "issue": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "subIssue": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "receivedDate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "company": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "companyResponse": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 2000
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Waktu UTC RFC 3339 dengan akhiran Z."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Waktu UTC RFC 3339 dengan akhiran Z."
+          },
+          "narrative": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50000,
+            "description": "Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak."
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/ArchiveProvenance"
+          },
+          "analystNotes": {
+            "type": "null"
+          },
+          "referenceCaseIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "maxItems": 0
+          }
+        },
+        "required": [
+          "id",
+          "source",
+          "product",
+          "subProduct",
+          "issue",
+          "subIssue",
+          "receivedDate",
+          "company",
+          "companyResponse",
+          "createdAt",
+          "updatedAt",
+          "narrative",
+          "provenance",
+          "analystNotes",
+          "referenceCaseIds"
+        ]
+      },
+      "AnalystCase": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "source": {
+            "type": "string",
+            "const": "ANALYST"
+          },
+          "product": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "subProduct": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "issue": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 500
+          },
+          "subIssue": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "receivedDate": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date"
+          },
+          "company": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 500
+          },
+          "companyResponse": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 2000
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Waktu UTC RFC 3339 dengan akhiran Z."
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Waktu UTC RFC 3339 dengan akhiran Z."
+          },
+          "narrative": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 50000,
+            "description": "Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak."
+          },
+          "provenance": {
+            "type": "null"
+          },
+          "analystNotes": {
+            "$ref": "#/components/schemas/AnalystNotes"
+          },
+          "referenceCaseIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "maxItems": 20,
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "id",
+          "source",
+          "product",
+          "subProduct",
+          "issue",
+          "subIssue",
+          "receivedDate",
+          "company",
+          "companyResponse",
+          "createdAt",
+          "updatedAt",
+          "narrative",
+          "provenance",
+          "analystNotes",
+          "referenceCaseIds"
+        ]
+      },
+      "CaseDetail": {
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/CfpbCase"
+          },
+          {
+            "$ref": "#/components/schemas/AnalystCase"
+          }
+        ],
+        "discriminator": {
+          "propertyName": "source",
+          "mapping": {
+            "CFPB": "#/components/schemas/CfpbCase",
+            "ANALYST": "#/components/schemas/AnalystCase"
+          }
+        }
+      },
+      "CasePage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CaseSummary"
+            }
+          },
+          "page": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "size": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 100
+          },
+          "totalElements": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "totalPages": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "hasNext": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "items",
+          "page",
+          "size",
+          "totalElements",
+          "totalPages",
+          "hasNext"
+        ]
+      },
+      "CategoryExplanation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "type": "string",
+            "enum": [
+              "product",
+              "subProduct",
+              "issue",
+              "subIssue"
+            ]
+          },
+          "queryValue": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "caseValue": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "MATCH",
+              "MISMATCH",
+              "MISSING_IN_CASE",
+              "NOT_USED"
+            ]
+          },
+          "configuredWeight": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "effectiveWeight": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "contribution": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "required": [
+          "field",
+          "queryValue",
+          "caseValue",
+          "status",
+          "configuredWeight",
+          "effectiveWeight",
+          "contribution"
+        ],
+        "description": "Selalu empat field dalam urutan product, subProduct, issue, subIssue. NOT_USED jika query kosong; effectiveWeight=0. Selain itu effectiveWeight adalah bobot setelah normalisasi field aktif. contribution=effectiveWeight untuk MATCH, 0 untuk lainnya; jumlah contribution adalah categoryScore."
+      },
+      "TermContribution": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "term": {
+            "type": "string"
+          },
+          "contribution": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          }
+        },
+        "required": [
+          "term",
+          "contribution"
+        ],
+        "description": "Perkalian bobot TF-IDF ternormalisasi query dan kasus. Maksimal 10 token; jumlahnya dapat kurang dari textScore bila ada lebih dari 10 token bersama."
+      },
+      "SearchMatch": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "case": {
+            "$ref": "#/components/schemas/CaseDetail"
+          },
+          "score": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "categoryScore": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "textScore": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "categoryExplanation": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CategoryExplanation"
+            },
+            "minItems": 4,
+            "maxItems": 4
+          },
+          "sharedTerms": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TermContribution"
+            },
+            "maxItems": 10
+          }
+        },
+        "required": [
+          "case",
+          "score",
+          "categoryScore",
+          "textScore",
+          "categoryExplanation",
+          "sharedTerms"
+        ]
+      },
+      "SearchConfiguration": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "categoryWeight": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "textWeight": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "categoryFieldWeights": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "product": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "subProduct": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "issue": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "subIssue": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "required": [
+              "product",
+              "subProduct",
+              "issue",
+              "subIssue"
+            ]
+          },
+          "threshold": {
+            "type": "number",
+            "minimum": 0,
+            "maximum": 1
+          },
+          "requiresTextOverlap": {
+            "type": "boolean",
+            "const": true
+          },
+          "algorithmVersion": {
+            "type": "string",
+            "examples": [
+              "tfidf-cosine-v1"
+            ]
+          }
+        },
+        "required": [
+          "categoryWeight",
+          "textWeight",
+          "categoryFieldWeights",
+          "threshold",
+          "requiresTextOverlap",
+          "algorithmVersion"
+        ]
+      },
+      "SearchResponse": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "MATCHES",
+              "NO_RELEVANT_CASES",
+              "EMPTY_KNOWLEDGE_BASE"
+            ]
+          },
+          "message": {
+            "type": "string"
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SearchMatch"
+            },
+            "maxItems": 20
+          },
+          "returnedCount": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 20
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20
+          },
+          "corpusSize": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5000
+          },
+          "configuration": {
+            "$ref": "#/components/schemas/SearchConfiguration"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "minItems": 1
+          }
+        },
+        "required": [
+          "status",
+          "message",
+          "results",
+          "returnedCount",
+          "limit",
+          "corpusSize",
+          "configuration",
+          "warnings"
+        ],
+        "description": "MATCHES iff results nonkosong. Dua status lainnya memiliki results=[], returnedCount=0. EMPTY_KNOWLEDGE_BASE iff corpusSize=0. returnedCount=results.length; hasil <= limit. Tidak ada pagination pencarian. Skor 0–1 bukan probabilitas keberhasilan."
+      },
+      "ImportMetadata": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "archiveUrl": {
+            "type": "string",
+            "format": "uri",
+            "pattern": "^https://",
+            "maxLength": 2048,
+            "description": "URL sumber arsip; hanya dicatat, tidak diunduh oleh endpoint."
+          },
+          "sourceFileName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "description": "Nama CSV sumber untuk provenance; tanpa path lokal."
+          },
+          "periodStart": {
+            "type": "string",
+            "format": "date"
+          },
+          "periodEnd": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "archiveUrl",
+          "sourceFileName",
+          "periodStart",
+          "periodEnd"
+        ],
+        "description": "periodEnd harus >= periodStart. Semua field wajib."
+      },
+      "ImportRequest": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "file": {
+            "type": "string",
+            "format": "binary",
+            "description": "CSV UTF-8 maksimal 20 MiB (20.971.520 byte), maksimal 5.000 record data; header CFPB wajib."
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/ImportMetadata"
+          }
+        },
+        "required": [
+          "file",
+          "metadata"
+        ]
+      },
+      "ImportRowError": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "recordNumber": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Record data berbasis 1 setelah header; newline dalam quoted field tidak menambah nomor record."
+          },
+          "field": {
+            "type": "string",
+            "description": "Nama kolom CSV asli, misalnya Complaint ID."
+          },
+          "code": {
+            "type": "string",
+            "enum": [
+              "REQUIRED",
+              "INVALID_FORMAT",
+              "INVALID_CATEGORY",
+              "OUT_OF_RANGE",
+              "TOO_LONG"
+            ]
+          },
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "recordNumber",
+          "field",
+          "code",
+          "message"
+        ]
+      },
+      "ImportReport": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "batchId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "replayed": {
+            "type": "boolean"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/ImportMetadata"
+          },
+          "csvSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "processed": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5000
+          },
+          "imported": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5000
+          },
+          "duplicates": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5000
+          },
+          "rejected": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 5000
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImportRowError"
+            },
+            "maxItems": 20
+          },
+          "errorsTruncated": {
+            "type": "boolean"
+          },
+          "importedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Waktu UTC RFC 3339 dengan akhiran Z."
+          }
+        },
+        "required": [
+          "batchId",
+          "replayed",
+          "metadata",
+          "csvSha256",
+          "processed",
+          "imported",
+          "duplicates",
+          "rejected",
+          "errors",
+          "errorsTruncated",
+          "importedAt"
+        ],
+        "description": "processed=imported+duplicates+rejected. Satu error pertama per record ditolak; maksimal 20 contoh. errorsTruncated iff rejected>20. HTTP 200 replay mengembalikan batch dan hitungan asli, replayed=true; hitungan bukan tambahan baru. Header-only CSV ditolak INVALID_CSV. File dengan semua record invalid tetap membuat laporan batch 201 dengan imported=0."
+      }
+    },
+    "responses": {
+      "BadRequest": {
+        "description": "Request tidak valid. code: VALIDATION_ERROR, MALFORMED_REQUEST, INVALID_CATEGORY, INVALID_REFERENCE, INVALID_CSV, atau IMPORT_LIMIT_EXCEEDED.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            },
+            "examples": {
+              "validation": {
+                "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                "value": {
+                  "code": "VALIDATION_ERROR",
+                  "message": "Input tidak valid.",
+                  "fieldErrors": [
+                    {
+                      "field": "narrative",
+                      "code": "REQUIRED",
+                      "message": "Narasi wajib diisi."
+                    }
+                  ],
+                  "timestamp": "2026-10-26T10:00:00Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      "NotFound": {
+        "description": "CASE_NOT_FOUND untuk UUID valid yang tidak ada; ROUTE_NOT_FOUND untuk route tidak dikenal. UUID salah format adalah 400.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            },
+            "examples": {
+              "missing": {
+                "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                "value": {
+                  "code": "CASE_NOT_FOUND",
+                  "message": "Kasus tidak ditemukan.",
+                  "fieldErrors": [],
+                  "timestamp": "2026-10-26T10:00:00Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      "Conflict": {
+        "description": "IMMUTABLE_CFPB_CASE, EMPTY_CATEGORY_CATALOG, atau KNOWLEDGE_BASE_LIMIT_EXCEEDED. Tidak ada penulisan parsial.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            },
+            "examples": {
+              "immutable": {
+                "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                "value": {
+                  "code": "IMMUTABLE_CFPB_CASE",
+                  "message": "Kasus arsip CFPB tidak dapat diubah.",
+                  "fieldErrors": [],
+                  "timestamp": "2026-10-26T10:00:00Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      "PayloadTooLarge": {
+        "description": "PAYLOAD_TOO_LARGE: file >20 MiB atau multipart total >21 MiB.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            },
+            "examples": {
+              "tooLarge": {
+                "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                "value": {
+                  "code": "PAYLOAD_TOO_LARGE",
+                  "message": "Ukuran unggahan melebihi batas.",
+                  "fieldErrors": [],
+                  "timestamp": "2026-10-26T10:00:00Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      "UnsupportedMediaType": {
+        "description": "UNSUPPORTED_MEDIA_TYPE: tipe body atau part metadata tidak didukung.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            }
+          }
+        }
+      },
+      "InternalError": {
+        "description": "INTERNAL_ERROR: pesan umum tanpa detail internal.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            }
+          }
+        }
+      },
+      "Unavailable": {
+        "description": "DATABASE_BUSY atau SERVICE_UNAVAILABLE. Jangan otomatis mengulang POST retensi karena request awal mungkin sudah tersimpan.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            },
+            "examples": {
+              "busy": {
+                "summary": "Ilustrasi sintetis, bukan data CFPB atau keluaran algoritme yang diukur.",
+                "value": {
+                  "code": "DATABASE_BUSY",
+                  "message": "Database sedang sibuk; coba kembali.",
+                  "fieldErrors": [],
+                  "timestamp": "2026-10-26T10:00:00Z"
+                }
+              }
+            }
+          }
+        }
+      },
+      "MethodNotAllowed": {
+        "description": "METHOD_NOT_ALLOWED untuk metode yang tidak tersedia pada route.",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ApiError"
+            }
+          }
+        }
+      }
+    }
+  }
+}
