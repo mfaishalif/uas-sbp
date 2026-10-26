@@ -46,6 +46,7 @@ Konfigurasi [Dev Container](.devcontainer/devcontainer.json) menyediakan lingkun
 | Backend | JDK 21, Maven 3.9, dan Gradle 9 |
 | Asisten terminal | Codex CLI (`codex`) dan OpenCode CLI (`opencode`), terpasang global melalui npm |
 | GitHub CLI | `gh`, dipasang melalui devcontainer feature; login dengan scope `repo` dan `workflow` |
+| Docker CLI | `docker` dan `docker compose` dari devcontainer feature `docker-outside-of-docker`, memakai daemon Docker host |
 | Port yang diteruskan | `3000` untuk Next.js dan `8080` untuk backend Java |
 | Ekstensi VS Code | ESLint, Prettier, dan Extension Pack for Java |
 
@@ -59,6 +60,8 @@ Cara menggunakan:
 4. Setelah container siap, buka terminal di VS Code. Jalankan `codex` untuk memakai Codex CLI atau `opencode` untuk memakai OpenCode CLI dari folder proyek. Hubungkan provider AI lewat perintah `/connect` di OpenCode. Versi kedua CLI beserta toolchain diperiksa otomatis saat container pertama kali dibuat.
 
 Devcontainer menyiapkan toolchain pengembangan. Backend sudah dapat dijalankan dari repository ini; frontend Next.js belum tersedia. Setelah frontend ditambahkan, jalankan server Next.js dengan bind ke `0.0.0.0` (misalnya `npm run dev -- --hostname 0.0.0.0` dari folder frontend) agar dapat diakses melalui port yang diteruskan. Backend memakai port `8080`. Build Java memakai Maven Wrapper yang sudah di-commit agar versi build tool konsisten.
+
+Fitur `docker-outside-of-docker` memasang Docker CLI dan Compose di container, lalu memakai socket Docker dari host. Docker Desktop atau Docker Engine harus berjalan di host. Setelah konfigurasi devcontainer berubah, pilih **Dev Containers: Rebuild Container** agar fitur dan socket tersedia; perintah Docker tidak dapat dipakai di container yang belum dibangun ulang.
 
 SQLite adalah database demo. File default `backend/data/finresolve.db` dibuat otomatis saat backend dijalankan dari folder `backend/`; lokasi absolut dicatat pada log startup dan dapat diubah melalui `FINRESOLVE_DB_PATH`. Jika konfigurasi devcontainer diubah, pilih **Dev Containers: Rebuild Container** melalui Command Palette.
 
@@ -255,7 +258,7 @@ docker compose down --volumes
 docker compose up --build
 ```
 
-Perintah reset tersebut menghapus seluruh kasus analis pada volume demo. Jangan jalankan bila data tersebut ingin dipertahankan. Startup akan gagal dengan pesan yang jelas bila `data/cfpb/sample.csv` hilang atau tidak valid, sehingga aplikasi tidak menyajikan demo kosong. Inisialisasi demo hanya diaktifkan oleh Compose; startup non-container tetap memakai perilaku default dan tidak membaca CSV. Alur devcontainer tidak berubah, dan demo ini tetap hanya API tanpa frontend, autentikasi, atau deployment publik.
+Perintah reset tersebut menghapus seluruh kasus analis pada volume demo. Jangan jalankan bila data tersebut ingin dipertahankan. Startup akan gagal dengan pesan yang jelas bila `data/cfpb/sample.csv` hilang atau tidak valid, sehingga aplikasi tidak menyajikan demo kosong. Inisialisasi demo hanya diaktifkan oleh Compose; startup non-container tetap memakai perilaku default dan tidak membaca CSV. Fitur Docker pada devcontainer hanya menambahkan akses CLI ke daemon host setelah rebuild; demo ini tetap hanya API tanpa frontend, autentikasi, atau deployment publik.
 
 ## Evaluasi relevansi
 
