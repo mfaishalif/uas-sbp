@@ -14,7 +14,7 @@ import java.util.Objects;
  * or above the configured threshold. Ordering uses the unrounded score descending and the internal
  * UUID string ascending, then the requested (capped) limit is applied.
  */
-public final class SimilarityEngine {
+public final class SimilarityEngine implements SimilarityScorer {
 
     private final CategoryScorer categoryScorer;
     private final EnglishTokenizer tokenizer;
@@ -28,6 +28,7 @@ public final class SimilarityEngine {
         this.tokenizer = Objects.requireNonNull(tokenizer, "tokenizer");
     }
 
+    @Override
     public List<SimilarityResult> rank(
             ComplaintInput query,
             List<CaseRecord> cases,

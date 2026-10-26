@@ -26,7 +26,15 @@ public final class CategoryService {
     }
 
     public CategoryValues canonicalize(CategoryValues requested) {
-        List<CategoryValues> catalog = repository.list();
+        return canonicalize(repository.list(), requested);
+    }
+
+    /**
+     * Canonicalizes against an already-materialized catalog so search can read the corpus and
+     * catalog in one short transaction.
+     */
+    public CategoryValues canonicalize(List<CategoryValues> catalog, CategoryValues requested) {
+        Objects.requireNonNull(catalog, "catalog");
         if (catalog.isEmpty()) {
             throw new BusinessException(
                     409,

@@ -8,6 +8,7 @@ import id.ac.finresolve.api.model.CaseDetail;
 import id.ac.finresolve.api.model.CasePage;
 import id.ac.finresolve.api.model.CaseSummary;
 import id.ac.finresolve.api.model.Categories;
+import id.ac.finresolve.api.model.CategoryExplanation;
 import id.ac.finresolve.api.model.CategoryTuple;
 import id.ac.finresolve.api.model.CfpbCase;
 import id.ac.finresolve.api.model.FieldError;
@@ -15,11 +16,22 @@ import id.ac.finresolve.api.model.Health;
 import id.ac.finresolve.api.model.ImportMetadata;
 import id.ac.finresolve.api.model.ImportReport;
 import id.ac.finresolve.api.model.ImportRowError;
+import id.ac.finresolve.api.model.SearchConfiguration;
+import id.ac.finresolve.api.model.SearchConfigurationCategoryFieldWeights;
+import id.ac.finresolve.api.model.SearchMatch;
+import id.ac.finresolve.api.model.SearchResponse;
+import id.ac.finresolve.api.model.TermContribution;
 import id.ac.finresolve.cases.CaseRecord;
 import id.ac.finresolve.cases.CaseRepository;
 import id.ac.finresolve.categories.CategoryValues;
 import id.ac.finresolve.imports.BatchRecord;
 import id.ac.finresolve.imports.ImportRowProblem;
+import id.ac.finresolve.similarity.CategoryScorer;
+import id.ac.finresolve.similarity.SearchOutcome;
+import id.ac.finresolve.similarity.SimilarityResult;
+import id.ac.finresolve.similarity.SimilaritySettings;
+import id.ac.finresolve.similarity.TfidfSnapshot;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -121,6 +133,69 @@ public final class ApiMapper {
                 message,
                 List.of(),
                 OffsetDateTime.ofInstant(timestamp, ZoneOffset.UTC));
+    }
+
+    public SearchResponse search(SearchOutcome outcome) {
+        List<SearchMatch> matches = new ArrayList<>(outcome.results().size());
+        for (SimilarityResult result : outcome.results()) {
+            matches.add(searchMatch(result));
+        }
+        return new SearchResponse(
+                SearchResponse.StatusEnum.fromValue(outcome.status()),
+                outcome.message(),
+                matches,
+                outcome.results().size(),
+                outcome.limit(),
+                outcome.corpusSize(),
+                searchConfiguration(outcome.configuration()),
+                outcome.warnings());
+    }
+
+    private SearchMatch searchMatch(SimilarityResult result) {
+        List<CategoryExplanation> explanations = new ArrayList<>(
+                result.categoryExplanation().size());
+        for (CategoryScorer.FieldMatch field : result.categoryExplanation()) {
+            explanations.add(new CategoryExplanation(
+                    CategoryExplanation.FieldEnum.fromValue(field.field()),
+                    field.queryValue(),
+                    field.caseValue(),
+                    CategoryExplanation.StatusEnum.fromValue(field.status()),
+                    decimal(field.configuredWeight()),
+                    decimal(field.effectiveWeight()),
+                    decimal(field.contribution())));
+        }
+
+        List<TermContribution> terms = new ArrayList<>(result.sharedTerms().size());
+        for (TfidfSnapshot.Term term : result.sharedTerms()) {
+            terms.add(new TermContribution(term.term(), decimal(term.contribution())));
+        }
+
+        return new SearchMatch(
+                caseDetail(result.caseRecord()),
+                decimal(result.score()),
+                decimal(result.categoryScore()),
+                decimal(result.textScore()),
+                explanations,
+                terms);
+    }
+
+    private static SearchConfiguration searchConfiguration(
+            SimilaritySettings settings) {
+        return new SearchConfiguration(
+                decimal(settings.categoryWeight()),
+                decimal(settings.textWeight()),
+                new SearchConfigurationCategoryFieldWeights(
+                        decimal(settings.productWeight()),
+                        decimal(settings.subProductWeight()),
+                        decimal(settings.issueWeight()),
+                        decimal(settings.subIssueWeight())),
+                decimal(settings.threshold()),
+                SearchConfiguration.RequiresTextOverlapEnum.TRUE,
+                settings.algorithmVersion());
+    }
+
+    private static BigDecimal decimal(double value) {
+        return BigDecimal.valueOf(value);
     }
 
     private CaseSummary caseSummary(CaseRecord record) {

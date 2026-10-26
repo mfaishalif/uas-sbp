@@ -23,6 +23,8 @@ import org.springframework.http.HttpInputMessage;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdvice;
 import tools.jackson.databind.DeserializationFeature;
 import tools.jackson.databind.JsonNode;
@@ -41,6 +43,10 @@ import tools.jackson.databind.json.JsonMapper;
 public final class RequestRules implements RequestBodyAdvice {
 
     static final String CONTRACT_RESOURCE = "/openapi.json";
+
+    /** Request attribute recording whether the raw search body explicitly contained {@code limit}. */
+    public static final String LIMIT_PRESENT_ATTRIBUTE =
+            "id.ac.finresolve.http.search.limit-present";
 
     private static final String VALIDATION_MESSAGE = "Input tidak valid.";
 
@@ -119,8 +125,27 @@ public final class RequestRules implements RequestBodyAdvice {
             Class<? extends HttpMessageConverter<?>> converterType) throws IOException {
         byte[] body = inputMessage.getBody().readAllBytes();
         String schemaName = ((Class<?>) targetType).getSimpleName();
+        rememberLimitPresence(schemaName, body);
         validateJson(schemaName, body);
         return new BufferedInputMessage(inputMessage.getHeaders(), body);
+    }
+
+    private void rememberLimitPresence(String schemaName, byte[] body) {
+        if (!"SearchRequest".equals(schemaName)) {
+            return;
+        }
+        boolean present = false;
+        try {
+            JsonNode node = json.readTree(body);
+            present = node != null && node.isObject() && node.has("limit");
+        } catch (RuntimeException ignored) {
+            // Malformed JSON is rejected by validateJson with the contract error shape.
+        }
+        RequestAttributes attributes = RequestContextHolder.getRequestAttributes();
+        if (attributes != null) {
+            attributes.setAttribute(
+                    LIMIT_PRESENT_ATTRIBUTE, present, RequestAttributes.SCOPE_REQUEST);
+        }
     }
 
     @Override
