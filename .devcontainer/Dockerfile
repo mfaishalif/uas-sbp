@@ -18,7 +18,8 @@ RUN ln -sf ../lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
     && ln -sf ../lib/node_modules/npm/bin/npx-cli.js /usr/local/bin/npx \
     && ln -sf /usr/share/maven/bin/mvn /usr/local/bin/mvn \
     && ln -sf /opt/gradle/bin/gradle /usr/local/bin/gradle \
-    && npm install --global @openai/codex \
+    && npm install --global @openai/codex @opencode/cli \
     && node --version && npm --version \
     && java --version && javac --version \
-    && mvn --version && gradle --version && codex --version
+    && mvn --version && gradle --version \
+    && codex --version && opencode --version

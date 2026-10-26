@@ -41,24 +41,24 @@ Konfigurasi [Dev Container](.devcontainer/devcontainer.json) menyediakan lingkun
 | Sistem dasar | Debian Bookworm, pengguna `vscode` non-root |
 | Frontend | Node.js 24 LTS dan npm |
 | Backend | JDK 21, Maven 3.9, dan Gradle 9 |
-| Asisten terminal | Codex CLI (`codex`), terpasang global melalui npm |
+| Asisten terminal | Codex CLI (`codex`) dan OpenCode CLI (`opencode`), terpasang global melalui npm |
 | Port yang diteruskan | `3000` untuk Next.js dan `8080` untuk backend Java |
 | Ekstensi VS Code | ESLint, Prettier, dan Extension Pack for Java |
 
-Toolchain disiapkan melalui [Dockerfile devcontainer](.devcontainer/Dockerfile): image Java Dev Containers sudah berisi JDK, sedangkan Node.js, npm, Maven, dan Gradle disalin dari image resmi masing-masing. Dockerfile memasang Codex CLI secara global dengan npm. Build tidak menjalankan instalasi melalui SDKMAN. Versi Node.js, JDK, Maven, dan Gradle mengikuti tag pada Dockerfile; versi patch mengikuti image yang tersedia saat build.
+Toolchain disiapkan melalui [Dockerfile devcontainer](.devcontainer/Dockerfile): image Java Dev Containers sudah berisi JDK, sedangkan Node.js, npm, Maven, dan Gradle disalin dari image resmi masing-masing. Dockerfile memasang Codex CLI dan OpenCode CLI secara global melalui npm. Build tidak menjalankan instalasi melalui SDKMAN. Versi Node.js, JDK, Maven, dan Gradle mengikuti tag pada Dockerfile; versi patch mengikuti image yang tersedia saat build.
 
 Cara menggunakan:
 
 1. Instal Docker Desktop dan VS Code beserta ekstensi **Dev Containers** (`ms-vscode-remote.remote-containers`). Di Windows, pastikan Docker Desktop memakai Linux containers dan backend WSL 2 aktif.
 2. Jalankan Docker Desktop, lalu buka folder proyek ini di VS Code.
 3. Buka Command Palette (`Ctrl+Shift+P`) dan pilih **Dev Containers: Reopen in Container**. Pembuatan pertama membutuhkan koneksi internet untuk mengunduh image, runtime, dan build tools.
-4. Setelah container siap, buka terminal di VS Code dan jalankan `codex` dari folder proyek. Saat pertama kali digunakan, ikuti instruksi CLI untuk masuk dengan ChatGPT atau metode lain yang tersedia. Versi Codex CLI beserta toolchain diperiksa otomatis saat container pertama kali dibuat.
+4. Setelah container siap, buka terminal di VS Code. Jalankan `codex` untuk memakai Codex CLI atau `opencode` untuk memakai OpenCode CLI dari folder proyek. Hubungkan provider AI lewat perintah `/connect` di OpenCode. Versi kedua CLI beserta toolchain diperiksa otomatis saat container pertama kali dibuat.
 
 Devcontainer saat ini menyiapkan toolchain saja karena aplikasi belum diimplementasikan. Instalasi dependensi dan server pengembangan belum dijalankan otomatis. Setelah frontend tersedia, jalankan server Next.js dengan bind ke `0.0.0.0` (misalnya `npm run dev -- --hostname 0.0.0.0` dari folder frontend) agar dapat diakses melalui port yang diteruskan. Backend dapat menggunakan port `8080` saat framework sudah dipilih. Untuk build Java, utamakan Maven Wrapper atau Gradle Wrapper setelah tersedia di proyek agar versi build tool konsisten.
 
 Layanan database akan ditambahkan setelah teknologi penyimpanan dipilih. Jika konfigurasi devcontainer diubah, pilih **Dev Containers: Rebuild Container** melalui Command Palette.
 
-Codex berjalan di terminal container dan membaca proyek dari lingkungan pengembangan tersebut. Dokumentasi resmi: [Codex CLI](https://developers.openai.com/codex/cli).
+Codex dan OpenCode berjalan di terminal container dan membaca proyek dari lingkungan pengembangan tersebut. Dokumentasi resmi: [Codex CLI](https://developers.openai.com/codex/cli) dan [OpenCode CLI](https://dev.opencode.ai/v2/docs).
 
 Jika log menampilkan `No space left on device` saat memasang VS Code Server di `/root/.vscode-remote-containers` pada distro `docker-desktop`, periksa ruang di WSL dan disk Docker Desktop. Jika Docker Desktop tersangkut pada status `starting` dan perintah Docker tidak merespons, restart Docker Desktop sebelum mencoba membuka container kembali.
 

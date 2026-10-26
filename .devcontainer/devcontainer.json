@@ -27,5 +27,5 @@
       ]
     }
   },
-  "postCreateCommand": "node --version && npm --version && java --version && mvn --version && gradle --version && codex --version"
+  "postCreateCommand": "node --version && npm --version && java --version && mvn --version && gradle --version && codex --version && opencode --version"
 }
