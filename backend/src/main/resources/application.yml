@@ -10,11 +10,23 @@ spring:
   sql:
     init:
       mode: never
+  jackson:
+    default-property-inclusion: always
+    deserialization:
+      fail-on-unknown-properties: true
 
 finresolve:
   db:
     path: ${FINRESOLVE_DB_PATH:data/finresolve.db}
+  cors:
+    allowed-origins: ${FINRESOLVE_CORS_ORIGINS:http://localhost:3000}
 
 server:
   address: 127.0.0.1
   port: 8080
+  error:
+    include-message: never
+    include-stacktrace: never
+    include-exception: false
+    whitelabel:
+      enabled: false

@@ -2,6 +2,9 @@ package id.ac.finresolve.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
+import id.ac.finresolve.cases.CaseRepository;
+import id.ac.finresolve.categories.CategoryRepository;
+import id.ac.finresolve.categories.CategoryService;
 import id.ac.finresolve.db.Database;
 import id.ac.finresolve.db.MigrationRunner;
 import java.io.IOException;
@@ -39,7 +42,7 @@ public class DatabaseConfiguration {
         if (parent != null) {
             Files.createDirectories(parent);
         }
-        LOG.info("SQLite database file: {}", absolute);
+        LOG.info("SQLite database configured.");
         return new DatabasePath(absolute);
     }
 
@@ -66,6 +69,21 @@ public class DatabaseConfiguration {
     public Database database(
             JdbcTemplate jdbcTemplate, DataSourceTransactionManager transactionManager) {
         return new Database(jdbcTemplate, transactionManager);
+    }
+
+    @Bean
+    public CaseRepository caseRepository(Database database) {
+        return new CaseRepository(database);
+    }
+
+    @Bean
+    public CategoryRepository categoryRepository(Database database) {
+        return new CategoryRepository(database);
+    }
+
+    @Bean
+    public CategoryService categoryService(CategoryRepository categoryRepository) {
+        return new CategoryService(categoryRepository);
     }
 
     @Bean
