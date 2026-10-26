@@ -2,7 +2,7 @@
 /* eslint-disable */
 /**
  * FinResolve Backend API
- * Kontrak disetujui pengguna pada 26 Oktober 2026 untuk integrasi frontend dan generation backend/frontend. Backend belum diimplementasikan; pengguna meminta berhenti sebelum implementasi dan generation. Semua contoh ID, narasi, hitungan dan skor bersifat sintetis, bukan klaim data/hasil CFPB. JSON camelCase; respons tanpa envelope data. Nullable field respons selalu hadir. Semua endpoint lokal tanpa autentikasi. Lihat docs/api/README.md untuk aturan integrasi, validasi bisnis dan status HTTP.
+ * Kontrak disetujui pengguna pada 26 Oktober 2026 untuk integrasi frontend dan generation backend/frontend. Backend dan client TypeScript telah diimplementasikan; UI Next.js belum. Semua contoh ID, narasi, hitungan dan skor bersifat sintetis, bukan klaim data/hasil CFPB. JSON camelCase; respons tanpa envelope data. Nullable field respons selalu hadir. Semua endpoint lokal tanpa autentikasi. Lihat docs/api/README.md untuk aturan integrasi, validasi bisnis dan status HTTP.
  *
  * The version of the OpenAPI document: 0.1.0
  * 

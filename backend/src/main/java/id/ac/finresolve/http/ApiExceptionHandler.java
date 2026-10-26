@@ -219,7 +219,7 @@ public final class ApiExceptionHandler {
         }
         return switch (code) {
             case "NotNull", "NotBlank", "NotEmpty", "MissingServletRequestParameter" -> "REQUIRED";
-            case "Size", "Length" -> "TOO_LONG";
+            case "Size", "Length", "CodePointSize" -> "TOO_LONG";
             case "Min", "Max", "DecimalMin", "DecimalMax", "Range" -> "OUT_OF_RANGE";
             case "Pattern", "Email" -> "INVALID_FORMAT";
             default -> "INVALID_VALUE";

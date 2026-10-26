@@ -2,8 +2,6 @@ spring:
   application:
     name: finresolve-backend
   datasource:
-    url: jdbc:sqlite:${FINRESOLVE_DB_PATH:data/finresolve.db}
-    driver-class-name: org.sqlite.JDBC
     hikari:
       minimum-idle: 1
       maximum-pool-size: 1

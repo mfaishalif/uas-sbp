@@ -25,7 +25,8 @@ public final class MigrationRunner {
 
     private static final List<String> PRODUCTION_RESOURCES = List.of(
             "db/migration/V001__initial.sql",
-            "db/migration/V002__immutable_provenance_and_timestamps.sql");
+            "db/migration/V002__immutable_provenance_and_timestamps.sql",
+            "db/migration/V003__canonical_complaint_ids.sql");
 
     private static final String CREATE_SCHEMA_VERSIONS =
             """

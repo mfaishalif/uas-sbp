@@ -231,6 +231,22 @@ class RetentionApiTest {
         assertThat(caseCount()).isEqualTo(3);
     }
 
+    @Test
+    void supplementaryCharactersUseContractCodePointLimits() throws Exception {
+        seedCfpb("A transfer is missing from my checking account.");
+        String narrative = "transfer " + "\uD83D\uDE00".repeat(25_000);
+        String body = FULL_BODY.replace(
+                "My transfer is missing from my checking account.", narrative);
+
+        ApiResponse response = request("POST", "/api/cases", body);
+
+        assertThat(response.status()).isEqualTo(201);
+        JsonNode created = JSON.readTree(response.body());
+        assertThat(created.get("narrative").asString()).isEqualTo(narrative);
+        assertThat(created.get("narrative").asString().codePointCount(
+                0, created.get("narrative").asString().length())).isEqualTo(25_009);
+    }
+
     private String withReferences(UUID... references) {
         StringBuilder array = new StringBuilder("[");
         for (int index = 0; index < references.length; index++) {

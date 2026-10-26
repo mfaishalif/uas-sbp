@@ -71,14 +71,12 @@ class CfpbCsvParserTest {
     void preservesPositiveComplaintIdsLongerThanJavaScriptSafeIntegers() {
         String csv = HEADER + "\n"
                 + "922337203685477580812345,Product A,Sub A,Issue A,,A meaningful narrative,"
-                + "Company A,Closed,2024-11-05\n"
-                + "000123,Product A,Sub A,Issue A,,Another meaningful narrative,"
-                + "Company A,Closed,\n";
+                + "Company A,Closed,2024-11-05\n";
 
         ParsedImport parsed = parse(csv);
 
         assertThat(parsed.rows()).extracting(ParsedImport.Row::complaintId)
-                .containsExactly("922337203685477580812345", "000123");
+                .containsExactly("922337203685477580812345");
     }
 
     @Test
@@ -159,6 +157,21 @@ class CfpbCsvParserTest {
         assertThat(parsed.rejected()).isEqualTo(21);
         assertThat(parsed.errors()).hasSize(20);
         assertThat(parsed.rows()).isEmpty();
+    }
+
+    @Test
+    void rejectsNonCanonicalComplaintIdsWithLeadingZeros() {
+        String csv = HEADER + "\n"
+                + "00042,Product A,Sub A,Issue A,,A meaningful narrative,Company A,Closed,\n";
+
+        ParsedImport parsed = parse(csv);
+
+        assertThat(parsed.rows()).isEmpty();
+        assertThat(parsed.rejected()).isEqualTo(1);
+        assertThat(parsed.errors()).extracting(ImportRowProblem::field)
+                .containsExactly("Complaint ID");
+        assertThat(parsed.errors()).extracting(ImportRowProblem::code)
+                .containsExactly("INVALID_FORMAT");
     }
 
     @Test

@@ -244,10 +244,10 @@ public final class CaseRepository {
         requireNonNull(provenance.periodStart(), "provenance.periodStart");
         requireNonNull(provenance.periodEnd(), "provenance.periodEnd");
         requireText(provenance.csvSha256(), "provenance.csvSha256");
-        if (!provenance.complaintId().matches("[0-9]+")
+        if (!provenance.complaintId().matches("[1-9][0-9]*")
                 || new BigInteger(provenance.complaintId()).signum() <= 0) {
             throw new IllegalArgumentException(
-                    "CFPB complaintId must be a positive decimal integer.");
+                    "CFPB complaintId must be a canonical positive decimal integer.");
         }
     }
 

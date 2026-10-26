@@ -33,10 +33,10 @@ class DatabaseTest {
             assertThat(pragmaString(db, "journal_mode")).isEqualToIgnoringCase("wal");
 
             assertThat(db.jdbc().queryForObject("SELECT COUNT(*) FROM schema_versions", Long.class))
-                    .isEqualTo(2L);
+                    .isEqualTo(3L);
             assertThat(db.jdbc().queryForList(
                             "SELECT version FROM schema_versions ORDER BY version", Integer.class))
-                    .containsExactly(1, 2);
+                    .containsExactly(1, 2, 3);
             assertThat(tableExists(db, "import_batches")).isTrue();
             assertThat(tableExists(db, "cases")).isTrue();
             assertThat(tableExists(db, "analyst_notes")).isTrue();
@@ -50,15 +50,15 @@ class DatabaseTest {
         try (TestDatabase db = TestDatabase.create(tempDir)) {
             file = db.file();
             assertThat(db.jdbc().queryForObject("SELECT COUNT(*) FROM schema_versions", Long.class))
-                    .isEqualTo(2L);
+                    .isEqualTo(3L);
         }
 
         try (TestDatabase reopened = TestDatabase.reopen(file)) {
             assertThat(reopened.jdbc().queryForObject("SELECT COUNT(*) FROM schema_versions", Long.class))
-                    .isEqualTo(2L);
+                    .isEqualTo(3L);
             assertThat(reopened.jdbc().queryForList(
                             "SELECT version FROM schema_versions ORDER BY version", Integer.class))
-                    .containsExactly(1, 2);
+                    .containsExactly(1, 2, 3);
         }
     }
 
@@ -178,6 +178,54 @@ class DatabaseTest {
                     .isInstanceOf(DataAccessException.class)
                     .hasMessageContaining("UNIQUE");
             assertThat(repository.count()).isEqualTo(1L);
+        }
+    }
+
+    @Test
+    void nonCanonicalComplaintIdIsRejectedBeforeInsert() {
+        BatchRecord batch = TestDatabase.sampleBatch();
+        try (TestDatabase db = TestDatabase.create(tempDir)) {
+            db.seedBatch(batch);
+            CaseRepository repository = db.caseRepository();
+
+            assertThatThrownBy(() -> repository.insert(
+                            cfpb(UUID.randomUUID(), batch, "00042", BASE_TIME)))
+                    .isInstanceOf(IllegalArgumentException.class)
+                    .hasMessageContaining("canonical");
+            assertThat(repository.count()).isZero();
+        }
+    }
+
+    @Test
+    void storageTriggerEnforcesCanonicalComplaintIds() {
+        BatchRecord batch = TestDatabase.sampleBatch();
+        try (TestDatabase db = TestDatabase.create(tempDir)) {
+            UUID batchId = db.seedBatch(batch);
+            db.caseRepository().insert(cfpb(UUID.randomUUID(), batch, "1", BASE_TIME));
+            db.caseRepository().insert(cfpb(UUID.randomUUID(), batch, "123", BASE_TIME));
+            assertThat(db.caseRepository().count()).isEqualTo(2L);
+
+            for (String invalid : List.of("00042", "12a")) {
+                assertThatThrownBy(() -> db.jdbc().update(
+                                """
+                                INSERT INTO cases (
+                                    id, source, complaint_id, batch_id, received_date, product,
+                                    issue, narrative, created_at, updated_at
+                                ) VALUES (?, 'CFPB', ?, ?, ?, ?, ?, ?, ?, ?)
+                                """,
+                                UUID.randomUUID().toString(),
+                                invalid,
+                                batchId.toString(),
+                                "2024-11-12",
+                                "Checking or savings account",
+                                "Managing an account",
+                                "A meaningful narrative",
+                                Timestamps.format(BASE_TIME),
+                                Timestamps.format(BASE_TIME)))
+                        .as("complaint id %s", invalid)
+                        .isInstanceOf(DataAccessException.class);
+            }
+            assertThat(db.caseRepository().count()).isEqualTo(2L);
         }
     }
 

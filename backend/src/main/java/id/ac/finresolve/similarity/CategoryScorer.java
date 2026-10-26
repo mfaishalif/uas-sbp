@@ -3,6 +3,7 @@ package id.ac.finresolve.similarity;
 import id.ac.finresolve.categories.CategoryValues;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 /**
@@ -84,7 +85,10 @@ public final class CategoryScorer {
         if (!hasValue(caseValue)) {
             return MISSING_IN_CASE;
         }
-        return queryValue.strip().equals(caseValue.strip()) ? MATCH : MISMATCH;
+        return queryValue.strip().toLowerCase(Locale.ROOT)
+                .equals(caseValue.strip().toLowerCase(Locale.ROOT))
+                ? MATCH
+                : MISMATCH;
     }
 
     private static boolean hasValue(String value) {

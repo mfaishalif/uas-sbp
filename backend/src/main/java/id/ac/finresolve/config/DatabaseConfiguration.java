@@ -42,17 +42,17 @@ public class DatabaseConfiguration {
         if (parent != null) {
             Files.createDirectories(parent);
         }
-        LOG.info("SQLite database configured.");
+        LOG.info("SQLite database configured at {}", absolute);
         return new DatabasePath(absolute);
     }
 
     @Bean
     public HikariDataSource dataSource(
             DatabasePath databasePath,
-            @Value("${spring.datasource.url}") String jdbcUrl,
             @Value("${spring.datasource.hikari.minimum-idle:1}") int minimumIdle,
             @Value("${spring.datasource.hikari.maximum-pool-size:1}") int maximumPoolSize) {
-        return createDataSource(jdbcUrl, minimumIdle, maximumPoolSize);
+        return createDataSource(
+                "jdbc:sqlite:" + databasePath.value(), minimumIdle, maximumPoolSize);
     }
 
     @Bean

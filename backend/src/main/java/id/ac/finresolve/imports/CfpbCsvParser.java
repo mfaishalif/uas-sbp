@@ -128,7 +128,7 @@ public final class CfpbCsvParser {
             return failure(recordNumber, COMPLAINT_ID, "REQUIRED", "ID pengaduan wajib diisi.");
         }
         BigInteger numericId;
-        if (!complaintId.matches("[0-9]+")) {
+        if (!complaintId.matches("[1-9][0-9]*")) {
             return failure(
                     recordNumber,
                     COMPLAINT_ID,

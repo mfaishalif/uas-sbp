@@ -78,7 +78,7 @@ Konfigurasi opsi generator Java ada di `tools/openapi/java.json`, lalu `openapi-
 
 - Java: `null=Void` mencegah `Object` untuk skema `type: null`; `interfaceOnly`, `skipDefaultInterface`, `useSpringBoot4`, `useJackson3`, `useOneOfInterfaces`, Bean Validation, dan `ResponseEntity` diaktifkan. Timestamp dan anotasi JSON yang tidak diperlukan dimatikan.
 - TypeScript: `null=null` dengan `null` sebagai language-specific primitive mencegah import `Null` yang tidak ada pada keluaran 7.26.0; `modelPropertyNaming=original`, `useSingleRequestParameter=true`, `dateLibrary=string`, dan `legacyDiscriminatorBehavior=false`. Tanggal tetap string ISO, required-nullable tetap wajib, dan `CaseDetail` menjadi discriminated union.
-- Override template: **satu** file, `backend/src/main/resources/openapi-templates/enumClass.mustache`. Generator 7.26.0 salah menulis `const: true` sebagai `TRUE("true")` ke field `Boolean`, sehingga `SearchConfiguration` gagal dikompilasi. Override hanya mengubah nilai enum non-string agar memakai `rawValue` (boolean asli) alih-alih `value` yang sudah dikutip. Kedua jalur generation memakai direktori template yang sama; tidak ada file generated yang diedit manual.
+- Override template: dua file di `backend/src/main/resources/openapi-templates/`. `enumClass.mustache` memperbaiki generator 7.26.0 yang menulis `const: true` sebagai `TRUE("true")` pada field `Boolean`; override memakai `rawValue`. `beanValidationCore.mustache` membungkus regex `@Pattern` agar semantik pencarian JSON Schema tetap berlaku, dan mengganti `@Size` untuk string dengan `@id.ac.finresolve.http.CodePointSize` karena Bean Validation menghitung UTF-16, sedangkan JSON Schema `minLength`/`maxLength` menghitung code point Unicode. Constraint `@Size` untuk koleksi tetap dipertahankan. Kedua jalur generation memakai direktori template yang sama; tidak ada file generated yang diedit manual.
 
 ### Bukti kompatibilitas
 
@@ -114,7 +114,7 @@ Generation dan kompilasi tidak membuktikan perilaku HTTP nyata, aturan bisnis CB
 ```bash
 npm run test:generation   # 13 tes
 npm run test:contract     # 5 tes (1 live + 4 adapter)
-npm run verify            # generation, client, 194 tes backend, package, live contract
+npm run verify            # generation, client, 202 tes backend, package, live contract
 ```
 
 `npm run verify` selesai sukses pada 26 Oktober 2026 dan tidak mengubah file generated yang di-track. `docs/api/openapi.json` tetap sumber tunggal; `api:check` membandingkan pohon TypeScript hasil generation dengan yang di-commit.

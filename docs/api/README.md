@@ -15,7 +15,7 @@ Format menggunakan [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0.html). Fil
 - Tanggal kalender menggunakan `YYYY-MM-DD`; timestamp menggunakan UTC RFC 3339, misalnya `2026-10-26T10:00:00Z`.
 - Semua properti yang didefinisikan pada objek respons selalu hadir. Data yang tidak tersedia dikirim sebagai `null`; koleksi kosong sebagai `[]`.
 - Field opsional request boleh dihilangkan. Field string nullable boleh `null`; string blank dinormalisasi menjadi null. String wajib ditrim dan tidak boleh kosong. `limit` dan `referenceCaseIds` tidak menerima null.
-- Properti JSON request di luar skema ditolak dengan `VALIDATION_ERROR` / `UNKNOWN_FIELD`. Frontend tidak boleh mengirim `id`, `source`, timestamp, atau provenance saat retain/update.
+- Properti JSON request di luar skema ditolak dengan `VALIDATION_ERROR` / `UNKNOWN_FIELD`. Pengecualian: part multipart `metadata` mengikuti binding Spring; properti asing pada part tersebut menghasilkan `400 MALFORMED_REQUEST` dengan `fieldErrors=[]`. Frontend tidak boleh mengirim `id`, `source`, timestamp, atau provenance saat retain/update.
 - Nama dan enum stabil dalam versi kontrak ini. Frontend menggunakan `code`/enum untuk logika, bukan teks `message` yang dapat disempurnakan. Pesan default bahasa Indonesia; narasi dan label kategori mengikuti sumber Inggris.
 - CORS mengizinkan `http://localhost:3000`, metode `GET`, `POST`, `PUT`, `OPTIONS`, header `Content-Type`/`Accept`, dan mengekspos `Location`. Preflight origin yang diizinkan mendapat 204 tanpa body. Origin tambahan diatur server. Request dari origin yang tidak diizinkan dapat terlihat sebagai kegagalan jaringan di browser, bukan error JSON aplikasi.
 
@@ -175,6 +175,8 @@ try {
 
 `createClient` mengembalikan instance `SystemApi`, `CategoriesApi`, `CasesApi`, `SearchApi`, dan `ImportsApi` yang berbagi satu `Configuration`. Mutasi tidak di-retry otomatis. Package memakai ESM dengan import relatif berakhiran `.js`; build menghasilkan `packages/api-client/dist/` dan tidak di-commit.
 
+Dua detail tipe generated perlu diketahui: properti kontrak `SearchMatch.case` diekspos sebagai `_case` (serialisasi tetap memakai `case`), dan `AnalystCase.referenceCaseIds` bertipe `Set<string>` meskipun JSON-nya array. Ini adalah perilaku generator 7.26.0 yang dipertahankan; jangan mengubah generated secara manual.
+
 Verifikasi kontrak dan client terhadap server nyata:
 
 ```bash
@@ -184,4 +186,4 @@ npm run test:contract
 npm run verify
 ```
 
-`api:check` membandingkan pohon TypeScript hasil generation dengan yang di-commit. `test:contract` menjalankan packaged jar dengan database sementara, memvalidasi setiap respons terhadap skema operasi/status di `docs/api/openapi.json`, lalu menguji adapter client. `verify` menjalankan seluruh rangkaian termasuk 194 tes backend. Pengujian ini tidak mengunduh arsip CFPB.
+`api:check` membandingkan pohon TypeScript hasil generation dengan yang di-commit. `test:contract` menjalankan packaged jar dengan database sementara, memvalidasi setiap respons terhadap skema operasi/status di `docs/api/openapi.json`, lalu menguji adapter client. `verify` menjalankan seluruh rangkaian termasuk 202 tes backend. Pengujian ini tidak mengunduh arsip CFPB.

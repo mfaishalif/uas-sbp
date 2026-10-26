@@ -54,6 +54,19 @@ class CategoryScorerTest {
     }
 
     @Test
+    void matchingIsCaseInsensitiveAfterNormalization() {
+        CategoryScorer.CategoryScore result = scorer.score(
+                new CategoryValues("CHECKING ACCOUNT", null, "Managing an account", null),
+                new CategoryValues("checking account", null, "MANAGING AN ACCOUNT", null),
+                DEFAULTS);
+
+        assertThat(result.score()).isCloseTo(1.0, within(1e-12));
+        assertThat(result.fields())
+                .extracting(CategoryScorer.FieldMatch::status)
+                .containsExactly("MATCH", "NOT_USED", "MATCH", "NOT_USED");
+    }
+
+    @Test
     void mismatchCountsItsWeightWithoutContributing() {
         CategoryScorer.CategoryScore result = scorer.score(
                 new CategoryValues("Checking account", null, "Managing an account", null),
