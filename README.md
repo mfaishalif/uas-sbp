@@ -125,7 +125,7 @@ npm run verify                 # kontrak, generation, backend, client, dan live 
 cd backend && ./mvnw test      # hanya tes backend
 ```
 
-`npm run verify` menjalankan validasi kontrak, generation check, 209 tes backend, pembuatan packaged jar, serta contract/client test terhadap server nyata. Perintah ini tidak mengunduh arsip CFPB.
+`npm run verify` menjalankan validasi kontrak, generation check, 210 tes backend, pembuatan packaged jar, serta contract/client test terhadap server nyata. Perintah ini tidak mengunduh arsip CFPB.
 
 Menjalankan server dengan database default:
 

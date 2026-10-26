@@ -1,10 +1,12 @@
 package id.ac.finresolve.demo;
 
 import id.ac.finresolve.imports.BatchRecord;
+import id.ac.finresolve.imports.CfpbCsvParser;
 import id.ac.finresolve.imports.ImportMetadataValue;
 import id.ac.finresolve.imports.ImportService;
+import id.ac.finresolve.imports.ParsedImport;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
@@ -35,6 +37,7 @@ public final class DemoDataInitializer implements ApplicationRunner {
             LocalDate.parse("2024-11-01"),
             LocalDate.parse("2024-12-31"));
 
+    private static final CfpbCsvParser PARSER = new CfpbCsvParser();
     private static final Logger LOG = LoggerFactory.getLogger(DemoDataInitializer.class);
 
     private final ImportService imports;
@@ -67,6 +70,9 @@ public final class DemoDataInitializer implements ApplicationRunner {
     /**
      * Imports the sample when enabled and returns its report. A disabled initializer returns
      * {@code null} without touching the filesystem.
+     *
+     * <p>The sample is parsed and checked before the import transaction starts, so an invalid or
+     * wrong-sized file cannot leave a partially populated demo database behind.
      */
     ImportService.Result initialize() {
         if (!enabled) {
@@ -74,26 +80,31 @@ public final class DemoDataInitializer implements ApplicationRunner {
         }
 
         Path absolute = samplePath.toAbsolutePath().normalize();
-        ImportService.Result result;
-        try (InputStream input = Files.newInputStream(absolute)) {
-            result = imports.importCsv(input, SAMPLE_METADATA);
+        byte[] sample;
+        try {
+            sample = Files.readAllBytes(absolute);
         } catch (IOException failure) {
             throw new IllegalStateException(
                     "Demo sample cannot be read: " + absolute, failure);
+        }
+
+        ParsedImport parsed;
+        try {
+            parsed = PARSER.parse(new ByteArrayInputStream(sample), SAMPLE_METADATA);
         } catch (RuntimeException failure) {
-            throw new IllegalStateException(
-                    "Demo sample import failed: " + absolute + " (" + failure.getMessage() + ")",
-                    failure);
+            throw importFailed(absolute, failure);
+        }
+        requireExpectedShape(parsed.processed(), parsed.rejected());
+
+        ImportService.Result result;
+        try {
+            result = imports.importCsv(new ByteArrayInputStream(sample), SAMPLE_METADATA);
+        } catch (RuntimeException failure) {
+            throw importFailed(absolute, failure);
         }
 
         BatchRecord batch = result.batch();
-        if (batch.processed() != SAMPLE_RECORDS || batch.rejected() != 0) {
-            throw new IllegalStateException(
-                    "Demo sample must contain exactly " + SAMPLE_RECORDS
-                            + " valid records; processed=" + batch.processed()
-                            + ", rejected=" + batch.rejected()
-                            + ". Use the committed data/cfpb/sample.csv or reset the demo volume.");
-        }
+        requireExpectedShape(batch.processed(), batch.rejected());
 
         readiness.markReady();
         LOG.info(
@@ -103,5 +114,21 @@ public final class DemoDataInitializer implements ApplicationRunner {
                 batch.rejected(),
                 result.replayed());
         return result;
+    }
+
+    private static IllegalStateException importFailed(Path sample, RuntimeException failure) {
+        return new IllegalStateException(
+                "Demo sample import failed: " + sample + " (" + failure.getMessage() + ")",
+                failure);
+    }
+
+    private static void requireExpectedShape(int processed, int rejected) {
+        if (processed != SAMPLE_RECORDS || rejected != 0) {
+            throw new IllegalStateException(
+                    "Demo sample must contain exactly " + SAMPLE_RECORDS
+                            + " valid records; processed=" + processed
+                            + ", rejected=" + rejected
+                            + ". Use the committed data/cfpb/sample.csv or reset the demo volume.");
+        }
     }
 }

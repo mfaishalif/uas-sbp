@@ -1,6 +1,11 @@
 # Multi-stage build so the runtime image contains only the packaged jar and JRE.
 FROM eclipse-temurin:21-jdk-jammy AS build
 
+# The Maven Wrapper needs unzip to use its pinned .zip distribution checksum.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends unzip \
+    && rm -rf /var/lib/apt/lists/*
+
 WORKDIR /workspace
 COPY . .
 RUN chmod +x backend/mvnw \

@@ -15,7 +15,7 @@ npm ci
 npm run verify
 ```
 
-Hasil yang diharapkan: validasi kontrak, `api:check`, 13 tes generation, 209 tes backend, packaged jar, dan 5 live contract/client test lulus. Perintah ini tidak mengunduh arsip CFPB dan tidak mengubah file generated yang di-track.
+Hasil yang diharapkan: validasi kontrak, `api:check`, 13 tes generation, 210 tes backend, packaged jar, dan 5 live contract/client test lulus. Perintah ini tidak mengunduh arsip CFPB dan tidak mengubah file generated yang di-track.
 
 ### 2. Jalankan server dengan database sementara
 

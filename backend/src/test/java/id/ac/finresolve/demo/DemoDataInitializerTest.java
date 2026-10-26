@@ -144,6 +144,30 @@ class DemoDataInitializerTest {
                 .isInstanceOf(IllegalStateException.class)
                 .hasMessageContaining("500");
         assertThat(readiness.isReady()).isFalse();
+        assertThat(database.caseRepository().count()).isZero();
+    }
+
+    @Test
+    void aRejectedRowFailsBeforeAnyCasesAreWritten() throws IOException {
+        StringBuilder csv = new StringBuilder(HEADER);
+        for (int index = 1; index < 500; index++) {
+            csv.append(index)
+                    .append(",Product A,Issue A,Valid narrative ")
+                    .append(index)
+                    .append('\n');
+        }
+        csv.append("500,Product A,Issue A,\n");
+        Path sample = directory.resolve("rejected-row-sample.csv");
+        Files.writeString(sample, csv);
+        DemoReadiness readiness = new DemoReadiness(true);
+        DemoDataInitializer initializer = initializer(true, sample, readiness);
+
+        assertThatThrownBy(initializer::initialize)
+                .isInstanceOf(IllegalStateException.class)
+                .hasMessageContaining("500")
+                .hasMessageContaining("rejected=1");
+        assertThat(readiness.isReady()).isFalse();
+        assertThat(database.caseRepository().count()).isZero();
     }
 
     @Test
