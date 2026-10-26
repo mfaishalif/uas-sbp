@@ -1,0 +1,12 @@
+/plantuml-mcp.log
+node_modules/
+backend/target/
+backend/data/
+data/*.db
+data/*.db-wal
+data/*.db-shm
+data/cfpb/*.zip
+.cache/
+packages/api-client/dist/
+packages/api-client/dist-test/
+tests/contract/dist/

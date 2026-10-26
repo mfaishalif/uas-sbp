@@ -1,0 +1,21 @@
+{
+  "openapiGenerator": {
+    "version": "7.26.0",
+    "url": "https://repo.maven.apache.org/maven2/org/openapitools/openapi-generator-cli/7.26.0/openapi-generator-cli-7.26.0.jar",
+    "sha256": "1760050094997b9cc790cc1350be095f15da8c08a996b184d3eadc4ccda5e35e"
+  },
+  "maven": {
+    "version": "3.9.11",
+    "url": "https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.9.11/apache-maven-3.9.11-bin.zip",
+    "sha256": "0d7125e8c91097b36edb990ea5934e6c68b4440eef4ea96510a0f6815e7eeadb"
+  },
+  "sourceContract": "docs/api/openapi.json",
+  "templates": {
+    "java": "backend/src/main/resources/openapi-templates"
+  },
+  "outputs": {
+    "java": "backend/target/generated-sources/openapi",
+    "typescript": "packages/api-client/src/generated"
+  },
+  "cacheDirectory": ".cache/openapi"
+}

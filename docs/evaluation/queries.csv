@@ -1,0 +1,13 @@
+queryId,product,subProduct,issue,subIssue,narrative,scenario
+Q01,Checking or savings account,Checking account,Managing an account,Deposits and withdrawals,"A transfer was deducted from my checking account but the recipient never received the funds.",Close wording for a missing or misapplied deposit
+Q02,Checking or savings account,Checking account,Managing an account,Deposits and withdrawals,"Money left my bank balance twice even though I only authorized one payment.",Paraphrase with low lexical overlap
+Q03,Checking or savings account,,Managing an account,,"I cannot access my checking account and the bank has not explained why.",Both optional category fields omitted
+Q04,Checking or savings account,Savings account,Managing an account,Problem making or receiving payments,"A scheduled payment from my savings account never arrived.",Independent valid optional branch
+Q05,"Money transfer, virtual currency, or money service",Mobile or digital wallet,Fraud or scam,,"Someone used my checking account to send an unauthorized transfer through a payment app.",Cross-product narrative mentions a checking account
+Q06,Checking or savings account,Checking account,Problem with a lender or other company charging your account,Transaction was not authorized,"I was charged 240 dollars on XX/XX/2024 and a 75 dollar transfer I never made appeared on my account.",Numeric and redacted date filler mixed with meaningful text
+Q07,Checking or savings account,Checking account,Managing an account,Deposits and withdrawals,"I am writing to ask about the opening hours of my local branch and parking availability.",Unrelated narrative with a matching category tuple
+Q08,"Money transfer, virtual currency, or money service",Domestic (US) money transfer,Fraud or scam,,"A wire transfer I did not authorize was sent from my account to an unknown person.",Domestic transfer fraud wording
+Q09,"Money transfer, virtual currency, or money service",International money transfer,Money was not available when promised,,"The funds I sent abroad were promised for Friday but had not arrived ten days later.",International transfer availability paraphrase
+Q10,"Money transfer, virtual currency, or money service",Virtual currency,Other transaction problem,,"My cryptocurrency withdrawal is stuck as pending and the exchange will not release it.",Virtual-currency transaction problem
+Q11,Checking or savings account,Savings account,Managing an account,Fee problem,"An unexplained monthly fee was removed from my savings account.",Savings-account fee problem
+Q12,Checking or savings account,Checking account,Managing an account,Problem using a debit or ATM card,"The ATM debited my account but did not dispense any cash.",ATM card problem

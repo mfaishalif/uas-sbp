@@ -1,0 +1,15 @@
+{
+  "generatorName": "typescript-fetch",
+  "typeMappings": {
+    "null": "null"
+  },
+  "languageSpecificPrimitives": ["null"],
+  "additionalProperties": {
+    "modelPropertyNaming": "original",
+    "useSingleRequestParameter": "true",
+    "dateLibrary": "string",
+    "legacyDiscriminatorBehavior": "false",
+    "hideGenerationTimestamp": "true",
+    "importFileExtension": ".js"
+  }
+}

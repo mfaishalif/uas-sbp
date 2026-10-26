@@ -1,0 +1,47 @@
+spring:
+  application:
+    name: finresolve-backend
+  datasource:
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 1
+  sql:
+    init:
+      mode: never
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 21MB
+  jackson:
+    default-property-inclusion: always
+    deserialization:
+      fail-on-unknown-properties: true
+
+finresolve:
+  db:
+    path: ${FINRESOLVE_DB_PATH:data/finresolve.db}
+  similarity:
+    category-weight: 0.4
+    text-weight: 0.6
+    product-weight: 0.35
+    sub-product-weight: 0.15
+    issue-weight: 0.35
+    sub-issue-weight: 0.15
+    threshold: 0.50
+    default-limit: 5
+    max-limit: 20
+  cors:
+    allowed-origins: ${FINRESOLVE_CORS_ORIGINS:http://localhost:3000}
+
+server:
+  address: 127.0.0.1
+  port: 8080
+  tomcat:
+    max-http-form-post-size: 21MB
+    max-swallow-size: 21MB
+  error:
+    include-message: never
+    include-stacktrace: never
+    include-exception: false
+    whitelabel:
+      enabled: false

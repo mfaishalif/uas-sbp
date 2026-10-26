@@ -1,0 +1,27 @@
+{
+  "generatorName": "spring",
+  "apiPackage": "id.ac.finresolve.api",
+  "modelPackage": "id.ac.finresolve.api.model",
+  "invokerPackage": "id.ac.finresolve.api.invoker",
+  "typeMappings": {
+    "null": "Void",
+    "URI": "String"
+  },
+  "additionalProperties": {
+    "interfaceOnly": "true",
+    "skipDefaultInterface": "true",
+    "useTags": "true",
+    "useSpringBoot4": "true",
+    "useSpringBoot3": "false",
+    "useJackson3": "true",
+    "useJakartaEe": "true",
+    "useOneOfInterfaces": "true",
+    "useBeanValidation": "true",
+    "useResponseEntity": "true",
+    "annotationLibrary": "none",
+    "documentationProvider": "none",
+    "hideGenerationTimestamp": "true",
+    "generateJsonIncludeAnnotations": "false",
+    "generateJsonSetterNullsAnnotations": "false"
+  }
+}
