@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: finresolve-backend
+  datasource:
+    url: jdbc:sqlite:${FINRESOLVE_DB_PATH:data/finresolve.db}
+    driver-class-name: org.sqlite.JDBC
+    hikari:
+      minimum-idle: 1
+      maximum-pool-size: 1
+  sql:
+    init:
+      mode: never
+
+finresolve:
+  db:
+    path: ${FINRESOLVE_DB_PATH:data/finresolve.db}
+
+server:
+  address: 127.0.0.1
+  port: 8080
