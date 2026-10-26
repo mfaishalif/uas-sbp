@@ -12,17 +12,17 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
+import * as runtime from '../runtime.js';
 import {
     type ApiError,
     ApiErrorFromJSON,
     ApiErrorToJSON,
-} from '../models/ApiError';
+} from '../models/ApiError.js';
 import {
     type Health,
     HealthFromJSON,
     HealthToJSON,
-} from '../models/Health';
+} from '../models/Health.js';
 
 /**
  * 

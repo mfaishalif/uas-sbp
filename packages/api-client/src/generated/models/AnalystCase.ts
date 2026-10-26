@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { AnalystNotes } from './AnalystNotes';
+import { mapValues } from '../runtime.js';
+import type { AnalystNotes } from './AnalystNotes.js';
 import {
     AnalystNotesFromJSON,
     AnalystNotesFromJSONTyped,
     AnalystNotesToJSON,
     AnalystNotesToJSONTyped,
-} from './AnalystNotes';
+} from './AnalystNotes.js';
 
 /**
  * 

@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { ArchiveProvenance } from './ArchiveProvenance';
+import { mapValues } from '../runtime.js';
+import type { ArchiveProvenance } from './ArchiveProvenance.js';
 import {
     ArchiveProvenanceFromJSON,
     ArchiveProvenanceFromJSONTyped,
     ArchiveProvenanceToJSON,
     ArchiveProvenanceToJSONTyped,
-} from './ArchiveProvenance';
+} from './ArchiveProvenance.js';
 
 /**
  * 

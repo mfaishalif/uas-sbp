@@ -9,6 +9,7 @@
     "useSingleRequestParameter": "true",
     "dateLibrary": "string",
     "legacyDiscriminatorBehavior": "false",
-    "hideGenerationTimestamp": "true"
+    "hideGenerationTimestamp": "true",
+    "importFileExtension": ".js"
   }
 }

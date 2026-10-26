@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import {
   CaseDetailFromJSON,
@@ -13,13 +14,14 @@ import {
   type AnalystCase,
   type CfpbCase,
   type CaseDetail,
-} from '../src/index';
+} from '../src/index.js';
 
 function findContractPath(): string {
+  const here = path.dirname(fileURLToPath(import.meta.url));
   const candidates = [
     path.resolve(process.cwd(), 'docs/api/openapi.json'),
-    path.resolve(__dirname, '../../../../docs/api/openapi.json'),
-    path.resolve(__dirname, '../../../docs/api/openapi.json'),
+    path.resolve(here, '../../../../docs/api/openapi.json'),
+    path.resolve(here, '../../../docs/api/openapi.json'),
   ];
   const found = candidates.find((candidate) => existsSync(candidate));
   if (!found) {

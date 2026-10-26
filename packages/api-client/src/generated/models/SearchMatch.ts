@@ -12,28 +12,28 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { CaseDetail } from './CaseDetail';
+import { mapValues } from '../runtime.js';
+import type { CaseDetail } from './CaseDetail.js';
 import {
     CaseDetailFromJSON,
     CaseDetailFromJSONTyped,
     CaseDetailToJSON,
     CaseDetailToJSONTyped,
-} from './CaseDetail';
-import type { TermContribution } from './TermContribution';
+} from './CaseDetail.js';
+import type { TermContribution } from './TermContribution.js';
 import {
     TermContributionFromJSON,
     TermContributionFromJSONTyped,
     TermContributionToJSON,
     TermContributionToJSONTyped,
-} from './TermContribution';
-import type { CategoryExplanation } from './CategoryExplanation';
+} from './TermContribution.js';
+import type { CategoryExplanation } from './CategoryExplanation.js';
 import {
     CategoryExplanationFromJSON,
     CategoryExplanationFromJSONTyped,
     CategoryExplanationToJSON,
     CategoryExplanationToJSONTyped,
-} from './CategoryExplanation';
+} from './CategoryExplanation.js';
 
 /**
  * 

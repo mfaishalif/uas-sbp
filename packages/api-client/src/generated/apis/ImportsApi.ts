@@ -12,22 +12,22 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
+import * as runtime from '../runtime.js';
 import {
     type ApiError,
     ApiErrorFromJSON,
     ApiErrorToJSON,
-} from '../models/ApiError';
+} from '../models/ApiError.js';
 import {
     type ImportMetadata,
     ImportMetadataFromJSON,
     ImportMetadataToJSON,
-} from '../models/ImportMetadata';
+} from '../models/ImportMetadata.js';
 import {
     type ImportReport,
     ImportReportFromJSON,
     ImportReportToJSON,
-} from '../models/ImportReport';
+} from '../models/ImportReport.js';
 
 export interface ImportCfpbRequest {
     /**

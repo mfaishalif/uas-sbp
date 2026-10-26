@@ -12,21 +12,21 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { SearchMatch } from './SearchMatch';
+import { mapValues } from '../runtime.js';
+import type { SearchMatch } from './SearchMatch.js';
 import {
     SearchMatchFromJSON,
     SearchMatchFromJSONTyped,
     SearchMatchToJSON,
     SearchMatchToJSONTyped,
-} from './SearchMatch';
-import type { SearchConfiguration } from './SearchConfiguration';
+} from './SearchMatch.js';
+import type { SearchConfiguration } from './SearchConfiguration.js';
 import {
     SearchConfigurationFromJSON,
     SearchConfigurationFromJSONTyped,
     SearchConfigurationToJSON,
     SearchConfigurationToJSONTyped,
-} from './SearchConfiguration';
+} from './SearchConfiguration.js';
 
 /**
  * MATCHES iff results nonkosong. Dua status lainnya memiliki results=[], returnedCount=0. EMPTY_KNOWLEDGE_BASE iff corpusSize=0. returnedCount=results.length; hasil <= limit. Tidak ada pagination pencarian. Skor 0–1 bukan probabilitas keberhasilan.

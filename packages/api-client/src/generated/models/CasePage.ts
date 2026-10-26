@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { CaseSummary } from './CaseSummary';
+import { mapValues } from '../runtime.js';
+import type { CaseSummary } from './CaseSummary.js';
 import {
     CaseSummaryFromJSON,
     CaseSummaryFromJSONTyped,
     CaseSummaryToJSON,
     CaseSummaryToJSONTyped,
-} from './CaseSummary';
+} from './CaseSummary.js';
 
 /**
  * 

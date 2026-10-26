@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { CategoryTuple } from './CategoryTuple';
+import { mapValues } from '../runtime.js';
+import type { CategoryTuple } from './CategoryTuple.js';
 import {
     CategoryTupleFromJSON,
     CategoryTupleFromJSONTyped,
     CategoryTupleToJSON,
     CategoryTupleToJSONTyped,
-} from './CategoryTuple';
+} from './CategoryTuple.js';
 
 /**
  * 

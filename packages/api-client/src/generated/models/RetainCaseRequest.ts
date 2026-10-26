@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from '../runtime.js';
 /**
  * POST membuat kasus ANALYST. PUT mengganti lengkap: field opsional yang dihilangkan dihapus menjadi null atau []; bukan PATCH. referenceCaseIds null ditolak. Semua referensi wajib ada dan bukan ID kasus itu sendiri. source, id, provenance, timestamps tidak boleh dikirim.
  * @export

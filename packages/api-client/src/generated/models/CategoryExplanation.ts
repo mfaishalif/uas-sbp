@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from '../runtime.js';
 /**
  * Selalu empat field dalam urutan product, subProduct, issue, subIssue. NOT_USED jika query kosong; effectiveWeight=0. Selain itu effectiveWeight adalah bobot setelah normalisasi field aktif. contribution=effectiveWeight untuk MATCH, 0 untuk lainnya; jumlah contribution adalah categoryScore.
  * @export

@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { FieldError } from './FieldError';
+import { mapValues } from '../runtime.js';
+import type { FieldError } from './FieldError.js';
 import {
     FieldErrorFromJSON,
     FieldErrorFromJSONTyped,
     FieldErrorToJSON,
     FieldErrorToJSONTyped,
-} from './FieldError';
+} from './FieldError.js';
 
 /**
  * 

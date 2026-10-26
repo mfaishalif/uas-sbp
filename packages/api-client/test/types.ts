@@ -1,4 +1,4 @@
-import type { CaseDetail, CfpbCase } from '../src/generated/models';
+import type { CaseDetail, CfpbCase } from '../src/generated/models/index.js';
 
 const nullable: CfpbCase['subProduct'] = null;
 const calendar: CfpbCase['receivedDate'] = '2024-11-12';

@@ -1,12 +1,16 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { mkdtemp, mkdir, writeFile, readFile, readdir, rm } from 'node:fs/promises';
+import { execFile } from 'node:child_process';
 import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { promisify } from 'node:util';
 
 import { generateAll, loadToolchain, verifySha256 } from './generate.mjs';
 import { compareTrees } from './check.mjs';
+
+const execFileAsync = promisify(execFile);
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(here, '..', '..');
@@ -256,6 +260,39 @@ test('Maven plugin consumes the shared Java generator configuration', async () =
     ),
     'Maven template path must match the shared template directory',
   );
+});
+
+test('generated TypeScript uses ESM-safe .js relative imports', async () => {
+  await withTempDir(async (base) => {
+    await generateAll(base);
+    const indexPath = path.join(base, 'typescript', 'index.ts');
+    const casesPath = path.join(base, 'typescript', 'apis', 'CasesApi.ts');
+    const index = await readFile(indexPath, 'utf8');
+    const cases = await readFile(casesPath, 'utf8');
+
+    assert.match(index, /from '\.\/runtime\.js'/);
+    assert.match(cases, /from '\.\.\/runtime\.js'/);
+    assert.doesNotMatch(cases, /from '\.\.\/runtime';/);
+  });
+});
+
+test('api:check leaves tracked and untracked workspace state unchanged', async () => {
+  const before = await execFileAsync(
+    'git',
+    ['status', '--porcelain=v1', '--untracked-files=all'],
+    { cwd: repoRoot },
+  );
+  await execFileAsync(process.execPath, [path.join(here, 'check.mjs')], {
+    cwd: repoRoot,
+    maxBuffer: 64 * 1024 * 1024,
+  });
+  const after = await execFileAsync(
+    'git',
+    ['status', '--porcelain=v1', '--untracked-files=all'],
+    { cwd: repoRoot },
+  );
+
+  assert.equal(after.stdout, before.stdout);
 });
 
 test('the source contract is not modified by generation', async () => {

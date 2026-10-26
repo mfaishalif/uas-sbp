@@ -12,27 +12,27 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
+import * as runtime from '../runtime.js';
 import {
     type ApiError,
     ApiErrorFromJSON,
     ApiErrorToJSON,
-} from '../models/ApiError';
+} from '../models/ApiError.js';
 import {
     type CaseDetail,
     CaseDetailFromJSON,
     CaseDetailToJSON,
-} from '../models/CaseDetail';
+} from '../models/CaseDetail.js';
 import {
     type CasePage,
     CasePageFromJSON,
     CasePageToJSON,
-} from '../models/CasePage';
+} from '../models/CasePage.js';
 import {
     type RetainCaseRequest,
     RetainCaseRequestFromJSON,
     RetainCaseRequestToJSON,
-} from '../models/RetainCaseRequest';
+} from '../models/RetainCaseRequest.js';
 
 export interface GetCaseRequest {
     /**

@@ -12,22 +12,22 @@
  * Do not edit the class manually.
  */
 
-import * as runtime from '../runtime';
+import * as runtime from '../runtime.js';
 import {
     type ApiError,
     ApiErrorFromJSON,
     ApiErrorToJSON,
-} from '../models/ApiError';
+} from '../models/ApiError.js';
 import {
     type SearchRequest,
     SearchRequestFromJSON,
     SearchRequestToJSON,
-} from '../models/SearchRequest';
+} from '../models/SearchRequest.js';
 import {
     type SearchResponse,
     SearchResponseFromJSON,
     SearchResponseToJSON,
-} from '../models/SearchResponse';
+} from '../models/SearchResponse.js';
 
 export interface SearchCasesRequest {
     /**

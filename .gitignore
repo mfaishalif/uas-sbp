@@ -5,3 +5,4 @@ data/cfpb/*.zip
 .cache/
 packages/api-client/dist/
 packages/api-client/dist-test/
+tests/contract/dist/

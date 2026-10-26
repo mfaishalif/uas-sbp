@@ -12,14 +12,14 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { SearchConfigurationCategoryFieldWeights } from './SearchConfigurationCategoryFieldWeights';
+import { mapValues } from '../runtime.js';
+import type { SearchConfigurationCategoryFieldWeights } from './SearchConfigurationCategoryFieldWeights.js';
 import {
     SearchConfigurationCategoryFieldWeightsFromJSON,
     SearchConfigurationCategoryFieldWeightsFromJSONTyped,
     SearchConfigurationCategoryFieldWeightsToJSON,
     SearchConfigurationCategoryFieldWeightsToJSONTyped,
-} from './SearchConfigurationCategoryFieldWeights';
+} from './SearchConfigurationCategoryFieldWeights.js';
 
 /**
  * 

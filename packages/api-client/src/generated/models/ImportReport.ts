@@ -12,21 +12,21 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
-import type { ImportRowError } from './ImportRowError';
+import { mapValues } from '../runtime.js';
+import type { ImportRowError } from './ImportRowError.js';
 import {
     ImportRowErrorFromJSON,
     ImportRowErrorFromJSONTyped,
     ImportRowErrorToJSON,
     ImportRowErrorToJSONTyped,
-} from './ImportRowError';
-import type { ImportMetadata } from './ImportMetadata';
+} from './ImportRowError.js';
+import type { ImportMetadata } from './ImportMetadata.js';
 import {
     ImportMetadataFromJSON,
     ImportMetadataFromJSONTyped,
     ImportMetadataToJSON,
     ImportMetadataToJSONTyped,
-} from './ImportMetadata';
+} from './ImportMetadata.js';
 
 /**
  * processed=imported+duplicates+rejected. Satu error pertama per record ditolak; maksimal 20 contoh. errorsTruncated iff rejected>20. HTTP 200 replay mengembalikan batch dan hitungan asli, replayed=true; hitungan bukan tambahan baru. Header-only CSV ditolak INVALID_CSV. File dengan semua record invalid tetap membuat laporan batch 201 dengan imported=0.

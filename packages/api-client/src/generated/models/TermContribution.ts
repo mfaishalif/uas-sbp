@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { mapValues } from '../runtime';
+import { mapValues } from '../runtime.js';
 /**
  * Perkalian bobot TF-IDF ternormalisasi query dan kasus. Maksimal 10 token; jumlahnya dapat kurang dari textScore bila ada lebih dari 10 token bersama.
  * @export

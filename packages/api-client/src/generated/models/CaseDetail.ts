@@ -12,20 +12,20 @@
  * Do not edit the class manually.
  */
 
-import type { AnalystCase } from './AnalystCase';
+import type { AnalystCase } from './AnalystCase.js';
 import {
     instanceOfAnalystCase,
     AnalystCaseFromJSON,
     AnalystCaseFromJSONTyped,
     AnalystCaseToJSON,
-} from './AnalystCase';
-import type { CfpbCase } from './CfpbCase';
+} from './AnalystCase.js';
+import type { CfpbCase } from './CfpbCase.js';
 import {
     instanceOfCfpbCase,
     CfpbCaseFromJSON,
     CfpbCaseFromJSONTyped,
     CfpbCaseToJSON,
-} from './CfpbCase';
+} from './CfpbCase.js';
 
 /**
  * @type CaseDetail
