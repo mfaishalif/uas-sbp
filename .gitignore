@@ -1,6 +1,7 @@
 /plantuml-mcp.log
 node_modules/
 backend/target/
+data/cfpb/*.zip
 .cache/
 packages/api-client/dist/
 packages/api-client/dist-test/

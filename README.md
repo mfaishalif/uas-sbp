@@ -72,6 +72,17 @@ Pemeriksaan awal terhadap sebagian arsip November–Desember 2024 menemukan data
 
 Basis kasus awal akan menggunakan **sampel tetap yang memiliki narasi**, dengan sumber arsip, periode, dan ID pengaduan dicatat agar asal kasus dapat ditelusuri. Jumlah sampel dan periode final ditentukan setelah eksplorasi data. Bahasa input mengikuti narasi sumber; bahasa antarmuka belum ditetapkan.
 
+### Menyiapkan sampel demo
+
+Sampel tetap dibangun dari satu arsip CFPB yang telah ditetapkan. Unduhan hanya dilakukan melalui perintah eksplisit berikut; pengujian otomatis tidak mengunduh arsip. Jalankan dari folder proyek:
+
+```bash
+cd backend
+./mvnw -Pprepare-sample compile exec:java -Dexec.args="--output-dir ../data/cfpb"
+```
+
+Perintah ini menulis `data/cfpb/sample.csv` dan `data/cfpb/manifest.json` secara atomik. Manifest mencatat URL sumber, nama arsip dan entri CSV, periode `2024-11-01` sampai `2024-12-31`, filter yang dipakai, batas 500 kasus, waktu pengambilan, checksum SHA-256 arsip dan sampel, serta ID kasus terpilih. Arsip ZIP tidak disimpan atau di-commit. Narasi dipertahankan apa adanya; tidak ada klaim anonimisasi tambahan.
+
 Penting untuk membedakan **respons yang tercatat** dengan **solusi yang terbukti berhasil**. Label respons dari CFPB tidak otomatis menjelaskan langkah investigasi, prosedur internal, atau tingkat kepuasan konsumen. Jika proyek kelak memberikan rekomendasi tindakan, rekomendasi tersebut membutuhkan sumber prosedur atau verifikasi tambahan.
 
 Arah fokus yang dipertimbangkan adalah pengaduan terkait **transfer uang dan rekening**. Cakupan akhirnya dapat disesuaikan setelah meninjau kualitas dan ketersediaan data; sampel yang digunakan tidak diasumsikan mewakili seluruh pengaduan jasa keuangan.
