@@ -6,7 +6,7 @@ Tanggal: 26 Oktober 2026. Status: rancangan untuk persetujuan pengguna.
 
 Backend mendukung demo UAS Sistem Berbasis Pengetahuan: analis memasukkan pengaduan, membandingkan preseden, lalu menyimpan kasus yang telah ditangani beserta penilaiannya. Kemiripan dan respons historis adalah bahan pertimbangan, bukan bukti keberhasilan suatu solusi.
 
-Keputusan pengguna: implementasi backend berdasarkan README, target demo lokal dengan penyimpanan permanen, database **SQLite**, dan kontrak API agar frontend dapat diintegrasikan kemudian. Java serta sumber narasi CFPB mengikuti README. Semua rincian berikut yang belum disebut pengguna adalah usulan teknis penulis untuk ditinjau, bukan keputusan pengguna yang diasumsikan telah disetujui.
+Keputusan pengguna: implementasi backend berdasarkan README, target demo lokal dengan penyimpanan permanen, database **SQLite**, kontrak API agar frontend dapat diintegrasikan kemudian, dan **generation backend serta frontend dari kontrak yang sama untuk menjaga sinkronisasi**. Java serta sumber narasi CFPB mengikuti README. Semua rincian berikut yang belum disebut pengguna adalah usulan teknis penulis untuk ditinjau, bukan keputusan pengguna yang diasumsikan telah disetujui.
 
 Ini pembangunan backend baru, bukan perubahan kecil. Repositori saat diperiksa hanya berisi README, konfigurasi devcontainer, dan log. Perubahan README serta file lokal yang sudah ada harus dipertahankan.
 
@@ -17,8 +17,11 @@ Ini pembangunan backend baru, bukan perubahan kecil. Repositori saat diperiksa h
 - Skor yang deterministik dan dapat dijelaskan, penanganan kategori opsional, serta hasil kosong jika tidak ada preseden relevan.
 - Data dan catatan tetap ada setelah restart.
 - Pengujian otomatis perilaku utama serta panduan evaluasi relevansi oleh manusia.
+- Interface HTTP dan DTO backend, serta client HTTP dan tipe frontend, dihasilkan dari satu kontrak OpenAPI. Build dan CI memeriksa ketertinggalan generated code serta perilaku HTTP terhadap kontrak.
 
 Di luar tahap ini: frontend Next.js, login dan peran pengguna, deployment publik, integrasi seluruh arsip CFPB, model bahasa/embedding, terjemahan otomatis, rekomendasi prosedur penanganan, persetujuan verifikator, serta pengukuran akurasi prediksi respons perusahaan. Riwayat pencarian dan draft pengaduan tidak disimpan otomatis.
+
+Pengecualian untuk cakupan frontend: paket client TypeScript hasil generation, pengujian tipe/transport client, dan pemeriksaan CI termasuk tahap backend ini agar integrasi nanti sudah memiliki fondasi. Halaman, komponen, dan alur UI Next.js tetap tahap berikutnya.
 
 Kegagalan desain mencakup: menyamakan respons CFPB dengan solusi terbukti; menghilangkan asal data; memasukkan setiap pencarian ke basis kasus; menganggap dua kategori kosong sebagai kecocokan; atau memberi klaim relevansi tanpa menjelaskan keterbatasan ambang awal.
 
@@ -89,6 +92,14 @@ Untuk batas demo 5.000 kasus, bangun snapshot TF-IDF dari seluruh korpus pada se
 
 ## Kontrak API dan alur analis
 
+### Generation backend dan frontend
+
+Pendekatan yang diminta pengguna adalah contract-first generation. `docs/api/openapi.json` menjadi satu-satunya sumber definisi HTTP publik yang diedit. Usulan alat penulis adalah OpenAPI Generator untuk kedua sisi, dengan detail ownership, build, dan pengujian pada [rancangan generation](../../api/generation.md). Pemilihan alat ini masih usulan untuk persetujuan desain, bukan keputusan pengguna yang telah dikonfirmasi.
+
+Backend mengimplementasikan interface hasil generation dan memakai DTO hasil generation pada batas HTTP. Service CBR, repository SQLite, dan model internal tetap ditulis manual. Frontend menggunakan paket client dan tipe hasil generation; tidak menduplikasi endpoint atau DTO transport. Generated files tidak diedit manual. Generation menyelaraskan bentuk API; contract test tetap diperlukan untuk semantik null, status HTTP, error, dan aturan bisnis.
+
+### Endpoint dan perilaku
+
 Kontrak terperinci tersedia dalam [OpenAPI 3.1](../../api/openapi.json) dan [panduan integrasi frontend](../../api/README.md). OpenAPI menetapkan endpoint, DTO, nullability, enum, batas input, pagination, status HTTP, dan contoh sintetis request/response; panduan menetapkan semantik bisnis dan contoh `fetch`, termasuk multipart. Keduanya adalah bagian desain ini dan menjadi acuan implementasi. Status kontrak `0.1.0-draft` tidak berarti endpoint sudah tersedia.
 
 JSON memakai camelCase tanpa envelope `data`. Field nullable pada respons selalu hadir; koleksi kosong berupa array. UUID kasus dan ID CFPB keduanya string. PUT mengganti lengkap kasus ANALYST dan mengosongkan field opsional yang dihilangkan. POST retensi tidak idempoten. Respons pencarian memuat konfigurasi yang benar-benar digunakan; hasil kosong tetap HTTP 200. Angka, ID dan skor contoh dokumentasi bersifat sintetis.
@@ -118,6 +129,7 @@ Untuk demo lokal, server bind loopback secara default; dokumentasikan override `
 - Integration test memakai SQLite file sementara sungguhan: migrasi, foreign key, restart/persistensi, duplikasi impor, parser CSV multiline/BOM, rollback file invalid, batas total, dan transaksi retensi/referensi.
 - API test alur impor → kategori → pencarian → detail → retain → pencarian ulang → update; input invalid, korpus kosong, tidak relevan, dan larangan update sumber CFPB.
 - Verifikasi implementasi terhadap OpenAPI: nama/type field, required/null, diskriminator sumber, response error, status pencarian kosong, pagination, multipart, replay impor, dan semantik penggantian PUT. Contoh kontrak sintetis tidak boleh diperlakukan sebagai pengukuran kualitas algoritme.
+- Dari checkout bersih, generate interface/DTO Java dan client TypeScript dari file kontrak yang sama; kompilasi keduanya, periksa generated client yang tertinggal, dan jalankan client tersebut terhadap backend nyata dengan SQLite sementara. Generator beserta konfigurasi dan versi dependency harus reproducible. Uji kompatibilitas OpenAPI 3.1 sebelum menyelesaikan implementasi integrasi.
 - Smoke test Maven Wrapper build dan menjalankan server port 8080 dengan database sementara. Jangan menulis test yang mengunduh arsip internet.
 - Dataset test kecil boleh sintetis dan harus jelas terpisah dari sampel demo CFPB. Demo tidak boleh mengklaim fixture sintetis berasal dari arsip.
 - Sediakan lembar evaluasi manual minimal 10 query Inggris yang mencakup kasus relevan, variasi kata, atribut opsional, dan tidak relevan. Penilai memberi label relevansi pada top-5; dokumentasikan precision@5 dengan penyebut 5 (hasil kurang dari 5 dianggap slot kosong tidak relevan), jumlah hasil, serta kasus kegagalan. Belum ada klaim kualitas sebelum penilaian manusia dilakukan.
@@ -125,7 +137,7 @@ Untuk demo lokal, server bind loopback secara default; dokumentasikan override `
 
 ## Diserahkan kepada pembuat
 
-Nama package/class, versi dependency stabil yang kompatibel, pustaka migrasi, organisasi fixture, dan perintah persiapan data boleh dipilih saat perencanaan. DTO publik mengikuti OpenAPI; nama field, tipe, enum, status, dan semantik integrasi bukan lagi keputusan bebas pembuat. Keputusan implementasi tidak boleh memperluas scope atau mengubah rumus, asal data, penyimpanan manual, dan kontrak perilaku di atas. Bila inspeksi penuh data menemukan ketidakcocokan material, laporkan bukti dan sesuaikan desain secara terbuka sebelum mengubah cakupan.
+Nama package/class internal, versi dependency stabil yang kompatibel, pustaka migrasi, organisasi fixture, dan perintah persiapan data boleh dipilih saat perencanaan. DTO publik dan interface HTTP dihasilkan dari OpenAPI; nama field, tipe, enum, status, dan semantik integrasi bukan lagi keputusan bebas pembuat. Detail generator harus mengikuti batasan dan pemeriksaan pada rancangan generation. Keputusan implementasi tidak boleh memperluas scope atau mengubah rumus, asal data, penyimpanan manual, dan kontrak perilaku di atas. Bila inspeksi penuh data atau generation menemukan ketidakcocokan material, laporkan bukti dan sesuaikan desain secara terbuka sebelum mengubah cakupan.
 
 ## Referensi yang diperiksa
 
