@@ -22,6 +22,16 @@ spring:
 finresolve:
   db:
     path: ${FINRESOLVE_DB_PATH:data/finresolve.db}
+  similarity:
+    category-weight: 0.4
+    text-weight: 0.6
+    product-weight: 0.35
+    sub-product-weight: 0.15
+    issue-weight: 0.35
+    sub-issue-weight: 0.15
+    threshold: 0.50
+    default-limit: 5
+    max-limit: 20
   cors:
     allowed-origins: ${FINRESOLVE_CORS_ORIGINS:http://localhost:3000}
 
