@@ -10,6 +10,10 @@ spring:
   sql:
     init:
       mode: never
+  servlet:
+    multipart:
+      max-file-size: 20MB
+      max-request-size: 21MB
   jackson:
     default-property-inclusion: always
     deserialization:
@@ -24,6 +28,9 @@ finresolve:
 server:
   address: 127.0.0.1
   port: 8080
+  tomcat:
+    max-http-form-post-size: 21MB
+    max-swallow-size: 21MB
   error:
     include-message: never
     include-stacktrace: never

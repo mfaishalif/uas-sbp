@@ -12,10 +12,14 @@ import id.ac.finresolve.api.model.CategoryTuple;
 import id.ac.finresolve.api.model.CfpbCase;
 import id.ac.finresolve.api.model.FieldError;
 import id.ac.finresolve.api.model.Health;
+import id.ac.finresolve.api.model.ImportMetadata;
+import id.ac.finresolve.api.model.ImportReport;
+import id.ac.finresolve.api.model.ImportRowError;
 import id.ac.finresolve.cases.CaseRecord;
 import id.ac.finresolve.cases.CaseRepository;
 import id.ac.finresolve.categories.CategoryValues;
-import java.net.URI;
+import id.ac.finresolve.imports.BatchRecord;
+import id.ac.finresolve.imports.ImportRowProblem;
 import java.time.Instant;
 import java.time.OffsetDateTime;
 import java.time.ZoneOffset;
@@ -68,6 +72,34 @@ public final class ApiMapper {
         return new Categories(items, Categories.ScopeEnum.IMPORTED_CFPB_SAMPLE);
     }
 
+    public ImportReport importReport(BatchRecord batch, boolean replayed) {
+        ImportMetadata metadata = new ImportMetadata(
+                batch.archiveUrl(),
+                batch.sourceFileName(),
+                batch.periodStart(),
+                batch.periodEnd());
+        List<ImportRowError> errors = new ArrayList<>(batch.errors().size());
+        for (ImportRowProblem problem : batch.errors()) {
+            errors.add(new ImportRowError(
+                    problem.recordNumber(),
+                    problem.field(),
+                    ImportRowError.CodeEnum.fromValue(problem.code()),
+                    problem.message()));
+        }
+        return new ImportReport(
+                batch.id(),
+                replayed,
+                metadata,
+                batch.csvSha256(),
+                batch.processed(),
+                batch.imported(),
+                batch.duplicates(),
+                batch.rejected(),
+                errors,
+                batch.rejected() > errors.size(),
+                offset(batch.importedAt()));
+    }
+
     public ApiError error(BusinessException failure, Instant timestamp) {
         List<FieldError> fieldErrors = new ArrayList<>(failure.fieldErrors().size());
         for (BusinessException.Problem problem : failure.fieldErrors()) {
@@ -112,7 +144,7 @@ public final class ApiMapper {
         ArchiveProvenance mappedProvenance = new ArchiveProvenance(
                 provenance.complaintId(),
                 provenance.batchId(),
-                URI.create(provenance.archiveUrl()),
+                provenance.archiveUrl(),
                 provenance.sourceFileName(),
                 provenance.periodStart(),
                 provenance.periodEnd(),

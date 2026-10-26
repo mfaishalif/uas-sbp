@@ -1,0 +1,4 @@
+Complaint ID,Product,Sub-product,Issue,Sub-issue,Consumer complaint narrative,Company,Company response to consumer,Date received
+900000001,Checking or savings account,Checking account,Managing an account,Deposits and withdrawals,"Synthetic narrative about a missing transfer, with a comma.",Example Bank (synthetic),Closed with explanation,2024-11-05
+900000002,Checking or savings account,Checking account,Managing an account,Problem with a lender or other company charging your account,"Another synthetic narrative about an unexpected fee.",Example Bank (synthetic),Closed with monetary relief,11/21/2024
+900000003,"Money transfer, virtual currency, or money service",Mobile or online app,Problem with a money transfer,,Synthetic narrative about a delayed money transfer.,Example Transfer Co (synthetic),In progress,2024-12-02

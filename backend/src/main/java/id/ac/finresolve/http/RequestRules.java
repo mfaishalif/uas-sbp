@@ -22,6 +22,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.mvc.method.annotation.RequestBodyAdvice;
 import tools.jackson.databind.DeserializationFeature;
 import tools.jackson.databind.JsonNode;
@@ -105,7 +106,9 @@ public final class RequestRules implements RequestBodyAdvice {
             MethodParameter methodParameter,
             Type targetType,
             Class<? extends HttpMessageConverter<?>> converterType) {
-        return targetType instanceof Class<?> type && hasSchema(type.getSimpleName());
+        return methodParameter.hasParameterAnnotation(RequestBody.class)
+                && targetType instanceof Class<?> type
+                && hasSchema(type.getSimpleName());
     }
 
     @Override

@@ -4,7 +4,8 @@
   "modelPackage": "id.ac.finresolve.api.model",
   "invokerPackage": "id.ac.finresolve.api.invoker",
   "typeMappings": {
-    "null": "Void"
+    "null": "Void",
+    "URI": "String"
   },
   "additionalProperties": {
     "interfaceOnly": "true",
