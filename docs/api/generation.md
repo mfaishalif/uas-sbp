@@ -1,6 +1,6 @@
 # Rancangan generation dari kontrak FinResolve
 
-Status: usulan pelengkap desain, belum diimplementasikan. Pengguna meminta backend dan frontend dihasilkan dari kontrak agar tetap sinkron. Dokumen ini mengatur generation batas HTTP; logika CBR, SQLite, dan UI tidak dihasilkan dari OpenAPI.
+Status: **disetujui pengguna pada 26 Oktober 2026, belum diimplementasikan**. Pengguna meminta berhenti sebelum implementasi; generation belum boleh dijalankan. Pengguna meminta backend dan frontend dihasilkan dari kontrak agar tetap sinkron. Dokumen ini mengatur generation batas HTTP; logika CBR, SQLite, dan UI tidak dihasilkan dari OpenAPI.
 
 ## Sumber dan kepemilikan
 
@@ -16,12 +16,12 @@ Model domain/database boleh berbeda dari DTO publik; pemetaan dilakukan di batas
 
 ## Approaches dan usulan alat
 
-Pengguna sudah memilih pendekatan generation untuk kedua sisi. Pemilihan alat berikut adalah usulan penulis yang termasuk dalam persetujuan desain:
+Pengguna sudah memilih pendekatan generation untuk kedua sisi. Alternatif berikut dipertimbangkan penulis; pendekatan pertama disetujui pengguna sebagai bagian desain:
 
-1. **OpenAPI Generator untuk backend dan frontend — direkomendasikan.** Generator `spring` menghasilkan interface dan DTO Java; `typescript-fetch` menghasilkan client dan model TypeScript. Satu versi engine dan satu input mengurangi perbedaan konfigurasi dua tool. Ada lebih banyak output generated dan runtime serializer yang harus diuji.
+1. **OpenAPI Generator untuk backend dan frontend — dipilih.** Generator `spring` menghasilkan interface dan DTO Java; `typescript-fetch` menghasilkan client dan model TypeScript. Satu versi engine dan satu input mengurangi perbedaan konfigurasi dua tool. Ada lebih banyak output generated dan runtime serializer yang harus diuji.
 2. **OpenAPI Generator untuk Java; openapi-typescript + openapi-fetch untuk frontend.** Tipe frontend dihasilkan dari kontrak dan dipakai transport generik, dengan output lebih kecil. Perlu mengelola dua toolchain generator berbeda dan membuktikan perilaku serialisasi yang sama, terutama multipart.
 
-Usulan pertama dipakai dalam rencana di bawah. Versi engine Maven dan CLI frontend harus sama persis dan dikunci; jangan memakai `latest`, rentang versi, atau download generator tanpa versi. Versi stabil yang dipilih beserta checksum/distribusi dicatat saat rencana implementasi. Wrapper npm (bila digunakan), TypeScript, dan dependency runtime juga dikunci dalam manifest/lockfile.
+Pendekatan pertama dipakai dalam rancangan di bawah. Versi engine Maven dan CLI frontend harus sama persis dan dikunci; jangan memakai `latest`, rentang versi, atau download generator tanpa versi. Versi stabil yang dipilih beserta checksum/distribusi dicatat saat rencana implementasi. Wrapper npm (bila digunakan), TypeScript, dan dependency runtime juga dikunci dalam manifest/lockfile.
 
 ## Output dan build yang direncanakan
 

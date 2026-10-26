@@ -1,10 +1,10 @@
 # Kontrak API FinResolve
 
-Status: **rancangan `0.1.0-draft`; backend belum tersedia**. Kontrak ini melengkapi [desain backend](../superpowers/specs/2026-10-26-finresolve-backend-design.md). [openapi.json](openapi.json) adalah acuan nama field, tipe, batas input, enum, endpoint, dan bentuk respons. Dokumen ini menjelaskan aturan bisnis dan penggunaan dari frontend. Perubahan kontrak saat implementasi harus memperbarui kedua dokumen secara bersamaan.
+Status: **kontrak `0.1.0` disetujui pengguna pada 26 Oktober 2026; backend belum tersedia**. Pengguna meminta berhenti sebelum implementasi dan generation. Kontrak ini melengkapi [desain backend](../superpowers/specs/2026-10-26-finresolve-backend-design.md). [openapi.json](openapi.json) adalah acuan nama field, tipe, batas input, enum, endpoint, dan bentuk respons. Dokumen ini menjelaskan aturan bisnis dan penggunaan dari frontend. Perubahan kontrak saat implementasi harus memperbarui kedua dokumen secara bersamaan.
 
 Format menggunakan [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0.html). File dapat dibuka di alat yang mendukung versi tersebut untuk melihat skema atau menyiapkan client dan mock. Semua contoh di OpenAPI bersifat sintetis, termasuk ID CFPB dan skor; kategori aktual harus diambil dari API. Tidak ada server mock atau client yang diimplementasikan dalam perubahan dokumentasi ini.
 
-**Kebutuhan generation:** backend dan frontend wajib menggunakan kode HTTP yang dihasilkan dari kontrak ini. [Rancangan generation](generation.md) menetapkan output Java/TypeScript, batas kode manual, dan pemeriksaan sinkronisasi di CI. Usulan alat adalah OpenAPI Generator untuk kedua sisi. Pembuatan paket client termasuk tahap backend; pembangunan UI Next.js tetap tahap berikutnya.
+**Kebutuhan generation:** backend dan frontend wajib menggunakan kode HTTP yang dihasilkan dari kontrak ini. [Rancangan generation](generation.md) menetapkan output Java/TypeScript, batas kode manual, dan pemeriksaan sinkronisasi di CI. Alat yang disetujui dalam desain adalah OpenAPI Generator untuk kedua sisi. Pembuatan paket client termasuk tahap backend; pembangunan UI Next.js tetap tahap berikutnya.
 
 ## Aturan bersama
 

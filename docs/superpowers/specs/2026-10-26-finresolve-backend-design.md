@@ -1,12 +1,12 @@
 # Desain backend FinResolve untuk demo lokal
 
-Tanggal: 26 Oktober 2026. Status: rancangan untuk persetujuan pengguna.
+Tanggal: 26 Oktober 2026. Status: **disetujui pengguna** pada 26 Oktober 2026, termasuk kontrak API dan generation backend/frontend. Pengguna meminta berhenti sebelum implementasi; persetujuan desain ini tidak memberi izin untuk memulai implementasi atau generation sekarang.
 
 ## Maksud dan keputusan
 
 Backend mendukung demo UAS Sistem Berbasis Pengetahuan: analis memasukkan pengaduan, membandingkan preseden, lalu menyimpan kasus yang telah ditangani beserta penilaiannya. Kemiripan dan respons historis adalah bahan pertimbangan, bukan bukti keberhasilan suatu solusi.
 
-Keputusan pengguna: implementasi backend berdasarkan README, target demo lokal dengan penyimpanan permanen, database **SQLite**, kontrak API agar frontend dapat diintegrasikan kemudian, dan **generation backend serta frontend dari kontrak yang sama untuk menjaga sinkronisasi**. Java serta sumber narasi CFPB mengikuti README. Semua rincian berikut yang belum disebut pengguna adalah usulan teknis penulis untuk ditinjau, bukan keputusan pengguna yang diasumsikan telah disetujui.
+Keputusan pengguna: implementasi backend berdasarkan README, target demo lokal dengan penyimpanan permanen, database **SQLite**, kontrak API agar frontend dapat diintegrasikan kemudian, dan **generation backend serta frontend dari kontrak yang sama untuk menjaga sinkronisasi**. Java serta sumber narasi CFPB mengikuti README. Rincian teknis yang semula diusulkan penulis telah disetujui sebagai bagian desain; keputusan yang secara eksplisit diserahkan kepada pembuat tetap ditentukan pada tahap perencanaan berikutnya.
 
 Ini pembangunan backend baru, bukan perubahan kecil. Repositori saat diperiksa hanya berisi README, konfigurasi devcontainer, dan log. Perubahan README serta file lokal yang sudah ada harus dipertahankan.
 
@@ -94,13 +94,13 @@ Untuk batas demo 5.000 kasus, bangun snapshot TF-IDF dari seluruh korpus pada se
 
 ### Generation backend dan frontend
 
-Pendekatan yang diminta pengguna adalah contract-first generation. `docs/api/openapi.json` menjadi satu-satunya sumber definisi HTTP publik yang diedit. Usulan alat penulis adalah OpenAPI Generator untuk kedua sisi, dengan detail ownership, build, dan pengujian pada [rancangan generation](../../api/generation.md). Pemilihan alat ini masih usulan untuk persetujuan desain, bukan keputusan pengguna yang telah dikonfirmasi.
+Pendekatan yang diminta pengguna adalah contract-first generation. `docs/api/openapi.json` menjadi satu-satunya sumber definisi HTTP publik yang diedit. OpenAPI Generator untuk kedua sisi telah disetujui sebagai bagian desain, dengan detail ownership, build, dan pengujian pada [rancangan generation](../../api/generation.md). Kompatibilitas teknis tetap harus dibuktikan saat implementasi diizinkan.
 
 Backend mengimplementasikan interface hasil generation dan memakai DTO hasil generation pada batas HTTP. Service CBR, repository SQLite, dan model internal tetap ditulis manual. Frontend menggunakan paket client dan tipe hasil generation; tidak menduplikasi endpoint atau DTO transport. Generated files tidak diedit manual. Generation menyelaraskan bentuk API; contract test tetap diperlukan untuk semantik null, status HTTP, error, dan aturan bisnis.
 
 ### Endpoint dan perilaku
 
-Kontrak terperinci tersedia dalam [OpenAPI 3.1](../../api/openapi.json) dan [panduan integrasi frontend](../../api/README.md). OpenAPI menetapkan endpoint, DTO, nullability, enum, batas input, pagination, status HTTP, dan contoh sintetis request/response; panduan menetapkan semantik bisnis dan contoh `fetch`, termasuk multipart. Keduanya adalah bagian desain ini dan menjadi acuan implementasi. Status kontrak `0.1.0-draft` tidak berarti endpoint sudah tersedia.
+Kontrak terperinci tersedia dalam [OpenAPI 3.1](../../api/openapi.json) dan [panduan integrasi frontend](../../api/README.md). OpenAPI menetapkan endpoint, DTO, nullability, enum, batas input, pagination, status HTTP, dan contoh sintetis request/response; panduan menetapkan semantik bisnis dan contoh `fetch`, termasuk multipart. Keduanya adalah bagian desain ini dan menjadi acuan implementasi. Versi kontrak yang disetujui adalah `0.1.0`; versi ini tidak berarti endpoint sudah tersedia.
 
 JSON memakai camelCase tanpa envelope `data`. Field nullable pada respons selalu hadir; koleksi kosong berupa array. UUID kasus dan ID CFPB keduanya string. PUT mengganti lengkap kasus ANALYST dan mengosongkan field opsional yang dihilangkan. POST retensi tidak idempoten. Respons pencarian memuat konfigurasi yang benar-benar digunakan; hasil kosong tetap HTTP 200. Angka, ID dan skor contoh dokumentasi bersifat sintetis.
 
