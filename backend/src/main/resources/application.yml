@@ -20,6 +20,9 @@ spring:
 finresolve:
   db:
     path: ${FINRESOLVE_DB_PATH:data/finresolve.db}
+  demo:
+    enabled: ${FINRESOLVE_DEMO_ENABLED:false}
+    sample-path: ${FINRESOLVE_DEMO_SAMPLE_PATH:data/cfpb/sample.csv}
   similarity:
     category-weight: 0.4
     text-weight: 0.6

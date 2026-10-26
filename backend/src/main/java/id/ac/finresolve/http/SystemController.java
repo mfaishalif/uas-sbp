@@ -4,6 +4,7 @@ import id.ac.finresolve.api.SystemApi;
 import id.ac.finresolve.api.model.Health;
 import id.ac.finresolve.db.Database;
 import id.ac.finresolve.db.DatabaseBusyException;
+import id.ac.finresolve.demo.DemoReadiness;
 import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,14 +21,23 @@ public class SystemController implements SystemApi {
 
     private final Database database;
     private final ApiMapper mapper;
+    private final DemoReadiness demoReadiness;
 
-    public SystemController(Database database, ApiMapper mapper) {
+    public SystemController(Database database, ApiMapper mapper, DemoReadiness demoReadiness) {
         this.database = database;
         this.mapper = mapper;
+        this.demoReadiness = demoReadiness;
     }
 
     @Override
     public ResponseEntity<Health> getHealth() {
+        if (!demoReadiness.isReady()) {
+            throw new BusinessException(
+                    503,
+                    "SERVICE_UNAVAILABLE",
+                    "Inisialisasi data demo belum selesai.",
+                    List.of());
+        }
         try {
             database.read(() -> database.jdbcTemplate().queryForObject("SELECT 1", Integer.class));
         } catch (DatabaseBusyException busy) {

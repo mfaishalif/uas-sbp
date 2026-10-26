@@ -46,6 +46,7 @@ Konfigurasi [Dev Container](.devcontainer/devcontainer.json) menyediakan lingkun
 | Backend | JDK 21, Maven 3.9, dan Gradle 9 |
 | Asisten terminal | Codex CLI (`codex`) dan OpenCode CLI (`opencode`), terpasang global melalui npm |
 | GitHub CLI | `gh`, dipasang melalui devcontainer feature; login dengan scope `repo` dan `workflow` |
+| Docker CLI | `docker` dan `docker compose` dari devcontainer feature `docker-outside-of-docker`, memakai daemon Docker host |
 | Port yang diteruskan | `3000` untuk Next.js dan `8080` untuk backend Java |
 | Ekstensi VS Code | ESLint, Prettier, dan Extension Pack for Java |
 
@@ -59,6 +60,8 @@ Cara menggunakan:
 4. Setelah container siap, buka terminal di VS Code. Jalankan `codex` untuk memakai Codex CLI atau `opencode` untuk memakai OpenCode CLI dari folder proyek. Hubungkan provider AI lewat perintah `/connect` di OpenCode. Versi kedua CLI beserta toolchain diperiksa otomatis saat container pertama kali dibuat.
 
 Devcontainer menyiapkan toolchain pengembangan. Backend sudah dapat dijalankan dari repository ini; frontend Next.js belum tersedia. Setelah frontend ditambahkan, jalankan server Next.js dengan bind ke `0.0.0.0` (misalnya `npm run dev -- --hostname 0.0.0.0` dari folder frontend) agar dapat diakses melalui port yang diteruskan. Backend memakai port `8080`. Build Java memakai Maven Wrapper yang sudah di-commit agar versi build tool konsisten.
+
+Fitur `docker-outside-of-docker` memasang Docker CLI dan Compose di container, lalu memakai socket Docker dari host. Docker Desktop atau Docker Engine harus berjalan di host. Setelah konfigurasi devcontainer berubah, pilih **Dev Containers: Rebuild Container** agar fitur dan socket tersedia; perintah Docker tidak dapat dipakai di container yang belum dibangun ulang.
 
 SQLite adalah database demo. File default `backend/data/finresolve.db` dibuat otomatis saat backend dijalankan dari folder `backend/`; lokasi absolut dicatat pada log startup dan dapat diubah melalui `FINRESOLVE_DB_PATH`. Jika konfigurasi devcontainer diubah, pilih **Dev Containers: Rebuild Container** melalui Command Palette.
 
@@ -125,7 +128,7 @@ npm run verify                 # kontrak, generation, backend, client, dan live 
 cd backend && ./mvnw test      # hanya tes backend
 ```
 
-`npm run verify` menjalankan validasi kontrak, generation check, 202 tes backend, pembuatan packaged jar, serta contract/client test terhadap server nyata. Perintah ini tidak mengunduh arsip CFPB.
+`npm run verify` menjalankan validasi kontrak, generation check, 210 tes backend, pembuatan packaged jar, serta contract/client test terhadap server nyata. Perintah ini tidak mengunduh arsip CFPB.
 
 Menjalankan server dengan database default:
 
@@ -212,6 +215,50 @@ Client membawa `basePath` `/api` sekali, tidak mengulang mutasi, dan memetakan k
 - Ambang dan bobot awal **belum dikalibrasi**. Respons historis adalah konteks, bukan bukti keberhasilan penanganan.
 - Katalog kategori hanya berasal dari kasus CFPB yang diimpor; retensi ANALYST tidak memperluas katalog. Sebelum impor, katalog kosong dan retensi ditolak **409** `EMPTY_CATEGORY_CATALOG`.
 - Tidak ada autentikasi, peran, deployment publik, atau UI pada demo ini.
+
+## Menjalankan demo dengan Docker Compose
+
+Demo API lengkap dapat dijalankan tanpa memasang Java atau Node.js di host. Prasyaratnya adalah Docker Engine atau Docker Desktop dengan Compose v2. Build pertama membutuhkan internet untuk mengunduh image Java 21 dan dependensi Maven. Sampel 500 kasus sudah tersedia di repository dan tidak diunduh saat startup.
+
+Dari root repository:
+
+```bash
+docker compose up --build
+```
+
+Build pertama juga mengompilasi jar melalui Maven Wrapper. Setelah container berjalan, periksa status kesehatan:
+
+```bash
+docker compose ps
+```
+
+Status `healthy` baru muncul setelah inisialisasi 500 kasus selesai. Selama inisialisasi berlangsung, endpoint kesehatan mengembalikan **503**; setelah siap, endpoint tersebut mengembalikan **200** `{"status":"UP","database":"UP"}`. API hanya dipublikasikan pada loopback `http://127.0.0.1:8080`, tanpa autentikasi dan tanpa akses dari jaringan lain.
+
+Contoh pemeriksaan:
+
+```bash
+curl -i http://127.0.0.1:8080/api/health
+curl -sS 'http://127.0.0.1:8080/api/cases?source=CFPB&size=2'
+curl -sS -X POST http://127.0.0.1:8080/api/search \
+  -H 'Content-Type: application/json' \
+  -d '{"product":"Checking or savings account","subProduct":"Checking account","issue":"Managing an account","subIssue":"Deposits and withdrawals","narrative":"Money left my bank balance twice even though I only authorized one payment.","limit":5}'
+```
+
+Database SQLite disimpan pada named volume di `/data/finresolve.db`. Menghentikan atau membuat ulang container tidak menghapus data:
+
+```bash
+docker compose down          # container berhenti, volume dan data tetap
+docker compose up            # 500 kasus CFPB dan kasus analis tetap tersedia
+```
+
+Untuk mereset demo secara eksplisit dan destruktif, hapus volume demo:
+
+```bash
+docker compose down --volumes
+docker compose up --build
+```
+
+Perintah reset tersebut menghapus seluruh kasus analis pada volume demo. Jangan jalankan bila data tersebut ingin dipertahankan. Startup akan gagal dengan pesan yang jelas bila `data/cfpb/sample.csv` hilang atau tidak valid, sehingga aplikasi tidak menyajikan demo kosong. Inisialisasi demo hanya diaktifkan oleh Compose; startup non-container tetap memakai perilaku default dan tidak membaca CSV. Fitur Docker pada devcontainer hanya menambahkan akses CLI ke daemon host setelah rebuild; demo ini tetap hanya API tanpa frontend, autentikasi, atau deployment publik.
 
 ## Evaluasi relevansi
 

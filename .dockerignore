@@ -1,0 +1,17 @@
+# Keep the build context limited to what the Maven build and runtime image need.
+.git
+.github
+.devcontainer
+.superpowers
+.cache
+node_modules
+backend/target
+backend/data
+data/*.db
+data/*.db-wal
+data/*.db-shm
+data/cfpb/*.zip
+packages/api-client/dist
+packages/api-client/dist-test
+tests/contract/dist
+.plantuml-mcp.log
