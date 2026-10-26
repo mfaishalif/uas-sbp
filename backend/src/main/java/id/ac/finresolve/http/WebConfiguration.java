@@ -7,12 +7,9 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Locale;
-import java.util.UUID;
 import org.openapitools.jackson.nullable.JsonNullableJackson3Module;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.jackson.autoconfigure.JsonMapperBuilderCustomizer;
@@ -20,8 +17,6 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
-import org.springframework.format.Formatter;
-import org.springframework.format.FormatterRegistry;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -32,7 +27,7 @@ import tools.jackson.databind.DeserializationFeature;
 import tools.jackson.databind.cfg.DateTimeFeature;
 
 /**
- * CORS, canonical UUID conversion, and Jackson defaults for the local HTTP boundary.
+ * CORS, query-parameter guards, and Jackson defaults for the local HTTP boundary.
  *
  * <p>Configured origins are exact strings. A wildcard is discarded, so a misconfiguration can
  * never turn into credential-free wildcard CORS.
@@ -48,14 +43,22 @@ public class WebConfiguration implements WebMvcConfigurer {
     public WebConfiguration(
             @Value("${finresolve.cors.allowed-origins:http://localhost:3000}")
             String configuredOrigins) {
-        List<String> origins = new ArrayList<>();
-        for (String origin : configuredOrigins.split(",")) {
-            String trimmed = origin.trim();
-            if (!trimmed.isEmpty() && !"*".equals(trimmed)) {
-                origins.add(trimmed);
+        this.allowedOrigins = allowedOrigins(configuredOrigins);
+    }
+
+    /** The local frontend is always allowed; extra exact origins are added, never a wildcard. */
+    static List<String> allowedOrigins(String configuredOrigins) {
+        LinkedHashSet<String> origins = new LinkedHashSet<>();
+        origins.add("http://localhost:3000");
+        if (configuredOrigins != null) {
+            for (String origin : configuredOrigins.split(",")) {
+                String trimmed = origin.trim();
+                if (!trimmed.isEmpty() && !"*".equals(trimmed)) {
+                    origins.add(trimmed);
+                }
             }
         }
-        this.allowedOrigins = origins.isEmpty() ? List.of("http://localhost:3000") : List.copyOf(origins);
+        return List.copyOf(origins);
     }
 
     @Override
@@ -66,11 +69,6 @@ public class WebConfiguration implements WebMvcConfigurer {
                 .allowedHeaders(ALLOWED_HEADERS.toArray(String[]::new))
                 .exposedHeaders(HttpHeaders.LOCATION)
                 .maxAge(3600);
-    }
-
-    @Override
-    public void addFormatters(FormatterRegistry registry) {
-        registry.addFormatter(new CanonicalUuidFormatter());
     }
 
     @Override
@@ -96,29 +94,6 @@ public class WebConfiguration implements WebMvcConfigurer {
         registration.addUrlPatterns("/api/*");
         registration.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return registration;
-    }
-
-    private static final class CanonicalUuidFormatter implements Formatter<UUID> {
-
-        @Override
-        public UUID parse(String text, Locale locale) throws ParseException {
-            if (text == null
-                    || !text.matches(
-                            "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-"
-                                    + "[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$")) {
-                throw new ParseException("UUID must use the full canonical form.", 0);
-            }
-            try {
-                return UUID.fromString(text);
-            } catch (IllegalArgumentException failure) {
-                throw new ParseException("UUID must use the full canonical form.", 0);
-            }
-        }
-
-        @Override
-        public String print(UUID object, Locale locale) {
-            return object.toString();
-        }
     }
 
     /**

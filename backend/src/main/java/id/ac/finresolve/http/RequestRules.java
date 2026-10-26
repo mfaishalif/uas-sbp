@@ -41,8 +41,6 @@ public final class RequestRules implements RequestBodyAdvice {
 
     static final String CONTRACT_RESOURCE = "/openapi.json";
 
-    private static final Pattern CANONICAL_UUID = Pattern.compile(
-            "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$");
     private static final String VALIDATION_MESSAGE = "Input tidak valid.";
 
     private final JsonNode schemas;
@@ -275,7 +273,7 @@ public final class RequestRules implements RequestBodyAdvice {
         String format = schema.path("format").asString("");
         switch (format) {
             case "uuid" -> {
-                if (!CANONICAL_UUID.matcher(text).matches()) {
+                if (!CanonicalUuid.isCanonical(text)) {
                     problems.add(new Problem(
                             path,
                             "INVALID_FORMAT",

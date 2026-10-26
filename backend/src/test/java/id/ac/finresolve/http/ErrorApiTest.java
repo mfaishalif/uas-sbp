@@ -28,13 +28,20 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Import;
+import org.springframework.http.MediaType;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.mock.web.MockFilterChain;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import tools.jackson.databind.JsonNode;
 import tools.jackson.databind.json.JsonMapper;
 
@@ -192,6 +199,17 @@ class ErrorApiTest {
     }
 
     @Test
+    void malformedMultipartIsAContractShaped400() throws Exception {
+        ApiResponse response = request(
+                "POST",
+                "/api/test/multipart",
+                Map.of("Content-Type", "multipart/form-data"),
+                "this is not a multipart body");
+
+        assertGlobalError(response, 400, "MALFORMED_REQUEST");
+    }
+
+    @Test
     void requestRulesRejectUnknownMissingNullAndRawOverLimitFieldsOverHttp() throws Exception {
         String unknownField = VALID_RETAIN_BODY.replaceFirst(
                 "\\{", "{\n  \"source\": \"ANALYST\",");
@@ -233,6 +251,8 @@ class ErrorApiTest {
             ApiResponse response = postJson(body);
             assertGlobalError(response, 503, "SERVICE_UNAVAILABLE");
             assertThat(response.body()).doesNotContain(SENTINEL);
+
+            assertGlobalError(get("/api/test/failure"), 500, "INTERNAL_ERROR");
         } finally {
             root.detachAppender(appender);
         }
@@ -240,6 +260,7 @@ class ErrorApiTest {
         String logs = appender.list.stream()
                 .map(ILoggingEvent::getFormattedMessage)
                 .collect(Collectors.joining("\n"));
+        assertThat(logs).contains("INTERNAL_ERROR").contains("IllegalStateException");
         assertThat(logs).doesNotContain(SENTINEL);
         assertThat(logs).doesNotContain(DATABASE_FILE.toString());
         assertThat(logs).doesNotContain("SELECT ");
@@ -288,6 +309,38 @@ class ErrorApiTest {
     }
 
     @Test
+    void configuredExtraCorsOriginsKeepTheDefaultOriginAndDiscardWildcard() throws Exception {
+        List<String> origins = WebConfiguration.allowedOrigins("http://localhost:5173, *");
+
+        assertThat(origins).containsExactly("http://localhost:3000", "http://localhost:5173");
+
+        for (String origin : origins) {
+            MockHttpServletRequest request = new MockHttpServletRequest("OPTIONS", "/api/cases");
+            request.addHeader("Origin", origin);
+            request.addHeader("Access-Control-Request-Method", "POST");
+            request.addHeader("Access-Control-Request-Headers", "content-type, accept");
+            MockHttpServletResponse response = new MockHttpServletResponse();
+
+            new WebConfiguration.PreflightFilter(origins)
+                    .doFilter(request, response, new MockFilterChain());
+
+            assertThat(response.getStatus()).as("preflight for %s", origin).isEqualTo(204);
+            assertThat(response.getHeader("Access-Control-Allow-Origin")).isEqualTo(origin);
+        }
+
+        MockHttpServletRequest wildcard = new MockHttpServletRequest("OPTIONS", "/api/cases");
+        wildcard.addHeader("Origin", "*");
+        wildcard.addHeader("Access-Control-Request-Method", "POST");
+        MockHttpServletResponse wildcardResponse = new MockHttpServletResponse();
+
+        new WebConfiguration.PreflightFilter(origins)
+                .doFilter(wildcard, wildcardResponse, new MockFilterChain());
+
+        assertThat(wildcardResponse.getStatus()).isEqualTo(403);
+        assertThat(wildcardResponse.getHeader("Access-Control-Allow-Origin")).isNull();
+    }
+
+    @Test
     void unexpectedFailuresBecomeSafe500AndBusyBecomesDatabaseBusy() throws Exception {
         assertGlobalError(get("/api/test/failure"), 500, "INTERNAL_ERROR");
         assertGlobalError(get("/api/test/busy"), 503, "DATABASE_BUSY");
@@ -297,9 +350,17 @@ class ErrorApiTest {
     @DirtiesContext(methodMode = DirtiesContext.MethodMode.AFTER_METHOD)
     void unavailableDatabaseHealthProbeIsASafe503(@Autowired HikariDataSource dataSource) throws Exception {
         String databasePath = DATABASE_FILE.toString();
-        dataSource.close();
-
-        ApiResponse response = get("/api/health");
+        Logger root = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
+        ListAppender<ILoggingEvent> appender = new ListAppender<>();
+        appender.start();
+        root.addAppender(appender);
+        ApiResponse response;
+        try {
+            dataSource.close();
+            response = get("/api/health");
+        } finally {
+            root.detachAppender(appender);
+        }
 
         assertGlobalError(response, 503, "SERVICE_UNAVAILABLE");
         assertThat(response.body())
@@ -307,6 +368,16 @@ class ErrorApiTest {
                 .doesNotContain("HikariPool")
                 .doesNotContain("Unable to obtain")
                 .doesNotContain("at id.ac.finresolve");
+
+        String logs = appender.list.stream()
+                .map(ILoggingEvent::getFormattedMessage)
+                .collect(Collectors.joining("\n"));
+        assertThat(logs).contains("SERVICE_UNAVAILABLE");
+        assertThat(logs)
+                .doesNotContain(databasePath)
+                .doesNotContain("HikariPool")
+                .doesNotContain("Unable to obtain")
+                .doesNotContain("SELECT ");
     }
 
     private ApiResponse postJson(String body) throws Exception {
@@ -386,6 +457,11 @@ class ErrorApiTest {
         Object busy() {
             throw new DatabaseBusyException(
                     "SENTINEL database is locked /tmp/finresolve.db", null);
+        }
+
+        @PostMapping(value = "/multipart", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+        Object multipart(@RequestPart("file") MultipartFile file) {
+            return Map.of("received", !file.isEmpty());
         }
     }
 

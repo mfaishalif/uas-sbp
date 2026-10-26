@@ -9,7 +9,8 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import java.util.regex.Pattern;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSourceResolvable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.HandlerMethodValidationException;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;
+import org.springframework.web.multipart.MultipartException;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
@@ -39,9 +41,7 @@ import org.springframework.web.servlet.resource.NoResourceFoundException;
 @RestControllerAdvice
 public final class ApiExceptionHandler {
 
-    private static final Pattern CANONICAL_UUID = Pattern.compile(
-            "^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-"
-                    + "[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$");
+    private static final Logger LOG = LoggerFactory.getLogger(ApiExceptionHandler.class);
 
     private final ApiMapper mapper;
 
@@ -58,10 +58,7 @@ public final class ApiExceptionHandler {
         binder.registerCustomEditor(UUID.class, new PropertyEditorSupport() {
             @Override
             public void setAsText(String text) {
-                if (text == null || !CANONICAL_UUID.matcher(text).matches()) {
-                    throw new IllegalArgumentException("UUID must use the full canonical form.");
-                }
-                setValue(UUID.fromString(text));
+                setValue(CanonicalUuid.parse(text));
             }
         });
     }
@@ -171,6 +168,15 @@ public final class ApiExceptionHandler {
                 List.of());
     }
 
+    @ExceptionHandler(MultipartException.class)
+    public ResponseEntity<ApiError> malformedMultipart(MultipartException failure) {
+        return respond(
+                400,
+                "MALFORMED_REQUEST",
+                "Permintaan multipart tidak valid.",
+                List.of());
+    }
+
     @ExceptionHandler({NoResourceFoundException.class, NoHandlerFoundException.class})
     public ResponseEntity<ApiError> routeNotFound(Exception failure) {
         return respond(404, "ROUTE_NOT_FOUND", "Route tidak ditemukan.", List.of());
@@ -192,6 +198,7 @@ public final class ApiExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiError> unexpected(Exception failure) {
+        LOG.error("HTTP 500 INTERNAL_ERROR ({})", failure.getClass().getName());
         return respond(500, "INTERNAL_ERROR", "Terjadi kesalahan internal.", List.of());
     }
 
