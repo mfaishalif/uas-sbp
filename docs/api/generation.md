@@ -1,8 +1,100 @@
 # Rancangan generation dari kontrak FinResolve
 
-Status: **disetujui pengguna pada 26 Oktober 2026, belum diimplementasikan**. Pengguna meminta berhenti sebelum implementasi; generation belum boleh dijalankan. Pengguna meminta backend dan frontend dihasilkan dari kontrak agar tetap sinkron. Dokumen ini mengatur generation batas HTTP; logika CBR, SQLite, dan UI tidak dihasilkan dari OpenAPI.
+Status: **diimplementasikan dan diverifikasi pada 26 Oktober 2026**. Task 1 membuktikan kontrak `docs/api/openapi.json` menghasilkan batas Java yang dikompilasi dan client TypeScript yang di-commit serta lolos typecheck. Logika CBR, SQLite, controller, dan UI tetap bukan bagian generation. Bagian rancangan di bawah dipertahankan; bagian "Implementasi dan bukti Task 1" mencatat hasil nyata.
+
+## Implementasi dan bukti Task 1
+
+### Perintah reproduksi
+
+Dari root repository, dengan Java 21 dan Node.js 24:
+
+```sh
+npm ci
+npm run api:validate
+npm run api:generate
+npm run api:check
+npm run client:typecheck
+npm run client:test
+npm run test:generation
+cd backend && ./mvnw -Dtest=GeneratedModelsTest test
+```
+
+`npm run api:generate` memvalidasi kontrak lalu menghasilkan kedua batas. `npm run api:check` menghasilkan ulang ke direktori sementara dan membandingkan seluruh pohon TypeScript yang di-commit; ia juga memastikan lima interface Java tetap ada dan tidak berisi default method. `./mvnw` memakai Maven Wrapper 3.9.11 yang checksum-nya dikunci.
+
+### Versi dan checksum yang dikunci
+
+| Komponen | Versi | Kunci |
+| --- | --- | --- |
+| Java | 21 | `maven.compiler.release=21` |
+| Maven Wrapper | 3.9.11 | `distributionSha256Sum=0d7125e8c91097b36edb990ea5934e6c68b4440eef4ea96510a0f6815e7eeadb` |
+| Spring Boot | 4.1.2 | parent `backend/pom.xml` |
+| Xerial SQLite JDBC | 3.53.4.0 | `backend/pom.xml` |
+| Apache Commons CSV | 1.14.1 | `backend/pom.xml` |
+| OpenAPI Generator | 7.26.0 | JAR SHA-256 `1760050094997b9cc790cc1350be095f15da8c08a996b184d3eadc4ccda5e35e` |
+| Node.js | 24 | `engines` di root `package.json`; diuji pada 24.22.1 |
+| TypeScript | 7.0.2 | `package-lock.json` |
+| Ajv / ajv-formats | 8.20.0 / 3.0.1 | `package-lock.json` |
+| OpenAPI 3.1 meta-schema | `2022-10-07` | SHA-256 `da01ba28852cac0de53893797cb8d1942bc3b05084f526dcc216717dec314ed0` |
+
+Meta-schema disalin persis dari `https://spec.openapis.org/oas/3.1/schema/2022-10-07` ke `tools/openapi/schema/openapi-3.1-schema.json`; sumber dan hash dicatat di `tools/openapi/schema/README.md`.
+
+### Signature Java yang dihasilkan
+
+Signature diambil dari hasil kompilasi pertama, bukan ditebak:
+
+```java
+ResponseEntity<Health> SystemApi.getHealth();
+
+ResponseEntity<Categories> CategoriesApi.getCategories();
+
+ResponseEntity<CaseDetail> CasesApi.getCase(
+        @PathVariable("id") UUID id);
+
+ResponseEntity<CasePage> CasesApi.listCases(
+        @Min(0) @Valid @RequestParam(value = "page", required = false, defaultValue = "0") Integer page,
+        @Min(1) @Max(100) @Valid @RequestParam(value = "size", required = false, defaultValue = "20") Integer size,
+        @Valid @RequestParam(value = "source", required = false) @Nullable String source);
+
+ResponseEntity<CaseDetail> CasesApi.retainCase(
+        @Valid @RequestBody RetainCaseRequest retainCaseRequest);
+
+ResponseEntity<CaseDetail> CasesApi.replaceAnalystCase(
+        @PathVariable("id") UUID id,
+        @Valid @RequestBody RetainCaseRequest retainCaseRequest);
+
+ResponseEntity<SearchResponse> SearchApi.searchCases(
+        @Valid @RequestBody SearchRequest searchRequest);
+
+ResponseEntity<ImportReport> ImportsApi.importCfpb(
+        @RequestPart(value = "file", required = true) MultipartFile file,
+        @Valid @RequestPart(value = "metadata", required = true) ImportMetadata metadata);
+```
+
+Semua interface tetap abstrak: `interfaceOnly=true` dan `skipDefaultInterface=true`, tanpa `default ResponseEntity<...>`. Nama tag menghasilkan `SystemApi`, `CategoriesApi`, `CasesApi`, `SearchApi`, dan `ImportsApi`; model memakai nama skema kontrak (`CfpbCase`, `AnalystCase`, `CaseDetail`, `CasePage`, `ImportMetadata`, dan seterusnya).
+
+### Konfigurasi dan override tool
+
+Konfigurasi bersama ada di `tools/openapi/java.json` dan `tools/openapi/typescript.json`, lalu dipakai ulang oleh `openapi-generator-maven-plugin` di `backend/pom.xml` supaya versi engine tetap 7.26.0 di kedua jalur.
+
+- Java: `null=Void` mencegah `Object` untuk skema `type: null`; `interfaceOnly`, `skipDefaultInterface`, `useSpringBoot4`, `useJackson3`, `useOneOfInterfaces`, Bean Validation, dan `ResponseEntity` diaktifkan. Timestamp dan anotasi JSON yang tidak diperlukan dimatikan.
+- TypeScript: `null=null` dengan `null` sebagai language-specific primitive mencegah import `Null` yang tidak ada pada keluaran 7.26.0; `modelPropertyNaming=original`, `useSingleRequestParameter=true`, `dateLibrary=string`, dan `legacyDiscriminatorBehavior=false`. Tanggal tetap string ISO, required-nullable tetap wajib, dan `CaseDetail` menjadi discriminated union.
+- Override template: **satu** file, `backend/src/main/resources/openapi-templates/enumClass.mustache`. Generator 7.26.0 salah menulis `const: true` sebagai `TRUE("true")` ke field `Boolean`, sehingga `SearchConfiguration` gagal dikompilasi. Override hanya mengubah nilai enum non-string agar memakai `rawValue` (boolean asli) alih-alih `value` yang sudah dikutip. Kedua jalur generation memakai direktori template yang sama; tidak ada file generated yang diedit manual.
+
+### Bukti kompatibilitas
+
+- `cd backend && ./mvnw -Dtest=GeneratedModelsTest test`: **3 tes lulus**. Kedua contoh `CaseDetail` contract dideserialisasi oleh Jackson 3 mandiri dengan ISO dates dan explicit null inclusion ke subtipe konkret `CfpbCase`/`AnalystCase`, round-trip mempertahankan tepat satu key `source` dan field null yang hadir, serta tidak ada method default.
+- `npm run client:typecheck`: lulus. Assertion compile-time tetap bermakna: `CfpbCase['subProduct']` menerima `null`, `Pick<CfpbCase, 'subProduct'> = {}` ditolak karena required-nullable bukan optional, dan `CaseDetail['source'] = 'OTHER'` ditolak.
+- `npm run client:test`: **3 tes lulus**. Serializer generated mempertahankan nullable dan discriminator; request multipart memakai `FormData`, mengirim byte file utuh, mengirim `metadata` sebagai `Blob` bertipe `application/json`, dan tidak menulis header `Content-Type`/boundary manual.
+- `npm run test:generation`: **10 tes lulus**. Mencakup file hilang/tambahan/berubah, dua generation bersih dengan path dan byte identik, checksum salah berhenti tanpa download, tidak ada properti model `any`/`Object`, interface Java abstrak, multipart, dan kontrak sumber tidak berubah.
+- `npm run api:check`: lulus; seluruh pohon TypeScript generated di direktori sementara identik dengan yang di-commit. Sumber Java dari plugin Maven juga dibandingkan dan identik byte-per-byte dengan CLI; satu-satunya perbedaan metadata adalah `.openapi-generator/FILES` milik plugin tidak mencantumkan `.openapi-generator-ignore`.
+- Probe operasi baru memakai kontrak dan output sementara di luar repository: implementer konkret `ProbeSystemApi` berhasil dikompilasi terhadap boundary sebelum probe, lalu gagal terhadap boundary baru dengan `ProbeSystemApi is not abstract and does not override abstract method probeNewOperation() in SystemApi`. `docs/api/openapi.json` tidak disentuh; tes generation membandingkan byte kontrak sebelum/sesudah.
+
+### Batas yang belum dibuktikan Task 1
+
+Generation dan kompilasi tidak membuktikan perilaku HTTP nyata, aturan bisnis CBR, akses SQLite, atau kesesuaian UI. Pengujian respons nyata, controller, repository, dan client adapter tetap menjadi task berikutnya.
 
 ## Sumber dan kepemilikan
+
 
 `docs/api/openapi.json` adalah satu-satunya sumber kontrak HTTP publik yang diedit. Jangan menulis kontrak tandingan dari annotation controller atau menyalin skema ke proyek frontend. Jika dokumentasi HTTP nanti disajikan backend, gunakan kontrak sumber yang sama, bukan hasil inferensi dari controller.
 

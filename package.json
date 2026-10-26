@@ -1,0 +1,24 @@
+{
+  "name": "finresolve",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "FinResolve backend contract generation and test orchestration",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "api:validate": "node tools/openapi/validate.mjs",
+    "api:generate": "node tools/openapi/generate.mjs",
+    "api:check": "node tools/openapi/check.mjs",
+    "client:typecheck": "tsc -p packages/api-client/tsconfig.json",
+    "client:test": "tsc -p packages/api-client/tsconfig.test.json && node --test packages/api-client/dist-test/test/*.test.js",
+    "test:generation": "node --test tools/openapi/generation.test.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "typescript": "7.0.2"
+  }
+}

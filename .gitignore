@@ -1,1 +1,6 @@
 /plantuml-mcp.log
+node_modules/
+backend/target/
+.cache/
+packages/api-client/dist/
+packages/api-client/dist-test/
