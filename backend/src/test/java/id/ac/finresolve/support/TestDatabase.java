@@ -5,6 +5,7 @@ import id.ac.finresolve.cases.CaseRepository;
 import id.ac.finresolve.config.DatabaseConfiguration;
 import id.ac.finresolve.db.Database;
 import id.ac.finresolve.db.MigrationRunner;
+import id.ac.finresolve.db.Timestamps;
 import id.ac.finresolve.imports.BatchRecord;
 import id.ac.finresolve.imports.ImportRowProblem;
 import java.nio.file.Path;
@@ -142,7 +143,7 @@ public final class TestDatabase implements AutoCloseable {
                 batch.periodStart().toString(),
                 batch.periodEnd().toString(),
                 batch.csvSha256(),
-                batch.importedAt().toString(),
+                Timestamps.format(batch.importedAt()),
                 batch.processed(),
                 batch.imported(),
                 batch.duplicates(),

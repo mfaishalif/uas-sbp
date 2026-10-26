@@ -23,8 +23,9 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public final class MigrationRunner {
 
-    private static final List<String> PRODUCTION_RESOURCES =
-            List.of("db/migration/V001__initial.sql");
+    private static final List<String> PRODUCTION_RESOURCES = List.of(
+            "db/migration/V001__initial.sql",
+            "db/migration/V002__immutable_provenance_and_timestamps.sql");
 
     private static final String CREATE_SCHEMA_VERSIONS =
             """

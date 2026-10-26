@@ -33,9 +33,10 @@ class DatabaseTest {
             assertThat(pragmaString(db, "journal_mode")).isEqualToIgnoringCase("wal");
 
             assertThat(db.jdbc().queryForObject("SELECT COUNT(*) FROM schema_versions", Long.class))
-                    .isEqualTo(1L);
-            assertThat(db.jdbc().queryForObject("SELECT version FROM schema_versions", Integer.class))
-                    .isEqualTo(1);
+                    .isEqualTo(2L);
+            assertThat(db.jdbc().queryForList(
+                            "SELECT version FROM schema_versions ORDER BY version", Integer.class))
+                    .containsExactly(1, 2);
             assertThat(tableExists(db, "import_batches")).isTrue();
             assertThat(tableExists(db, "cases")).isTrue();
             assertThat(tableExists(db, "analyst_notes")).isTrue();
@@ -49,14 +50,15 @@ class DatabaseTest {
         try (TestDatabase db = TestDatabase.create(tempDir)) {
             file = db.file();
             assertThat(db.jdbc().queryForObject("SELECT COUNT(*) FROM schema_versions", Long.class))
-                    .isEqualTo(1L);
+                    .isEqualTo(2L);
         }
 
         try (TestDatabase reopened = TestDatabase.reopen(file)) {
             assertThat(reopened.jdbc().queryForObject("SELECT COUNT(*) FROM schema_versions", Long.class))
-                    .isEqualTo(1L);
-            assertThat(reopened.jdbc().queryForObject("SELECT version FROM schema_versions", Integer.class))
-                    .isEqualTo(1);
+                    .isEqualTo(2L);
+            assertThat(reopened.jdbc().queryForList(
+                            "SELECT version FROM schema_versions ORDER BY version", Integer.class))
+                    .containsExactly(1, 2);
         }
     }
 
@@ -120,7 +122,7 @@ class DatabaseTest {
     void foreignKeyViolationFails() {
         try (TestDatabase db = TestDatabase.create(tempDir)) {
             UUID missingBatch = UUID.randomUUID();
-            String now = BASE_TIME.toString();
+            String now = Timestamps.format(BASE_TIME);
             assertThatThrownBy(() -> db.jdbc().update(
                             """
                             INSERT INTO cases (
@@ -260,8 +262,8 @@ class DatabaseTest {
                             "Checking or savings account",
                             "Managing an account",
                             "Narrative",
-                            BASE_TIME.toString(),
-                            BASE_TIME.toString()))
+                            Timestamps.format(BASE_TIME),
+                            Timestamps.format(BASE_TIME)))
                     .isInstanceOf(DataAccessException.class);
         }
     }
@@ -379,6 +381,99 @@ class DatabaseTest {
             assertThat(repository.count()).isEqualTo(4L);
             assertThat(repository.snapshot()).extracting(CaseRecord::id)
                     .containsExactly(cfpbId, sameTimeOne, sameTimeTwo, oldestId);
+        }
+    }
+
+    @Test
+    void pageAndSnapshotOrderMixedPrecisionInstantsChronologically() {
+        UUID wholeSecond = UUID.fromString("00000000-0000-0000-0000-000000000011");
+        UUID millis = UUID.fromString("00000000-0000-0000-0000-000000000012");
+        UUID micros = UUID.fromString("00000000-0000-0000-0000-000000000013");
+        UUID nanos = UUID.fromString("00000000-0000-0000-0000-000000000014");
+        Instant second = Instant.parse("2026-10-26T10:20:00Z");
+        Instant millisTime = second.plusMillis(123);
+        Instant microsTime = second.plusNanos(123_456_000);
+        Instant nanosTime = second.plusNanos(999_999_999);
+
+        try (TestDatabase db = TestDatabase.create(tempDir)) {
+            CaseRepository repository = db.caseRepository();
+            db.database().write(() -> {
+                repository.insert(analyst(wholeSecond, second, second, "Whole", "Notes", List.of()));
+                repository.insert(analyst(micros, microsTime, microsTime, "Micros", "Notes", List.of()));
+                repository.insert(analyst(nanos, nanosTime, nanosTime, "Nanos", "Notes", List.of()));
+                repository.insert(analyst(millis, millisTime, millisTime, "Millis", "Notes", List.of()));
+                return null;
+            });
+
+            assertThat(repository.page(0, 10, null).items())
+                    .extracting(CaseRecord::id)
+                    .containsExactly(nanos, micros, millis, wholeSecond);
+            assertThat(repository.snapshot())
+                    .extracting(CaseRecord::id)
+                    .containsExactly(nanos, micros, millis, wholeSecond);
+            assertThat(repository.find(wholeSecond).orElseThrow().createdAt()).isEqualTo(second);
+            assertThat(repository.find(micros).orElseThrow().createdAt()).isEqualTo(microsTime);
+
+            assertThat(db.jdbc().queryForObject(
+                            """
+                            SELECT COUNT(*) FROM cases
+                            WHERE length(created_at) = 30 AND length(updated_at) = 30
+                            """,
+                            Long.class))
+                    .isEqualTo(4L);
+        }
+    }
+
+    @Test
+    void rawSqlCannotRewriteCfpbProvenanceOrBatchMetadata() {
+        BatchRecord batch = TestDatabase.sampleBatch();
+        BatchRecord otherBatch = new BatchRecord(
+                UUID.randomUUID(),
+                "https://files.consumerfinance.gov/f/documents/synthetic-archive-2.zip",
+                "finresolve-sample-2.csv",
+                LocalDate.parse("2024-11-01"),
+                LocalDate.parse("2024-12-31"),
+                "fedcba9876543210fedcba9876543210fedcba9876543210fedcba9876543210",
+                Instant.parse("2026-10-26T09:00:00Z"),
+                1,
+                1,
+                0,
+                0,
+                List.of());
+        UUID cfpbId = UUID.randomUUID();
+
+        try (TestDatabase db = TestDatabase.create(tempDir)) {
+            db.seedBatch(batch);
+            db.seedBatch(otherBatch);
+            db.caseRepository().insert(cfpb(cfpbId, batch, "9000010", BASE_TIME));
+
+            assertThatThrownBy(() -> db.jdbc().update(
+                            "UPDATE cases SET complaint_id = ? WHERE id = ?",
+                            "9000999",
+                            cfpbId.toString()))
+                    .isInstanceOf(DataAccessException.class)
+                    .hasMessageContaining("immutable");
+            assertThatThrownBy(() -> db.jdbc().update(
+                            "UPDATE cases SET batch_id = ? WHERE id = ?",
+                            otherBatch.id().toString(),
+                            cfpbId.toString()))
+                    .isInstanceOf(DataAccessException.class)
+                    .hasMessageContaining("immutable");
+            assertThatThrownBy(() -> db.jdbc().update(
+                            "UPDATE import_batches SET archive_url = ? WHERE id = ?",
+                            "https://example.invalid/rewritten.zip",
+                            batch.id().toString()))
+                    .isInstanceOf(DataAccessException.class)
+                    .hasMessageContaining("immutable");
+
+            CaseRecord unchanged = db.caseRepository().find(cfpbId).orElseThrow();
+            assertThat(unchanged.provenance().complaintId()).isEqualTo("9000010");
+            assertThat(unchanged.provenance().batchId()).isEqualTo(batch.id());
+            assertThat(db.jdbc().queryForObject(
+                            "SELECT archive_url FROM import_batches WHERE id = ?",
+                            String.class,
+                            batch.id().toString()))
+                    .isEqualTo(batch.archiveUrl());
         }
     }
 

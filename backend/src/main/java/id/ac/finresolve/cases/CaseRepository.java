@@ -2,6 +2,7 @@ package id.ac.finresolve.cases;
 
 import id.ac.finresolve.categories.CategoryValues;
 import id.ac.finresolve.db.Database;
+import id.ac.finresolve.db.Timestamps;
 import java.math.BigInteger;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -167,7 +168,7 @@ public final class CaseRepository {
                     record.narrative(),
                     record.company(),
                     record.companyResponse(),
-                    record.updatedAt().toString(),
+                    Timestamps.format(record.updatedAt()),
                     record.id().toString());
             if (updated != 1) {
                 throw new IllegalStateException("ANALYST case disappeared during replacement.");
@@ -302,8 +303,8 @@ public final class CaseRepository {
                 record.narrative(),
                 record.company(),
                 record.companyResponse(),
-                record.createdAt().toString(),
-                record.updatedAt().toString());
+                Timestamps.format(record.createdAt()),
+                Timestamps.format(record.updatedAt()));
     }
 
     private void insertNotes(CaseRecord record) {
@@ -421,8 +422,8 @@ public final class CaseRepository {
                 date(resultSet.getString("received_date")),
                 resultSet.getString("company"),
                 resultSet.getString("company_response"),
-                Instant.parse(resultSet.getString("created_at")),
-                Instant.parse(resultSet.getString("updated_at")),
+                Timestamps.parse(resultSet.getString("created_at")),
+                Timestamps.parse(resultSet.getString("updated_at")),
                 provenance,
                 notes,
                 List.of());
