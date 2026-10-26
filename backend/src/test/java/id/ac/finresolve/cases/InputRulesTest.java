@@ -44,6 +44,57 @@ class InputRulesTest {
     }
 
     @Test
+    void importValidationPreservesRawNarrativeWhileNormalizingCategories() {
+        String rawNarrative = "  First line of the complaint.\nSecond line about a transfer fee.  \n";
+        ComplaintInput input = new ComplaintInput(
+                new CategoryValues(
+                        "  Checking   account  ",
+                        "  ",
+                        " Managing an account ",
+                        "\t"),
+                rawNarrative,
+                LocalDate.parse("2024-12-01"),
+                "  Example Bank ",
+                "  Closed with explanation  ");
+
+        ComplaintInput imported = InputRules.complaintForImport(input);
+        ComplaintInput analyst = InputRules.complaint(input);
+
+        assertThat(imported.narrative()).isEqualTo(rawNarrative);
+        assertThat(analyst.narrative())
+                .isEqualTo("First line of the complaint.\nSecond line about a transfer fee.");
+        assertThat(imported.categories()).isEqualTo(analyst.categories());
+        assertThat(imported.categories())
+                .isEqualTo(new CategoryValues(
+                        "Checking account", null, "Managing an account", null));
+        assertThat(imported.company()).isEqualTo("Example Bank");
+        assertThat(imported.companyResponse()).isEqualTo("Closed with explanation");
+    }
+
+    @Test
+    void bothValidationPathsRejectNarrativesMeaninglessAfterTrim() {
+        ComplaintInput input = new ComplaintInput(
+                new CategoryValues("Checking account", null, "Managing an account", null),
+                "  the 123 XX  ",
+                null,
+                null,
+                null);
+
+        assertThatThrownBy(() -> InputRules.complaint(input))
+                .isInstanceOfSatisfying(BusinessException.class, failure ->
+                        assertThat(failure.fieldErrors()).anySatisfy(problem -> {
+                            assertThat(problem.field()).isEqualTo("narrative");
+                            assertThat(problem.code()).isEqualTo("NO_MEANINGFUL_TOKENS");
+                        }));
+        assertThatThrownBy(() -> InputRules.complaintForImport(input))
+                .isInstanceOfSatisfying(BusinessException.class, failure ->
+                        assertThat(failure.fieldErrors()).anySatisfy(problem -> {
+                            assertThat(problem.field()).isEqualTo("narrative");
+                            assertThat(problem.code()).isEqualTo("NO_MEANINGFUL_TOKENS");
+                        }));
+    }
+
+    @Test
     void optionalBlankValuesBecomeNull() {
         ComplaintInput input = new ComplaintInput(
                 new CategoryValues("Checking account", "   ", "Managing an account", "\t\n"),

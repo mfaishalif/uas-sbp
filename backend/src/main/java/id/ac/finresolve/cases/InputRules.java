@@ -42,6 +42,21 @@ public final class InputRules {
 
     /** Validates and normalizes complaint shape without consulting the sample catalog. */
     public static ComplaintInput complaint(ComplaintInput input) {
+        return validate(input, false);
+    }
+
+    /**
+     * Validates like {@link #complaint(ComplaintInput)} but returns the original narrative string.
+     *
+     * <p>CFPB import must preserve decoded source narrative bytes/text exactly, including leading and
+     * trailing whitespace and internal newlines. The trimmed form is still used for required and
+     * meaningful-token validation, and categories/company fields are normalized as usual.
+     */
+    public static ComplaintInput complaintForImport(ComplaintInput input) {
+        return validate(input, true);
+    }
+
+    private static ComplaintInput validate(ComplaintInput input, boolean preserveNarrative) {
         if (input == null) {
             throw validationError(
                     "Input pengaduan wajib diisi.",
@@ -85,7 +100,11 @@ public final class InputRules {
         }
 
         return new ComplaintInput(
-                categories, narrative, input.receivedDate(), company, companyResponse);
+                categories,
+                preserveNarrative ? input.narrative() : narrative,
+                input.receivedDate(),
+                company,
+                companyResponse);
     }
 
     private static CategoryValues normalizeCategories(
