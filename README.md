@@ -45,6 +45,7 @@ Konfigurasi [Dev Container](.devcontainer/devcontainer.json) menyediakan lingkun
 | Frontend | Node.js 24 LTS dan npm |
 | Backend | JDK 21, Maven 3.9, dan Gradle 9 |
 | Asisten terminal | Codex CLI (`codex`) dan OpenCode CLI (`opencode`), terpasang global melalui npm |
+| GitHub CLI | `gh`, dipasang melalui devcontainer feature; login dengan scope `repo` dan `workflow` |
 | Port yang diteruskan | `3000` untuk Next.js dan `8080` untuk backend Java |
 | Ekstensi VS Code | ESLint, Prettier, dan Extension Pack for Java |
 
@@ -62,6 +63,30 @@ Devcontainer menyiapkan toolchain pengembangan. Backend sudah dapat dijalankan d
 SQLite adalah database demo. File default `backend/data/finresolve.db` dibuat otomatis saat backend dijalankan dari folder `backend/`; lokasi absolut dicatat pada log startup dan dapat diubah melalui `FINRESOLVE_DB_PATH`. Jika konfigurasi devcontainer diubah, pilih **Dev Containers: Rebuild Container** melalui Command Palette.
 
 Codex dan OpenCode berjalan di terminal container dan membaca proyek dari lingkungan pengembangan tersebut. Dokumentasi resmi: [Codex CLI](https://developers.openai.com/codex/cli) dan [OpenCode CLI](https://dev.opencode.ai/v2/docs).
+
+### Autentikasi GitHub dengan GitHub CLI
+
+Devcontainer memasang [GitHub CLI](https://cli.github.com/) (`gh`) melalui devcontainer feature. Setiap anggota tim login dengan akunnya sendiri; jangan berbagi token.
+
+```bash
+gh auth login --hostname github.com --git-protocol https --web -s repo,workflow
+gh auth setup-git
+gh auth status
+```
+
+Bentuk singkat yang setara:
+
+```bash
+gh auth login -s repo,workflow
+```
+
+Scope `workflow` diperlukan agar push yang membuat atau mengubah `.github/workflows/` tidak ditolak GitHub. Untuk pekerjaan aplikasi biasa scope tersebut tidak dibutuhkan, tetapi menyertakannya sejak awal menghindari kegagalan saat mengubah CI. Jika sudah login tanpa scope itu:
+
+```bash
+gh auth refresh -h github.com -s repo,workflow
+```
+
+`gh auth setup-git` membuat Git memakai kredensial `gh` untuk `github.com`. Verifikasi dengan `gh auth status`; jangan menulis token ke repository, shell history, atau dokumen. Kredensial tersimpan per pengguna di `~/.config/gh` dan dapat perlu diulang setelah container dibuat ulang.
 
 Jika log menampilkan `No space left on device` saat memasang VS Code Server di `/root/.vscode-remote-containers` pada distro `docker-desktop`, periksa ruang di WSL dan disk Docker Desktop. Jika Docker Desktop tersangkut pada status `starting` dan perintah Docker tidak merespons, restart Docker Desktop sebelum mencoba membuka container kembali.
 

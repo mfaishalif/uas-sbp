@@ -4,6 +4,9 @@
     "dockerfile": "Dockerfile"
   },
   "remoteUser": "vscode",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1.1.3": {}
+  },
   "forwardPorts": [3000, 8080],
   "portsAttributes": {
     "3000": {
@@ -27,5 +30,5 @@
       ]
     }
   },
-  "postCreateCommand": "node --version && npm --version && java --version && mvn --version && gradle --version && codex --version && opencode --version"
+  "postCreateCommand": "node --version && npm --version && java --version && mvn --version && gradle --version && gh --version && codex --version && opencode --version"
 }
