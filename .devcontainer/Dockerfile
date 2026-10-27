@@ -23,3 +23,13 @@ RUN ln -sf ../lib/node_modules/npm/bin/npm-cli.js /usr/local/bin/npm \
     && java --version && javac --version \
     && mvn --version && gradle --version \
     && codex --version && opencode --version
+
+# The base image ships an apt keyring for the Yarn repo that predates Yarn's
+# 2026 signing-key rotation. Without the refreshed key, `apt-get update` fails
+# with NO_PUBKEY 62D54FD4003F6525 and every Dev Container Feature that installs
+# packages (docker-outside-of-docker, github-cli, ...) fails to build.
+RUN rm -f /usr/share/keyrings/yarn-archive-keyring.gpg \
+    && curl -fsSL https://dl.yarnpkg.com/debian/pubkey.gpg \
+        | gpg --batch --yes --dearmor -o /usr/share/keyrings/yarn-archive-keyring.gpg \
+    && chmod 0644 /usr/share/keyrings/yarn-archive-keyring.gpg \
+    && apt-get update
