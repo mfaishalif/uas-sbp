@@ -281,6 +281,30 @@ class ImportApiTest {
     }
 
     @Test
+    void rejectsMetadataJsonTypesThatJacksonWouldCoerce() throws Exception {
+        byte[] csv = csvWithHeader(row("955000001", "Product A", null, "Issue A", null,
+                "A meaningful narrative", "Company A", "Closed", ""));
+
+        for (String[] scenario : List.of(
+                new String[] {metadataWithRawValues("123", "\"2024-11-01\""), "sourceFileName"},
+                new String[] {metadataWithRawValues("true", "\"2024-11-01\""), "sourceFileName"},
+                new String[] {metadataWithRawValues("\"sample.csv\"", "[2024,11,1]"), "periodStart"})) {
+            ApiResponse response = postMultipart(multipart(
+                    scenario[0], "application/json", csv, "text/csv", "sample.csv",
+                    null, true, true));
+
+            assertThat(response.status()).as("metadata %s", scenario[0]).isEqualTo(400);
+            assertThat(errorCode(response)).isEqualTo("VALIDATION_ERROR");
+            assertThat(response.body())
+                    .contains("\"field\":\"" + scenario[1] + "\"")
+                    .contains("\"code\":\"INVALID_FORMAT\"");
+        }
+
+        assertThat(caseCount()).isZero();
+        assertThat(batchCount()).isZero();
+    }
+
+    @Test
     void acceptsApplicationOctetStreamForTheFilePart() throws Exception {
         byte[] csv = csvWithHeader(row("960000001", "Product A", null, "Issue A", null,
                 "A meaningful octet stream narrative", "Company A", "Closed", ""));
@@ -509,6 +533,14 @@ class ImportApiTest {
         metadata.put("periodStart", start.toString());
         metadata.put("periodEnd", end.toString());
         return JSON.writeValueAsString(metadata);
+    }
+
+    /** Builds metadata where two values are raw JSON literals rather than JSON strings. */
+    private static String metadataWithRawValues(String sourceFileName, String periodStart) {
+        return "{\"archiveUrl\":\"" + ARCHIVE_URL + "\""
+                + ",\"sourceFileName\":" + sourceFileName
+                + ",\"periodStart\":" + periodStart
+                + ",\"periodEnd\":\"" + PERIOD_END + "\"}";
     }
 
     private static String errorCode(ApiResponse response) {

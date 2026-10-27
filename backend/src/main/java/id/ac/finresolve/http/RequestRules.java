@@ -50,6 +50,9 @@ public final class RequestRules implements RequestBodyAdvice {
 
     private static final String VALIDATION_MESSAGE = "Input tidak valid.";
 
+    /** RFC 3339 full-date always uses a four-digit year; Java's parser also accepts expanded years. */
+    private static final Pattern FULL_DATE = Pattern.compile("\\d{4}-\\d{2}-\\d{2}");
+
     private final JsonNode schemas;
     private final JsonMapper json;
 
@@ -85,7 +88,6 @@ public final class RequestRules implements RequestBodyAdvice {
 
     /** Validates one raw JSON body against the named contract request schema. */
     public void validateJson(String schemaName, byte[] rawJson) {
-        JsonNode schema = schema(schemaName);
         if (rawJson == null || rawJson.length == 0) {
             throw malformed("Badan permintaan wajib diisi.");
         }
@@ -96,6 +98,12 @@ public final class RequestRules implements RequestBodyAdvice {
         } catch (RuntimeException failure) {
             throw malformed("Badan permintaan tidak dapat dibaca.");
         }
+        validateJson(schemaName, body);
+    }
+
+    /** Validates one already-parsed JSON object against the named contract request schema. */
+    void validateJson(String schemaName, JsonNode body) {
+        JsonNode schema = schema(schemaName);
         if (body == null || !body.isObject()) {
             throw malformed("Badan permintaan harus berupa objek JSON.");
         }
@@ -309,9 +317,7 @@ public final class RequestRules implements RequestBodyAdvice {
                 }
             }
             case "date" -> {
-                try {
-                    LocalDate.parse(text);
-                } catch (DateTimeParseException failure) {
+                if (!FULL_DATE.matcher(text).matches() || !isCalendarDate(text)) {
                     problems.add(new Problem(
                             path, "INVALID_FORMAT", "Tanggal harus berformat YYYY-MM-DD."));
                 }
@@ -326,6 +332,15 @@ public final class RequestRules implements RequestBodyAdvice {
             default -> {
                 // No additional format rule is defined by the request schemas.
             }
+        }
+    }
+
+    private static boolean isCalendarDate(String text) {
+        try {
+            LocalDate.parse(text);
+            return true;
+        } catch (DateTimeParseException failure) {
+            return false;
         }
     }
 
@@ -406,7 +421,7 @@ public final class RequestRules implements RequestBodyAdvice {
     private static boolean matchesType(JsonNode value, String type) {
         return switch (type) {
             case "string" -> value.isTextual();
-            case "integer" -> value.isIntegralNumber();
+            case "integer" -> isIntegerValued(value);
             case "number" -> value.isIntegralNumber() || value.isFloatingPointNumber();
             case "boolean" -> value.isBoolean();
             case "array" -> value.isArray();
@@ -414,6 +429,24 @@ public final class RequestRules implements RequestBodyAdvice {
             case "null" -> value.isNull();
             default -> true;
         };
+    }
+
+    /**
+     * OpenAPI integers follow JSON Schema semantics: {@code 1.0} is the mathematical integer 1.
+     * Fractions, non-finite values, and non-numbers are rejected.
+     */
+    private static boolean isIntegerValued(JsonNode value) {
+        if (value.isIntegralNumber()) {
+            return true;
+        }
+        if (!value.isFloatingPointNumber()) {
+            return false;
+        }
+        try {
+            return value.decimalValue().stripTrailingZeros().scale() <= 0;
+        } catch (NumberFormatException | ArithmeticException failure) {
+            return false;
+        }
     }
 
     private static BusinessException malformed(String message) {

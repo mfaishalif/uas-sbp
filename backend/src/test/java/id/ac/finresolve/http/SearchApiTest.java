@@ -238,6 +238,15 @@ class SearchApiTest {
         JsonNode oneBody = JSON.readTree(one.body());
         assertThat(oneBody.get("limit").asInt()).isEqualTo(1);
         assertThat(oneBody.get("returnedCount").asInt()).isLessThanOrEqualTo(1);
+
+        ApiResponse decimal = search(query(
+                CHECKING.product(),
+                CHECKING.subProduct(),
+                CHECKING.issue(),
+                "My transfer is missing from my checking account.",
+                "1.0"));
+        assertThat(decimal.status()).isEqualTo(200);
+        assertThat(JSON.readTree(decimal.body()).get("limit").asInt()).isEqualTo(1);
     }
 
     private static void assertDefaultConfiguration(JsonNode configuration) {
