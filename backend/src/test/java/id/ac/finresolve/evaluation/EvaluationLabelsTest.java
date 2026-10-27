@@ -3,8 +3,8 @@ package id.ac.finresolve.evaluation;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import id.ac.finresolve.cases.CaseRecord;
-import id.ac.finresolve.categories.CategoryValues;
+import id.ac.finresolve.domain.cases.CaseRecord;
+import id.ac.finresolve.domain.category.CategoryValues;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;

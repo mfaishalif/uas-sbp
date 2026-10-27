@@ -1,12 +1,13 @@
 package id.ac.finresolve.evaluation;
 
-import id.ac.finresolve.similarity.SimilarityMode;
-import id.ac.finresolve.similarity.SimilarityResult;
+import id.ac.finresolve.domain.similarity.SimilarityMode;
+import id.ac.finresolve.domain.similarity.SimilarityResult;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
@@ -424,7 +425,7 @@ public final class EvaluationCli {
                     checksums.put(name, value.asString());
                 }
             });
-            return Map.copyOf(checksums);
+            return Collections.unmodifiableMap(new LinkedHashMap<>(checksums));
         } catch (IOException failure) {
             throw new IllegalArgumentException(
                     "Cannot read packet checksums: " + manifest.packetChecksums(), failure);

@@ -1,8 +1,8 @@
 package id.ac.finresolve.evaluation;
 
-import id.ac.finresolve.cases.CaseRecord;
+import id.ac.finresolve.domain.cases.CaseRecord;
 import id.ac.finresolve.evaluation.EvaluationLabels.Pair;
-import id.ac.finresolve.similarity.SimilarityResult;
+import id.ac.finresolve.domain.similarity.SimilarityResult;
 import java.io.IOException;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;

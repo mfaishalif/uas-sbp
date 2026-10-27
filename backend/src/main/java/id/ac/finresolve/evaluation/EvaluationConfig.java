@@ -1,7 +1,7 @@
 package id.ac.finresolve.evaluation;
 
-import id.ac.finresolve.similarity.SimilarityMode;
-import id.ac.finresolve.similarity.SimilaritySettings;
+import id.ac.finresolve.domain.similarity.SimilarityMode;
+import id.ac.finresolve.domain.similarity.SimilaritySettings;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;

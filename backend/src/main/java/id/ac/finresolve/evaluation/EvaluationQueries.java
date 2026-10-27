@@ -1,6 +1,6 @@
 package id.ac.finresolve.evaluation;
 
-import id.ac.finresolve.categories.CategoryValues;
+import id.ac.finresolve.domain.category.CategoryValues;
 import java.io.IOException;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;

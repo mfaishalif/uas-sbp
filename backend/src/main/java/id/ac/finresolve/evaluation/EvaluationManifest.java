@@ -1,6 +1,6 @@
 package id.ac.finresolve.evaluation;
 
-import id.ac.finresolve.similarity.SimilarityMode;
+import id.ac.finresolve.domain.similarity.SimilarityMode;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;

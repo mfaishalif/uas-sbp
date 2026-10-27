@@ -1,13 +1,13 @@
 package id.ac.finresolve.support;
 
 import com.zaxxer.hikari.HikariDataSource;
-import id.ac.finresolve.cases.CaseRepository;
+import id.ac.finresolve.repository.cases.CaseRepository;
 import id.ac.finresolve.config.DatabaseConfiguration;
-import id.ac.finresolve.db.Database;
-import id.ac.finresolve.db.MigrationRunner;
-import id.ac.finresolve.db.Timestamps;
-import id.ac.finresolve.imports.BatchRecord;
-import id.ac.finresolve.imports.ImportRowProblem;
+import id.ac.finresolve.repository.db.Database;
+import id.ac.finresolve.repository.db.MigrationRunner;
+import id.ac.finresolve.repository.db.Timestamps;
+import id.ac.finresolve.domain.importing.BatchRecord;
+import id.ac.finresolve.domain.importing.ImportRowProblem;
 import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.DriverManager;

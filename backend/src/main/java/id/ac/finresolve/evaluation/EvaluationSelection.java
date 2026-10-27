@@ -1,6 +1,6 @@
 package id.ac.finresolve.evaluation;
 
-import id.ac.finresolve.similarity.SimilarityMode;
+import id.ac.finresolve.domain.similarity.SimilarityMode;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;

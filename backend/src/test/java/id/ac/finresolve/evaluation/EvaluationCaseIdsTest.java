@@ -3,7 +3,7 @@ package id.ac.finresolve.evaluation;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import id.ac.finresolve.cases.CaseRecord;
+import id.ac.finresolve.domain.cases.CaseRecord;
 import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.Test;

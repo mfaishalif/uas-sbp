@@ -1,8 +1,8 @@
 package id.ac.finresolve.evaluation;
 
-import id.ac.finresolve.cases.CaseRecord;
-import id.ac.finresolve.similarity.SimilarityMode;
-import id.ac.finresolve.similarity.SimilarityResult;
+import id.ac.finresolve.domain.cases.CaseRecord;
+import id.ac.finresolve.domain.similarity.SimilarityMode;
+import id.ac.finresolve.domain.similarity.SimilarityResult;
 import java.io.IOException;
 import java.io.Writer;
 import java.nio.charset.StandardCharsets;
@@ -273,7 +273,7 @@ public final class EvaluationReportWriter {
         root.put("createdAt", manifest.createdAt());
         root.put("seed", manifest.splitSpec().seed());
         root.put("precisionAt5Denominator", EvaluationMetrics.PRECISION_DENOMINATOR);
-        root.put("dictionaryVersion", id.ac.finresolve.similarity.PhraseDictionary.VERSION);
+        root.put("dictionaryVersion", id.ac.finresolve.domain.similarity.PhraseDictionary.VERSION);
         root.put("dictionarySha256", run.checksums().get("dictionary"));
 
         ObjectNode sample = root.putObject("sample");
@@ -462,7 +462,7 @@ public final class EvaluationReportWriter {
         markdown.append("| Seed pembagian | `")
                 .append(manifest.splitSpec().seed()).append("` |\n");
         markdown.append("| Kamus frasa | `")
-                .append(id.ac.finresolve.similarity.PhraseDictionary.VERSION)
+                .append(id.ac.finresolve.domain.similarity.PhraseDictionary.VERSION)
                 .append("` SHA-256 `").append(run.checksums().get("dictionary"))
                 .append("` |\n");
         markdown.append("| Baseline | `").append(run.baseline().label()).append("` |\n");

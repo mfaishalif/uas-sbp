@@ -1,6 +1,8 @@
 package id.ac.finresolve.evaluation;
 
-import id.ac.finresolve.similarity.SimilarityResult;
+import id.ac.finresolve.domain.similarity.SimilarityResult;
+import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 /** All computed material needed to write the v2 evaluation artifacts. */
@@ -32,8 +34,8 @@ public record EvaluationRunResult(
                 testBaselineResults == null ? Map.of() : testBaselineResults);
         testSelectedResults = Map.copyOf(
                 testSelectedResults == null ? Map.of() : testSelectedResults);
-        checksums = Map.copyOf(checksums);
-        packetChecksums = Map.copyOf(packetChecksums);
+        checksums = Collections.unmodifiableMap(new LinkedHashMap<>(checksums));
+        packetChecksums = Collections.unmodifiableMap(new LinkedHashMap<>(packetChecksums));
     }
 
     public EvaluationConfig baseline() {

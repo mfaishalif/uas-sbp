@@ -3,9 +3,9 @@ package id.ac.finresolve.evaluation;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import id.ac.finresolve.categories.CategoryValues;
-import id.ac.finresolve.cases.CaseRecord;
-import id.ac.finresolve.similarity.SimilarityResult;
+import id.ac.finresolve.domain.category.CategoryValues;
+import id.ac.finresolve.domain.cases.CaseRecord;
+import id.ac.finresolve.domain.similarity.SimilarityResult;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
