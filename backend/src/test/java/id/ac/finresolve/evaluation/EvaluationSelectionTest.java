@@ -2,7 +2,7 @@ package id.ac.finresolve.evaluation;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import id.ac.finresolve.similarity.SimilarityMode;
+import id.ac.finresolve.domain.similarity.SimilarityMode;
 import java.nio.file.Path;
 import java.util.LinkedHashMap;
 import java.util.List;

@@ -1,10 +1,10 @@
 {{^isUuid}}{{#pattern}}{{^isByteArray}}@Pattern(regexp = "(?s:.*)(?:{{{pattern}}})(?s:.*)"{{#vendorExtensions.x-pattern-message}}, message = "{{vendorExtensions.x-pattern-message}}"{{/vendorExtensions.x-pattern-message}}) {{/isByteArray}}{{/pattern}}{{!
 minLength && maxLength set
-}}{{#minLength}}{{#maxLength}}@id.ac.finresolve.http.CodePointSize(min = {{minLength}}, max = {{maxLength}}{{#vendorExtensions.x-size-message}}, message = "{{vendorExtensions.x-size-message}}"{{/vendorExtensions.x-size-message}}) {{/maxLength}}{{/minLength}}{{!
+}}{{#minLength}}{{#maxLength}}@id.ac.finresolve.presentation.validation.CodePointSize(min = {{minLength}}, max = {{maxLength}}{{#vendorExtensions.x-size-message}}, message = "{{vendorExtensions.x-size-message}}"{{/vendorExtensions.x-size-message}}) {{/maxLength}}{{/minLength}}{{!
 minLength set, maxLength not
-}}{{#minLength}}{{^maxLength}}@id.ac.finresolve.http.CodePointSize(min = {{minLength}}{{#vendorExtensions.x-size-message}}, message = "{{vendorExtensions.x-size-message}}"{{/vendorExtensions.x-size-message}}) {{/maxLength}}{{/minLength}}{{!
+}}{{#minLength}}{{^maxLength}}@id.ac.finresolve.presentation.validation.CodePointSize(min = {{minLength}}{{#vendorExtensions.x-size-message}}, message = "{{vendorExtensions.x-size-message}}"{{/vendorExtensions.x-size-message}}) {{/maxLength}}{{/minLength}}{{!
 minLength not set, maxLength set
-}}{{^minLength}}{{#maxLength}}@id.ac.finresolve.http.CodePointSize(max = {{.}}{{#vendorExtensions.x-size-message}}, message = "{{vendorExtensions.x-size-message}}"{{/vendorExtensions.x-size-message}}) {{/maxLength}}{{/minLength}}{{!
+}}{{^minLength}}{{#maxLength}}@id.ac.finresolve.presentation.validation.CodePointSize(max = {{.}}{{#vendorExtensions.x-size-message}}, message = "{{vendorExtensions.x-size-message}}"{{/vendorExtensions.x-size-message}}) {{/maxLength}}{{/minLength}}{{!
 @Size: minItems && maxItems set
 }}{{#minItems}}{{#maxItems}}@Size(min = {{minItems}}, max = {{maxItems}}{{#vendorExtensions.x-size-message}}, message = "{{vendorExtensions.x-size-message}}"{{/vendorExtensions.x-size-message}}) {{/maxItems}}{{/minItems}}{{!
 @Size: minItems set, maxItems not

@@ -1,10 +1,10 @@
 package id.ac.finresolve.evaluation;
 
-import id.ac.finresolve.similarity.EnglishTokenizer;
-import id.ac.finresolve.similarity.SimilarityEngine;
-import id.ac.finresolve.similarity.SimilarityMode;
-import id.ac.finresolve.similarity.SimilarityResult;
-import id.ac.finresolve.similarity.TfidfSnapshot;
+import id.ac.finresolve.domain.similarity.EnglishTokenizer;
+import id.ac.finresolve.domain.similarity.SimilarityEngine;
+import id.ac.finresolve.domain.similarity.SimilarityMode;
+import id.ac.finresolve.domain.similarity.SimilarityResult;
+import id.ac.finresolve.domain.similarity.TfidfSnapshot;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.LinkedHashMap;
@@ -87,8 +87,8 @@ public final class EvaluationRunner {
         return grid;
     }
 
-    static id.ac.finresolve.cases.ComplaintInput queryInput(EvaluationQuery query) {
-        return new id.ac.finresolve.cases.ComplaintInput(
+    static id.ac.finresolve.domain.cases.ComplaintInput queryInput(EvaluationQuery query) {
+        return new id.ac.finresolve.domain.cases.ComplaintInput(
                 query.categories(), query.narrative(), null, null, null);
     }
 }

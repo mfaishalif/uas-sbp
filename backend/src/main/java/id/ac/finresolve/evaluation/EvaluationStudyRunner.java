@@ -1,7 +1,7 @@
 package id.ac.finresolve.evaluation;
 
-import id.ac.finresolve.similarity.SimilarityMode;
-import id.ac.finresolve.similarity.SimilarityResult;
+import id.ac.finresolve.domain.similarity.SimilarityMode;
+import id.ac.finresolve.domain.similarity.SimilarityResult;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;

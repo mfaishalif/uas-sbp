@@ -1,6 +1,6 @@
 package id.ac.finresolve.evaluation;
 
-import id.ac.finresolve.cases.CaseRecord;
+import id.ac.finresolve.domain.cases.CaseRecord;
 import id.ac.finresolve.evaluation.EvaluationLabels.Judgment;
 import id.ac.finresolve.evaluation.EvaluationLabels.Pair;
 import java.io.IOException;

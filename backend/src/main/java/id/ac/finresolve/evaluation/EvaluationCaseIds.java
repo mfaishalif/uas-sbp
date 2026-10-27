@@ -29,7 +29,7 @@ public final class EvaluationCaseIds {
                 (NAMESPACE_PREFIX + trimmed).getBytes(StandardCharsets.UTF_8));
     }
 
-    public static String complaintId(id.ac.finresolve.cases.CaseRecord record) {
+    public static String complaintId(id.ac.finresolve.domain.cases.CaseRecord record) {
         Objects.requireNonNull(record, "record");
         if (record.provenance() == null || record.provenance().complaintId() == null) {
             throw new IllegalArgumentException(

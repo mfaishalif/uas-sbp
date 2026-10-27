@@ -35,6 +35,34 @@ Pengguna utama yang dibayangkan adalah **analis atau petugas penanganan pengadua
 
 Frontend akan menyediakan antarmuka kerja analis. Backend menangani proses CBR dan pengelolaan kasus; SQLite menyimpan basis kasus serta catatan analis. Frontend belum dibuat, sehingga repository ini bukan aplikasi web yang siap dipakai pengguna akhir.
 
+## Arsitektur backend berlapis
+
+Backend tetap satu aplikasi Spring Boot dan satu modul Maven. Kode manual di `backend/src/main/java/id/ac/finresolve` dipisahkan menurut tanggung jawab, sementara paket generated `id.ac.finresolve.api` tetap menjadi batas HTTP dari kontrak OpenAPI.
+
+| Paket | Tanggung jawab | Dependensi yang diizinkan |
+| --- | --- | --- |
+| `presentation` | Controller, mapper DTO generated, validasi transport, exception handler, konfigurasi web | `service`, `domain`, generated `api` |
+| `service` | Orkestrasi kasus, kategori, impor, pencarian, health, dan batas transaksi melalui `TransactionOperations` | `repository`, `domain` |
+| `repository` | Repository SQL, akses database, migrasi, dan implementasi transaksi | `domain` |
+| `domain` | Model kasus/kategori/batch impor, aturan bisnis, error bisnis, engine/tokenizer/scorer similarity | tidak bergantung pada layer lain, Spring, JDBC, atau generated DTO |
+| `config` | Wiring Spring, binding konfigurasi, dan inisialisasi demo | `service`, `repository`, `domain` sesuai kebutuhan wiring |
+
+Arah dependensi utama adalah `presentation → service → repository`; ketiga layer boleh memakai `domain`. `config` merangkai implementasi konkret lintas layer. Repository tetap konkret, sedangkan service hanya melihat kontrak `id.ac.finresolve.repository.TransactionOperations` untuk `read`/`write`, sehingga service tidak mengakses JDBC dan transaksi bersarang tetap memakai propagasi `REQUIRED` yang sama.
+
+```mermaid
+flowchart LR
+    P[presentation] --> S[service]
+    S --> R[repository]
+    P -. boleh memakai .-> D[domain]
+    S -. boleh memakai .-> D
+    R -. boleh memakai .-> D
+    C[config] -. wiring .-> S
+    C -. wiring .-> R
+    C -. binding .-> D
+```
+
+`BusinessException` berada di `domain.error` dan hanya membawa kode, pesan, serta rincian field; pemetaan status HTTP dilakukan oleh `presentation.error.BusinessErrorStatus`. Health memakai alur `SystemController → HealthService → SystemRepository`, sedangkan status kesiapan demo berada di service dan initializer demo berada di config. Batas dependensi tersebut diperiksa otomatis oleh `LayerArchitectureTest` menggunakan ArchUnit.
+
 ## Lingkungan pengembangan
 
 Konfigurasi [Dev Container](.devcontainer/devcontainer.json) menyediakan lingkungan Linux untuk pengembangan frontend Next.js dan backend Java:

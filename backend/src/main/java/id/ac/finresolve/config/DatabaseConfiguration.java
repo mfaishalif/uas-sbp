@@ -2,11 +2,13 @@ package id.ac.finresolve.config;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import id.ac.finresolve.cases.CaseRepository;
-import id.ac.finresolve.categories.CategoryRepository;
-import id.ac.finresolve.categories.CategoryService;
-import id.ac.finresolve.db.Database;
-import id.ac.finresolve.db.MigrationRunner;
+import id.ac.finresolve.repository.cases.CaseRepository;
+import id.ac.finresolve.repository.category.CategoryRepository;
+import id.ac.finresolve.repository.db.Database;
+import id.ac.finresolve.repository.db.MigrationRunner;
+import id.ac.finresolve.repository.importing.ImportRepository;
+import id.ac.finresolve.repository.system.SystemRepository;
+import id.ac.finresolve.service.category.CategoryService;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -79,6 +81,16 @@ public class DatabaseConfiguration {
     @Bean
     public CategoryRepository categoryRepository(Database database) {
         return new CategoryRepository(database);
+    }
+
+    @Bean
+    public ImportRepository importRepository(Database database) {
+        return new ImportRepository(database);
+    }
+
+    @Bean
+    public SystemRepository systemRepository(Database database) {
+        return new SystemRepository(database);
     }
 
     @Bean

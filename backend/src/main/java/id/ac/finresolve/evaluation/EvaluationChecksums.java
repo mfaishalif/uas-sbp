@@ -1,6 +1,6 @@
 package id.ac.finresolve.evaluation;
 
-import id.ac.finresolve.similarity.PhraseDictionary;
+import id.ac.finresolve.domain.similarity.PhraseDictionary;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -16,15 +16,15 @@ import java.util.Map;
 public final class EvaluationChecksums {
 
     private static final List<String> CODE_FILES = List.of(
-            "backend/src/main/java/id/ac/finresolve/similarity/SimilarityMode.java",
-            "backend/src/main/java/id/ac/finresolve/similarity/PhraseDictionary.java",
-            "backend/src/main/java/id/ac/finresolve/similarity/EnglishTokenizer.java",
-            "backend/src/main/java/id/ac/finresolve/similarity/TextRules.java",
-            "backend/src/main/java/id/ac/finresolve/similarity/SimilaritySettings.java",
-            "backend/src/main/java/id/ac/finresolve/similarity/SimilarityEngine.java",
-            "backend/src/main/java/id/ac/finresolve/similarity/TfidfSnapshot.java",
-            "backend/src/main/java/id/ac/finresolve/similarity/CategoryScorer.java",
-            "backend/src/main/java/id/ac/finresolve/similarity/SimilarityResult.java",
+            "backend/src/main/java/id/ac/finresolve/domain/similarity/SimilarityMode.java",
+            "backend/src/main/java/id/ac/finresolve/domain/similarity/PhraseDictionary.java",
+            "backend/src/main/java/id/ac/finresolve/domain/similarity/EnglishTokenizer.java",
+            "backend/src/main/java/id/ac/finresolve/domain/similarity/TextRules.java",
+            "backend/src/main/java/id/ac/finresolve/domain/similarity/SimilaritySettings.java",
+            "backend/src/main/java/id/ac/finresolve/domain/similarity/SimilarityEngine.java",
+            "backend/src/main/java/id/ac/finresolve/domain/similarity/TfidfSnapshot.java",
+            "backend/src/main/java/id/ac/finresolve/domain/similarity/CategoryScorer.java",
+            "backend/src/main/java/id/ac/finresolve/domain/similarity/SimilarityResult.java",
             "backend/src/main/java/id/ac/finresolve/evaluation/EvaluationRunner.java",
             "backend/src/main/java/id/ac/finresolve/evaluation/EvaluationConfig.java",
             "backend/src/main/java/id/ac/finresolve/evaluation/EvaluationMetrics.java",

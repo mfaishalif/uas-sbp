@@ -3,9 +3,9 @@ package id.ac.finresolve.sample;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
-import id.ac.finresolve.imports.CfpbCsvParser;
-import id.ac.finresolve.imports.ImportMetadataValue;
-import id.ac.finresolve.imports.ParsedImport;
+import id.ac.finresolve.service.importing.CfpbCsvParser;
+import id.ac.finresolve.domain.importing.ImportMetadataValue;
+import id.ac.finresolve.service.importing.ParsedImport;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.StringWriter;
