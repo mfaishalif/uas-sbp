@@ -41,8 +41,29 @@ public final class SimilarityEngine implements SimilarityScorer {
             throw new IllegalArgumentException("limit must be at least 1");
         }
 
+        return rank(query, cases, TfidfSnapshot.fit(cases, tokenizer), limit, settings);
+    }
+
+    /**
+     * Ranks against an already-fitted snapshot. The caller must fit it on exactly the supplied
+     * corpus; this overload exists so offline evaluation can reuse one snapshot across many
+     * configurations without changing production scoring semantics.
+     */
+    public List<SimilarityResult> rank(
+            ComplaintInput query,
+            List<CaseRecord> cases,
+            TfidfSnapshot snapshot,
+            int limit,
+            SimilaritySettings settings) {
+        Objects.requireNonNull(query, "query");
+        Objects.requireNonNull(cases, "cases");
+        Objects.requireNonNull(snapshot, "snapshot");
+        Objects.requireNonNull(settings, "settings");
+        if (limit < 1) {
+            throw new IllegalArgumentException("limit must be at least 1");
+        }
+
         int effectiveLimit = Math.min(limit, settings.maxLimit());
-        TfidfSnapshot snapshot = TfidfSnapshot.fit(cases, tokenizer);
         List<SimilarityResult> ranked = new ArrayList<>();
         for (CaseRecord candidate : cases) {
             CategoryScorer.CategoryScore category = categoryScorer.score(

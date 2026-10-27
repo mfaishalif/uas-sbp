@@ -1,0 +1,116 @@
+{
+  "evaluation" : "exploratory",
+  "humanValidated" : false,
+  "algorithmVersion" : "tfidf-cosine-v1",
+  "seed" : 20261027,
+  "precisionAt5Denominator" : 5,
+  "sample" : {
+    "sha256" : "682bb04cf77a7df10104c822ab24af4bd42e1a088cd2678c7c72921b7983a644",
+    "records" : 500
+  },
+  "split" : {
+    "seed" : 20261027,
+    "calibration" : {
+      "complaints" : 10,
+      "negatives" : 4
+    },
+    "test" : {
+      "complaints" : 6,
+      "negatives" : 4
+    }
+  },
+  "grid" : {
+    "categoryWeightMin" : 0.1,
+    "categoryWeightMax" : 0.7,
+    "categoryWeightStep" : 0.1,
+    "thresholdMin" : 0.2,
+    "thresholdMax" : 0.7,
+    "thresholdStep" : 0.025,
+    "configurations" : 147,
+    "fieldWeights" : "0.35/0.15/0.35/0.15",
+    "limit" : 5
+  },
+  "baselineConfiguration" : {
+    "categoryWeight" : 0.4,
+    "textWeight" : 0.6,
+    "threshold" : 0.5,
+    "label" : "w=0.4/t=0.500"
+  },
+  "selectedConfiguration" : {
+    "categoryWeight" : 0.2,
+    "textWeight" : 0.8,
+    "threshold" : 0.275,
+    "label" : "w=0.2/t=0.275"
+  },
+  "decision" : "KEEP_BASELINE",
+  "appliedConfiguration" : {
+    "categoryWeight" : 0.4,
+    "textWeight" : 0.6,
+    "threshold" : 0.5,
+    "label" : "w=0.4/t=0.500"
+  },
+  "rollbackConfiguration" : {
+    "categoryWeight" : 0.4,
+    "textWeight" : 0.6,
+    "threshold" : 0.5,
+    "label" : "w=0.4/t=0.500"
+  },
+  "calibration" : {
+    "baseline" : {
+      "complaintQueries" : 10,
+      "negativeQueries" : 4,
+      "meanPrecisionAt5" : 0.18,
+      "meanReturnedPrecision" : 0.41,
+      "complaintReturned" : 13,
+      "negativeReturned" : 2,
+      "totalReturned" : 15,
+      "negativeFailures" : 2,
+      "negativeFailureRate" : 0.5
+    },
+    "selected" : {
+      "complaintQueries" : 10,
+      "negativeQueries" : 4,
+      "meanPrecisionAt5" : 0.44000000000000006,
+      "meanReturnedPrecision" : 0.53,
+      "complaintReturned" : 40,
+      "negativeReturned" : 2,
+      "totalReturned" : 42,
+      "negativeFailures" : 2,
+      "negativeFailureRate" : 0.5
+    },
+    "selectionRule" : "negative failures <= baseline; then max mean precision@5; then mean returned precision; then fewer negative failures; then grid distance to baseline"
+  },
+  "test" : {
+    "baseline" : {
+      "complaintQueries" : 6,
+      "negativeQueries" : 4,
+      "meanPrecisionAt5" : 0.09999999999999999,
+      "meanReturnedPrecision" : 0.16666666666666666,
+      "complaintReturned" : 5,
+      "negativeReturned" : 0,
+      "totalReturned" : 5,
+      "negativeFailures" : 0,
+      "negativeFailureRate" : 0.0
+    },
+    "selected" : {
+      "complaintQueries" : 6,
+      "negativeQueries" : 4,
+      "meanPrecisionAt5" : 0.3666666666666667,
+      "meanReturnedPrecision" : 0.6777777777777777,
+      "complaintReturned" : 16,
+      "negativeReturned" : 1,
+      "totalReturned" : 17,
+      "negativeFailures" : 1,
+      "negativeFailureRate" : 0.25
+    },
+    "gate" : {
+      "precisionAt5Increased" : true,
+      "returnedPrecisionNotLower" : true,
+      "negativeFailuresNotIncreased" : false,
+      "passed" : false
+    }
+  },
+  "exploratoryJudgments" : 168,
+  "humanJudgments" : 0,
+  "limitations" : [ "Relevance labels were assigned by an automated exploratory review, not by humans.", "The 500-case sample does not represent all CFPB complaints.", "Recall is not reported because the full corpus is not exhaustively labeled.", "Similarity and historical responses do not prove successful handling." ]
+}

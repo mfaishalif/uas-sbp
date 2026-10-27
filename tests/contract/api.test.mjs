@@ -23,7 +23,7 @@ const METADATA = {
 };
 const WARNING =
     'Kemiripan dan respons historis bukan bukti keberhasilan penanganan. '
-    + 'Bobot serta ambang awal belum dikalibrasi.';
+    + 'Kalibrasi eksploratif dan belum divalidasi manusia.';
 
 function csvRow(complaintId, narrative) {
     return [

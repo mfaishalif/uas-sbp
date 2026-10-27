@@ -38,7 +38,7 @@ class SearchApiTest {
             "Checking or savings account", "Checking account", "Managing an account", null);
     private static final String WARNING =
             "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. "
-                    + "Bobot serta ambang awal belum dikalibrasi.";
+                    + "Kalibrasi eksploratif dan belum divalidasi manusia.";
 
     @DynamicPropertySource
     static void databaseProperties(DynamicPropertyRegistry registry) {

@@ -128,7 +128,7 @@ npm run verify                 # kontrak, generation, backend, client, dan live 
 cd backend && ./mvnw test      # hanya tes backend
 ```
 
-`npm run verify` menjalankan validasi kontrak, generation check, 210 tes backend, pembuatan packaged jar, serta contract/client test terhadap server nyata. Perintah ini tidak mengunduh arsip CFPB.
+`npm run verify` menjalankan validasi kontrak, generation check, 235 tes backend, pembuatan packaged jar, serta contract/client test terhadap server nyata. Perintah ini tidak mengunduh arsip CFPB.
 
 Menjalankan server dengan database default:
 
@@ -211,8 +211,8 @@ Client membawa `basePath` `/api` sekali, tidak mengulang mutasi, dan memetakan k
 - Impor: file maksimum 20 MiB, request multipart 21 MiB, 5.000 record per file. Narasi maksimum 50.000 karakter; perusahaan 500; respons perusahaan 2.000.
 - Retensi: `handlingNotes` wajib maksimum 10.000 karakter; `evaluationNotes` opsional maksimum 10.000; maksimum 20 referensi berbeda.
 - Pencarian: `limit` default 5, maksimum 20. Tidak ada pagination pencarian. Korpus dan TF-IDF dibangun ulang pada setiap pencarian; tidak ada cache query atau penyimpanan query.
-- Konfigurasi skor ada di `finresolve.similarity.*` pada `backend/src/main/resources/application.yml` (bobot kategori/teks, bobot empat field, ambang 0.50, limit). Nilai tidak valid membuat startup gagal. Batas kontrak tidak dapat dinaikkan oleh konfigurasi.
-- Ambang dan bobot awal **belum dikalibrasi**. Respons historis adalah konteks, bukan bukti keberhasilan penanganan.
+- Konfigurasi skor ada di `finresolve.similarity.*` pada `backend/src/main/resources/application.yml` (bobot kategori/teks 0.4/0.6, bobot empat field 0.35/0.15/0.35/0.15, ambang 0.50, limit). Nilai tidak valid membuat startup gagal. Batas kontrak tidak dapat dinaikkan oleh konfigurasi.
+- Kalibrasi eksploratif 27 Oktober 2026 membandingkan 147 konfigurasi pada sampel 500 kasus. Konfigurasi terpilih gagal syarat query negatif pada pengujian akhir, sehingga default **dipertahankan**. Label relevansi dibuat otomatis dan belum divalidasi manusia; rincian ada di [docs/evaluation/README.md](docs/evaluation/README.md). Respons historis tetap konteks, bukan bukti keberhasilan penanganan.
 - Katalog kategori hanya berasal dari kasus CFPB yang diimpor; retensi ANALYST tidak memperluas katalog. Sebelum impor, katalog kosong dan retensi ditolak **409** `EMPTY_CATEGORY_CATALOG`.
 - Tidak ada autentikasi, peran, deployment publik, atau UI pada demo ini.
 
@@ -300,7 +300,7 @@ Perintah `down --volumes` pada demo menghapus seluruh kasus analis pada volume d
 
 ## Evaluasi relevansi
 
-Panduan walkthrough dan lembar evaluasi manual ada di [docs/evaluation/README.md](docs/evaluation/README.md). Label relevansi **belum diisi**; jangan mengutip precision@5 atau kualitas relevansi sebelum ada penilaian manusia. Hasil pengujian otomatis hanya membuktikan kontrak dan perilaku teknis, bukan kualitas pencarian.
+Panduan walkthrough, dataset 24 query, perintah kalibrasi, dan lembar evaluasi manusia ada di [docs/evaluation/README.md](docs/evaluation/README.md). Evaluasi 27 Oktober 2026 bersifat **eksploratif**: label dibuat otomatis dan belum divalidasi manusia, sehingga precision@5 yang dilaporkan bukan klaim kualitas final. Hasilnya membandingkan baseline dengan 147 konfigurasi; konfigurasi terpilih tidak diterapkan karena menambah satu kegagalan query negatif pada bagian pengujian. Baseline 0.4/0.6 dan ambang 0.50 dipertahankan. Lulusnya tes teknis tetap terpisah dari hasil relevansi.
 
 Penting untuk membedakan **respons yang tercatat** dengan **solusi yang terbukti berhasil**. Label respons dari CFPB tidak otomatis menjelaskan langkah investigasi, prosedur internal, atau tingkat kepuasan konsumen. Jika proyek kelak memberikan rekomendasi tindakan, rekomendasi tersebut membutuhkan sumber prosedur atau verifikasi tambahan.
 
@@ -317,7 +317,7 @@ Pencarian menggabungkan dua komponen:
 - **Kemiripan kategori:** membandingkan jenis layanan dan masalah pengaduan.
 - **Kemiripan teks:** membandingkan detail deskripsi kasus baru dengan narasi kasus historis.
 
-Implementasi memakai `tfidf-cosine-v1`: TF-IDF yang hanya dilatih pada narasi kasus, cosine yang dinormalisasi, bobot kategori 0.4 dan teks 0.6, empat bobot field kategori 0.35/0.15/0.35/0.15, ambang awal 0.50, serta syarat tumpang tindih teks. Kandidat dengan skor di bawah ambang tidak ditampilkan. Nilai ini adalah titik awal yang belum dikalibrasi; respons server selalu memuat konfigurasi aktual dan peringatan.
+Implementasi memakai `tfidf-cosine-v1`: TF-IDF yang hanya dilatih pada narasi kasus, cosine yang dinormalisasi, bobot kategori 0.4 dan teks 0.6, empat bobot field kategori 0.35/0.15/0.35/0.15, ambang 0.50, serta syarat tumpang tindih teks. Kandidat dengan skor di bawah ambang tidak ditampilkan. Kalibrasi eksploratif tidak mengubah default ini karena konfigurasi terpilih gagal syarat negatif pada pengujian akhir; respons server selalu memuat konfigurasi aktual dan peringatan bahwa kalibrasi belum divalidasi manusia.
 
 Respons perusahaan merupakan informasi historis yang ditampilkan bersama kasus hasil pencarian, bukan informasi yang harus diketahui analis ketika memasukkan pengaduan baru.
 
@@ -352,8 +352,8 @@ Keputusan yang sudah ditetapkan meliputi Spring Boot 4.1.2 + Java 21, SQLite, Op
 
 - Frontend Next.js, desain dan bahasa antarmuka, serta rincian interaksi evaluasi dan retensi.
 - Autentikasi, hak akses, dan deployment publik.
-- Kalibrasi bobot/ambang relevansi berdasarkan penilaian manusia; nilai 0.4/0.6 dan 0.50 belum diklaim optimal.
+- Validasi manusia atas label relevansi dan konfigurasi 0.4/0.6 serta ambang 0.50; nilai tersebut belum diklaim optimal.
 - Perluasan cakupan produk/periode dan pembersihan data di luar sampel demo 500 kasus.
-- Skenario evaluasi tambahan selain precision@5 manual yang sudah disediakan.
+- Skenario evaluasi tambahan di luar 24 query dan precision@5 yang sudah disediakan.
 
 **Acuan:** dokumen *Sistem CBR Keluhan Konsumen.pdf* dan arah proyek FinResolve yang telah didiskusikan. Rancangan awal merupakan referensi, bukan spesifikasi yang harus diikuti tanpa peninjauan.

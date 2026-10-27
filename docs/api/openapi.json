@@ -681,7 +681,7 @@
                         "algorithmVersion": "tfidf-cosine-v1"
                       },
                       "warnings": [
-                        "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Bobot serta ambang awal belum dikalibrasi."
+                        "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Kalibrasi eksploratif dan belum divalidasi manusia."
                       ]
                     }
                   },
@@ -708,7 +708,7 @@
                         "algorithmVersion": "tfidf-cosine-v1"
                       },
                       "warnings": [
-                        "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Bobot serta ambang awal belum dikalibrasi."
+                        "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Kalibrasi eksploratif dan belum divalidasi manusia."
                       ]
                     }
                   },
@@ -735,7 +735,7 @@
                         "algorithmVersion": "tfidf-cosine-v1"
                       },
                       "warnings": [
-                        "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Bobot serta ambang awal belum dikalibrasi."
+                        "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Kalibrasi eksploratif dan belum divalidasi manusia."
                       ]
                     }
                   }
