@@ -37,7 +37,7 @@ public final class SearchService {
             "Basis kasus masih kosong; impor sampel CFPB terlebih dahulu.";
     public static final String WARNING =
             "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. "
-                    + "Bobot serta ambang awal belum dikalibrasi.";
+                    + "Kalibrasi eksploratif dan belum divalidasi manusia.";
 
     private final CaseRepository cases;
     private final CategoryRepository categoryRepository;

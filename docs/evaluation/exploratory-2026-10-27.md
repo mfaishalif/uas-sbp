@@ -1,5 +1,7 @@
 # Exploratory testing API backend — 27 Oktober 2026
 
+> Catatan: dokumen ini mencatat pengujian API pada 12 query awal. Kalibrasi pencarian eksploratif dengan 24 query, pembagian dataset, dan keputusan mempertahankan default ada di [README evaluasi](README.md) dan [results/report.md](results/report.md).
+
 Backend berhasil dibangun dan dijalankan. Dari **128 skenario eksplorasi / 164 request HTTP**, **120 lulus dan 8 gagal**, yang dikelompokkan menjadi **4 temuan**. Seluruh tes bawaan lulus. Kode aplikasi belum diubah; temuan berikut masih terbuka.
 
 > **Status 27 Oktober 2026:** keempat temuan sudah diperbaiki setelah laporan awal ini dibuat. Angka dan bukti di bagian temuan menggambarkan kondisi sebelum perbaikan; lihat [Tindak lanjut perbaikan](#tindak-lanjut-perbaikan-27-oktober-2026).

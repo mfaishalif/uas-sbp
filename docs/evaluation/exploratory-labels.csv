@@ -1,0 +1,169 @@
+queryId,cfpbId,relevant,reason
+Q01,10652638,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q01,10655921,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q01,10660318,1,Transfer kedua terpotong tanpa tercermin di rekening tujuan.
+Q01,10666982,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q01,10668907,1,Pembayaran terkirim ke penerima yang salah dan tidak dapat dibatalkan.
+Q01,10670291,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q01,10683772,1,Transfer internasional tidak selesai dan dana belum diterima penerima.
+Q01,10690673,1,Pembayaran terjadwal terpotong tetapi penerima tidak menerimanya.
+Q01,10697815,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q02,10655733,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q02,10662186,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q02,10663363,1,"Transaksi tertahan terpotong lagi saat posted, sehingga terjadi debit ganda."
+Q02,10666982,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q02,10685508,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q03,10655921,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q03,10660318,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q03,10673037,1,Nasabah tidak dapat mengakses rekening dan dananya.
+Q03,10686192,1,Akses rekening hilang tanpa penyelesaian meski sudah berulang kali melapor.
+Q03,10691464,1,Rekening ditutup tanpa alasan dan saldo tidak dapat diakses.
+Q04,10647276,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q04,10654988,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q04,10655737,1,Transfer terjadwal dari rekening tabungan tertahan dan tidak sampai.
+Q04,10655837,1,Pembayaran yang dikirim ke rekening tertutup tidak diterima atau dikembalikan.
+Q04,10661853,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q04,10664049,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q04,10668363,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q04,10685141,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q04,10688349,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q04,10689238,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q04,10690673,1,Pembayaran terjadwal terpotong tetapi penerima tidak menerimanya.
+Q05,10655837,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q05,10660545,1,Sengketa pembayaran fraud melalui Venmo/PayPal dan akun dibekukan.
+Q05,10663798,1,"Transaksi dan bill pay tidak sah dari rekening, termasuk melalui layanan pembayaran."
+Q05,10664060,1,Pembayaran Zelle berulang kepada pelaku penipuan.
+Q05,10670961,1,Rekening diretas dan dana diambil melalui transaksi tidak sah.
+Q05,10671337,1,Pembayaran Zelle kepada kontraktor yang tidak menyelesaikan pekerjaan.
+Q05,10680906,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q05,10686096,1,Cek palsu didepositkan dan dana ditransfer ke akun Cash App pelaku.
+Q06,10653766,1,Rekening dikenai beberapa transaksi setelah pembobolan akun.
+Q06,10656475,1,Langganan tetap ditagih setelah pembatalan.
+Q06,10656613,1,Kartu ditagih saat panggilan telepon tanpa persetujuan.
+Q06,10658529,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q06,10660006,1,Kartu ditinggal di merchant dan dipakai untuk transaksi tanpa izin.
+Q06,10661403,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q06,10673035,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q06,10680349,1,Penipu menyamar sebagai agen fraud dan memicu transaksi tidak sah.
+Q06,10683958,1,Pembelian dengan kartu ATM tidak diakui nasabah.
+Q07,10653759,0,Narasi tentang masalah perbankan lain; tidak menjawab pertanyaan jam cabang atau parkir.
+Q07,10664283,0,Narasi tentang masalah perbankan lain; tidak menjawab pertanyaan jam cabang atau parkir.
+Q07,10670291,0,Narasi tentang masalah perbankan lain; tidak menjawab pertanyaan jam cabang atau parkir.
+Q07,10685142,0,Narasi tentang masalah perbankan lain; tidak menjawab pertanyaan jam cabang atau parkir.
+Q07,10685706,0,Narasi tentang masalah perbankan lain; tidak menjawab pertanyaan jam cabang atau parkir.
+Q07,10686228,0,Narasi tentang masalah perbankan lain; tidak menjawab pertanyaan jam cabang atau parkir.
+Q07,10688632,0,Narasi tentang masalah perbankan lain; tidak menjawab pertanyaan jam cabang atau parkir.
+Q08,10655819,1,Penipu meyakinkan nasabah melakukan wire transfer kepada rekening pelaku.
+Q08,10656191,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q08,10656606,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q08,10663134,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q08,10671126,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q08,10693157,1,Wire transfer tidak sah dikirim dari beberapa rekening setelah pembobolan.
+Q09,10658410,1,Transfer internasional tidak dikonfirmasi dan dana tidak sampai.
+Q09,10662970,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q09,10670240,1,Remitansi internasional tertunda tanpa kepastian tanggal.
+Q09,10673229,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q09,10675163,1,Transfer internasional Western Union belum selesai meski sudah lewat tenggat.
+Q09,10683772,1,Transfer internasional tidak diselesaikan dan penerima tidak menerima dana.
+Q10,10659895,1,Akun Coinbase diblokir dan dana tidak dapat diakses.
+Q10,10662925,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q10,10667725,1,Coinbase menutup kasus fraud tanpa menyelesaikan akses dana.
+Q10,10668334,1,Coinbase menahan dana tanpa penjelasan atau tenggat.
+Q10,10679817,1,Akun Coinbase dibatasi dan kas yang disetor terkunci.
+Q10,10680100,1,Penarikan aset kripto ditahan oleh security hold bursa.
+Q11,10655737,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q11,10658109,1,Biaya bulanan tabungan ditagih tanpa penjelasan yang memadai.
+Q11,10685141,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q11,10685192,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q11,10688349,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q11,10689238,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q11,10689967,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q12,10652816,1,ATM gagal memproses setoran dan dana tidak masuk rekening.
+Q12,10655001,1,Transaksi ATM gagal dan kredit dispute ditarik kembali.
+Q12,10665819,1,Penarikan ATM gagal dan mesin mati tanpa mengeluarkan uang.
+Q12,10666406,1,ATM gagal memproses setoran dan cek tidak dikembalikan.
+Q12,10670105,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q12,10682105,1,"ATM rusak, uang tidak keluar, tetapi transaksi tetap diproses."
+Q12,10688449,1,ATM malfunction mencatat penarikan tanpa mengeluarkan uang.
+Q13,10652816,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q13,10655001,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q13,10657453,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q13,10658119,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q13,10662925,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q13,10672521,1,Transaksi yang sama diposting beberapa kali dan dispute ditolak.
+Q13,10673265,1,Transaksi ditagih ganda dan bank tidak menyelesaikannya.
+Q13,10686117,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q14,10658410,1,Transfer internasional tertunda dan bank tidak memberi kepastian.
+Q14,10662307,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q14,10670240,1,Remitansi internasional tertunda tanpa kepastian tanggal.
+Q14,10673229,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q14,10674107,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q14,10675163,1,Transfer internasional belum selesai meski melewati tenggat.
+Q14,10683772,1,Transfer internasional tidak diselesaikan dan penerima tidak menerima dana.
+Q15,10660720,1,Saldo Venmo ditahan setelah akun dikunci.
+Q15,10663845,1,Transfer Venmo ditolak dan akun dikunci dengan saldo di dalamnya.
+Q15,10666982,1,Dana pembayaran tertahan di akun Chime dan tidak dapat ditransfer.
+Q15,10669762,1,Transfer dari rekening ke dompet digital ditolak sebagai aktivitas mencurigakan.
+Q15,10671129,1,Akun Cash App dikunci dan dihapus sehingga saldo tidak dapat diakses.
+Q15,10680906,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q15,10686062,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q15,10693591,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q16,10660224,1,Merchant menagih ulang setelah kartu dibatalkan dan bank tidak memblokirnya.
+Q16,10669072,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q16,10674775,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q16,10683886,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q16,10684486,1,Tagihan tetap masuk setelah kartu dibatalkan dan dispute tidak dikembalikan.
+Q16,10692213,0,Tidak menjawab masalah spesifik query; kemiripan kategori atau kata tidak cukup.
+Q17,10653625,1,Rekening ditutup tanpa penjelasan dan saldo tidak dapat diakses.
+Q17,10668639,1,Rekening ditutup dan dana tidak pernah dikembalikan.
+Q17,10674152,1,Rekening ditutup dan akses ke dana hilang.
+Q17,10684043,1,Rekening ditutup tanpa alasan dan setoran awal tidak dikembalikan.
+Q17,10685101,1,Saldo rekening tertutup tidak dikirim meski sudah diminta.
+Q17,10691464,1,Rekening ditutup dan saldo tidak dapat diakses.
+Q17,10696339,1,Rekening ditutup dan saldo besar tidak dikembalikan.
+Q18,10653900,0,Kasus masalah perbankan tidak membantu menanggapi pujian tentang cabang dan parkir.
+Q18,10664533,0,Kasus masalah perbankan tidak membantu menanggapi pujian tentang cabang dan parkir.
+Q18,10677125,0,Kasus masalah perbankan tidak membantu menanggapi pujian tentang cabang dan parkir.
+Q18,10682650,0,Kasus masalah perbankan tidak membantu menanggapi pujian tentang cabang dan parkir.
+Q18,10685149,0,Kasus masalah perbankan tidak membantu menanggapi pujian tentang cabang dan parkir.
+Q18,10686228,0,Kasus masalah perbankan tidak membantu menanggapi pujian tentang cabang dan parkir.
+Q18,10691952,0,Kasus masalah perbankan tidak membantu menanggapi pujian tentang cabang dan parkir.
+Q19,10646281,0,Kasus sengketa transfer atau kripto tidak menjawab pertanyaan kurs valuta untuk perjalanan.
+Q19,10668334,0,Kasus sengketa transfer atau kripto tidak menjawab pertanyaan kurs valuta untuk perjalanan.
+Q19,10670422,0,Kasus sengketa transfer atau kripto tidak menjawab pertanyaan kurs valuta untuk perjalanan.
+Q19,10691593,0,Kasus sengketa transfer atau kripto tidak menjawab pertanyaan kurs valuta untuk perjalanan.
+Q19,10691733,0,Kasus sengketa transfer atau kripto tidak menjawab pertanyaan kurs valuta untuk perjalanan.
+Q20,10647800,0,Kasus penolakan pembukaan rekening tidak menjawab pertanyaan dokumen pembukaan rekening.
+Q20,10662999,0,Kasus penolakan pembukaan rekening tidak menjawab pertanyaan dokumen pembukaan rekening.
+Q20,10669017,0,Kasus penolakan pembukaan rekening tidak menjawab pertanyaan dokumen pembukaan rekening.
+Q20,10669427,0,Kasus penolakan pembukaan rekening tidak menjawab pertanyaan dokumen pembukaan rekening.
+Q20,10677919,0,Kasus penolakan pembukaan rekening tidak menjawab pertanyaan dokumen pembukaan rekening.
+Q20,10683687,0,Kasus penolakan pembukaan rekening tidak menjawab pertanyaan dokumen pembukaan rekening.
+Q20,10685871,0,Kasus penolakan pembukaan rekening tidak menjawab pertanyaan dokumen pembukaan rekening.
+Q21,10647800,0,Kasus saldo rendah atau deposit hilang tidak membantu pertanyaan anggaran gaji.
+Q21,10655921,0,Kasus saldo rendah atau deposit hilang tidak membantu pertanyaan anggaran gaji.
+Q21,10661880,0,Kasus saldo rendah atau deposit hilang tidak membantu pertanyaan anggaran gaji.
+Q21,10670291,0,Kasus saldo rendah atau deposit hilang tidak membantu pertanyaan anggaran gaji.
+Q21,10673921,0,Kasus saldo rendah atau deposit hilang tidak membantu pertanyaan anggaran gaji.
+Q21,10683415,0,Kasus saldo rendah atau deposit hilang tidak membantu pertanyaan anggaran gaji.
+Q21,10686119,0,Kasus saldo rendah atau deposit hilang tidak membantu pertanyaan anggaran gaji.
+Q21,10694634,0,Kasus saldo rendah atau deposit hilang tidak membantu pertanyaan anggaran gaji.
+Q22,10658016,0,Kasus penipuan yang sudah merugikan tidak membantu pertanyaan tentang teks phishing yang dihapus.
+Q22,10673396,0,Kasus penipuan yang sudah merugikan tidak membantu pertanyaan tentang teks phishing yang dihapus.
+Q22,10674597,0,Kasus penipuan yang sudah merugikan tidak membantu pertanyaan tentang teks phishing yang dihapus.
+Q22,10682202,0,Kasus penipuan yang sudah merugikan tidak membantu pertanyaan tentang teks phishing yang dihapus.
+Q22,10683753,0,Kasus penipuan yang sudah merugikan tidak membantu pertanyaan tentang teks phishing yang dihapus.
+Q22,10686096,0,Kasus penipuan yang sudah merugikan tidak membantu pertanyaan tentang teks phishing yang dihapus.
+Q23,10668515,0,Kasus biaya perbankan tidak menjawab pertanyaan tentang biaya tambahan di kafe.
+Q23,10674687,0,Kasus biaya perbankan tidak menjawab pertanyaan tentang biaya tambahan di kafe.
+Q23,10682309,0,Kasus biaya perbankan tidak menjawab pertanyaan tentang biaya tambahan di kafe.
+Q23,10684486,0,Kasus biaya perbankan tidak menjawab pertanyaan tentang biaya tambahan di kafe.
+Q23,10685204,0,Kasus biaya perbankan tidak menjawab pertanyaan tentang biaya tambahan di kafe.
+Q24,10655737,0,Kasus operasional rekening tabungan tidak menjelaskan cara kerja bunga majemuk.
+Q24,10655867,0,Kasus operasional rekening tabungan tidak menjelaskan cara kerja bunga majemuk.
+Q24,10663218,0,Kasus operasional rekening tabungan tidak menjelaskan cara kerja bunga majemuk.
+Q24,10671126,0,Kasus operasional rekening tabungan tidak menjelaskan cara kerja bunga majemuk.
+Q24,10685141,0,Kasus operasional rekening tabungan tidak menjelaskan cara kerja bunga majemuk.
+Q24,10688349,0,Kasus operasional rekening tabungan tidak menjelaskan cara kerja bunga majemuk.
+Q24,10689238,0,Kasus operasional rekening tabungan tidak menjelaskan cara kerja bunga majemuk.
+Q24,10691308,0,Kasus operasional rekening tabungan tidak menjelaskan cara kerja bunga majemuk.

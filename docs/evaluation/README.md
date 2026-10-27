@@ -1,8 +1,25 @@
 # Evaluasi relevansi dan walkthrough demo
 
-Dokumen ini menyediakan (1) walkthrough penerimaan yang dapat dijalankan pada checkout baru dan (2) lembar evaluasi relevansi manual. **Tidak ada label relevansi atau klaim kualitas pencarian di repository ini.** Penilaian harus dilakukan manusia setelah membaca hasil nyata.
+Dokumen ini menyediakan (1) walkthrough penerimaan yang dapat dijalankan pada checkout baru dan (2) lembar evaluasi relevansi. Evaluasi di repository ini bersifat **eksploratif**: label relevansi dibuat otomatis dan **belum divalidasi manusia**. Label tersebut tidak ditampilkan pada respons API dan tidak boleh diperlakukan sebagai penilaian final.
 
 Sampel demo adalah 500 kasus CFPB yang di-commit di `data/cfpb/sample.csv`; fixture sintetis di tes backend/live contract bukan bagian sampel dan tidak boleh dicampur dengan evaluasi ini.
+
+## Hasil kalibrasi eksploratif (27 Oktober 2026)
+
+Eksperimen membandingkan baseline `tfidf-cosine-v1` kategori/teks `0.4/0.6` dan ambang `0.50` dengan 147 konfigurasi pada grid bobot kategori `0.1–0.7` (langkah `0.1`) dan ambang `0.20–0.70` (langkah `0.025`). Bobot teks selalu `1 − bobot kategori`; bobot field `0.35/0.15/0.35/0.15`, limit 5, dan syarat skor teks positif tidak berubah.
+
+| Bagian | Baseline | Konfigurasi terpilih `w=0.2/t=0.275` |
+| --- | ---: | ---: |
+| Kalibrasi: precision@5 | 0.180 | 0.440 |
+| Kalibrasi: precision hasil | 0.410 | 0.530 |
+| Kalibrasi: query negatif mendapat hasil | 2/4 | 2/4 |
+| Pengujian: precision@5 | 0.100 | 0.367 |
+| Pengujian: precision hasil | 0.167 | 0.678 |
+| Pengujian: query negatif mendapat hasil | 0/4 | 1/4 |
+
+Konfigurasi terpilih lolos peningkatan precision@5 dan precision hasil, tetapi **gagal** syarat negatif: satu query negatif pada bagian pengujian mendapat hasil, sedangkan baseline tidak. Sesuai aturan yang dibekukan sebelum pengujian, konfigurasi terpilih **tidak diterapkan** dan default `0.4/0.6`, ambang `0.50` dipertahankan. Konfigurasi baseline tetap dicatat untuk rollback; karena default tidak berubah, tidak ada rollback yang perlu dijalankan.
+
+Rincian lengkap, tabel 147 konfigurasi, hasil per query, contoh keberhasilan/kegagalan, checksum sampel, versi algoritme, dan keputusan ada di [results/report.md](results/report.md), [results/summary.json](results/summary.json), [results/calibration-configurations.csv](results/calibration-configurations.csv), dan [results/per-query-results.csv](results/per-query-results.csv). Label eksploratif ada di [exploratory-labels.csv](exploratory-labels.csv); lembar penilaian manusia tetap di [judgments.csv](judgments.csv).
 
 ## Walkthrough penerimaan
 
@@ -15,7 +32,7 @@ npm ci
 npm run verify
 ```
 
-Hasil yang diharapkan: validasi kontrak, `api:check`, 13 tes generation, 210 tes backend, packaged jar, dan 5 live contract/client test lulus. Perintah ini tidak mengunduh arsip CFPB dan tidak mengubah file generated yang di-track.
+Hasil yang diharapkan: validasi kontrak, `api:check`, tes generation, typecheck/test client, seluruh tes backend, packaged jar, dan live contract/client test lulus. Perintah ini tidak mengunduh arsip CFPB dan tidak mengubah file generated yang di-track. Lulusnya tes teknis tidak membuktikan relevansi pencarian.
 
 ### 2. Jalankan server dengan database sementara
 
@@ -86,53 +103,73 @@ Walkthrough di atas dijalankan pada 26 Oktober 2026 dengan packaged jar dan data
 
 `npm run verify` dan `cd backend && ./mvnw clean verify` juga harus lulus sebelum demo dianggap siap. Catat penyimpangan apa pun; jangan menganggap walkthrough lulus bila salah satu status berbeda.
 
-## Lembar evaluasi relevansi
+## Dataset dan penilaian eksploratif
 
-### Query
+### Query dan pembagian
 
-[queries.csv](queries.csv) berisi 12 query berbahasa Inggris yang memakai label kategori aktual sampel. Skenario mencakup:
+[queries.csv](queries.csv) berisi **24 query yang dibekukan sebelum eksperimen**: 16 skenario pengaduan dan 8 skenario negatif. Skenario mencakup kemiripan kata dekat, parafrasa dengan tumpang tindih leksikal rendah, field opsional yang dihilangkan, cabang opsional independen, tumpang tindih lintas produk, angka/tanggal pengisi, masalah transfer domestik/internasional, dompet digital, mata uang virtual, biaya tabungan, ATM, serta narasi tidak terkait yang berbagi kata umum.
 
-- kemiripan kata dekat dan parafrasa dengan tumpang tindih leksikal rendah;
-- field opsional yang dihilangkan dan cabang opsional independen;
-- tumpang tindih lintas produk;
-- angka/tanggal pengisi bercampur teks bermakna;
-- narasi tidak terkait;
-- masalah transfer domestik, internasional, dompet digital, mata uang virtual, biaya tabungan, dan ATM.
+Pembagian terstratifikasi memakai seed `20261027` dan disimpan di [split.csv](split.csv):
 
-Query belum memiliki label relevansi. Menjalankan query bukan penilaian.
+- kalibrasi: 10 query pengaduan + 4 query negatif;
+- pengujian akhir: 6 query pengaduan + 4 query negatif.
 
-### Pengamatan awal (bukan label)
+Pembagian hanya dipakai untuk memilih konfigurasi pada bagian kalibrasi. Bagian pengujian dijalankan sekali untuk konfigurasi terpilih dan baseline; bagian itu tidak dipakai untuk memilih ulang.
 
-Dengan sampel 500 kasus, konfigurasi default (`tfidf-cosine-v1`, bobot kategori 0.4/teks 0.6, ambang 0.50, limit 5), hasil yang teramati pada 26 Oktober 2026:
+### Identitas kasus dan kandidat
 
-| Query | Skenario | Status | `returnedCount` |
-| --- | --- | --- | --- |
-| Q01 | Transfer tidak diterima | `NO_RELEVANT_CASES` | 0 |
-| Q02 | Parafrasa pembayaran ganda | `MATCHES` | 1 |
-| Q03 | Field opsional dihilangkan | `MATCHES` | 5 |
-| Q04 | Cabang opsional independen | `NO_RELEVANT_CASES` | 0 |
-| Q05 | Lintas produk | `NO_RELEVANT_CASES` | 0 |
-| Q06 | Angka/tanggal pengisi | `NO_RELEVANT_CASES` | 0 |
-| Q07 | Narasi tidak terkait | `MATCHES` | 1 |
-| Q08 | Transfer domestik fraud | `MATCHES` | 2 |
-| Q09 | Transfer internasional belum tersedia | `NO_RELEVANT_CASES` | 0 |
-| Q10 | Mata uang virtual | `NO_RELEVANT_CASES` | 0 |
-| Q11 | Biaya tabungan | `NO_RELEVANT_CASES` | 0 |
-| Q12 | ATM tidak mengeluarkan uang | `MATCHES` | 2 |
+ID pengaduan CFPB adalah identitas evaluasi yang stabil. UUID internal evaluasi diturunkan secara deterministik dari ID tersebut, sehingga urutan seri dapat direproduksi tanpa memakai UUID acak database demo. Untuk setiap query, [candidates.csv](candidates.csv) menggabungkan kandidat top-5 dari seluruh 147 konfigurasi dan menampilkan setiap pasangan query/kasus sekali **tanpa skor, peringkat, atau identitas konfigurasi**.
 
-Angka ini hanya observasi teknis. Q07 yang tidak terkait tetapi mendapat satu hasil menunjukkan ambang awal belum dikalibrasi; angka tersebut **bukan** bukti kualitas, dan hasil kosong **bukan** bukti bahwa tidak ada preseden yang relevan.
+### Label eksploratif
 
-### Prosedur penilaian manusia
+[exploratory-labels.csv](exploratory-labels.csv) berisi label biner dan alasan singkat untuk setiap pasangan pada kandidat. Label dibuat otomatis oleh peninjauan berbantuan AI, bukan oleh manusia. Relevan berarti kasus memiliki masalah dan konteks yang membantu memahami atau menangani pengaduan; kesamaan kategori atau kata saja tidak cukup. Label ini **tidak** ditampilkan pada API dan tidak mengubah hasil pencarian.
+
+`judgments.csv` tetap disediakan untuk penilaian manusia dan masih hanya berisi header. Jangan menyalin label otomatis ke lembar tersebut tanpa peninjauan manusia.
+
+### Metrik dan aturan pemilihan
+
+- **Precision@5** query pengaduan memakai penyebut tetap 5; slot kosong dihitung tidak relevan.
+- **Precision hasil yang dikembalikan** = hasil relevan / hasil yang dikembalikan; didefinisikan 0 bila tidak ada hasil.
+- **Jumlah hasil** dilaporkan per query dan agregat.
+- **Proporsi query negatif yang mendapat hasil** = query negatif dengan setidaknya satu hasil / seluruh query negatif.
+- **Recall tidak dilaporkan** karena seluruh korpus tidak dilabeli menyeluruh.
+- Pemilihan hanya memakai kalibrasi: jumlah query negatif yang mendapat hasil tidak boleh melebihi baseline; lalu maksimalkan rata-rata precision@5; pemecah seri berturut-turut adalah precision hasil, lebih sedikit kegagalan negatif, lalu jarak grid ke baseline.
+- Konfigurasi terpilih diuji sekali pada bagian pengujian. Konfigurasi hanya diterapkan bila precision@5 meningkat, precision hasil tidak turun, dan kegagalan negatif tidak bertambah.
+
+### Perintah evaluasi
+
+Runner Java memakai parser CSV dan scorer produksi terhadap sampel yang di-commit; runner tidak menyentuh database demo dan tidak mengunduh arsip. Profil Maven `evaluation` menyediakan perintah berikut dari root repository:
+
+```bash
+npm run eval:split       # tulis pembagian deterministik
+npm run eval:export      # ekspor kandidat top-5 seluruh konfigurasi (blinded)
+npm run eval:labels      # validasi label; gagal bila ada yang hilang/duplikat
+npm run eval:run         # hitung metrik, pilih, uji, tulis results/
+npm run eval:compare     # tampilkan perbandingan baseline/terpilih
+```
+
+Perintah yang sama dapat dipanggil langsung:
+
+```bash
+cd backend
+./mvnw -q -Pevaluation exec:java -Dexec.args="export-candidates"
+```
+
+Label yang hilang, duplikat, atau tidak valid menggagalkan perhitungan; label yang tidak ada tidak pernah dianggap tidak relevan. Hasil eksperimen disimpan di [results/](results/) bersama checksum sampel, versi algoritme, tabel konfigurasi, hasil per query, dan konfigurasi terpilih.
+
+## Prosedur penilaian manusia
 
 1. Jalankan sampel 500 kasus dan setiap query pada konfigurasi yang akan dilaporkan. Simpan commit/versi, nilai `finresolve.similarity.*`, dan `corpusSize`.
 2. Untuk setiap query, periksa maksimal lima hasil teratas. Labeli `relevant=1` bila preseden benar-benar membantu analis memahami atau menangani pengaduan; selain itu `0`. Jangan memberi label berdasarkan skor atau kategori saja.
 3. Tulis satu baris per slot pada [judgments.csv](judgments.csv): `queryId,rank,caseId,relevant,reviewer,notes`. Bila hasil kurang dari lima, tambahkan slot yang hilang dengan `caseId` kosong dan `relevant=0` saat evaluasi dinyatakan selesai. Isi `reviewer` dengan inisial/identitas penilai dan `notes` dengan alasan singkat.
 4. Hitung `precision@5 = jumlah slot relevant / 5`; slot yang hilang dihitung tidak relevan. Laporkan nilai per query dan rata-rata **hanya setelah semua query dinilai manusia**. Jangan mengisi label sintetis atau menyalin label dari model.
-5. Bila ada beberapa penilai, laporkan kesepakatan atau hasil terpisah; jangan menggabungkan tanpa menjelaskan aturannya.
+5. Bandingkan hasil manusia dengan label eksploratif dan laporkan kesepakatan atau perbedaan; jangan menggabungkan keduanya tanpa menjelaskan aturannya.
 
-### Batas
+## Batas
 
+- Label eksploratif dibuat otomatis dan belum divalidasi manusia; angka precision@5 di dokumen ini bukan klaim kualitas final.
 - Sampel 500 kasus tidak mewakili seluruh CFPB dan hanya mencakup dua produk.
 - Respons historis bukan bukti keberhasilan penanganan; skor kemiripan bukan probabilitas.
-- Bobot/ambang awal belum dikalibrasi dan tidak boleh disebut optimal.
-- `judgments.csv` masih kosong. Jangan mengutip precision@5, akurasi, atau klaim kualitas apa pun sebelum penilaian manusia selesai.
+- Kandidat dinilai pada penggabungan top-5 seluruh konfigurasi, sehingga perbandingan terbatas pada kandidat tersebut.
+- Baseline dipertahankan karena konfigurasi terpilih gagal syarat negatif pada pengujian akhir; ini bukan bukti bahwa baseline optimal atau bahwa konfigurasi lain tidak lebih baik.
+- `judgments.csv` masih kosong; jangan mengutip precision@5 manusia, akurasi, atau klaim kualitas apa pun sebelum penilaian manusia selesai.

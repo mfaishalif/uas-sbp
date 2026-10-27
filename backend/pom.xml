@@ -170,5 +170,20 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>evaluation</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.6.3</version>
+                        <configuration>
+                            <mainClass>id.ac.finresolve.evaluation.EvaluationCli</mainClass>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
     </profiles>
 </project>
