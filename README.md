@@ -216,27 +216,48 @@ Client membawa `basePath` `/api` sekali, tidak mengulang mutasi, dan memetakan k
 - Katalog kategori hanya berasal dari kasus CFPB yang diimpor; retensi ANALYST tidak memperluas katalog. Sebelum impor, katalog kosong dan retensi ditolak **409** `EMPTY_CATEGORY_CATALOG`.
 - Tidak ada autentikasi, peran, deployment publik, atau UI pada demo ini.
 
-## Menjalankan demo dengan Docker Compose
+## Menjalankan backend dengan Docker Compose
 
-Demo API lengkap dapat dijalankan tanpa memasang Java atau Node.js di host. Prasyaratnya adalah Docker Engine atau Docker Desktop dengan Compose v2. Build pertama membutuhkan internet untuk mengunduh image Java 21 dan dependensi Maven. Sampel 500 kasus sudah tersedia di repository dan tidak diunduh saat startup.
+Backend dapat dijalankan tanpa memasang Java atau Node.js di host. Prasyaratnya adalah Docker Engine atau Docker Desktop dengan **Docker Compose 2.32.2 atau lebih baru** agar `sync+restart` dan `initial_sync` tersedia. Build pertama membutuhkan internet untuk mengunduh image Java 21 dan dependensi Maven. Sampel 500 kasus sudah tersedia di repository dan tidak diunduh saat startup.
+
+| Mode | Perintah | Volume SQLite | Isi image |
+| --- | --- | --- | --- |
+| Development | `docker compose up --build --watch` | `finresolve-dev-data` | JDK 21, source, Maven Wrapper |
+| Demo JAR | `docker compose -f compose.demo.yaml up --build` | `finresolve-data` | JRE 21 dan packaged jar |
+
+Keduanya memakai `127.0.0.1:8080`, jadi hentikan mode yang sedang berjalan sebelum menjalankan mode lain.
+
+### Development dengan hot reload
 
 Dari root repository:
 
 ```bash
-docker compose up --build
+docker compose up --build --watch
 ```
 
-Build pertama juga mengompilasi jar melalui Maven Wrapper. Setelah container berjalan, periksa status kesehatan:
+Compose membangun target `development`, menyimpan cache Maven pada named volume `finresolve-maven-cache`, lalu menjalankan `./mvnw -B -DskipTests clean spring-boot:run` dari folder `backend`. Sinkronisasi awal aktif, sehingga isi container langsung mengikuti source di host.
+
+Selama watch berjalan:
+
+- Perubahan pada `backend/src` (Java, resources, dan template generator), `docs/api/openapi.json`, atau `tools/openapi` disinkronkan lalu memicu restart.
+- Setiap restart menjalankan kompilasi bersih. Penghapusan file Java juga diterapkan karena `target/` dibersihkan, bukan hanya ditimpa.
+- Perubahan `Dockerfile`, `docker/development-entrypoint.sh`, `.dockerignore`, `backend/pom.xml`, atau Maven Wrapper (`backend/mvnw`, `backend/mvnw.cmd`, `backend/.mvn`) memicu rebuild image dan pembuatan ulang container.
+- Hasil kompilasi tetap berada di container, sedangkan database SQLite disimpan di volume `/data` dan bertahan saat reload atau container dibuat ulang.
+
+Selama kompilasi dan restart, API berhenti sebentar dan endpoint kesehatan dapat menolak koneksi atau mengembalikan **503**. Pantau log dengan:
 
 ```bash
-docker compose ps
+docker compose logs -f api
 ```
 
-Status `healthy` baru muncul setelah inisialisasi 500 kasus selesai. Selama inisialisasi berlangsung, endpoint kesehatan mengembalikan **503**; setelah siap, endpoint tersebut mengembalikan **200** `{"status":"UP","database":"UP"}`. API hanya dipublikasikan pada loopback `http://127.0.0.1:8080`, tanpa autentikasi dan tanpa akses dari jaringan lain.
+Jika kompilasi gagal, pesan error tampil di log. Container development tetap berjalan dan menunggu perubahan berikutnya; setelah kode diperbaiki, Compose Watch melakukan restart, kompilasi bersih, dan backend pulih otomatis.
+
+Status `healthy` baru muncul setelah container siap dan inisialisasi 500 kasus selesai. Setelah itu endpoint kesehatan mengembalikan **200** `{"status":"UP","database":"UP"}`. API hanya dipublikasikan pada loopback `http://127.0.0.1:8080`, tanpa autentikasi dan tanpa akses dari jaringan lain.
 
 Contoh pemeriksaan:
 
 ```bash
+docker compose ps
 curl -i http://127.0.0.1:8080/api/health
 curl -sS 'http://127.0.0.1:8080/api/cases?source=CFPB&size=2'
 curl -sS -X POST http://127.0.0.1:8080/api/search \
@@ -244,21 +265,38 @@ curl -sS -X POST http://127.0.0.1:8080/api/search \
   -d '{"product":"Checking or savings account","subProduct":"Checking account","issue":"Managing an account","subIssue":"Deposits and withdrawals","narrative":"Money left my bank balance twice even though I only authorized one payment.","limit":5}'
 ```
 
-Database SQLite disimpan pada named volume di `/data/finresolve.db`. Menghentikan atau membuat ulang container tidak menghapus data:
+Menghentikan development tidak menghapus database maupun cache Maven:
 
 ```bash
-docker compose down          # container berhenti, volume dan data tetap
-docker compose up            # 500 kasus CFPB dan kasus analis tetap tersedia
+docker compose down
+docker compose up --build --watch
 ```
 
-Untuk mereset demo secara eksplisit dan destruktif, hapus volume demo:
+Reset development bersifat destruktif dan menghapus volume database development beserta cache Maven:
 
 ```bash
 docker compose down --volumes
-docker compose up --build
+docker compose up --build --watch
 ```
 
-Perintah reset tersebut menghapus seluruh kasus analis pada volume demo. Jangan jalankan bila data tersebut ingin dipertahankan. Startup akan gagal dengan pesan yang jelas bila `data/cfpb/sample.csv` hilang atau tidak valid, sehingga aplikasi tidak menyajikan demo kosong. Inisialisasi demo hanya diaktifkan oleh Compose; startup non-container tetap memakai perilaku default dan tidak membaca CSV. Fitur Docker pada devcontainer hanya menambahkan akses CLI ke daemon host setelah rebuild; demo ini tetap hanya API tanpa frontend, autentikasi, atau deployment publik.
+### Demo berbasis JAR
+
+Demo memakai target `runtime` dan menjalankan packaged jar seperti sebelumnya. Volume demo `finresolve-data` dipertahankan terpisah dari volume development, sehingga reset development tidak menghapus data demo.
+
+```bash
+docker compose -f compose.demo.yaml up --build
+docker compose -f compose.demo.yaml ps
+```
+
+Hentikan demo tanpa menghapus datanya, atau reset volume demo secara eksplisit:
+
+```bash
+docker compose -f compose.demo.yaml down
+docker compose -f compose.demo.yaml down --volumes
+docker compose -f compose.demo.yaml up --build
+```
+
+Perintah `down --volumes` pada demo menghapus seluruh kasus analis pada volume demo. Jangan jalankan bila data tersebut ingin dipertahankan. Startup akan gagal dengan pesan yang jelas bila `data/cfpb/sample.csv` hilang atau tidak valid, sehingga aplikasi tidak menyajikan demo kosong. Inisialisasi demo hanya diaktifkan oleh Compose; startup non-container tetap memakai perilaku default dan tidak membaca CSV. Fitur Docker pada devcontainer hanya menambahkan akses CLI ke daemon host setelah rebuild; kedua mode ini tetap hanya API tanpa frontend, autentikasi, atau deployment publik.
 
 ## Evaluasi relevansi
 
