@@ -147,7 +147,13 @@ public final class ApiExceptionHandler {
 
     @ExceptionHandler(HttpRequestMethodNotSupportedException.class)
     public ResponseEntity<ApiError> methodNotAllowed(HttpRequestMethodNotSupportedException failure) {
-        return respond(405, "METHOD_NOT_ALLOWED", "Metode HTTP tidak didukung.", List.of());
+        // ErrorResponse carries the Allow header computed from the mapped methods.
+        return ResponseEntity.status(405)
+                .headers(failure.getHeaders())
+                .body(mapper.error(
+                        new BusinessException(
+                                405, "METHOD_NOT_ALLOWED", "Metode HTTP tidak didukung.", List.of()),
+                        Instant.now()));
     }
 
     @ExceptionHandler(HttpMediaTypeNotSupportedException.class)

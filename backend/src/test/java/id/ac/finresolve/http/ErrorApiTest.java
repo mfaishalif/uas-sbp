@@ -148,11 +148,31 @@ class ErrorApiTest {
     @Test
     void unknownRouteWrongMethodAndWrongContentTypeUseContractErrors() throws Exception {
         assertGlobalError(get("/api/does-not-exist"), 404, "ROUTE_NOT_FOUND");
-        assertGlobalError(request("PATCH", "/api/health", Map.of(), null), 405, "METHOD_NOT_ALLOWED");
+        ApiResponse wrongMethod = request("PATCH", "/api/health", Map.of(), null);
+        assertGlobalError(wrongMethod, 405, "METHOD_NOT_ALLOWED");
+        assertThat(wrongMethod.header("Allow")).contains("GET");
         assertGlobalError(
                 request("POST", "/api/cases", Map.of("Content-Type", "text/plain"), VALID_RETAIN_BODY),
                 415,
                 "UNSUPPORTED_MEDIA_TYPE");
+    }
+
+    @Test
+    void expandedYearDatesAreContractErrorsNotInternalErrors() throws Exception {
+        for (String date : List.of("+10000-01-01", "-0001-01-01")) {
+            String body = VALID_RETAIN_BODY.replace(
+                    "\"receivedDate\": null", "\"receivedDate\": \"" + date + "\"");
+            ApiResponse response = postJson(body);
+
+            assertThat(response.status()).as("date %s", date).isEqualTo(400);
+            JsonNode error = assertApiErrorKeys(response);
+            assertThat(error.get("code").asString()).isEqualTo("VALIDATION_ERROR");
+            assertThat(error.get("fieldErrors").toString())
+                    .contains("\"field\":\"receivedDate\"")
+                    .contains("\"code\":\"INVALID_FORMAT\"");
+        }
+
+        assertThat(caseCount()).isZero();
     }
 
     @Test

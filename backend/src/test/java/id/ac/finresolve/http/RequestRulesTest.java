@@ -143,6 +143,16 @@ class RequestRulesTest {
                 replace(RETAIN_CASE, "\"receivedDate\": null", "\"receivedDate\": \"2024-02-30\""));
         assertThat(fields(invalidDate)).containsExactly("receivedDate");
 
+        for (String expanded : List.of("+10000-01-01", "-0001-01-01", "10000-01-01")) {
+            BusinessException failure = rejected(
+                    "RetainCaseRequest",
+                    replace(RETAIN_CASE, "\"receivedDate\": null", "\"receivedDate\": \"" + expanded + "\""));
+            assertThat(fields(failure)).as("date %s", expanded).containsExactly("receivedDate");
+            assertThat(failure.fieldErrors())
+                    .extracting(Problem::code)
+                    .containsExactly("INVALID_FORMAT");
+        }
+
         BusinessException invalidEnum = rejected(
                 "RetainCaseRequest",
                 replace(RETAIN_CASE, "\"outcomeAssessment\": \"UNKNOWN\"", "\"outcomeAssessment\": \"unknown\""));
@@ -175,6 +185,19 @@ class RequestRulesTest {
         assertThat(duplicated.fieldErrors())
                 .extracting(Problem::code)
                 .containsExactly("DUPLICATE");
+    }
+
+    @Test
+    void integerValuedDecimalsAreAcceptedButFractionsAreRejected() {
+        for (String accepted : List.of("1.0", "1.00", "1e0", "2E1")) {
+            RULES.validateJson("SearchRequest", replace(SEARCH, "\"limit\": 5", "\"limit\": " + accepted));
+        }
+
+        for (String rejected : List.of("1.5", "0.999", "20.0001")) {
+            BusinessException failure = rejected(
+                    "SearchRequest", replace(SEARCH, "\"limit\": 5", "\"limit\": " + rejected));
+            assertThat(fields(failure)).as("limit %s", rejected).containsExactly("limit");
+        }
     }
 
     @Test

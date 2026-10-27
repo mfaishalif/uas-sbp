@@ -1,0 +1,3208 @@
+{
+  "testedAt": "2026-10-27T02:23:28.051Z",
+  "commit": "fa10431cdd629f8377ebbd1d77ac30d8be6e14e0",
+  "baseUrl": "http://127.0.0.1:8080",
+  "checks": 128,
+  "passed": 120,
+  "failed": 8,
+  "httpRequests": 164,
+  "context": {
+    "batchId": "29aeb40f-9a2b-4292-a995-bde983dce552",
+    "categoryTupleCount": 85,
+    "analystId": "029730f9-d4ca-404c-97b5-69f33ac60329",
+    "finalTotalElements": 511,
+    "evaluation": [
+      {
+        "queryId": "Q01",
+        "scenario": "Close wording for a missing or misapplied deposit",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 94,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q02",
+        "scenario": "Paraphrase with low lexical overlap",
+        "status": "MATCHES",
+        "returnedCount": 1,
+        "ms": 110,
+        "topIds": [
+          "fb465646-5446-4a60-8a50-8370cbd502fb"
+        ],
+        "topScores": [
+          0.5046660008756592
+        ]
+      },
+      {
+        "queryId": "Q03",
+        "scenario": "Both optional category fields omitted",
+        "status": "MATCHES",
+        "returnedCount": 5,
+        "ms": 100,
+        "topIds": [
+          "3b58c960-d29c-4d5b-b143-f84fd56812a2",
+          "35ae6e1c-8cb8-4d37-81e0-ef8701d2b79d",
+          "a256d86f-acf6-4ee0-980c-92671992226c",
+          "f7607792-eaa5-47e7-88e0-8b4195fd8866",
+          "c4ad752e-04dc-4324-b6bb-a473843e9973"
+        ],
+        "topScores": [
+          0.5353185806271532,
+          0.5270502712953654,
+          0.5261340758012236,
+          0.5159375651410314,
+          0.512056303518661
+        ]
+      },
+      {
+        "queryId": "Q04",
+        "scenario": "Independent valid optional branch",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 114,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q05",
+        "scenario": "Cross-product narrative mentions a checking account",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 124,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q06",
+        "scenario": "Numeric and redacted date filler mixed with meaningful text",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 123,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q07",
+        "scenario": "Unrelated narrative with a matching category tuple",
+        "status": "MATCHES",
+        "returnedCount": 1,
+        "ms": 83,
+        "topIds": [
+          "65fbad47-a446-4be1-8e07-8e896472f79d"
+        ],
+        "topScores": [
+          0.5424393331124167
+        ]
+      },
+      {
+        "queryId": "Q08",
+        "scenario": "Domestic transfer fraud wording",
+        "status": "MATCHES",
+        "returnedCount": 2,
+        "ms": 87,
+        "topIds": [
+          "b6e11b1a-e973-4197-952d-27af362cd006",
+          "a9d2542c-205b-41aa-94f6-e70ea00dd243"
+        ],
+        "topScores": [
+          0.5716337028509754,
+          0.5201617581265292
+        ]
+      },
+      {
+        "queryId": "Q09",
+        "scenario": "International transfer availability paraphrase",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 104,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q10",
+        "scenario": "Virtual-currency transaction problem",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 106,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q11",
+        "scenario": "Savings-account fee problem",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 87,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q12",
+        "scenario": "ATM card problem",
+        "status": "MATCHES",
+        "returnedCount": 2,
+        "ms": 91,
+        "topIds": [
+          "ec01e813-25cd-44b9-b7c6-b4ff07a33d65",
+          "d6375cbd-a1cf-4ff3-a084-5a42dfbaad5e"
+        ],
+        "topScores": [
+          0.5122310685616676,
+          0.5021944722460281
+        ]
+      }
+    ]
+  },
+  "restart": {
+    "testedAt": "2026-10-27T02:24:56.628Z",
+    "passed": true,
+    "checks": [
+      {
+        "name": "health",
+        "passed": true
+      },
+      {
+        "name": "all",
+        "passed": true
+      },
+      {
+        "name": "cfpb",
+        "passed": true
+      },
+      {
+        "name": "analystCount",
+        "passed": true
+      },
+      {
+        "name": "analyst",
+        "passed": true
+      }
+    ],
+    "total": 511,
+    "cfpb": 503,
+    "analysts": 8,
+    "analystId": "029730f9-d4ca-404c-97b5-69f33ac60329"
+  },
+  "results": [
+    {
+      "name": "empty health/categories/list",
+      "passed": true,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "ms": 14,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200,
+          "ms": 26,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "empty search validates narrative before returning EMPTY_KNOWLEDGE_BASE",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 298,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 53,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retention before import rejected",
+      "passed": true,
+      "detail": {
+        "code": "EMPTY_CATEGORY_CATALOG",
+        "message": "Katalog kategori sampel masih kosong. Impor sampel CFPB terlebih dahulu.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:21.502998192Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 409,
+          "ms": 129,
+          "code": "EMPTY_CATEGORY_CATALOG",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import rejects missing file",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Bagian permintaan wajib diisi.",
+        "fieldErrors": [
+          {
+            "field": "file",
+            "code": "REQUIRED",
+            "message": "Bagian permintaan wajib diisi."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:21.577106565Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 71,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import rejects missing metadata",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Bagian permintaan wajib diisi.",
+        "fieldErrors": [
+          {
+            "field": "metadata",
+            "code": "REQUIRED",
+            "message": "Bagian permintaan wajib diisi."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:21.588615132Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 11,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import rejects empty file",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CSV",
+        "message": "Header wajib tidak ditemukan: Complaint ID.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:21.712355208Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 124,
+          "code": "INVALID_CSV",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import rejects header only",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CSV",
+        "message": "Berkas CSV hanya berisi header.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:21.72963831Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 17,
+          "code": "INVALID_CSV",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import rejects missing required header",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CSV",
+        "message": "Header wajib tidak ditemukan: Complaint ID.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:21.742923342Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 12,
+          "code": "INVALID_CSV",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import rejects duplicate header",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CSV",
+        "message": "Berkas CSV tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:21.754246893Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 11,
+          "code": "INVALID_CSV",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import rejects broken quoted field",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CSV",
+        "message": "Berkas CSV tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:21.765795364Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 11,
+          "code": "INVALID_CSV",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import rejects invalid UTF-8",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CSV",
+        "message": "Berkas CSV harus menggunakan UTF-8 yang valid.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:21.778446537Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 13,
+          "code": "INVALID_CSV",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import metadata rejects HTTP URL",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "archiveUrl",
+            "code": "INVALID_FORMAT",
+            "message": "Format nilai tidak sesuai."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:21.822774848Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 45,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import metadata rejects URL without host",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Metadata impor tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "metadata.archiveUrl",
+            "code": "INVALID_FORMAT",
+            "message": "URL arsip tidak valid."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:21.83573975Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 12,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import metadata rejects path in source filename",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Metadata impor tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "metadata.sourceFileName",
+            "code": "INVALID_FORMAT",
+            "message": "Nama berkas sumber tidak boleh memuat path."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:21.847443235Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 12,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import metadata rejects reversed period",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Metadata impor tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "metadata.periodEnd",
+            "code": "OUT_OF_RANGE",
+            "message": "Periode akhir tidak boleh sebelum periode mulai."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:21.859540757Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 11,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import metadata rejects impossible date",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:21.871052125Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 12,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import metadata rejects unknown property",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:21.888759567Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 17,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import committed sample: 500 accepted and SHA-256 matches manifest",
+      "passed": true,
+      "detail": {
+        "imported": 500,
+        "batchId": "29aeb40f-9a2b-4292-a995-bde983dce552"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 201,
+          "ms": 523,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "identical and whitespace-normalized import replay",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 200,
+          "ms": 173,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 200,
+          "ms": 104,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "same CSV with different metadata reports 500 duplicates",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 201,
+          "ms": 92,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "category tuple uniqueness and detail provenance",
+      "passed": true,
+      "detail": {
+        "tuples": 85
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200,
+          "ms": 27,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?source=CFPB&size=1",
+          "status": 200,
+          "ms": 51,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/0012924d-55c3-489c-b55b-dd17eb42b803",
+          "status": 200,
+          "ms": 45,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "pagination covers 500 unique cases in stable order",
+      "passed": true,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=0&size=100",
+          "status": 200,
+          "ms": 40,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=1&size=100",
+          "status": 200,
+          "ms": 32,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=2&size=100",
+          "status": 200,
+          "ms": 23,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=3&size=100",
+          "status": 200,
+          "ms": 24,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=4&size=100",
+          "status": 200,
+          "ms": 18,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=5&size=100",
+          "status": 200,
+          "ms": 8,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=2147483647&size=100",
+          "status": 200,
+          "ms": 8,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects page=-1",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_VALUE",
+            "message": "Nilai parameter tidak valid."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.134397152Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=-1",
+          "status": 400,
+          "ms": 9,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects size=0",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "size",
+            "code": "INVALID_VALUE",
+            "message": "Nilai parameter tidak valid."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.141046067Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?size=0",
+          "status": 400,
+          "ms": 7,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects size=101",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "size",
+            "code": "INVALID_VALUE",
+            "message": "Nilai parameter tidak valid."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.149672165Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?size=101",
+          "status": 400,
+          "ms": 7,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects page=abc",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Format parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_FORMAT",
+            "message": "Format nilai parameter tidak sesuai."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.156824427Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=abc",
+          "status": 400,
+          "ms": 7,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects page=1.5",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Format parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_FORMAT",
+            "message": "Format nilai parameter tidak sesuai."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.162467349Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=1.5",
+          "status": 400,
+          "ms": 5,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects page=2147483648",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Format parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_FORMAT",
+            "message": "Format nilai parameter tidak sesuai."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.168536711Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=2147483648",
+          "status": 400,
+          "ms": 7,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects page=",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_FORMAT",
+            "message": "Parameter tidak boleh kosong."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.174618773Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects size=",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "size",
+            "code": "INVALID_FORMAT",
+            "message": "Parameter tidak boleh kosong."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.180674634Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?size=",
+          "status": 400,
+          "ms": 7,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects source=",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "INVALID_FORMAT",
+            "message": "Parameter tidak boleh kosong."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.1878752Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?source=",
+          "status": 400,
+          "ms": 7,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects source=cfpb",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "INVALID_VALUE",
+            "message": "Nilai source harus CFPB atau ANALYST."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.196888634Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?source=cfpb",
+          "status": 400,
+          "ms": 8,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects source=UNKNOWN",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "INVALID_VALUE",
+            "message": "Nilai source harus CFPB atau ANALYST."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.20364906Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?source=UNKNOWN",
+          "status": 400,
+          "ms": 7,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects source=%27%20OR%201%3D1--",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "INVALID_VALUE",
+            "message": "Nilai source harus CFPB atau ANALYST."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.210280573Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?source=%27%20OR%201%3D1--",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "detail invalid/missing 1-1-1-1-1",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Format parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "id",
+            "code": "INVALID_FORMAT",
+            "message": "Format nilai parameter tidak sesuai."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.216539352Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases/1-1-1-1-1",
+          "status": 400,
+          "ms": 6,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "detail invalid/missing not-a-uuid",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Format parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "id",
+            "code": "INVALID_FORMAT",
+            "message": "Format nilai parameter tidak sesuai."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.223599006Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases/not-a-uuid",
+          "status": 400,
+          "ms": 7,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "detail invalid/missing 00000000-0000-4000-8000-000000000000",
+      "passed": true,
+      "detail": {
+        "code": "CASE_NOT_FOUND",
+        "message": "Kasus tidak ditemukan.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:23.229975996Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases/00000000-0000-4000-8000-000000000000",
+          "status": 404,
+          "ms": 5,
+          "code": "CASE_NOT_FOUND",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "exact narrative retrieval ranks original CFPB case first",
+      "passed": true,
+      "detail": {
+        "topScore": 0.9999999999999997,
+        "returnedCount": 1,
+        "ms": 266
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 266,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search NO_RELEVANT_CASES and no persistence",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 143,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 14,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "case/spacing normalization and optional blank categories",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 109,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 100,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects unknown category",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CATEGORY",
+        "message": "Kategori tidak sesuai dengan katalog sampel.",
+        "fieldErrors": [
+          {
+            "field": "product",
+            "code": "INVALID_VALUE",
+            "message": "Nilai product tidak tersedia pada katalog."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.895338963Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 27,
+          "code": "INVALID_CATEGORY",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects invalid issue",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CATEGORY",
+        "message": "Kategori tidak sesuai dengan katalog sampel.",
+        "fieldErrors": [
+          {
+            "field": "issue",
+            "code": "INVALID_VALUE",
+            "message": "Nilai issue tidak tersedia untuk produk tersebut."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.929741546Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 35,
+          "code": "INVALID_CATEGORY",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects wrong subproduct",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CATEGORY",
+        "message": "Kategori tidak sesuai dengan katalog sampel.",
+        "fieldErrors": [
+          {
+            "field": "subProduct",
+            "code": "INVALID_VALUE",
+            "message": "Nilai subProduct tidak tersedia untuk produk tersebut."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:23.966227922Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 37,
+          "code": "INVALID_CATEGORY",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects wrong subissue",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CATEGORY",
+        "message": "Kategori tidak sesuai dengan katalog sampel.",
+        "fieldErrors": [
+          {
+            "field": "subIssue",
+            "code": "INVALID_VALUE",
+            "message": "Nilai subIssue tidak tersedia untuk produk dan masalah tersebut."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.005932496Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 40,
+          "code": "INVALID_CATEGORY",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects blank required field",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input pengaduan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "product",
+            "code": "REQUIRED",
+            "message": "Produk wajib diisi."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.016338359Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 8,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects empty narrative",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "INVALID_VALUE",
+            "message": "Panjang minimal 1 karakter."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.023618633Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 7,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects stopwords only",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input pengaduan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "NO_MEANINGFUL_TOKENS",
+            "message": "Narasi harus mengandung setidaknya satu kata bermakna."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.030447964Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 7,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects numbers only",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input pengaduan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "NO_MEANINGFUL_TOKENS",
+            "message": "Narasi harus mengandung setidaknya satu kata bermakna."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.03883424Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 9,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects redaction only",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input pengaduan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "NO_MEANINGFUL_TOKENS",
+            "message": "Narasi harus mengandung setidaknya satu kata bermakna."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.050278299Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 11,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects Unicode punctuation only",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input pengaduan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "NO_MEANINGFUL_TOKENS",
+            "message": "Narasi harus mengandung setidaknya satu kata bermakna."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.060168515Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 9,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects narrative over 50000",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "TOO_LONG",
+            "message": "Panjang maksimal 50000 karakter."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.073864982Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 14,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects category over 500",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "product",
+            "code": "TOO_LONG",
+            "message": "Panjang maksimal 500 karakter."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.080798323Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 7,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects unknown field",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "UNKNOWN_FIELD",
+            "message": "Properti tidak dikenal dan harus dihilangkan."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.087113808Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects null limit",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "limit",
+            "code": "INVALID_VALUE",
+            "message": "Field tidak boleh null."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.092839638Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects zero limit",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "limit",
+            "code": "OUT_OF_RANGE",
+            "message": "Nilai di bawah batas minimum."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.098658476Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 7,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects over limit",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "limit",
+            "code": "OUT_OF_RANGE",
+            "message": "Nilai di atas batas maksimum."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.105747832Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects fraction limit",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "limit",
+            "code": "INVALID_FORMAT",
+            "message": "Tipe nilai tidak sesuai dengan kontrak."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.11199731Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects string limit",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "limit",
+            "code": "INVALID_FORMAT",
+            "message": "Tipe nilai tidak sesuai dengan kontrak."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.118577419Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects null narrative",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "INVALID_VALUE",
+            "message": "Field tidak boleh null."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.123784501Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects array category",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "product",
+            "code": "INVALID_FORMAT",
+            "message": "Tipe nilai tidak sesuai dengan kontrak."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.129602239Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects malformed/invalid object \"{\"",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:24.136793105Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 7,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects malformed/invalid object \"null\"",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan harus berupa objek JSON.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:24.143159794Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 6,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects malformed/invalid object \"[]\"",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan harus berupa objek JSON.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:24.151058125Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 7,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects malformed/invalid object \"42\"",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan harus berupa objek JSON.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:24.159275185Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 8,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects malformed/invalid object \"{}\"",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "product",
+            "code": "REQUIRED",
+            "message": "Field wajib diisi."
+          },
+          {
+            "field": "issue",
+            "code": "REQUIRED",
+            "message": "Field wajib diisi."
+          },
+          {
+            "field": "narrative",
+            "code": "REQUIRED",
+            "message": "Field wajib diisi."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:24.165346347Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects malformed/invalid object \"\"",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:24.172118173Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 7,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects malformed/invalid object \"{\\\"product\\\":\\\"Checking or savings account\\\",\\\"issue\\\"",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:24.17878449Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 6,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search accepts limit boundaries and 50000-character narrative",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 132,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 100,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 1112,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q01: Close wording for a missing or misapplied deposit",
+      "passed": true,
+      "detail": {
+        "queryId": "Q01",
+        "scenario": "Close wording for a missing or misapplied deposit",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 94,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 94,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q02: Paraphrase with low lexical overlap",
+      "passed": true,
+      "detail": {
+        "queryId": "Q02",
+        "scenario": "Paraphrase with low lexical overlap",
+        "status": "MATCHES",
+        "returnedCount": 1,
+        "ms": 110,
+        "topIds": [
+          "fb465646-5446-4a60-8a50-8370cbd502fb"
+        ],
+        "topScores": [
+          0.5046660008756592
+        ]
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 110,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q03: Both optional category fields omitted",
+      "passed": true,
+      "detail": {
+        "queryId": "Q03",
+        "scenario": "Both optional category fields omitted",
+        "status": "MATCHES",
+        "returnedCount": 5,
+        "ms": 100,
+        "topIds": [
+          "3b58c960-d29c-4d5b-b143-f84fd56812a2",
+          "35ae6e1c-8cb8-4d37-81e0-ef8701d2b79d",
+          "a256d86f-acf6-4ee0-980c-92671992226c",
+          "f7607792-eaa5-47e7-88e0-8b4195fd8866",
+          "c4ad752e-04dc-4324-b6bb-a473843e9973"
+        ],
+        "topScores": [
+          0.5353185806271532,
+          0.5270502712953654,
+          0.5261340758012236,
+          0.5159375651410314,
+          0.512056303518661
+        ]
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 100,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q04: Independent valid optional branch",
+      "passed": true,
+      "detail": {
+        "queryId": "Q04",
+        "scenario": "Independent valid optional branch",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 114,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 114,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q05: Cross-product narrative mentions a checking account",
+      "passed": true,
+      "detail": {
+        "queryId": "Q05",
+        "scenario": "Cross-product narrative mentions a checking account",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 124,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 124,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q06: Numeric and redacted date filler mixed with meaningful text",
+      "passed": true,
+      "detail": {
+        "queryId": "Q06",
+        "scenario": "Numeric and redacted date filler mixed with meaningful text",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 123,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 123,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q07: Unrelated narrative with a matching category tuple",
+      "passed": true,
+      "detail": {
+        "queryId": "Q07",
+        "scenario": "Unrelated narrative with a matching category tuple",
+        "status": "MATCHES",
+        "returnedCount": 1,
+        "ms": 83,
+        "topIds": [
+          "65fbad47-a446-4be1-8e07-8e896472f79d"
+        ],
+        "topScores": [
+          0.5424393331124167
+        ]
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 83,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q08: Domestic transfer fraud wording",
+      "passed": true,
+      "detail": {
+        "queryId": "Q08",
+        "scenario": "Domestic transfer fraud wording",
+        "status": "MATCHES",
+        "returnedCount": 2,
+        "ms": 87,
+        "topIds": [
+          "b6e11b1a-e973-4197-952d-27af362cd006",
+          "a9d2542c-205b-41aa-94f6-e70ea00dd243"
+        ],
+        "topScores": [
+          0.5716337028509754,
+          0.5201617581265292
+        ]
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 87,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q09: International transfer availability paraphrase",
+      "passed": true,
+      "detail": {
+        "queryId": "Q09",
+        "scenario": "International transfer availability paraphrase",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 104,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 104,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q10: Virtual-currency transaction problem",
+      "passed": true,
+      "detail": {
+        "queryId": "Q10",
+        "scenario": "Virtual-currency transaction problem",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 106,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 106,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q11: Savings-account fee problem",
+      "passed": true,
+      "detail": {
+        "queryId": "Q11",
+        "scenario": "Savings-account fee problem",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 87,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 87,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q12: ATM card problem",
+      "passed": true,
+      "detail": {
+        "queryId": "Q12",
+        "scenario": "ATM card problem",
+        "status": "MATCHES",
+        "returnedCount": 2,
+        "ms": 91,
+        "topIds": [
+          "ec01e813-25cd-44b9-b7c6-b4ff07a33d65",
+          "d6375cbd-a1cf-4ff3-a084-5a42dfbaad5e"
+        ],
+        "topScores": [
+          0.5122310685616676,
+          0.5021944722460281
+        ]
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 91,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "create analyst with notes, date, reference and Location",
+      "passed": true,
+      "detail": {
+        "id": "029730f9-d4ca-404c-97b5-69f33ac60329"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201,
+          "ms": 51,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/029730f9-d4ca-404c-97b5-69f33ac60329",
+          "status": 200,
+          "ms": 6,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "analyst is immediately searchable; category catalog stays unchanged",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 94,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200,
+          "ms": 8,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects missing handling notes",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "handlingNotes",
+            "code": "REQUIRED",
+            "message": "Field wajib diisi."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:26.945470496Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects blank notes",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input retensi tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "handlingNotes",
+            "code": "REQUIRED",
+            "message": "Catatan penanganan wajib diisi."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:26.95221532Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects notes over 10000",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "handlingNotes",
+            "code": "TOO_LONG",
+            "message": "Panjang maksimal 10000 karakter."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:26.958229377Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects evaluation over 10000",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "evaluationNotes",
+            "code": "TOO_LONG",
+            "message": "Panjang maksimal 10000 karakter."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:26.964650771Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects company over 500",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "company",
+            "code": "TOO_LONG",
+            "message": "Panjang maksimal 500 karakter."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:26.973382779Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 8,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects response over 2000",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "companyResponse",
+            "code": "TOO_LONG",
+            "message": "Panjang maksimal 2000 karakter."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:26.978926792Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 7,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects invalid outcome",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "outcomeAssessment",
+            "code": "INVALID_VALUE",
+            "message": "Nilai tidak dikenal."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:26.986072653Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects invalid date",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "receivedDate",
+            "code": "INVALID_FORMAT",
+            "message": "Tanggal harus berformat YYYY-MM-DD."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:26.991281235Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects null reference array",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "referenceCaseIds",
+            "code": "INVALID_VALUE",
+            "message": "Field tidak boleh null."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:26.996159586Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects unknown reference",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_REFERENCE",
+        "message": "Referensi kasus tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "referenceCaseIds[0]",
+            "code": "NOT_FOUND",
+            "message": "Kasus referensi tidak ditemukan."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:27.005255428Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 9,
+          "code": "INVALID_REFERENCE",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects duplicate references",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "referenceCaseIds[1]",
+            "code": "DUPLICATE",
+            "message": "Item tidak boleh duplikat."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:27.011564512Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects abbreviated reference UUID",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "referenceCaseIds[0]",
+            "code": "INVALID_FORMAT",
+            "message": "UUID harus memakai format lengkap 8-4-4-4-12."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:27.016889104Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects null reference member",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "referenceCaseIds[0]",
+            "code": "INVALID_VALUE",
+            "message": "Field tidak boleh null."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:27.022287904Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects 21 references",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "referenceCaseIds",
+            "code": "OUT_OF_RANGE",
+            "message": "Jumlah item maksimal 20."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:27.030006118Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 8,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects source injection",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "UNKNOWN_FIELD",
+            "message": "Properti tidak dikenal dan harus dihilangkan."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:27.036177589Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects id injection",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "id",
+            "code": "UNKNOWN_FIELD",
+            "message": "Properti tidak dikenal dan harus dihilangkan."
+          }
+        ],
+        "timestamp": "2026-10-27T02:23:27.040977433Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "failed retention is atomic",
+      "passed": true,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 8,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "CFPB update immutable; missing case and self-reference rejected",
+      "passed": true,
+      "requests": [
+        {
+          "method": "PUT",
+          "path": "/api/cases/0012924d-55c3-489c-b55b-dd17eb42b803",
+          "status": 409,
+          "ms": 9,
+          "code": "IMMUTABLE_CFPB_CASE",
+          "contentType": "application/json"
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/00000000-0000-4000-8000-000000000000",
+          "status": 404,
+          "ms": 8,
+          "code": "CASE_NOT_FOUND",
+          "contentType": "application/json"
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/029730f9-d4ca-404c-97b5-69f33ac60329",
+          "status": 400,
+          "ms": 9,
+          "code": "INVALID_REFERENCE",
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/029730f9-d4ca-404c-97b5-69f33ac60329",
+          "status": 200,
+          "ms": 6,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "full PUT clears omitted fields and preserves identity/createdAt",
+      "passed": true,
+      "requests": [
+        {
+          "method": "PUT",
+          "path": "/api/cases/029730f9-d4ca-404c-97b5-69f33ac60329",
+          "status": 200,
+          "ms": 25,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "Unicode supplementary characters respect code-point length",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201,
+          "ms": 34,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 7,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "concurrent retention preserves all six writes",
+      "passed": true,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?source=ANALYST",
+          "status": 200,
+          "ms": 13,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201,
+          "ms": 21,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201,
+          "ms": 30,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201,
+          "ms": 30,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201,
+          "ms": 38,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201,
+          "ms": 44,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201,
+          "ms": 48,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?source=ANALYST",
+          "status": 200,
+          "ms": 12,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "concurrent identical imports replay the same batch once",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 201,
+          "ms": 21,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 200,
+          "ms": 24,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 200,
+          "ms": 26,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "mixed CSV reports rejected rows and duplicates without overwriting",
+      "passed": true,
+      "detail": {
+        "processed": 5,
+        "imported": 1,
+        "duplicates": 1,
+        "rejected": 3
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 201,
+          "ms": 25,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "CSV record limit is atomic",
+      "passed": true,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 12,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 100,
+          "code": "IMPORT_LIMIT_EXCEEDED",
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 11,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "multipart file over 20 MiB rejected with JSON 413",
+      "passed": true,
+      "detail": {
+        "code": "PAYLOAD_TOO_LARGE",
+        "message": "Ukuran unggahan melebihi batas.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:27.644238554Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 413,
+          "ms": 217,
+          "code": "PAYLOAD_TOO_LARGE",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "routing PATCH /api/health",
+      "passed": true,
+      "detail": {
+        "code": "METHOD_NOT_ALLOWED",
+        "message": "Metode HTTP tidak didukung.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:27.654450699Z"
+      },
+      "requests": [
+        {
+          "method": "PATCH",
+          "path": "/api/health",
+          "status": 405,
+          "ms": 9,
+          "code": "METHOD_NOT_ALLOWED",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "routing DELETE /api/cases",
+      "passed": true,
+      "detail": {
+        "code": "METHOD_NOT_ALLOWED",
+        "message": "Metode HTTP tidak didukung.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:27.658183744Z"
+      },
+      "requests": [
+        {
+          "method": "DELETE",
+          "path": "/api/cases",
+          "status": 405,
+          "ms": 3,
+          "code": "METHOD_NOT_ALLOWED",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "routing GET /api/search",
+      "passed": true,
+      "detail": {
+        "code": "METHOD_NOT_ALLOWED",
+        "message": "Metode HTTP tidak didukung.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:27.661193923Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/search",
+          "status": 405,
+          "ms": 3,
+          "code": "METHOD_NOT_ALLOWED",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "routing GET /api/imports/cfpb",
+      "passed": true,
+      "detail": {
+        "code": "METHOD_NOT_ALLOWED",
+        "message": "Metode HTTP tidak didukung.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:27.664107293Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/imports/cfpb",
+          "status": 405,
+          "ms": 3,
+          "code": "METHOD_NOT_ALLOWED",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "routing GET /api/not-found",
+      "passed": true,
+      "detail": {
+        "code": "ROUTE_NOT_FOUND",
+        "message": "Route tidak ditemukan.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:27.674813183Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/not-found",
+          "status": 404,
+          "ms": 11,
+          "code": "ROUTE_NOT_FOUND",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "routing GET /api/api/health",
+      "passed": true,
+      "detail": {
+        "code": "ROUTE_NOT_FOUND",
+        "message": "Route tidak ditemukan.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:27.680481508Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/api/health",
+          "status": 404,
+          "ms": 6,
+          "code": "ROUTE_NOT_FOUND",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "wrong content type returns 415",
+      "passed": true,
+      "detail": {
+        "code": "UNSUPPORTED_MEDIA_TYPE",
+        "message": "Tipe konten permintaan tidak didukung.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:27.687163926Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 415,
+          "ms": 7,
+          "code": "UNSUPPORTED_MEDIA_TYPE",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "allowed CORS preflight and actual response",
+      "passed": true,
+      "requests": [
+        {
+          "method": "OPTIONS",
+          "path": "/api/cases",
+          "status": 204,
+          "ms": 4,
+          "contentType": null
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "ms": 61,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "CORS rejects foreign origin and unapproved headers",
+      "passed": true,
+      "requests": [
+        {
+          "method": "OPTIONS",
+          "path": "/api/cases",
+          "status": 403,
+          "ms": 3,
+          "contentType": null
+        },
+        {
+          "method": "OPTIONS",
+          "path": "/api/cases",
+          "status": 403,
+          "ms": 2,
+          "contentType": null
+        }
+      ]
+    },
+    {
+      "name": "strict JSON parsing: trailing JSON object",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:27.764438376Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 6,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "strict JSON parsing: trailing scalar",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-27T02:23:27.771062989Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 6,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "observe duplicate JSON keys: last value wins (contract has no explicit policy)",
+      "passed": true,
+      "detail": {
+        "policy": "Last duplicate key wins",
+        "status": 200
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 112,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "unsupported Accept is a controlled client error",
+      "passed": true,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 406,
+          "ms": 35,
+          "contentType": null
+        }
+      ]
+    },
+    {
+      "name": "integer-valued decimal limit follows OpenAPI integer semantics",
+      "passed": false,
+      "error": "Expected values to be strictly equal:\n\n400 !== 200\n",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "RFC3339 full-date rejects expanded years",
+      "passed": false,
+      "error": "Expected values to be strictly equal:\n\n500 !== 400\n",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 500,
+          "ms": 36,
+          "code": "INTERNAL_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "date rejects negative years",
+      "passed": false,
+      "error": "Expected values to be strictly equal:\n\n500 !== 400\n",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 500,
+          "ms": 9,
+          "code": "INTERNAL_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "PUT rejects expanded date before writing",
+      "passed": false,
+      "error": "Expected values to be strictly equal:\n\n500 !== 400\n",
+      "requests": [
+        {
+          "method": "PUT",
+          "path": "/api/cases/029730f9-d4ca-404c-97b5-69f33ac60329",
+          "status": 500,
+          "ms": 10,
+          "code": "INTERNAL_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "405 response advertises supported methods in Allow",
+      "passed": false,
+      "error": "The input did not match the regular expression /GET/. Input:\n\n''\n",
+      "requests": [
+        {
+          "method": "PATCH",
+          "path": "/api/health",
+          "status": 405,
+          "ms": 4,
+          "code": "METHOD_NOT_ALLOWED",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "metadata rejects wrong JSON type: number filename",
+      "passed": false,
+      "error": "Expected values to be strictly equal:\n\n201 !== 400\n",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 201,
+          "ms": 16,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "metadata rejects wrong JSON type: boolean filename",
+      "passed": false,
+      "error": "Expected values to be strictly equal:\n\n201 !== 400\n",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 201,
+          "ms": 13,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "metadata rejects wrong JSON type: date array",
+      "passed": false,
+      "error": "Expected values to be strictly equal:\n\n201 !== 400\n",
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 201,
+          "ms": 15,
+          "contentType": "application/json"
+        }
+      ]
+    }
+  ]
+}

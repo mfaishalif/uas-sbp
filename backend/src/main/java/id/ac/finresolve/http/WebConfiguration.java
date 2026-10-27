@@ -18,6 +18,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.Ordered;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.converter.HttpMessageConverters;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -39,11 +40,14 @@ public class WebConfiguration implements WebMvcConfigurer {
     static final List<String> ALLOWED_HEADERS = List.of("Content-Type", "Accept");
 
     private final List<String> allowedOrigins;
+    private final RequestRules requestRules;
 
     public WebConfiguration(
             @Value("${finresolve.cors.allowed-origins:http://localhost:3000}")
-            String configuredOrigins) {
+            String configuredOrigins,
+            RequestRules requestRules) {
         this.allowedOrigins = allowedOrigins(configuredOrigins);
+        this.requestRules = requestRules;
     }
 
     /** The local frontend is always allowed; extra exact origins are added, never a wildcard. */
@@ -74,6 +78,16 @@ public class WebConfiguration implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(new EmptyQueryParameterInterceptor()).addPathPatterns("/api/**");
+    }
+
+    /**
+     * Contract validation must see the raw metadata part before the default Jackson converter can
+     * coerce JSON scalars. Placing it first keeps every other request/response on the default chain.
+     */
+    @Override
+    public void configureMessageConverters(HttpMessageConverters.ServerBuilder builder) {
+        builder.configureMessageConvertersList(converters ->
+                converters.add(0, new StrictImportMetadataConverter(requestRules)));
     }
 
     @Bean
