@@ -1,0 +1,33 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: runtime
+    image: finresolve-demo:local
+    ports:
+      - "127.0.0.1:8080:8080"
+    environment:
+      FINRESOLVE_DB_PATH: /data/finresolve.db
+      FINRESOLVE_DEMO_ENABLED: "true"
+      FINRESOLVE_DEMO_SAMPLE_PATH: /app/data/cfpb/sample.csv
+      SERVER_ADDRESS: 0.0.0.0
+    volumes:
+      - type: volume
+        source: finresolve-data
+        target: /data
+    healthcheck:
+      test:
+        - CMD
+        - curl
+        - --fail
+        - --silent
+        - --show-error
+        - http://127.0.0.1:8080/api/health
+      interval: 5s
+      timeout: 3s
+      retries: 30
+      start_period: 30s
+
+volumes:
+  finresolve-data:

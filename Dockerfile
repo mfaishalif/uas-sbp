@@ -12,6 +12,32 @@ RUN chmod +x backend/mvnw \
     && cd backend \
     && ./mvnw -B -DskipTests package
 
+# Development target: source is synchronized by Compose Watch, then Maven recompiles
+# from scratch and runs Spring Boot. Keeping target/ inside the container preserves
+# clean builds and class deletions without writing build output back to the host.
+FROM eclipse-temurin:21-jdk-jammy AS development
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends unzip curl \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /workspace
+COPY . .
+
+RUN chmod +x backend/mvnw \
+    && cp docker/development-entrypoint.sh /usr/local/bin/finresolve-development \
+    && chmod +x /usr/local/bin/finresolve-development
+
+ENV FINRESOLVE_DB_PATH=/data/finresolve.db \
+    FINRESOLVE_DEMO_SAMPLE_PATH=/workspace/data/cfpb/sample.csv \
+    SERVER_ADDRESS=0.0.0.0
+
+WORKDIR /workspace/backend
+EXPOSE 8080
+# The entrypoint runs ./mvnw -B -DskipTests clean spring-boot:run and keeps the
+# container waiting after a failed build so Compose Watch can retry on the next change.
+CMD ["finresolve-development"]
+
 FROM eclipse-temurin:21-jre-jammy AS runtime
 
 RUN apt-get update \

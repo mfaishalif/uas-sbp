@@ -3,18 +3,60 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: finresolve-demo:local
+      target: development
+    image: finresolve-dev:local
     ports:
       - "127.0.0.1:8080:8080"
     environment:
       FINRESOLVE_DB_PATH: /data/finresolve.db
       FINRESOLVE_DEMO_ENABLED: "true"
-      FINRESOLVE_DEMO_SAMPLE_PATH: /app/data/cfpb/sample.csv
+      FINRESOLVE_DEMO_SAMPLE_PATH: /workspace/data/cfpb/sample.csv
       SERVER_ADDRESS: 0.0.0.0
     volumes:
       - type: volume
-        source: finresolve-data
+        source: finresolve-dev-data
         target: /data
+      - type: volume
+        source: finresolve-maven-cache
+        target: /root/.m2
+    develop:
+      watch:
+        # Source, resources, and generator templates: sync, compile cleanly, restart.
+        - action: sync+restart
+          path: ./backend/src
+          target: /workspace/backend/src
+          initial_sync: true
+          ignore:
+            - "**/target/"
+            - "**/data/"
+        # The API contract is consumed by the backend generator at build time.
+        - action: sync+restart
+          path: ./docs/api/openapi.json
+          target: /workspace/docs/api/openapi.json
+          initial_sync: true
+        # OpenAPI generator configuration used by the Maven plugin.
+        - action: sync+restart
+          path: ./tools/openapi
+          target: /workspace/tools/openapi
+          initial_sync: true
+          ignore:
+            - "**/target/"
+            - "**/data/"
+        # Dependencies, wrapper, and image definition require a new image.
+        - action: rebuild
+          path: ./Dockerfile
+        - action: rebuild
+          path: ./docker
+        - action: rebuild
+          path: ./.dockerignore
+        - action: rebuild
+          path: ./backend/pom.xml
+        - action: rebuild
+          path: ./backend/.mvn
+        - action: rebuild
+          path: ./backend/mvnw
+        - action: rebuild
+          path: ./backend/mvnw.cmd
     healthcheck:
       test:
         - CMD
@@ -29,4 +71,5 @@ services:
       start_period: 30s
 
 volumes:
-  finresolve-data:
+  finresolve-dev-data:
+  finresolve-maven-cache:
