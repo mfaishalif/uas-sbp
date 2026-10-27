@@ -1,3 +1,8 @@
+> **Arsip studi eksploratif v1 (27 Oktober 2026).** Dokumen, label, dan hasil di direktori ini
+> dipertahankan sebagai arsip. Semua perbandingan baru memakai studi v2 di
+> [v2/README.md](v2/README.md) dengan label subagent yang sama untuk kedua mode. Jangan memakai
+> angka v1 untuk memilih konfigurasi baru.
+
 # Evaluasi relevansi dan walkthrough demo
 
 Dokumen ini menyediakan (1) walkthrough penerimaan yang dapat dijalankan pada checkout baru dan (2) lembar evaluasi relevansi. Evaluasi di repository ini bersifat **eksploratif**: label relevansi dibuat otomatis dan **belum divalidasi manusia**. Label tersebut tidak ditampilkan pada respons API dan tidak boleh diperlakukan sebagai penilaian final.

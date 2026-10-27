@@ -3,7 +3,11 @@ package id.ac.finresolve.similarity;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.util.Map;
 import java.util.stream.Stream;
+import org.springframework.boot.context.properties.bind.Bindable;
+import org.springframework.boot.context.properties.bind.Binder;
+import org.springframework.boot.context.properties.source.MapConfigurationPropertySource;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
@@ -25,6 +29,52 @@ class SimilaritySettingsTest {
         assertThat(settings.defaultLimit()).isEqualTo(5);
         assertThat(settings.maxLimit()).isEqualTo(20);
         assertThat(settings.algorithmVersion()).isEqualTo("tfidf-cosine-v1");
+        assertThat(settings.mode()).isEqualTo(SimilarityMode.BASELINE);
+    }
+
+    @Test
+    void phrasesModeReportsItsOwnAlgorithmVersion() {
+        SimilaritySettings settings = new SimilaritySettings(
+                0.4, 0.6, 0.35, 0.15, 0.35, 0.15, 0.5, 5, 20,
+                SimilarityMode.PHRASES);
+
+        assertThat(settings.mode()).isEqualTo(SimilarityMode.PHRASES);
+        assertThat(settings.algorithmVersion()).isEqualTo("tfidf-phrases-v2");
+    }
+
+    @Test
+    void modeParsingIsCaseInsensitiveAndRejectsUnknownValues() {
+        assertThat(SimilarityMode.parse(" baseline ")).isEqualTo(SimilarityMode.BASELINE);
+        assertThat(SimilarityMode.parse("PHRASES")).isEqualTo(SimilarityMode.PHRASES);
+        assertThatThrownBy(() -> SimilarityMode.parse("hybrid"))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("Unknown similarity mode");
+        assertThatThrownBy(() -> new SimilaritySettings(
+                        0.4, 0.6, 0.35, 0.15, 0.35, 0.15, 0.5, 5, 20, null))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("mode");
+    }
+
+    @Test
+    void propertyBindingRejectsAnUnknownMode() {
+        Map<String, Object> properties = Map.ofEntries(
+                Map.entry("finresolve.similarity.mode", "hybrid"),
+                Map.entry("finresolve.similarity.category-weight", "0.4"),
+                Map.entry("finresolve.similarity.text-weight", "0.6"),
+                Map.entry("finresolve.similarity.product-weight", "0.35"),
+                Map.entry("finresolve.similarity.sub-product-weight", "0.15"),
+                Map.entry("finresolve.similarity.issue-weight", "0.35"),
+                Map.entry("finresolve.similarity.sub-issue-weight", "0.15"),
+                Map.entry("finresolve.similarity.threshold", "0.5"),
+                Map.entry("finresolve.similarity.default-limit", "5"),
+                Map.entry("finresolve.similarity.max-limit", "20"));
+        Binder binder = new Binder(new MapConfigurationPropertySource(properties));
+
+        assertThatThrownBy(() -> binder.bind(
+                        "finresolve.similarity", Bindable.of(SimilaritySettings.class)))
+                .isInstanceOf(RuntimeException.class)
+                .hasRootCauseMessage(
+                        "No enum constant id.ac.finresolve.similarity.SimilarityMode.hybrid");
     }
 
     @Test

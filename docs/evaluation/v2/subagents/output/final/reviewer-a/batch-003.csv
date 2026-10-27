@@ -1,0 +1,10 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q74,10688449,0,Query is a general question about checking a balance at an ATM; the case is an ATM withdrawal malfunction with missing cash.,THE ATM MALFUNCTIONED AND PRINTED OUT A RECEIPT STATING,reviewer-a
+Q77,10657211,0,"Query asks what a duplicate charge looks like; the case reports unauthorized transactions, not a charge duplicated for one purchase.",I have unauthorized transactions over {$3000.00} under my debit card,reviewer-a
+Q77,10660224,1,"Both concern a merchant debiting the same amount again, producing a duplicate charge that should have been reversed.",debited my account for the same amount {$39.00},reviewer-a
+Q77,10683886,0,Query asks about duplicate charges; the case concerns unauthorized charges after a stolen wallet.,my wallet was stolen while I was in XXXX XXXX Texas,reviewer-a
+Q77,10684486,0,Query asks about duplicate charges; the case concerns a fraudulent toll debit that the customer did not authorize.,Asking if I authorized XXXX toll to debit my account.,reviewer-a
+Q78,10673265,1,Both concern a single transaction charged twice to the customer's account.,I was charged double for a transaction XXXX twice.,reviewer-a
+Q83,10683886,0,"Query asks how to freeze a debit card after exposure; the case concerns unauthorized charges and a dispute after a stolen wallet, not the freeze procedure.",my wallet was stolen while I was in XXXX XXXX Texas,reviewer-a
+Q93,10658469,1,"Both address overdraft fees and enrollment in overdraft coverage, including how fees are incurred.",which have resulted in multiple unjust fees being taken from my account,reviewer-a
+Q95,10658109,0,Query asks how to qualify for a savings monthly-fee waiver; the case only complains about being charged a monthly savings fee.,a {$15.00} MONTLY fee for my savings,reviewer-a

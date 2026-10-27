@@ -1,0 +1,18 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q97,10655737,0,"The case is about a suspended account and a stalled external transfer, not how compound interest is calculated or credited.",my Ally account had been suspended,reviewer-a
+Q97,10655867,0,"The complaint concerns a suspended savings account after a deposit, not compound-interest calculation or crediting frequency.",my account has been suspended since,reviewer-a
+Q97,10663218,0,"The case concerns a joint savings account locked after the owner's death, not how interest compounds or how often it is credited.",we opened a high interest savings account at Capital One,reviewer-a
+Q97,10669957,0,"The complaint is about forced posting, overdrafts, and fees, not savings interest calculation or crediting.",Truist forced posted XXXX from my credit balance,reviewer-a
+Q97,10671126,0,"The case describes identity theft and fraudulent wires on frozen accounts, not compound interest on a savings account.",I want my accounts frozen,reviewer-a
+Q97,10685141,0,"The case challenges a savings interest-rate mismatch between account products, not the method or frequency of compounding interest.",a new savings account with a higher interest rate,reviewer-a
+Q97,10688349,0,"The case complains about being placed in a lower-interest savings product, not about how compound interest is calculated or credited.",My money received probably less than 1 % interest,reviewer-a
+Q97,10691308,0,"The complaint concerns a data breach and disputed balances, not compound-interest calculation or crediting on a savings account.",financial data being compromised,reviewer-a
+Q98,10655737,0,"The case concerns a suspended account and inaccessible transfer funds, not how much interest a savings deposit would earn.",my money ( {$14000.00} ) is in limbo,reviewer-a
+Q98,10655867,0,"The complaint concerns a suspended savings account and a deposit return request, not the interest a savings deposit would earn.",my account has been suspended since,reviewer-a
+Q98,10663218,0,"The case concerns a locked joint savings account after a death, not interest earned on a savings deposit over a year.",we opened a high interest savings account at Capital One,reviewer-a
+Q98,10671126,0,"The case is about identity theft and fraudulent wires, not the interest a savings deposit might earn.",I want my accounts frozen,reviewer-a
+Q98,10685141,1,"The case describes a savings account paying a lower interest rate than another product, directly bearing on how much interest a savings deposit earns over time.",resulting in missing out on potential earnings,reviewer-a
+Q98,10688349,1,"The case quantifies the low interest earned on a large savings balance versus a higher-rate account, addressing how much interest a savings deposit earns.",My money received probably less than 1 % interest,reviewer-a
+Q98,10689238,0,"The complaint concerns an unpaid promotional bonus, not interest earned on a savings deposit.",I did not receive my {$500.00} bonus,reviewer-a
+Q98,10692869,0,"The case concerns a promised promotional bonus that was denied, not interest earned on the savings deposit.",not getting the {$500.00},reviewer-a
+Q98,10695903,0,"The complaint concerns frozen direct deposits and missing funds, not the interest a savings deposit might earn.",have frozen in my account,reviewer-a

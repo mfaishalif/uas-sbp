@@ -99,13 +99,40 @@ class EvaluationMetricsTest {
         assertThat(aggregate.negativeQueries()).isEqualTo(2);
         assertThat(aggregate.meanPrecisionAt5())
                 .isCloseTo((1.0 / 5.0 + 0.0) / 2.0, within());
-        assertThat(aggregate.meanReturnedPrecision())
+        assertThat(aggregate.macroPrecision())
                 .isCloseTo((0.5 + 0.0) / 2.0, within());
+        assertThat(aggregate.microPrecision()).isCloseTo(1.0 / 3.0, within());
+        assertThat(aggregate.complaintSuccesses()).isEqualTo(1);
+        assertThat(aggregate.complaintSuccessRate()).isCloseTo(0.5, within());
         assertThat(aggregate.complaintReturned()).isEqualTo(3);
+        assertThat(aggregate.relevantReturned()).isEqualTo(1);
         assertThat(aggregate.negativeReturned()).isEqualTo(1);
         assertThat(aggregate.totalReturned()).isEqualTo(4);
         assertThat(aggregate.negativeFailures()).isEqualTo(1);
         assertThat(aggregate.negativeFailureRate()).isEqualTo(0.5);
+    }
+
+    @Test
+    void macroAndMicroPrecisionDifferWhenAComplaintReturnsNothing() {
+        EvaluationQuery answered = query("Q1", EvaluationQuery.Kind.COMPLAINT);
+        EvaluationQuery empty = query("Q2", EvaluationQuery.Kind.COMPLAINT);
+        EvaluationLabels labels = labels(
+                judgment("Q1", "101", true),
+                judgment("Q2", "201", true));
+        Map<String, List<SimilarityResult>> results = Map.of(
+                "Q1", List.of(result("101")),
+                "Q2", List.of());
+
+        EvaluationMetrics.Aggregate aggregate = EvaluationMetrics.aggregate(
+                List.of(answered, empty), results, labels);
+
+        assertThat(aggregate.meanPrecisionAt5()).isCloseTo(0.1, within());
+        assertThat(aggregate.macroPrecision()).isCloseTo(0.5, within());
+        assertThat(aggregate.microPrecision()).isCloseTo(1.0, within());
+        assertThat(aggregate.complaintSuccessRate()).isCloseTo(0.5, within());
+        assertThat(aggregate.complaintSuccesses()).isEqualTo(1);
+        assertThat(aggregate.complaintReturned()).isEqualTo(1);
+        assertThat(aggregate.relevantReturned()).isEqualTo(1);
     }
 
     private static org.assertj.core.data.Offset<Double> within() {
@@ -122,7 +149,8 @@ class EvaluationMetricsTest {
 
     private static EvaluationLabels.Judgment judgment(
             String queryId, String cfpbId, boolean relevant) {
-        return new EvaluationLabels.Judgment(queryId, cfpbId, relevant, "reason");
+        return new EvaluationLabels.Judgment(
+                queryId, cfpbId, relevant, "reason", "case narrative", "reviewer-a");
     }
 
     private static SimilarityResult result(String cfpbId) {

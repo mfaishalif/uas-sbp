@@ -65,6 +65,24 @@ class SearchApiTest {
     }
 
     @Test
+    void acceptsAnIndonesianHeldFundsQuestionAsASearch() throws Exception {
+        seedCfpb("A transfer was deducted from my checking account but never arrived.");
+
+        ApiResponse response = search(query(
+                "Checking or savings account",
+                "Checking account",
+                "Managing an account",
+                "Bagaimana mengambil uang saya yang ditahan bank?",
+                null));
+
+        assertThat(response.status()).isEqualTo(200);
+        JsonNode body = JSON.readTree(response.body());
+        assertThat(body.get("status").asString())
+                .isIn("MATCHES", "NO_RELEVANT_CASES");
+        assertThat(body.get("results").isArray()).isTrue();
+    }
+
+    @Test
     void emptyCorpusReturnsSuccessWithoutCategoryMembership() throws Exception {
         ApiResponse response = search(query(
                 "Unknown product",

@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q54,10669762,0,"The case is a bank declining transfers into a wallet, the opposite direction from a wallet transfer stuck pending.",Ally Bank will not allow me to add to my XXXX balance from my Ally Bank ATM card,reviewer-a
+Q54,10680556,1,Both involve a payment platform limiting the account and refusing to let the consumer withdraw funds.,PayPal limited my account,reviewer-a
+Q54,10684634,1,Both involve a payment wallet freezing the balance and refusing requests to release it.,Venmo has frozen and effectively seized,reviewer-a
+Q54,10690564,0,"The case is a crypto investment scam where the consumer was induced to deposit funds, not a pending wallet transfer.",I am a crypto fraud victim,reviewer-a
+Q54,10693591,0,"The case is a Cash App sanctions compliance inquiry threatening adverse action, not a wallet transfer stuck pending.",will result in adverse action being taken against your account,reviewer-a
+Q55,10652288,1,Both involve a crypto account flagged for review that blocks the consumer from withdrawing funds.,She stated that I could not until after the review,reviewer-a
+Q55,10662307,1,Both involve a crypto exchange locking the account and preventing the consumer from moving funds.,Coinbase immediately locked my account,reviewer-a
+Q55,10662925,0,"The case is unauthorized use of digital cards after a phone theft, not a crypto withdrawal the exchange will not release.",My phone was stolen and whoever took it used my attached digital cards,reviewer-a
+Q55,10662970,0,"The case is a wallet balance held for 180 days with no ability to transfer out, not a pending crypto withdrawal.",I still dont have the ability to transfer out my funds,reviewer-a
+Q55,10680100,1,Both involve a crypto exchange security hold that prevents a requested withdrawal.,I got a notification of a security hold on my account,reviewer-a
+Q55,10683109,0,"The case is a domestic wallet transfer stuck pending, not a cryptocurrency withdrawal held by an exchange.",it went into a pending state,reviewer-a
+Q55,10687059,1,Both involve a crypto exchange withdrawal that has not been processed and an unresponsive provider.,I initiated a withdrawal of {$390.00} from my Kraken account to my bank,reviewer-a
+Q56,10652288,1,Both involve a crypto account flagged for review that blocks the consumer from withdrawing funds.,She stated that I could not until after the review,reviewer-a
+Q56,10658410,0,"The case is a fiat bank branch transfer that was delayed, not a virtual currency withdrawal.",I visited the Fifth Third Bank XXXX branch to transfer {$7500.00},reviewer-a
+Q56,10662925,0,"The case is unauthorized use of digital cards after a phone theft, not a virtual currency withdrawal.",My phone was stolen and whoever took it used my attached digital cards,reviewer-a
+Q56,10662970,0,"The case is a wallet balance held for 180 days with no ability to transfer out, not a promised crypto withdrawal.",I still dont have the ability to transfer out my funds,reviewer-a
+Q56,10680100,1,Both involve a crypto exchange security hold that prevents a requested withdrawal.,I got a notification of a security hold on my account,reviewer-a
+Q56,10684139,0,"The case concerns PayPal currency-conversion fees, not a delayed virtual currency withdrawal.",PayPal defaults to its own currency conversion that includes excessive fees,reviewer-a
+Q56,10687059,1,Both involve a crypto exchange withdrawal that has not been processed and an unresponsive provider.,I initiated a withdrawal of {$390.00} from my Kraken account to my bank,reviewer-a
+Q65,10647800,0,"The case involves transactions that genuinely exceeded the available balance, so the fee was not charged on a purchase that kept the balance positive.",there were XXXX transactions for which I did not have enough money in the account,reviewer-a
+Q65,10655133,1,Both involve an overdraft fee charged even though the consumer's available funds should have covered the item.,now Im being charged an {$35.00} overdraft fee for {$1.00} that was in another account,reviewer-a
+Q65,10656741,0,"The case is about overdraft fees applied to an inactive account with a zero balance, not a fee on a purchase that left a positive balance.",They then charged me an overdraft fee to a line of credit through the bank even though none of the accounts were active,reviewer-a
+Q65,10658469,0,"The case concerns automatic enrollment in overdraft protection and resulting fees, not a fee charged for a purchase that did not overdraw the account.","I was automatically enrolled in Wells Fargos "" Overdraft Protection '' program without my explicit consent",reviewer-a
+Q65,10660006,0,"The case involves overdraft fees caused by fraudulent card charges, not a fee charged on a purchase that did not take the balance below zero.",the bank still charged me {$35.00} dollars 4 times for being negative on my account,reviewer-a
+Q65,10661880,0,"The case is about an unauthorized account opening and a non-overdraft-eligible account, not an improperly assessed overdraft fee.",Unauthorized Account Opening,reviewer-a

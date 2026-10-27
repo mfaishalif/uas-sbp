@@ -44,6 +44,7 @@ public final class EvaluationMetrics {
                 precisionAt5,
                 returnedPrecision,
                 returnedCount > 0,
+                relevant > 0,
                 List.copyOf(ids));
     }
 
@@ -56,6 +57,8 @@ public final class EvaluationMetrics {
         double precisionSum = 0.0;
         double returnedPrecisionSum = 0.0;
         int complaintReturned = 0;
+        int relevantReturned = 0;
+        int complaintSuccesses = 0;
         int negativeReturned = 0;
         int negativeFailures = 0;
         for (EvaluationQuery query : queries) {
@@ -70,6 +73,10 @@ public final class EvaluationMetrics {
                 precisionSum += metric.precisionAt5();
                 returnedPrecisionSum += metric.returnedPrecision();
                 complaintReturned += metric.returnedCount();
+                relevantReturned += metric.relevantCount();
+                if (metric.hasRelevant()) {
+                    complaintSuccesses++;
+                }
             } else {
                 negatives++;
                 negativeReturned += metric.returnedCount();
@@ -79,9 +86,13 @@ public final class EvaluationMetrics {
             }
         }
         double meanPrecisionAt5 = complaints == 0 ? 0.0 : precisionSum / complaints;
-        double meanReturnedPrecision = complaints == 0
+        double macroPrecision = complaints == 0 ? 0.0 : returnedPrecisionSum / complaints;
+        double microPrecision = complaintReturned == 0
                 ? 0.0
-                : returnedPrecisionSum / complaints;
+                : relevantReturned / (double) complaintReturned;
+        double complaintSuccessRate = complaints == 0
+                ? 0.0
+                : complaintSuccesses / (double) complaints;
         double negativeFailureRate = negatives == 0
                 ? 0.0
                 : negativeFailures / (double) negatives;
@@ -89,8 +100,12 @@ public final class EvaluationMetrics {
                 complaints,
                 negatives,
                 meanPrecisionAt5,
-                meanReturnedPrecision,
+                macroPrecision,
+                microPrecision,
+                complaintSuccesses,
+                complaintSuccessRate,
                 complaintReturned,
+                relevantReturned,
                 negativeReturned,
                 complaintReturned + negativeReturned,
                 negativeFailures,
@@ -105,6 +120,7 @@ public final class EvaluationMetrics {
             double precisionAt5,
             double returnedPrecision,
             boolean hasResults,
+            boolean hasRelevant,
             List<String> returnedCfpbIds) {
 
         public QueryMetric {
@@ -116,8 +132,12 @@ public final class EvaluationMetrics {
             int complaintQueries,
             int negativeQueries,
             double meanPrecisionAt5,
-            double meanReturnedPrecision,
+            double macroPrecision,
+            double microPrecision,
+            int complaintSuccesses,
+            double complaintSuccessRate,
             int complaintReturned,
+            int relevantReturned,
             int negativeReturned,
             int totalReturned,
             int negativeFailures,

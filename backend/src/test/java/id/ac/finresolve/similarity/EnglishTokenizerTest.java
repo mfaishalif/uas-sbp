@@ -58,8 +58,22 @@ class EnglishTokenizerTest {
     }
 
     @Test
-    void pinsTheAlgorithmVersion() {
-        assertThat(TextRules.ALGORITHM_VERSION).isEqualTo("tfidf-cosine-v1");
+    void pinsBothAlgorithmVersions() {
+        assertThat(SimilarityMode.BASELINE.algorithmVersion())
+                .isEqualTo("tfidf-cosine-v1");
+        assertThat(SimilarityMode.PHRASES.algorithmVersion())
+                .isEqualTo("tfidf-phrases-v2");
+    }
+
+    @Test
+    void phrasesModeNormalizesDomainVariantsBeforeStopwordRemoval() {
+        EnglishTokenizer phrases = new EnglishTokenizer(SimilarityMode.PHRASES);
+
+        assertThat(phrases.tokens(
+                        "Cash machine charged twice; funds held at the ATM"))
+                .containsExactly("atm", "duplicatecharge", "heldfunds", "atm");
+        assertThat(phrases.tokens("the funds withheld balance"))
+                .containsExactly("heldfunds", "balance");
     }
 
     @Test

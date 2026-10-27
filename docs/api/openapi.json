@@ -1094,7 +1094,7 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 50000,
-            "description": "Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak."
+            "description": "Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak. Mode phrases menerapkan kamus frasa domain hanya pada tokenisasi; narasi asli tidak diubah."
           },
           "limit": {
             "type": "integer",
@@ -1705,7 +1705,8 @@
         "additionalProperties": false,
         "properties": {
           "term": {
-            "type": "string"
+            "type": "string",
+            "description": "Token kanonis yang benar-benar dipakai dalam skor. Mode baseline memakai bentuk asli; mode phrases memakai token kamus domain seperti atm, duplicatecharge, atau heldfunds."
           },
           "contribution": {
             "type": "number",
@@ -1754,7 +1755,8 @@
             "items": {
               "$ref": "#/components/schemas/TermContribution"
             },
-            "maxItems": 10
+            "maxItems": 10,
+            "description": "Maksimal 10 token kanonis dengan kontribusi cosine aktual; urut kontribusi turun lalu token naik."
           }
         },
         "required": [
@@ -1769,6 +1771,7 @@
       "SearchConfiguration": {
         "type": "object",
         "additionalProperties": false,
+        "description": "Konfigurasi server yang benar-benar dipakai. Mode baseline menghasilkan tfidf-cosine-v1; mode phrases menghasilkan tfidf-phrases-v2 setelah normalisasi frasa domain sebelum stopword.",
         "properties": {
           "categoryWeight": {
             "type": "number",
@@ -1823,8 +1826,10 @@
           },
           "algorithmVersion": {
             "type": "string",
+            "description": "Versi pipeline tokenisasi aktual: tfidf-cosine-v1 untuk mode baseline, tfidf-phrases-v2 untuk mode phrases.",
             "examples": [
-              "tfidf-cosine-v1"
+              "tfidf-cosine-v1",
+              "tfidf-phrases-v2"
             ]
           }
         },

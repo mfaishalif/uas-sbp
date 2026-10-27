@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q23,10652454,0,"Query asks whether an undisclosed oat-milk surcharge is allowed, while the candidate concerns a hacked account with unauthorized crypto charges.",my account seems to have been hacked,reviewer-b
+Q23,10668515,0,"Query concerns an extra charge added without asking, while the candidate concerns unreimbursed unauthorized debit card transactions and fees.",never reimbursed me for unauthorized transactions of my debit card,reviewer-b
+Q23,10674687,0,"Query is about an undisclosed surcharge, while the candidate concerns identity fraud and wires from a compromised account.",two people we did not know had been added to his banking profile,reviewer-b
+Q23,10682309,0,"Query concerns a charge added without consent, while the candidate concerns a sign-up bonus denied under a later-added regional restriction.",the promotion was intended for a specific region,reviewer-b
+Q23,10684486,0,"Query asks about an undisclosed surcharge, while the candidate concerns unauthorized toll charges posted after the card was cancelled.",I did not authorize that charge,reviewer-b
+Q23,10685204,0,"Query concerns a small undisclosed charge, while the candidate concerns a medical bill charged despite insurance and a stop payment.",MY RESPONSIBILTY WAS ONLY FOR A {$37.00} COPAY,reviewer-b
+Q24,10655737,0,"Query asks how compound interest works, while the candidate concerns a suspended savings account with a transfer stuck in limbo.",my Ally account had been suspended,reviewer-b
+Q24,10655867,0,"Query is an educational question about compound interest, while the candidate concerns a savings account suspended after a deposit.",my account has been suspended since XX/XX/year>.,reviewer-b
+Q24,10663218,0,"Query asks about compound interest, while the candidate concerns a joint savings account restricted after the owner's death.",her account restricted ( locked ),reviewer-b
+Q24,10671126,0,"Query is about how compound interest works, while the candidate concerns accounts frozen during an identity theft and wire fraud scheme.",I want my accounts frozen,reviewer-b
+Q24,10685141,0,"Query asks about compound interest, while the candidate concerns a bank promoting a higher-rate savings account without clearly telling existing customers.",They constantly introduced a new savings account with a higher interest rate,reviewer-b
+Q24,10688349,0,"Query is an educational question about interest, while the candidate concerns being placed in a lower-interest savings product without disclosure.",My money received probably less than 1 % interest,reviewer-b
+Q24,10689238,0,"Query asks how compound interest works, while the candidate concerns an unpaid checking/savings sign-up bonus.",I did not receive my {$500.00} bonus,reviewer-b
+Q24,10691308,0,"Query is about compound interest, while the candidate concerns a data compromise and alleged short balances in a class action.",financial data being compromised,reviewer-b
+Q29,10652816,1,"Candidate describes an ATM deposit that malfunctioned and was never credited to the account, the same ATM deposit discrepancy mechanism.",None of the money was deposited into my account.,reviewer-b
+Q29,10660825,0,"Candidate concerns a mobile check deposit held and an account frozen for review, not an ATM deposit credited at the wrong amount.",they held the funds to wait for the check to clear,reviewer-b
+Q29,10663554,0,"Candidate concerns a branch check deposit held as suspected fraud, not an ATM scan that credited the wrong amount.",she had put the hold on my account,reviewer-b
+Q29,10665819,0,"Candidate concerns an ATM withdrawal that dispensed no cash, a different mechanism from a mis-credited check deposit.",the ATM machine turned off without giving me the money or receipt,reviewer-b
+Q29,10666406,1,"Candidate describes ATM-deposited checks that were not credited after a machine failure, the same mis-credited ATM deposit mechanism.",the checks did not eject,reviewer-b
+Q29,10686119,0,"Candidate concerns a locked account blocking access to a paycheck, not an ATM deposit credited for the wrong amount.",the locked my account and now I can't access my account,reviewer-b
+Q29,10692855,0,"Candidate concerns a long-running dispute over fraudulent charges, not an ATM check deposit credited at the wrong amount.",Disputing with Bank Of America for fraudulent charges,reviewer-b
+Q30,10652816,1,"Candidate describes an ATM deposit that failed and was not credited, matching the ATM deposit discrepancy mechanism.",None of the money was deposited into my account.,reviewer-b
+Q30,10660424,0,"Candidate concerns the same check deposited twice at two banks, not an ATM scan that recorded a different total.",the customer put the same check through as a mobile deposit with XXXX,reviewer-b
+Q30,10660825,0,"Candidate concerns a mobile deposit held and an account frozen, not an ATM deposit posted at the wrong amount.",they held the funds to wait for the check to clear,reviewer-b
+Q30,10663554,0,"Candidate concerns a branch check deposit held as suspected fraud with a negative balance, not an ATM scanning error.",she had put the hold on my account,reviewer-b

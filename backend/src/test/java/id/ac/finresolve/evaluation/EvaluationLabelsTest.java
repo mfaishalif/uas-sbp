@@ -18,6 +18,8 @@ class EvaluationLabelsTest {
 
     private static final CategoryValues CATEGORIES =
             new CategoryValues("Product", null, "Issue", null);
+    private static final List<EvaluationLabels.Pair> PAIRS =
+            List.of(new EvaluationLabels.Pair("Q1", "101"));
 
     @TempDir
     Path temporaryDirectory;
@@ -47,44 +49,93 @@ class EvaluationLabelsTest {
     }
 
     @Test
-    void readsCompleteLabelsAndRejectsMalformedRelevance() throws Exception {
-        List<EvaluationQuery> queries = List.of(
-                new EvaluationQuery(
-                        "Q1", EvaluationQuery.Kind.COMPLAINT, CATEGORIES,
-                        "query narrative", "scenario"));
-        EvaluationCorpus corpus = EvaluationCorpus.fromCases(List.of(caseRecord("101")));
+    void acceptsAgreedReviewsWithoutAnAdjudication() throws Exception {
+        LabelFixture fixture = new LabelFixture();
+        fixture.reviewA("1");
+        fixture.reviewB("1");
+        fixture.finalLabel("1", "reviewer-a+reviewer-b");
 
-        Path valid = temporaryDirectory.resolve("valid.csv");
-        Files.writeString(valid, """
-                queryId,cfpbId,relevant,reason
-                Q1,101,1,Useful context.
-                """, StandardCharsets.UTF_8);
-        EvaluationLabels labels = EvaluationLabelsFile.read(valid, queries, corpus);
-        assertThat(labels.relevant("Q1", "101")).isTrue();
-        assertThat(labels.reason("Q1", "101")).isEqualTo("Useful context.");
+        EvaluationLabelsFile.ValidatedLabels validated = fixture.read();
 
-        Path invalid = temporaryDirectory.resolve("invalid.csv");
-        Files.writeString(invalid, """
-                queryId,cfpbId,relevant,reason
-                Q1,101,maybe,Reason.
-                """, StandardCharsets.UTF_8);
-        assertThatThrownBy(() -> EvaluationLabelsFile.read(invalid, queries, corpus))
+        assertThat(validated.labels().size()).isEqualTo(1);
+        assertThat(validated.labels().relevant("Q1", "101")).isTrue();
+        assertThat(validated.agreement().agreements()).isEqualTo(1);
+        assertThat(validated.agreement().agreementRate()).isEqualTo(1.0);
+        assertThat(validated.agreement().cohensKappa()).isNull();
+    }
+
+    @Test
+    void requiresAndUsesAnAdjudicationForEveryDisagreement() throws Exception {
+        LabelFixture fixture = new LabelFixture();
+        fixture.reviewA("1");
+        fixture.reviewB("0");
+        fixture.adjudication("1");
+        fixture.finalLabel("1", "adjudicator");
+
+        EvaluationLabelsFile.ValidatedLabels validated = fixture.read();
+
+        assertThat(validated.labels().relevant("Q1", "101")).isTrue();
+        assertThat(validated.agreement().disagreements()).isEqualTo(1);
+        assertThat(validated.agreement().cohensKappa()).isZero();
+    }
+
+    @Test
+    void failsWhenADisagreementHasNoAdjudication() throws Exception {
+        LabelFixture fixture = new LabelFixture();
+        fixture.reviewA("1");
+        fixture.reviewB("0");
+        fixture.finalLabel("1", "reviewer-a");
+
+        assertThatThrownBy(fixture::read)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("relevant must be 0 or 1");
+                .hasMessageContaining("Unadjudicated disagreement");
+    }
 
-        Path unknown = temporaryDirectory.resolve("unknown.csv");
-        Files.writeString(unknown, """
-                queryId,cfpbId,relevant,reason
-                Q9,101,1,Reason.
-                """, StandardCharsets.UTF_8);
-        assertThatThrownBy(() -> EvaluationLabelsFile.read(unknown, queries, corpus))
+    @Test
+    void failsOnDuplicateFinalLabels() throws Exception {
+        LabelFixture fixture = new LabelFixture();
+        fixture.reviewA("1");
+        fixture.reviewB("1");
+        fixture.writeFinal("""
+                queryId,cfpbId,relevant,reason,evidence,reviewer
+                Q1,101,1,Reason.,case narrative,reviewer-a
+                Q1,101,1,Reason.,case narrative,reviewer-b
+                """);
+
+        assertThatThrownBy(fixture::read)
                 .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("unknown query");
+                .hasMessageContaining("Duplicate judgment");
+    }
+
+    @Test
+    void failsWhenEvidenceIsNotAVerbatimNarrativeQuotation() throws Exception {
+        LabelFixture fixture = new LabelFixture();
+        fixture.reviewA("1");
+        fixture.reviewB("1");
+        fixture.finalLabel("1", "reviewer-a+reviewer-b");
+        fixture.writeReview("a", "1", "invented quotation");
+
+        assertThatThrownBy(fixture::read)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("not a verbatim");
+    }
+
+    @Test
+    void rejectsMalformedBinaryLabels() throws Exception {
+        LabelFixture fixture = new LabelFixture();
+        fixture.reviewA("maybe");
+        fixture.reviewB("1");
+        fixture.finalLabel("1", "reviewer-a+reviewer-b");
+
+        assertThatThrownBy(fixture::read)
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("must be 0 or 1");
     }
 
     private static EvaluationLabels.Judgment judgment(
             String queryId, String cfpbId, boolean relevant) {
-        return new EvaluationLabels.Judgment(queryId, cfpbId, relevant, "reason");
+        return new EvaluationLabels.Judgment(
+                queryId, cfpbId, relevant, "reason", "case narrative", "reviewer-a");
     }
 
     private static CaseRecord caseRecord(String cfpbId) {
@@ -103,5 +154,81 @@ class EvaluationLabelsTest {
                         "sample.csv", null, null, "checksum"),
                 null,
                 List.of());
+    }
+
+    private final class LabelFixture {
+
+        private final List<EvaluationQuery> queries = List.of(new EvaluationQuery(
+                "Q1", EvaluationQuery.Kind.COMPLAINT, CATEGORIES,
+                "query narrative", "scenario"));
+        private final EvaluationCorpus corpus =
+                EvaluationCorpus.fromCases(List.of(caseRecord("101")));
+        private final Path labels = temporaryDirectory;
+
+        private LabelFixture() throws Exception {
+            Files.createDirectories(labels);
+        }
+
+        private void reviewA(String relevant) throws Exception {
+            writeReview("a", relevant, "case narrative");
+        }
+
+        private void reviewB(String relevant) throws Exception {
+            writeReview("b", relevant, "case narrative");
+        }
+
+        private void writeReview(String reviewer, String relevant, String evidence)
+                throws Exception {
+            write("review-" + reviewer + ".csv", """
+                    queryId,cfpbId,relevant,reason,evidence,reviewer
+                    Q1,101,%s,Specific reason.,%s,reviewer-%s
+                    """.formatted(relevant, evidence, reviewer));
+        }
+
+        private void adjudication(String relevant) throws Exception {
+            write("adjudication.csv", """
+                    queryId,cfpbId,reviewerARelevant,reviewerBRelevant,adjudicator,relevant,reason,evidence
+                    Q1,101,1,0,adjudicator,%s,Adjudicated reason.,case narrative
+                    """.formatted(relevant));
+        }
+
+        private void finalLabel(String relevant, String reviewer) throws Exception {
+            writeFinal("""
+                    queryId,cfpbId,relevant,reason,evidence,reviewer
+                    Q1,101,%s,Final reason.,case narrative,%s
+                    """.formatted(relevant, reviewer));
+        }
+
+        private void writeFinal(String content) throws Exception {
+            write("final.csv", content);
+        }
+
+        private void write(String fileName, String content) throws Exception {
+            Files.writeString(
+                    labels.resolve(fileName), content, StandardCharsets.UTF_8);
+            if (!Files.exists(labels.resolve("adjudication.csv"))) {
+                writeEmptyAdjudication();
+            }
+        }
+
+        private void writeEmptyAdjudication() throws Exception {
+            Files.writeString(
+                    labels.resolve("adjudication.csv"),
+                    "queryId,cfpbId,reviewerARelevant,reviewerBRelevant,"
+                            + "adjudicator,relevant,reason,evidence\n",
+                    StandardCharsets.UTF_8);
+        }
+
+        private EvaluationLabelsFile.ValidatedLabels read() {
+            return EvaluationLabelsFile.readAndAudit(
+                    new EvaluationManifest.LabelPaths(
+                            labels.resolve("final.csv"),
+                            labels.resolve("review-a.csv"),
+                            labels.resolve("review-b.csv"),
+                            labels.resolve("adjudication.csv")),
+                    queries,
+                    corpus,
+                    PAIRS);
+        }
     }
 }

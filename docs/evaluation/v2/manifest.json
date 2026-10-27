@@ -1,0 +1,83 @@
+{
+  "studyId": "finresolve-search-relevance-v2",
+  "studyVersion": 2,
+  "createdAt": "2026-10-27",
+  "humanValidated": false,
+  "repositoryRoot": "../../..",
+  "sampleCsv": "../../../data/cfpb/sample.csv",
+  "sampleManifest": "../../../data/cfpb/manifest.json",
+  "queries": "queries.csv",
+  "split": {
+    "seed": 20261027,
+    "studyCalibrationComplaints": 24,
+    "studyCalibrationNegatives": 16
+  },
+  "calibrationCandidates": "calibration-candidates.csv",
+  "finalCandidates": "final-candidates.csv",
+  "selection": "selection.json",
+  "results": "results",
+  "labels": {
+    "calibration": {
+      "final": "labels/calibration-final.csv",
+      "reviewerA": "labels/calibration-review-a.csv",
+      "reviewerB": "labels/calibration-review-b.csv",
+      "adjudication": "labels/calibration-adjudication.csv"
+    },
+    "final": {
+      "final": "labels/final-final.csv",
+      "reviewerA": "labels/final-review-a.csv",
+      "reviewerB": "labels/final-review-b.csv",
+      "adjudication": "labels/final-adjudication.csv"
+    }
+  },
+  "subagents": {
+    "packets": "subagents/input",
+    "packetChecksums": "subagents/input-checksums.json",
+    "reviewers": "subagents/reviewers.json",
+    "reviewPrompt": "subagents/prompt-review.md",
+    "adjudicationPrompt": "subagents/prompt-adjudication.md"
+  },
+  "grid": {
+    "modes": [
+      "baseline",
+      "phrases"
+    ],
+    "categoryWeightMin": 0.1,
+    "categoryWeightMax": 0.7,
+    "categoryWeightStep": 0.1,
+    "thresholdMin": 0.2,
+    "thresholdMax": 0.7,
+    "thresholdStep": 0.025,
+    "productWeight": 0.35,
+    "subProductWeight": 0.15,
+    "issueWeight": 0.35,
+    "subIssueWeight": 0.15,
+    "limit": 5
+  },
+  "expected": {
+    "total": 104,
+    "complaints": 64,
+    "negatives": 40,
+    "calibrationTotal": 64,
+    "calibrationComplaints": 40,
+    "calibrationNegatives": 24,
+    "testTotal": 40,
+    "testComplaints": 24,
+    "testNegatives": 16,
+    "studyGroups": 40
+  },
+  "baseline": {
+    "mode": "baseline",
+    "categoryWeight": 0.4,
+    "textWeight": 0.6,
+    "threshold": 0.5
+  },
+  "rollback": {
+    "mode": "baseline",
+    "categoryWeight": 0.4,
+    "textWeight": 0.6,
+    "threshold": 0.5
+  },
+  "dictionarySha256": "60b1ad61268f5541a7cbeb40b48efb9fdcaae07afa611188d0d1ad192de726ec",
+  "splitFile": "split.csv"
+}

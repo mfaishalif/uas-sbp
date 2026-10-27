@@ -20,7 +20,7 @@ import { mapValues } from '../runtime.js';
  */
 export interface TermContribution {
     /**
-     * 
+     * Token kanonis yang benar-benar dipakai dalam skor. Mode baseline memakai bentuk asli; mode phrases memakai token kamus domain seperti atm, duplicatecharge, atau heldfunds.
      */
     term: string;
     /**

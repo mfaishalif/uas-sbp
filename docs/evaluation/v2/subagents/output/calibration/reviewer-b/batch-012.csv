@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q48,10669223,1,Same mechanism: unauthorized mobile wallet payments left the account and the bank reversed the provisional refund.,Three unauthorized payments through XXXX XXXX went through my account.,reviewer-b
+Q48,10678347,0,"The candidate is a $49 refund that never reached the bank account, not an unauthorized wallet payment to a stranger.",they said that it was refunded to my XXXX. I don't see the funds,reviewer-b
+Q48,10682095,1,Same mechanism: the wallet account was taken over and money was sent without the holder's authorization.,However I did not make that transaction not gave anyone permission.,reviewer-b
+Q48,10685059,0,"The candidate is a transfer sent to a mislabeled beneficiary that was never returned, not an unauthorized transfer to a stranger.",my partner was unable to withdraw the money as the beneficiary was labeled as the bank,reviewer-b
+Q48,10690564,0,"The candidate is a crypto investment scam where the holder authorized each transfer, not an unauthorized wallet payment.","Hi, I am a crypto fraud victim!",reviewer-b
+Q51,10658410,1,Same mechanism: a domestic transfer was deducted and promised same-day but never reached the recipient because of a bank error.,"I waited for XXXX days, but the money had still not arrived.",reviewer-b
+Q51,10668907,0,"The candidate is a payment misdirected to a different recipient at confirmation, not a transfer delayed in reaching the intended recipient.",the name had changed to a different recipient that I never pressed,reviewer-b
+Q51,10670240,1,Same mechanism: a domestic remittance was delayed beyond the promised arrival date and the sender could not cancel it.,They sent me a message on XX/XX/XXXX that it has been delayed,reviewer-b
+Q51,10675163,1,Same mechanism: the transfer did not arrive by the promised date and remains uncompleted.,"However, the transfer has yet to be completed.",reviewer-b
+Q51,10683109,1,Same mechanism: peer-to-peer transfers remained pending so the recipient never received the funds.,it did not come through instantly how I expected it to so it went into a pending state,reviewer-b
+Q51,10683772,1,Same mechanism: a $2000 transfer never reached the recipient despite being reported as deposited.,the recipient has yet to receive these funds,reviewer-b
+Q51,10687059,1,Same mechanism: funds sent to the bank account never arrived and the provider gave no status.,the funds have not been deposited into my bank account,reviewer-b
+Q52,10658410,1,Same mechanism: the transfer was deducted but stayed unresolved instead of being available to the recipient as promised.,the amount was deducted from my checking account that same day,reviewer-b
+Q52,10662307,0,"The candidate is a Coinbase account lock during a security review, not a domestic transfer pending past its promised date.",Coinbase immediately locked my account,reviewer-b
+Q52,10662970,0,"The candidate is funds locked inside a Venmo balance that cannot be transferred out, not a pending domestic transfer.",I still dont have the ability to transfer out my funds.,reviewer-b
+Q52,10670240,1,Same mechanism: the remittance is delayed past its promised date and remains unavailable.,They sent me a message on XX/XX/XXXX that it has been delayed,reviewer-b
+Q52,10683109,1,Same mechanism: transfers stayed pending for days instead of being available as expected.,so it went into a pending state,reviewer-b
+Q53,10657955,1,Same mechanism: the wallet placed a security freeze on the account so the holder cannot withdraw the balance.,Gemini then placed a security freeze on the account,reviewer-b
+Q53,10663845,1,"Same mechanism: the wallet declined the transfer and locked the account, leaving the balance inaccessible.",Venmo had declined the transfer and locked my account with the money in it,reviewer-b
+Q53,10669762,0,"The candidate is a bank blocking transfers into a wallet as suspicious, not a wallet transfer stuck in pending status.",my attempted transfers were being declined by Ally Bank as suspicious in nature.,reviewer-b
+Q53,10680556,1,Same mechanism: the wallet limited the account so the holder could neither withdraw nor refund the balance.,PayPal limited my account,reviewer-b
+Q53,10684634,1,Same mechanism: the wallet froze the balance and gave no path to withdraw or send it.,which Venmo has frozen and effectively seized,reviewer-b
+Q53,10688565,1,Same mechanism: the wallet restricted the account and refused to let the holder transfer the money out.,will not allow me to remove my money from my account,reviewer-b
+Q54,10657955,1,Same mechanism: a pending withdrawal request never completes because the wallet froze the balance.,Gemini then placed a security freeze on the account,reviewer-b
+Q54,10663845,1,"Same mechanism: the wallet transfer was declined and the account locked, leaving the balance unusable.",Venmo had declined the transfer and locked my account with the money in it,reviewer-b

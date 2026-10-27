@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q50,10683772,1,Both concern an international transfer that was not received by the recipient and remained unresolved.,the recipient has yet to receive these funds,reviewer-a
+Q57,10660825,1,Both concern deposited check funds held by the bank beyond the expected availability.,they held the funds to wait for the check to clear,reviewer-a
+Q57,10672637,1,"Both concern deposited funds held for over a week, leaving the account short.",pnc bank has held my funds for over a week,reviewer-a
+Q57,10681671,1,Both concern an extended hold on a deposited check that kept the funds unavailable beyond the release expectation.,The check was put on an extended hold,reviewer-a
+Q58,10663554,1,Both concern a hold placed on a deposited check that reduced the available balance.,She informed me she had put the hold on my account,reviewer-a
+Q58,10681589,1,Both concern a check-deposit hold that exceeded the promised release and violated availability timing.,they will not be removing the hold nor following regulation CC,reviewer-a
+Q59,10660424,0,"Query concerns a mobile deposit held for review; the case concerns the same check being mobile deposited twice, a duplicate-deposit problem.",the customer put the same check through as a mobile deposit,reviewer-a
+Q59,10660825,1,Both concern a mobile check deposit whose funds were held and left unavailable.,I mobile deposited a check into my account then they held the funds,reviewer-a
+Q59,10663554,1,Both concern check-deposit funds held by the bank and unavailable to the customer.,She informed me she had put the hold on my account,reviewer-a
+Q59,10672637,1,"Both concern deposited funds held by the bank longer than promised, leaving the account short.",pnc bank has held my funds for over a week,reviewer-a
+Q59,10675165,1,Both concern a mobile check deposit followed by a bank lock that left the deposited funds inaccessible.,"I made a mobile check deposit, CitiBank locked my out of my account.",reviewer-a
+Q60,10660424,0,"Query concerns frozen mobile-deposit funds; the case concerns a check deposited twice, a duplicate-deposit problem.",the customer put the same check through as a mobile deposit,reviewer-a
+Q60,10660825,1,Both concern a mobile check deposit followed by a bank freeze that blocked access to the funds.,they froze my account,reviewer-a
+Q60,10663554,1,Both concern a bank hold on deposited check funds that left the balance unavailable.,She informed me she had put the hold on my account,reviewer-a
+Q60,10675165,1,Both concern a mobile check deposit followed by a bank lock that blocked access to the funds.,"I made a mobile check deposit, CitiBank locked my out of my account.",reviewer-a
+Q60,10681671,1,Both concern deposited check funds restricted or frozen by the bank after an extended hold.,right before the hold expired XXXX put a restriction on my account,reviewer-a
+Q61,10674152,1,Both concern a closed account whose remaining balance was withheld from the customer.,Formal Complaint Regarding Account Closure by US Bank and Lack of Access to Funds,reviewer-a
+Q61,10696339,1,Both concern a closed checking account whose remaining balance was not returned.,The remaining balance in my account was around {$37000.00},reviewer-a
+Q62,10666376,1,Both concern an account closure or suspension after which the remaining balance was never returned.,"I come back to try to get my money out ( {$170.00} ), but was unable.",reviewer-a
+Q62,10668639,1,Both concern a closed account whose remaining funds were not returned.,they have not given me a response nor have they returned the funds to me,reviewer-a
+Q62,10696339,1,Both concern a closed checking account whose remaining balance was withheld.,The remaining balance in my account was around {$37000.00},reviewer-a
+Q64,10655921,0,Query concerns funds held in an account; the case is a payroll direct deposit that was never posted.,my payroll direct deposit was not placed into my checking account,reviewer-a
+Q64,10688629,0,"Query concerns a bank hold on available funds; the case is an account restriction from a tax levy, a different mechanism.",my account was restricted due to a levy being placed on it,reviewer-a
+Q74,10652816,0,Query is a general question about checking a balance at an ATM; the case is an ATM deposit failure.,I attempted to deposit a total of {$7300.00} into an ATM machine,reviewer-a
+Q74,10682105,0,Query is a general question about checking a balance at an ATM; the case is an ATM withdrawal failure.,ATM went out of service while I was using it.,reviewer-a

@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q04,10664049,0,"The case concerns the bank closing checking and savings accounts, not a scheduled savings payment that failed to arrive.",Bank Closed My Bank Account Down For None payment,reviewer-b
+Q04,10668363,0,"The case describes payments lost to an unlicensed investment platform, not a scheduled payment from a savings account.",the unlicensed financial broker demanded from me to initiate series of payments within short period of time,reviewer-b
+Q04,10685141,0,"The case alleges misrepresentation of savings interest rates, not a scheduled payment that never arrived.",Popular Direct Bank misrepresents its savings account.,reviewer-b
+Q04,10688349,0,"The case is about a lower-interest savings account not being disclosed, not a failed scheduled payment.",they didn't tell my about their other 360 Performance Savings account,reviewer-b
+Q04,10689238,0,"The case concerns a promised account bonus that was not paid, not a scheduled payment from savings.",I did not receive my {$500.00} bonus,reviewer-b
+Q04,10690673,1,"A scheduled payment was taken from the account but the recipient never received it, the same failed scheduled-payment mechanism.",they have not received any pending transactions,reviewer-b
+Q05,10655837,0,"The case involves a payment routed to a closed TD account and withheld, not an unauthorized payment-app transfer by someone else.",I had a XXXX payment sent to my number which was sent to that account,reviewer-b
+Q05,10660545,0,"The complainant personally initiated the Venmo payment and was later scammed, so this is not a third party using the account for an unauthorized transfer.",I proceeded to make a payment through Venmo believing I was purchasing a generator from a trusted friend,reviewer-b
+Q05,10663798,1,"Unauthorized transactions and an unauthorized bill pay were made from the accounts, matching the unauthorized-transfer mechanism.",my checking account has an unauthorized bill pay of {$500.00} processed on XX/XX/year>,reviewer-b
+Q05,10664060,0,"The complainant sent the Zelle payments personally as part of a scam, not an unauthorized transfer made by someone using the account.",I sent a total of {$600.00} in 5 Zelle transactions,reviewer-b
+Q05,10670961,1,The account was hacked and funds were taken through an unauthorized transaction while the bank failed to stop it.,my XXXX account was being hacked for {$9000.00},reviewer-b
+Q05,10671337,0,"The complainant authorized a Zelle payment that the contractor denied receiving, not an unauthorized transfer through a payment app.",the contractor claimed he did not receive the payment,reviewer-b
+Q05,10680906,0,"The case is about a Cash App transfer to checking that never arrived, not an unauthorized transfer out of the account.",i don't received any money till now,reviewer-b
+Q05,10686096,1,"Funds were taken from the checking account and sent to another person's Cash App account without authorization, matching the queried mechanism.",The money was taken out of my checking account and transferred into another person 's Cashapp account.,reviewer-b
+Q06,10652211,0,"The case concerns the bank reversing a provisional credit after a settled dispute, not an unauthorized charge or transfer.",they took it back out,reviewer-b
+Q06,10653766,1,"The complainant was scammed and an unauthorized charge of about $1400 was made to the account, matching the unrecognized-charge mechanism.",I got scammed XX/XX/XXXX they charged my account,reviewer-b
+Q06,10656475,1,A merchant charged $420 after cancellation and the bank treated it as legitimate even though the charge was not authorized.,I did not authorize the transaction that Chase is forcing me to pay.,reviewer-b
+Q06,10656613,1,"A $120 charge appeared after a call dropped and the dispute was reversed, leaving an unauthorized charge on the account.",I noticed my card was charged,reviewer-b
+Q06,10658529,0,"The case is a billing dispute over an overcharged subscription renewal, not a charge or transfer the complainant never made.",I was over charged almost double what I was supposed to be paying,reviewer-b
+Q06,10660006,1,"A lost card was used for unauthorized purchases and ATM withdrawals, matching the unrecognized-charge mechanism.",I noticed a charge for almost {$300.00},reviewer-b
+Q06,10661403,0,"The case involves the complainant accidentally sending a transfer twice, not an unauthorized charge or transfer.",I accidentally sent XXXX dollars twice from my XXXX to my ally,reviewer-b
+Q06,10673035,0,"The case concerns a failed external transfer and a missing reversal, not a charge or transfer the complainant never made.",the money says reversal but the account was charged money and never got it back,reviewer-b
+Q06,10680349,1,"An impersonator induced transfers of $4000 from the account, an unauthorized transaction loss.",resulting in a loss of {$4000.00},reviewer-b
+Q06,10683958,1,"An unauthorized purchase was made with the complainant's ATM card, matching the unrecognized-charge mechanism.","I noticed a purchase I did not make, nor did I authorize.",reviewer-b
+Q07,10653759,0,"The case is an ATM cash-deposit failure, not a question about branch hours or parking.",I tried depositing {$2000.00} cash all in hundreds at the atm right outside the branch,reviewer-b

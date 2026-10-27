@@ -1,0 +1,48 @@
+{
+  "studyId": "finresolve-search-relevance-v2",
+  "humanValidated": false,
+  "reviewers": [
+    {
+      "id": "reviewer-a",
+      "role": "initial",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "context": "separate-session",
+      "blindTo": [
+        "scores",
+        "ranks",
+        "configurations",
+        "archived labels",
+        "dataset split",
+        "query kind"
+      ]
+    },
+    {
+      "id": "reviewer-b",
+      "role": "initial",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "context": "separate-session",
+      "blindTo": [
+        "scores",
+        "ranks",
+        "configurations",
+        "archived labels",
+        "dataset split",
+        "query kind"
+      ]
+    },
+    {
+      "id": "adjudicator",
+      "role": "adjudication",
+      "model": "opencode-go/deepseek-v4.1-flash",
+      "context": "separate-session",
+      "scope": "disagreements only"
+    }
+  ],
+  "labelRules": {
+    "binary": true,
+    "relevant": "case helps understand or handle the same problem mechanism",
+    "requiresReason": true,
+    "requiresVerbatimNarrativeEvidence": true,
+    "sharedWordsOrCategoryAloneInsufficient": true
+  }
+}

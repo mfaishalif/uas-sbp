@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q19,10668334,0,"Query asks which airport counter has the best euro exchange rate, while the candidate concerns a Coinbase withdrawal held under review.",the only information I received was that my account is under review,reviewer-b
+Q19,10670422,0,"Query is about currency exchange rates for a trip, while the candidate concerns a restricted Robinhood account blocking withdrawals.",Robinhood restricted my account,reviewer-b
+Q19,10691593,0,"Query asks about exchange rates, while the candidate concerns a blocked card and unreachable customer service.",My card it's completely blocked,reviewer-b
+Q19,10691733,0,"Query is about airport exchange rates, while the candidate concerns a PayPal transfer sent to an unknown recipient.",I have never sent funds to this person.,reviewer-b
+Q20,10647800,0,"Query asks what documents to bring to open a checking account, while the candidate concerns overdrafts and an offset from a daughter's account.",This caused her to be overdrawn.,reviewer-b
+Q20,10662999,0,"Query asks which documents are needed to open an account, while the candidate concerns a denied application due to a state ID requirement.",my application was denied because I cant provide a copy of a XXXX ID,reviewer-b
+Q20,10669017,0,"Query asks about account-opening documents, while the candidate disputes ChexSystems reporting of a closed account.",I am writing to formally dispute inaccurate information on my ChexSystems report,reviewer-b
+Q20,10669427,0,"Query is a general question about opening a checking account, while the candidate reports an account opened by identity theft.",ive never open this account with BOA,reviewer-b
+Q20,10677919,0,"Query asks what documents to bring, while the candidate disputes fraudulently opened accounts on a consumer report.","these accounts have been opened fraudulently, without my consent",reviewer-b
+Q20,10683687,0,"Query is a general account-opening question, while the candidate concerns a denied business account application.",my application was denied without a reason,reviewer-b
+Q20,10685871,0,"Query asks about documents for opening an account, while the candidate concerns a fraudulent account reported in the consumer's name.",a fraudulent checking account that has been opened in my name,reviewer-b
+Q21,10647800,0,"Query asks how to adjust a budget after a payroll schedule change, while the candidate concerns overdraft fees and an offset.",there were XXXX transactions for which I did not have enough money,reviewer-b
+Q21,10655921,0,"Query is a budgeting question about a smaller paycheck, while the candidate concerns a payroll direct deposit that never posted.",my payroll direct deposit was not placed into my checking account,reviewer-b
+Q21,10661880,0,"Query asks about budget adjustment, while the candidate disputes an unauthorized account and reported balance.",Unauthorized Account Opening.,reviewer-b
+Q21,10670291,0,"Query is a budgeting question, while the candidate concerns payroll funds stuck after an account was closed.",Chase is now giving me the run around about my funds.,reviewer-b
+Q21,10673921,0,"Query asks how to adjust a budget, while the candidate concerns a balance error after a bank system switch.",my balance was way off,reviewer-b
+Q21,10683415,0,"Query is a budgeting question, while the candidate describes a wire fraud scam that depleted accounts.",My Boyfriend and I were defrauded of a total XXXX,reviewer-b
+Q21,10686119,0,"Query asks about budgeting after a payroll change, while the candidate concerns a locked account holding a paycheck.",the locked my account and now I can't access my account,reviewer-b
+Q21,10694634,0,"Query is a budget question, while the candidate concerns identity theft and lost funds.",I have had my information stolen and money taking out of my account,reviewer-b
+Q22,10658016,0,"Query concerns a suspicious delivery text the consumer deleted, while the candidate concerns an actual non-delivery purchase scam with money sent.",I am a victim of a non-delivery scam.,reviewer-b
+Q22,10673396,0,"Query is about an ignored delivery text with no loss, while the candidate concerns a puppy sale scam where fees were paid.",I got scam from a delivery company that will deliver a puppy to me,reviewer-b
+Q22,10674597,0,"Query concerns a deleted package-delivery text, while the candidate concerns a permanently limited PayPal account and unauthorized changes.",my account was permanently blocked without any justification,reviewer-b
+Q22,10682202,0,"Query is about an unclicked delivery text, while the candidate concerns a chargeback dispute and a seller's negative balance.",Buyer claimed item not received and did a chargeback,reviewer-b
+Q22,10683753,0,"Query concerns a deleted delivery text, while the candidate concerns an online pet purchase scam with fake courier fees.",I never received the snake,reviewer-b
+Q22,10686096,0,"Query is about ignoring a delivery text, while the candidate concerns fake checks deposited and funds moved to Cash App.",Someone put fake checks into my checking account,reviewer-b

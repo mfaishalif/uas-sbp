@@ -1,0 +1,98 @@
+{
+  "studyId" : "finresolve-search-relevance-v2",
+  "createdAt" : "2026-10-27",
+  "humanValidated" : false,
+  "decision" : "RUN_TEST",
+  "precisionImproved" : true,
+  "eligibleCandidates" : 4,
+  "baseline" : {
+    "mode" : "baseline",
+    "algorithmVersion" : "tfidf-cosine-v1",
+    "categoryWeight" : 0.4,
+    "textWeight" : 0.6,
+    "threshold" : 0.5,
+    "label" : "baseline/w=0.4/t=0.500"
+  },
+  "selected" : {
+    "mode" : "phrases",
+    "algorithmVersion" : "tfidf-phrases-v2",
+    "categoryWeight" : 0.5,
+    "textWeight" : 0.5,
+    "threshold" : 0.575,
+    "label" : "phrases/w=0.5/t=0.575"
+  },
+  "bestEligible" : {
+    "mode" : "phrases",
+    "algorithmVersion" : "tfidf-phrases-v2",
+    "categoryWeight" : 0.5,
+    "textWeight" : 0.5,
+    "threshold" : 0.575,
+    "label" : "phrases/w=0.5/t=0.575"
+  },
+  "bestBaselineMode" : {
+    "mode" : "baseline",
+    "algorithmVersion" : "tfidf-cosine-v1",
+    "categoryWeight" : 0.3,
+    "textWeight" : 0.7,
+    "threshold" : 0.25,
+    "label" : "baseline/w=0.3/t=0.250"
+  },
+  "bestPhrasesMode" : {
+    "mode" : "phrases",
+    "algorithmVersion" : "tfidf-phrases-v2",
+    "categoryWeight" : 0.3,
+    "textWeight" : 0.7,
+    "threshold" : 0.25,
+    "label" : "phrases/w=0.3/t=0.250"
+  },
+  "calibration" : {
+    "baseline" : {
+      "complaintQueries" : 40,
+      "negativeQueries" : 24,
+      "meanPrecisionAt5" : 0.10500000000000002,
+      "macroPrecision" : 0.24625,
+      "microPrecision" : 0.525,
+      "complaintSuccesses" : 12,
+      "complaintSuccessRate" : 0.3,
+      "complaintReturned" : 40,
+      "relevantReturned" : 21,
+      "negativeReturned" : 17,
+      "totalReturned" : 57,
+      "negativeFailures" : 9,
+      "negativeFailureRate" : 0.375
+    },
+    "selected" : {
+      "complaintQueries" : 40,
+      "negativeQueries" : 24,
+      "meanPrecisionAt5" : 0.14500000000000002,
+      "macroPrecision" : 0.27749999999999997,
+      "microPrecision" : 0.5471698113207547,
+      "complaintSuccesses" : 14,
+      "complaintSuccessRate" : 0.35,
+      "complaintReturned" : 53,
+      "relevantReturned" : 29,
+      "negativeReturned" : 20,
+      "totalReturned" : 73,
+      "negativeFailures" : 9,
+      "negativeFailureRate" : 0.375
+    }
+  },
+  "checksums" : {
+    "code" : "5425f3a203afc8d648993865dc8c3e9fe46267726484400c0caf8499d63df229",
+    "dictionary" : "60b1ad61268f5541a7cbeb40b48efb9fdcaae07afa611188d0d1ad192de726ec",
+    "queries" : "4a4b615b3f812af436d137dc7dac9fe631c75a1d66e7833da8a7714c0b87be65",
+    "split" : "7b9785d382f5e7eeea23072531ac0a2f46b57d1e355d36b55eb01174d265e7ca",
+    "studyManifest" : "a18f38f698f1a1ef80356f26661c8ee06602e0c8cb0cfce077cba99a8b679dcc",
+    "grid" : "ad835e59cef66bbe3001094a3af5db50d26c427907db39e49a08f6f0b17de3e3",
+    "reviewPrompt" : "4bc751575945a0e05e35e929d8ebfce79e5fffa3a0ca9e62c46aa502b868a7c7",
+    "adjudicationPrompt" : "435ee8d94af577222718066ce1bf00d213fb0a96620468af5ad9d71a2a7be43e",
+    "reviewers" : "b54e71b611cab43495a67203d60b911b0ba2f9a3ed5997c5ee22ef1d8ff8f03e",
+    "parameters" : "d29247a6ba80d56511f535762916c838e03b557803c21d25955a2d567309395d",
+    "calibrationCandidates" : "2f21a4d54530e1dc9235be16813ef98e335b119741167a4ae9e2f1626f91d577",
+    "calibrationLabels" : "01433370276870de87567f173f65d418f8396ef6c35b7b829935e4eed8508cf0",
+    "calibrationReviewA" : "a5371d9a5ada18d8b180aca97c6c7d7e82a87ef14924ec61b8a4bfc264f056ac",
+    "calibrationReviewB" : "3c456052879e118b2d8fa12873041c56f72323feedb2a92fa5bcb40e9bd7ffba",
+    "calibrationAdjudication" : "5bff2a556e5b9a60390938e07f47bd2eee40296db28d5b4be48301eb64bc13a6",
+    "calibrationPackets" : "9fcfe8b8255d804a21392c9eb4859d22e3187a12cb516651b42340985bf8e356"
+  }
+}

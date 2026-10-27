@@ -1,0 +1,19 @@
+# Domain phrase dictionary v1.
+# Format: canonical<TAB>phrase variant
+# Matching is case-insensitive, longest phrase first, word-bounded, and single-pass.
+atm	ATM
+atm	cash machine
+atm	automated teller machine
+duplicatecharge	charged twice
+duplicatecharge	charged double
+duplicatecharge	double charged
+duplicatecharge	duplicate charge
+duplicatecharge	duplicate charges
+heldfunds	funds held
+heldfunds	held funds
+heldfunds	funds withheld
+heldfunds	withheld funds
+heldfunds	balance held
+heldfunds	held balance
+heldfunds	balance withheld
+heldfunds	withheld balance

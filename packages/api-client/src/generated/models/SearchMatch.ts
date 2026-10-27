@@ -62,7 +62,7 @@ export interface SearchMatch {
      */
     categoryExplanation: Array<CategoryExplanation>;
     /**
-     * 
+     * Maksimal 10 token kanonis dengan kontribusi cosine aktual; urut kontribusi turun lalu token naik.
      */
     sharedTerms: Array<TermContribution>;
 }

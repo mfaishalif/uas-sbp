@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q86,10662970,0,"The case concerns funds held in a Venmo balance for 180 days, not the cutoff time for a same-day domestic transfer.",up to 180 days later,reviewer-a
+Q86,10670240,0,"The case concerns an international remittance delay, not a same-day domestic transfer cutoff.",I sent the remittance on XX/XX/XXXX,reviewer-a
+Q86,10683109,0,"The case concerns Cash App payments stuck in pending, not a same-day transfer cutoff time.",it went into a pending state,reviewer-a
+Q86,10687059,0,"The case concerns a crypto withdrawal from Kraken, not a same-day domestic transfer cutoff.",I initiated a withdrawal of {$390.00} from my Kraken account,reviewer-a
+Q87,10652288,0,"The case concerns identity documents for a Robinhood crypto transfer, not documents required for an international wire.","I sent my driver license, a selfie, both side profile pictures",reviewer-a
+Q87,10658410,0,"The case concerns a domestic transfer error, not an international wire or its documentation.",the money had still not arrived,reviewer-a
+Q87,10662307,0,"The case concerns a locked Coinbase account, not an international wire or its documentation.",Coinbase immediately locked my account,reviewer-a
+Q87,10673229,0,"The case concerns a Bank of America fee and compensation-fund fraud complaint, not an international wire.",I have complained to CFPB on the {$950000.00} COMPENSATION FUND,reviewer-a
+Q87,10675163,1,"The case describes an international Western Union transfer that has not been completed, the same international transfer timing mechanism.",the transfer has yet to be completed,reviewer-a
+Q87,10683772,1,"The case describes an international BOSS Revolution transfer the recipient never received, the same international transfer delay mechanism.",the recipient has yet to receive these funds,reviewer-a
+Q88,10658410,0,"The case concerns a domestic transfer error, not why an international transfer takes several business days.",the money had still not arrived,reviewer-a
+Q88,10670240,1,"The case describes an international remittance delayed beyond its promised date, the same international transfer timing mechanism.",it has been delayed,reviewer-a
+Q88,10673229,0,"The case concerns a compensation-fund fraud complaint, not international transfer timing.",I have complained to CFPB on the {$950000.00} COMPENSATION FUND,reviewer-a
+Q88,10674107,0,"The case concerns a delayed cashier's check, not an international transfer.",submitted request for cashiers check,reviewer-a
+Q88,10675163,1,"The case describes an international Western Union transfer that has not been completed, the same international transfer timing mechanism.",the transfer has yet to be completed,reviewer-a
+Q88,10683772,1,"The case describes an international BOSS Revolution transfer the recipient never received, the same international transfer delay mechanism.",the recipient has yet to receive these funds,reviewer-a
+Q89,10660424,0,"The case concerns the same check being mobile-deposited twice, not a bank hold or its release-date calculation.",the same check through as a mobile deposit,reviewer-a
+Q89,10663554,1,"The case describes a deposited check placed on hold due to suspected fraud, the same check-hold mechanism.",she had put the hold on my account,reviewer-a
+Q89,10675165,0,"The case concerns an account locked after a mobile deposit, not a check hold and release-date calculation.",CitiBank locked my out of my account,reviewer-a
+Q89,10681589,1,"The case disputes a check hold and the bank's failure to follow Regulation CC release rules, the same hold/release mechanism.",they will not be removing the hold nor following regulation CC,reviewer-a
+Q89,10681671,1,"The case describes an extended hold on a deposited check that was paid, the same check-hold mechanism.",The check was put on an extended hold,reviewer-a
+Q89,10691383,0,"The case concerns a bounced check and account restriction, not a hold on a deposited check.",the check did not clear,reviewer-a
+Q90,10654510,1,"The case describes a deposited tax-refund check being held while the account was closed, the same extended-hold mechanism.",theyre holding onto my money,reviewer-a
+Q90,10660424,0,"The case concerns the same check being mobile-deposited twice, not factors that extend a check hold.",the same check through as a mobile deposit,reviewer-a
+Q90,10660825,1,"The case describes a check deposit held while the account was frozen for suspicious activity, the same extended-hold mechanism.",they held the funds to wait for the check to clear,reviewer-a

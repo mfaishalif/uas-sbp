@@ -1,6 +1,7 @@
 
 # SearchConfiguration
 
+Konfigurasi server yang benar-benar dipakai. Mode baseline menghasilkan tfidf-cosine-v1; mode phrases menghasilkan tfidf-phrases-v2 setelah normalisasi frasa domain sebelum stopword.
 
 ## Properties
 

@@ -14,16 +14,28 @@ import java.util.stream.Collectors;
 /**
  * Deterministic English tokenization for the fixed TF-IDF vocabulary.
  *
- * <p>Text is lowercased with {@link Locale#ROOT} before Unicode letter/digit runs are collected.
+ * <p>In {@link SimilarityMode#PHRASES} mode the domain phrase dictionary is applied first.
+ * Text is then lowercased with {@link Locale#ROOT} before Unicode letter/digit runs are collected.
  * Numeric-only tokens, single-code-point tokens, redaction placeholders ({@code xx}, {@code xxx},
  * ...), and the committed English stopword list are discarded. Duplicate tokens are preserved.
  */
 public final class EnglishTokenizer {
 
     private final Set<String> stopwords;
+    private final PhraseDictionary dictionary;
 
     public EnglishTokenizer() {
+        this(SimilarityMode.BASELINE);
+    }
+
+    public EnglishTokenizer(SimilarityMode mode) {
+        if (mode == null) {
+            throw new IllegalArgumentException("similarity mode is required");
+        }
         this.stopwords = loadStopwords();
+        this.dictionary = mode == SimilarityMode.PHRASES
+                ? PhraseDictionary.defaultDictionary()
+                : null;
     }
 
     public List<String> tokens(String text) {
@@ -31,7 +43,8 @@ public final class EnglishTokenizer {
             return List.of();
         }
 
-        String lowered = text.toLowerCase(Locale.ROOT);
+        String normalized = dictionary == null ? text : dictionary.normalize(text);
+        String lowered = normalized.toLowerCase(Locale.ROOT);
         List<String> tokens = new ArrayList<>();
         int index = 0;
         while (index < lowered.length()) {

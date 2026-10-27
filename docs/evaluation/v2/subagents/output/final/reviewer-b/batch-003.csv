@@ -1,0 +1,10 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q74,10688449,0,"Different mechanism: the candidate is an ATM withdrawal malfunction where no cash was dispensed, not a question about checking a balance without withdrawing.",THE ATM MALFUNCTIONED AND PRINTED OUT A RECEIPT,reviewer-b
+Q77,10657211,0,"Different mechanism: the candidate is unauthorized card transactions and a denied fraud claim, not a duplicate charge that a merchant should reverse.",I have unauthorized transactions over {$3000.00} under my debit card,reviewer-b
+Q77,10660224,1,"Same mechanism: the same merchant charged the identical amount again after the first charge was disputed and refunded, a duplicate debit that should have been blocked or reversed.","This merchant XXXX has once again, debited my account for the same amount {$39.00}",reviewer-b
+Q77,10683886,0,"Different mechanism: the candidate is unauthorized card use after a stolen wallet, not a duplicate charge on a statement.",my debit card was used without my authorization,reviewer-b
+Q77,10684486,0,"Different mechanism: the candidate is unauthorized charges that posted after the card was cancelled, not a duplicate charge for one purchase.",I called and told them I did not authorize that charge.,reviewer-b
+Q78,10673265,1,"Same mechanism: the consumer was charged double for a single transaction, the duplicate-charge situation the query asks about.",I was charged double for a transaction XXXX twice.,reviewer-b
+Q83,10683886,0,"Different mechanism: the candidate is an unauthorized-transaction dispute after a stolen wallet, not guidance on temporarily freezing a card.",my debit card was used without my authorization,reviewer-b
+Q93,10658469,1,"Same mechanism: the consumer was enrolled in overdraft protection without consent and charged overdraft fees, the coverage the query asks about opting out of.",This unauthorized enrollment has led to significant overdraft fees being deducted from my account,reviewer-b
+Q95,10658109,1,Same mechanism: the candidate concerns the same monthly maintenance fee charged on a savings account that the query asks about waiving.,a {$15.00} MONTLY fee for my savings,reviewer-b

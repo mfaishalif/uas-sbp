@@ -22,7 +22,7 @@ import {
 } from './SearchConfigurationCategoryFieldWeights.js';
 
 /**
- * 
+ * Konfigurasi server yang benar-benar dipakai. Mode baseline menghasilkan tfidf-cosine-v1; mode phrases menghasilkan tfidf-phrases-v2 setelah normalisasi frasa domain sebelum stopword.
  * @export
  * @interface SearchConfiguration
  */
@@ -48,7 +48,7 @@ export interface SearchConfiguration {
      */
     requiresTextOverlap: SearchConfigurationRequiresTextOverlapEnum;
     /**
-     * 
+     * Versi pipeline tokenisasi aktual: tfidf-cosine-v1 untuk mode baseline, tfidf-phrases-v2 untuk mode phrases.
      */
     algorithmVersion: string;
 }

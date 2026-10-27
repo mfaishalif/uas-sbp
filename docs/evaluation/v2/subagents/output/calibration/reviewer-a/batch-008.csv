@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q23,10652454,0,"The candidate is unauthorized blockchain charges the bank declined to investigate, not a merchant's undisclosed surcharge.",I noticed that I was being charged for XXXX charges that I did not authorized,reviewer-a
+Q23,10668515,0,"The candidate is unreimbursed unauthorized debit transactions and fees, not a question about an extra coffee-shop charge.",Wells Fargo Bank never reimbursed me for unauthorized transactions of my debit card,reviewer-a
+Q23,10674687,0,"The candidate is account-takeover fraud with large unauthorized wires, not a small undisclosed surcharge.",two people unknown to us had been added to two of our joint accounts,reviewer-a
+Q23,10682309,0,"The candidate is a disputed checking sign-up bonus, not an extra charge added by a coffee shop.",After weeks passing without receiving the signup bonus,reviewer-a
+Q23,10684486,0,"The candidate is unauthorized toll charges after card cancellation, not a merchant adding an unrequested surcharge.",I did not authorize that charge,reviewer-a
+Q23,10685204,0,"The candidate is a disputed medical charge after a stop payment, not a coffee-shop surcharge question.",USAA ALLOWED THE CHARGE TO MY ACCOUNT,reviewer-a
+Q24,10655737,0,"The candidate is a suspended savings account blocking a transfer, not an explanation of compound interest.",my Ally account had been suspended,reviewer-a
+Q24,10655867,0,"The candidate is a suspended savings account with a trapped deposit, unrelated to how compound interest works.",my account has been suspended since XX/XX/year>,reviewer-a
+Q24,10663218,0,"The candidate concerns a restricted joint savings account after a death, not compound-interest information.",her account restricted ( locked ),reviewer-a
+Q24,10671126,0,"The candidate is an identity-theft and fraudulent-wire case, not an interest-calculation question.",I am a victim of identity theft and a money laundering scheme,reviewer-a
+Q24,10685141,0,"The candidate complains that a higher-rate savings account was not disclosed, an interest-rate disclosure issue rather than compound-interest mechanics.",They constantly introduced a new savings account with a higher interest rate,reviewer-a
+Q24,10688349,0,"The candidate is about being placed in a lower-rate savings product without disclosure, not how compound interest is calculated.",they didn't tell my about their other 360 Performance Savings account,reviewer-a
+Q24,10689238,0,"The candidate is an unpaid savings-account sign-up bonus, unrelated to the query's compound-interest question.",I did not receive my {$500.00} bonus,reviewer-a
+Q24,10691308,0,"The candidate is a Capital One data-compromise and class-action claim, not an explanation of compound interest.",i have lerned that a class action civil suit was filed against capital one bank,reviewer-a
+Q29,10652816,1,"The ATM accepted part of the deposit, then shut down and credited none of the remaining funds, the same ATM deposit discrepancy and missing-money mechanism.",None of the money was deposited into my account,reviewer-a
+Q29,10660825,0,"The candidate is a mobile check deposit held during a fraud review and a frozen account, not an ATM deposit credited at the wrong amount.",they held the funds to wait for the check to clear,reviewer-a
+Q29,10663554,0,"The candidate's check was legitimate but held as suspected fraud, producing a negative balance, not an ATM scan amount error.",she was very abrasive and insisted the check was fraudulent,reviewer-a
+Q29,10665819,0,"The candidate is a failed ATM cash withdrawal with no cash dispensed, the withdrawal counterpart distinct from a deposit discrepancy.",the ATM machine turned off without giving me the money or receipt,reviewer-a
+Q29,10666406,1,"The ATM failed to process a check deposit and retained the checks while the claim was denied, the same ATM deposit failure and missing-funds mechanism.",the checks did not eject,reviewer-a
+Q29,10686119,0,"The candidate is a locked account blocking access to a paycheck, not an ATM deposit amount discrepancy.",the locked my account and now I can't access my account,reviewer-a
+Q29,10692855,0,"The candidate is a long-running dispute over fraudulent card charges, not an ATM check-deposit miscredit.",Disputing with Bank Of America for fraudulent charges for months,reviewer-a
+Q30,10652816,1,"The ATM counted only part of the deposit and then shut off, leaving the balance short by the undeposited funds, matching the query's scanner discrepancy.",The machine had counted around {$3300.00} of the total amount,reviewer-a
+Q30,10660424,0,"The candidate is a check deposited twice by mobile at two banks, a duplicate-deposit issue rather than an ATM scan showing a different total.",the customer put the same check through as a mobile deposit with XXXX,reviewer-a
+Q30,10660825,0,"The candidate is a mobile deposit hold and account freeze, not an ATM scanning error that lowered the balance.",they froze my account on XX/XX/XXXX,reviewer-a
+Q30,10663554,0,"The candidate is a fraud-related hold that produced a negative balance, not an ATM scan total mismatch.",i have an available balance of - {$99000.00},reviewer-a
