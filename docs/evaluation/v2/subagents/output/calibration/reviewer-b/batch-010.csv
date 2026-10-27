@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q35,10663714,0,"The candidate only says money from an app has not been returned, with no duplicate billing for a subscription.",Ive still yet received my money,reviewer-b
+Q35,10673265,1,"Same mechanism: the account was charged twice for the same transaction, repeatedly.",I was charged double for a transaction XXXX twice.,reviewer-b
+Q35,10684486,0,"The candidate is an unauthorized merchant debit that persisted after card cancellation, not a duplicate charge for one subscription billing.",I did not authorize that charge.,reviewer-b
+Q35,10684646,0,"The candidate is identity theft using checking and routing numbers to fund another account, not duplicate subscription billing.",used my checking and routing number to fund or pay for thing with out my consent,reviewer-b
+Q35,10685204,0,"The candidate is a merchant charging again after a stop payment, an unauthorized-billing mechanism rather than a duplicate monthly subscription charge.",SUBMITTED THE CHARGE AGAIN,reviewer-b
+Q35,10692213,0,"The candidate is five separate unauthorized charges pulled at once, not the same subscription billed twice.",five unauthorized charges,reviewer-b
+Q36,10656475,0,"The candidate is a single charge after a cancelled subscription, not a renewal charged double where the extra charge needs reversing.","Later, I got a charge for {$420.00}, and I asked the company, who then sent me a blank invoice.",reviewer-b
+Q36,10656613,0,"The candidate is a single disputed $120 charge with the claim reversed, not a double renewal charge.",I am writing to address an issue regarding a charge to my account,reviewer-b
+Q36,10658529,1,Same mechanism: the subscription renewal was billed at almost double the correct amount and the refund request was refused.,I was over charged almost double what I was supposed to be paying,reviewer-b
+Q36,10673265,1,Same mechanism: the same transaction was charged twice and the duplicate was not refunded.,I was charged double for a transaction XXXX twice.,reviewer-b
+Q36,10683886,0,"The candidate is unauthorized use of a stolen debit card, not a subscription company charging a renewal twice.",my debit card was used without my authorization,reviewer-b
+Q36,10685204,0,"The candidate is a repeated merchant charge after a stop payment, not a double subscription renewal charge.",SUBMITTED THE CHARGE AGAIN,reviewer-b
+Q37,10653766,0,"The candidate is a scam charge and a closed dispute, with no duplicate charge for a single transaction.",I got scammed,reviewer-b
+Q37,10656475,0,"The candidate is a single charge after cancelling a subscription, not a second charge appearing after a restaurant meal.","Later, I got a charge for {$420.00}, and I asked the company, who then sent me a blank invoice.",reviewer-b
+Q37,10656613,0,The candidate is one disputed $120 charge with no duplicate charge for a single purchase.,I am writing to address an issue regarding a charge to my account,reviewer-b
+Q37,10673265,1,"Same mechanism: a transaction was charged twice, producing a duplicate charge the bank was asked to reverse.",I was charged double for a transaction XXXX twice.,reviewer-b
+Q37,10684486,0,"The candidate is an unauthorized toll merchant debit after card cancellation, not a second restaurant charge for one meal.",I did not authorize that charge.,reviewer-b
+Q37,10685204,0,"The candidate is a medical merchant re-charging after a stop payment, a different mechanism from a duplicate restaurant charge.",USAA ALLOWED THE CHARGE TO MY ACCOUNT.,reviewer-b
+Q38,10653766,0,"The candidate is a scam charge with a dispute closed without explanation, not a double charge against one signed receipt.",I got scammed,reviewer-b
+Q38,10656475,0,"The candidate is a single post-cancellation subscription charge, not a card charged twice for one transaction.","Later, I got a charge for {$420.00}, and I asked the company, who then sent me a blank invoice.",reviewer-b
+Q38,10656613,0,"The candidate is a single $120 charge disputed and reversed, with no duplicate charge.",I am writing to address an issue regarding a charge to my account,reviewer-b
+Q38,10660224,1,"Same mechanism: the same merchant debited the same amount again after the first charge was refunded, creating a duplicate debit.","This merchant XXXX has once again, debited my account for the same amount {$39.00}",reviewer-b
+Q38,10667952,0,"The candidate describes card denials and a locked card amid unrelated harassment claims, not a duplicate charge for one signed receipt.",my card is getting locked left and right,reviewer-b
+Q38,10673265,1,"Same mechanism: the same transaction was charged twice, a duplicate charge on the account.",I was charged double for a transaction XXXX twice.,reviewer-b
+Q38,10674775,0,"The candidate is unauthorized card use at two different merchants after skimming, not the same purchase charged twice.",a charge from both XXXX and XXXX XXXX was posted simultaneously,reviewer-b

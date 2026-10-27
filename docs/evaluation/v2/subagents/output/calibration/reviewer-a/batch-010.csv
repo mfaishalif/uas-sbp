@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q35,10663714,0,The case only says the consumer has spent a year trying to recover money from an app; it never describes a subscription being billed twice or a duplicate charge.,Ive been trying to get my money back from this app,reviewer-a
+Q35,10673265,1,Both cases involve a merchant charging the same transaction twice; this consumer was billed double and disputed the duplicate with the bank.,I was charged double for a transaction XXXX twice.,reviewer-a
+Q35,10684486,0,"The case concerns a merchant debit that went through after the card was cancelled, an unauthorized merchant charge rather than a subscription billed twice for one month.",They said the charge would not go through and still did.,reviewer-a
+Q35,10684646,0,"The case is about identity theft and an account opened with the consumer's checking and routing numbers, not a duplicate subscription charge.",Some used my info to open a account,reviewer-a
+Q35,10685204,0,"The case involves a medical provider recharging a card after a stop payment, a merchant-authorization failure rather than duplicate billing.",USAA ADVISED ME TO ISSUE A STOP PAYMENT ON THE ACCOUNT,reviewer-a
+Q35,10692213,0,"The case describes five separate unauthorized charges pulled at once, not the same transaction billed twice.",was hit with five unauthorized charges,reviewer-a
+Q36,10656475,0,"The case is a single charge made after a cancelled subscription, not a renewal billed twice, although the bank dispute is similar.",I cancelled the subscription and received an email confirmed I would no longer be charged,reviewer-a
+Q36,10656613,0,The case involves one $120 charge whose claim was reversed; no duplicate or double renewal charge is described.,I am writing to address an issue regarding a charge to my account,reviewer-a
+Q36,10658529,1,"Both involve a subscription renewal billed at roughly double the correct amount, with the consumer disputing the overcharge and refund through the bank.",I was over charged almost double what I was supposed to be paying,reviewer-a
+Q36,10673265,1,Both involve a merchant charging the same transaction twice and the consumer disputing the duplicate with the bank.,I was charged double for a transaction XXXX twice.,reviewer-a
+Q36,10683886,0,"The case is stolen-wallet card fraud with several unauthorized charges, not a subscription renewal billed twice.",my debit card was used without my authorization,reviewer-a
+Q36,10685204,0,"The case is a medical provider recharging after a stop payment, not a duplicate charge for a single subscription renewal.",CARBON HEALTH TRIED TO CHARGE MY CREDIT CARD,reviewer-a
+Q37,10653766,0,"The case concerns a scam charge that the consumer disputed, not a duplicate charge for one restaurant meal.",I got scammed XX/XX/XXXX they charged my account,reviewer-a
+Q37,10656475,0,The case is a single post-cancellation charge rather than a second charge for the same transaction.,"Later, I got a charge for {$420.00}",reviewer-a
+Q37,10656613,0,"The case involves one disputed $120 charge, with no duplicate billing of the same transaction.",I am writing to address an issue regarding a charge to my account,reviewer-a
+Q37,10673265,1,Both involve the same transaction being charged twice; here the consumer was billed double and reported it to the bank.,I was charged double for a transaction XXXX twice.,reviewer-a
+Q37,10684486,0,"The case concerns unauthorized merchant debits after card cancellation, not a duplicate charge for one purchase.",They said the charge would not go through and still did.,reviewer-a
+Q37,10685204,0,"The case is about a medical provider ignoring a stop payment, not a restaurant billing one meal twice.",USAA ADVISED ME TO ISSUE A STOP PAYMENT ON THE ACCOUNT,reviewer-a
+Q38,10653766,0,"The case describes a scam charge the consumer disputed, not a second charge for the same restaurant transaction.",I got scammed XX/XX/XXXX they charged my account,reviewer-a
+Q38,10656475,0,"The case is a single charge after a cancelled subscription, not a duplicate charge for one signed receipt.","Later, I got a charge for {$420.00}",reviewer-a
+Q38,10656613,0,"The case involves one $120 charge whose claim was reversed, with no double billing of a single transaction.",I am writing to address an issue regarding a charge to my account,reviewer-a
+Q38,10660224,1,"The same merchant debited the same $39 amount again after a refund and card replacement, the same duplicate-charge mechanism the query describes.","has once again, debited my account for the same amount",reviewer-a
+Q38,10667952,0,"The narrative is about repeated card declines and a stalking complaint, not a merchant charging the same purchase twice.",my card is getting locked left and right,reviewer-a
+Q38,10673265,1,Both involve the same transaction being charged twice; the consumer was billed double and disputed it with the bank.,I was charged double for a transaction XXXX twice.,reviewer-a
+Q38,10674775,0,"The case is card-skimming fraud with charges at stores the consumer never visited, not a duplicate charge for one purchase.",did not use my debit card at XXXX or XXXX XXXX that day,reviewer-a

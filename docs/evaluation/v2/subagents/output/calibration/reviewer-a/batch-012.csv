@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q48,10669223,1,Both involve unauthorized payments sent from the consumer's mobile wallet that the consumer disputed.,Three unauthorized payments through XXXX XXXX went through my account,reviewer-a
+Q48,10678347,0,"The case concerns a PayPal refund that never reached the consumer's bank, not an unauthorized transfer to a stranger.",I don't see the funds in my XXXX,reviewer-a
+Q48,10682095,1,Both involve account takeover of a mobile wallet followed by unauthorized transfers out.,"the email, number, and password to the account were changed",reviewer-a
+Q48,10685059,0,"The case is a completed transfer sent to a mislabeled beneficiary with a delayed refund, not an unauthorized transfer to a stranger.",my partner was unable to withdraw the money as the beneficiary was labeled as the bank,reviewer-a
+Q48,10690564,0,"The case is a crypto investment scam where the consumer was induced to deposit and stake funds, not an unauthorized wallet transfer.",I am a crypto fraud victim,reviewer-a
+Q51,10658410,1,Both involve an outgoing transfer that was expected the same or next day but had not reached the recipient after several days.,"I waited for XXXX days, but the money had still not arrived",reviewer-a
+Q51,10668907,0,"The case is a transfer sent to the wrong recipient whose name changed at confirmation, not a delayed transfer to the intended recipient.",the name had changed to a different recipient that I never pressed,reviewer-a
+Q51,10670240,1,Both involve a remittance that was not available when promised and that the provider would not cancel or refund.,They sent me a message on XX/XX/XXXX that it has been delayed,reviewer-a
+Q51,10675163,1,Both involve a transfer that has not been completed by the promised date.,the transfer has yet to be completed,reviewer-a
+Q51,10683109,1,Both involve domestic money transfers that remained pending and did not arrive as expected.,it went into a pending state,reviewer-a
+Q51,10683772,1,Both involve a transfer the recipient never received despite the provider's assurances.,the recipient has yet to receive these funds,reviewer-a
+Q51,10687059,0,"The case is a crypto exchange withdrawal to a bank that never arrived, a different rail from a domestic bank transfer.",I initiated a withdrawal of {$390.00} from my Kraken account to my bank,reviewer-a
+Q52,10658410,1,Both involve an outgoing transfer expected within a day or two that had still not reached the recipient.,"I waited for XXXX days, but the money had still not arrived",reviewer-a
+Q52,10662307,0,"The case is a crypto exchange account lock during review, not a domestic money transfer that is pending.",Coinbase immediately locked my account,reviewer-a
+Q52,10662970,0,"The case is a wallet balance held for 180 days with no ability to transfer out, not a pending domestic transfer.",I still dont have the ability to transfer out my funds,reviewer-a
+Q52,10670240,1,Both involve a remittance that was not available when promised and that the provider would not cancel or refund.,They sent me a message on XX/XX/XXXX that it has been delayed,reviewer-a
+Q52,10683109,1,Both involve domestic money transfers that remained pending and did not arrive as expected.,it went into a pending state,reviewer-a
+Q53,10657955,1,Both involve a digital wallet or exchange freezing the account so the consumer cannot withdraw the balance.,Gemini then placed a security freeze on the account,reviewer-a
+Q53,10663845,1,Both involve a wallet transfer being declined and the account locked with the consumer's money inside.,Venmo had declined the transfer and locked my account with the money in it,reviewer-a
+Q53,10669762,0,"The case is a bank blocking transfers into a wallet, the opposite direction from a wallet transfer stuck pending.",Ally Bank will not allow me to add to my XXXX balance from my Ally Bank ATM card,reviewer-a
+Q53,10680556,1,Both involve a payment platform limiting the account and refusing to let the consumer withdraw funds.,PayPal limited my account,reviewer-a
+Q53,10684634,1,Both involve a payment wallet freezing the balance and refusing requests to release it.,Venmo has frozen and effectively seized,reviewer-a
+Q53,10688565,1,Both involve a payment platform restricting the account and refusing to transfer the balance to the consumer's bank.,Skrill.com has my account restricted and will not allow me to remove my money,reviewer-a
+Q54,10657955,1,Both involve a digital wallet or exchange freezing the account so the consumer cannot withdraw the balance.,Gemini then placed a security freeze on the account,reviewer-a
+Q54,10663845,1,Both involve a wallet transfer being declined and the account locked with the consumer's money inside.,Venmo had declined the transfer and locked my account with the money in it,reviewer-a

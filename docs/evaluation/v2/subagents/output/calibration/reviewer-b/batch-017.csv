@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q86,10662970,0,"The case concerns funds held in a Venmo account after a completed transaction, not the cutoff time for initiating a same-day domestic transfer.",I still dont have the ability to transfer out my funds,reviewer-b
+Q86,10670240,0,"The case is a delayed international remittance, a different transfer type and timing mechanism from the cutoff for a domestic same-day transfer.",I sent the remittance on XX/XX/XXXX and its supposed to arrive with the recipient on XX/XX/XXXX,reviewer-b
+Q86,10683109,1,"The case describes domestic Cash App transfers that stayed pending instead of arriving instantly, addressing the same same-day domestic transfer timing problem.",it did not come through instantly how I expected it to so it went into a pending state,reviewer-b
+Q86,10687059,0,"The case is a crypto withdrawal from Kraken to a bank that did not arrive, not a same-day domestic transfer cutoff question.",I initiated a withdrawal of {$390.00} from my Kraken account to my bank,reviewer-b
+Q87,10652288,0,"The case is a failed crypto transfer followed by an account review, not an international wire or its documentation and timing.",The transaction failed and my account was flagged,reviewer-b
+Q87,10658410,1,"The case describes an international wire that was delayed for days and had to be traced, directly addressing how long an international wire takes.","I waited for XXXX days, but the money had still not arrived",reviewer-b
+Q87,10662307,0,"The case is a Coinbase account lock during an internal crypto transfer, not an international wire transfer.",Coinbase immediately locked my account,reviewer-b
+Q87,10673229,0,"The case is a fraud and compensation-fund dispute with a 90-day account review, not an international wire or its timing.",asking for 90 days to look into the matter,reviewer-b
+Q87,10675163,1,"The case is an international Western Union transfer that missed its promised arrival date, addressing international transfer duration.",the transfer has yet to be completed,reviewer-b
+Q87,10683772,1,"The case is an international transfer whose recipient never received the funds, addressing international transfer timing and failure.",the recipient has yet to receive these funds,reviewer-b
+Q88,10658410,1,"The case describes an international wire that was delayed and had to be traced, directly relevant to why an international transfer can take several days.","I waited for XXXX days, but the money had still not arrived",reviewer-b
+Q88,10670240,1,"The case is an international remittance delayed past its promised date, directly illustrating multi-day international transfer timing.",it has been delayed and it MIGHT be available between,reviewer-b
+Q88,10673229,0,"The case is a fraud and compensation-fund dispute with a 90-day account review, not international transfer processing.",asking for 90 days to look into the matter,reviewer-b
+Q88,10674107,0,"The case is a cashier's check delivery delay, a different payment product and mechanism from an international wire transfer.",submitted request for cashiers check to be sent to us,reviewer-b
+Q88,10675163,1,"The case is an international Western Union transfer that missed its promised arrival date, addressing international transfer duration.",the transfer has yet to be completed,reviewer-b
+Q88,10683772,1,"The case is an international transfer whose recipient never received the funds, addressing international transfer timing and failure.",the recipient has yet to receive these funds,reviewer-b
+Q89,10660424,0,"The case is an undetected duplicate mobile check deposit, not a bank hold on a check deposit or a release-date calculation.",Neither bank caught that it had already been deposited,reviewer-b
+Q89,10663554,1,"The case describes a check deposit held because the bank suspected fraud, directly addressing why a bank places a deposit hold.",she had put the hold on my account,reviewer-b
+Q89,10675165,0,"The case is an account lock after a fraud flag, not a check-deposit hold or a release-date calculation.",CitiBank locked my out of my account,reviewer-b
+Q89,10681589,1,"The case describes a check deposit hold and the bank's failure to follow Regulation CC release timing, directly on point.",they will not be removing the hold nor following regulation CC,reviewer-b
+Q89,10681671,1,"The case describes an extended hold on a deposited check and refusal to release the funds, directly relevant to hold release.",The check was put on an extended hold,reviewer-b
+Q89,10691383,0,"The case is a bounced check that led to account restriction, not a check-deposit hold or its release date.",Unfortunately the check did not clear,reviewer-b
+Q90,10654510,1,"The case describes a mobile tax-refund check deposit whose funds were held while the closed account was investigated, a factor extending the hold.",theyre holding onto my money for no reason when the check has been cleared,reviewer-b
+Q90,10660424,0,"The case is an undetected duplicate mobile check deposit, not a factor that extends a check-deposit hold.",Neither bank caught that it had already been deposited,reviewer-b
+Q90,10660825,1,"The case describes a mobile check deposit held for clearing and then a freeze for suspicious activity, a factor extending the hold.",they held the funds to wait for the check to clear,reviewer-b

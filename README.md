@@ -28,7 +28,7 @@ Pengguna utama yang dibayangkan adalah **analis atau petugas penanganan pengadua
 | Framework backend | Spring Boot 4.1.2, Maven Wrapper 3.9.11 |
 | Database | SQLite dengan migrasi berversi, WAL, dan satu koneksi tulis |
 | Kontrak API | OpenAPI 3.1; batas Java dan client TypeScript dihasilkan dari kontrak yang sama |
-| Pencarian kasus | Gabungan kemiripan kategori dan TF-IDF cosine (`tfidf-cosine-v1`) |
+| Pencarian kasus | Gabungan kemiripan kategori dan TF-IDF cosine; mode `baseline` (`tfidf-cosine-v1`) atau `phrases` (`tfidf-phrases-v2`) |
 | Bahasa input pengaduan | Mengikuti bahasa narasi dataset sumber (Inggris) |
 | Sumber kasus historis | Arsip resmi narasi CFPB, sampel tetap 500 kasus |
 | Retensi kasus baru | Penyimpanan manual oleh analis, tanpa peran verifikator atau alur persetujuan khusus |
@@ -128,7 +128,7 @@ npm run verify                 # kontrak, generation, backend, client, dan live 
 cd backend && ./mvnw test      # hanya tes backend
 ```
 
-`npm run verify` menjalankan validasi kontrak, generation check, 235 tes backend, pembuatan packaged jar, serta contract/client test terhadap server nyata. Perintah ini tidak mengunduh arsip CFPB.
+`npm run verify` menjalankan validasi kontrak, generation check, 267 tes backend, pembuatan packaged jar, serta contract/client test terhadap server nyata. Perintah ini tidak mengunduh arsip CFPB.
 
 Menjalankan server dengan database default:
 
@@ -211,8 +211,8 @@ Client membawa `basePath` `/api` sekali, tidak mengulang mutasi, dan memetakan k
 - Impor: file maksimum 20 MiB, request multipart 21 MiB, 5.000 record per file. Narasi maksimum 50.000 karakter; perusahaan 500; respons perusahaan 2.000.
 - Retensi: `handlingNotes` wajib maksimum 10.000 karakter; `evaluationNotes` opsional maksimum 10.000; maksimum 20 referensi berbeda.
 - Pencarian: `limit` default 5, maksimum 20. Tidak ada pagination pencarian. Korpus dan TF-IDF dibangun ulang pada setiap pencarian; tidak ada cache query atau penyimpanan query.
-- Konfigurasi skor ada di `finresolve.similarity.*` pada `backend/src/main/resources/application.yml` (bobot kategori/teks 0.4/0.6, bobot empat field 0.35/0.15/0.35/0.15, ambang 0.50, limit). Nilai tidak valid membuat startup gagal. Batas kontrak tidak dapat dinaikkan oleh konfigurasi.
-- Kalibrasi eksploratif 27 Oktober 2026 membandingkan 147 konfigurasi pada sampel 500 kasus. Konfigurasi terpilih gagal syarat query negatif pada pengujian akhir, sehingga default **dipertahankan**. Label relevansi dibuat otomatis dan belum divalidasi manusia; rincian ada di [docs/evaluation/README.md](docs/evaluation/README.md). Respons historis tetap konteks, bukan bukti keberhasilan penanganan.
+- Konfigurasi skor ada di `finresolve.similarity.*` pada `backend/src/main/resources/application.yml` (mode `baseline`/`phrases`; dapat dioverride dengan `FINRESOLVE_SIMILARITY_MODE`, bobot kategori/teks 0.4/0.6, bobot empat field 0.35/0.15/0.35/0.15, ambang 0.50, limit). `phrases` menerapkan kamus domain berversi sebelum stopword tanpa mengubah narasi asli. Nilai/mode tidak valid membuat startup gagal. Batas kontrak tidak dapat dinaikkan oleh konfigurasi.
+- Studi relevansi v2 (27 Oktober 2026) membandingkan 294 konfigurasi (2 mode × 147 titik) pada 104 query. Kandidat frasa `phrases/w=0.5/t=0.575` menaikkan precision@5 pengujian 0.175 → 0.242, tetapi query negatif yang mendapat hasil naik 5 → 7, sehingga gerbang penerapan gagal dan default **dipertahankan**. Label dibuat dua subagent AI independen dan belum divalidasi manusia; rincian serta rollback ada di [docs/evaluation/v2/README.md](docs/evaluation/v2/README.md). Respons historis tetap konteks, bukan bukti keberhasilan penanganan.
 - Katalog kategori hanya berasal dari kasus CFPB yang diimpor; retensi ANALYST tidak memperluas katalog. Sebelum impor, katalog kosong dan retensi ditolak **409** `EMPTY_CATEGORY_CATALOG`.
 - Tidak ada autentikasi, peran, deployment publik, atau UI pada demo ini.
 
@@ -300,7 +300,7 @@ Perintah `down --volumes` pada demo menghapus seluruh kasus analis pada volume d
 
 ## Evaluasi relevansi
 
-Panduan walkthrough, dataset 24 query, perintah kalibrasi, dan lembar evaluasi manusia ada di [docs/evaluation/README.md](docs/evaluation/README.md). Evaluasi 27 Oktober 2026 bersifat **eksploratif**: label dibuat otomatis dan belum divalidasi manusia, sehingga precision@5 yang dilaporkan bukan klaim kualitas final. Hasilnya membandingkan baseline dengan 147 konfigurasi; konfigurasi terpilih tidak diterapkan karena menambah satu kegagalan query negatif pada bagian pengujian. Baseline 0.4/0.6 dan ambang 0.50 dipertahankan. Lulusnya tes teknis tetap terpisah dari hasil relevansi.
+Panduan walkthrough, studi relevansi v2, perintah evaluasi, dan lembar penilaian manusia ada di [docs/evaluation/v2/README.md](docs/evaluation/v2/README.md); studi v1 tetap tersedia sebagai [arsip](docs/evaluation/README.md). Label v2 dibuat dua subagent AI independen dan belum divalidasi manusia, sehingga precision@5 bukan klaim kualitas final. Studi membandingkan 294 konfigurasi; kandidat frasa tidak diterapkan karena menambah dua kegagalan query negatif pada pengujian. Baseline `mode=baseline`, bobot 0.4/0.6, dan ambang 0.50 dipertahankan. Lulusnya tes teknis tetap terpisah dari hasil relevansi.
 
 Penting untuk membedakan **respons yang tercatat** dengan **solusi yang terbukti berhasil**. Label respons dari CFPB tidak otomatis menjelaskan langkah investigasi, prosedur internal, atau tingkat kepuasan konsumen. Jika proyek kelak memberikan rekomendasi tindakan, rekomendasi tersebut membutuhkan sumber prosedur atau verifikasi tambahan.
 
@@ -317,7 +317,7 @@ Pencarian menggabungkan dua komponen:
 - **Kemiripan kategori:** membandingkan jenis layanan dan masalah pengaduan.
 - **Kemiripan teks:** membandingkan detail deskripsi kasus baru dengan narasi kasus historis.
 
-Implementasi memakai `tfidf-cosine-v1`: TF-IDF yang hanya dilatih pada narasi kasus, cosine yang dinormalisasi, bobot kategori 0.4 dan teks 0.6, empat bobot field kategori 0.35/0.15/0.35/0.15, ambang 0.50, serta syarat tumpang tindih teks. Kandidat dengan skor di bawah ambang tidak ditampilkan. Kalibrasi eksploratif tidak mengubah default ini karena konfigurasi terpilih gagal syarat negatif pada pengujian akhir; respons server selalu memuat konfigurasi aktual dan peringatan bahwa kalibrasi belum divalidasi manusia.
+Implementasi default memakai mode `baseline` (`tfidf-cosine-v1`): TF-IDF yang hanya dilatih pada narasi kasus, cosine yang dinormalisasi, bobot kategori 0.4 dan teks 0.6, empat bobot field kategori 0.35/0.15/0.35/0.15, ambang 0.50, serta syarat tumpang tindih teks. Mode `phrases` (`tfidf-phrases-v2`) menjalankan TF-IDF yang sama setelah mengganti varian frasa domain (`ATM`/`cash machine`, `charged twice`/`duplicate charge`, `funds held`/`balance held`, dan sebagainya) dengan token kanonis. Pencocokan memakai frasa terpanjang lebih dahulu, batas kata, dan tidak melintasi tanda akhir kalimat; narasi tersimpan tidak berubah. Kandidat dengan skor di bawah ambang tidak ditampilkan. Studi v2 tidak mengubah default karena kandidat frasa gagal syarat query negatif pada pengujian akhir; respons server selalu memuat mode/versi algoritme aktual dan peringatan bahwa kalibrasi belum divalidasi manusia.
 
 Respons perusahaan merupakan informasi historis yang ditampilkan bersama kasus hasil pencarian, bukan informasi yang harus diketahui analis ketika memasukkan pengaduan baru.
 
@@ -348,12 +348,12 @@ Keberhasilan proyek terutama berkaitan dengan **relevansi dan kegunaan preseden*
 
 ## Ruang keputusan yang masih terbuka
 
-Keputusan yang sudah ditetapkan meliputi Spring Boot 4.1.2 + Java 21, SQLite, OpenAPI 3.1 sebagai sumber kontrak, client TypeScript hasil generation, formula `tfidf-cosine-v1`, batas demo 5.000 kasus, dan retensi manual tanpa verifikator. Yang masih terbuka:
+Keputusan yang sudah ditetapkan meliputi Spring Boot 4.1.2 + Java 21, SQLite, OpenAPI 3.1 sebagai sumber kontrak, client TypeScript hasil generation, pipeline `tfidf-cosine-v1`/`tfidf-phrases-v2`, batas demo 5.000 kasus, dan retensi manual tanpa verifikator. Yang masih terbuka:
 
 - Frontend Next.js, desain dan bahasa antarmuka, serta rincian interaksi evaluasi dan retensi.
 - Autentikasi, hak akses, dan deployment publik.
 - Validasi manusia atas label relevansi dan konfigurasi 0.4/0.6 serta ambang 0.50; nilai tersebut belum diklaim optimal.
 - Perluasan cakupan produk/periode dan pembersihan data di luar sampel demo 500 kasus.
-- Skenario evaluasi tambahan di luar 24 query dan precision@5 yang sudah disediakan.
+- Skenario evaluasi tambahan di luar 104 query dan 294 konfigurasi yang sudah disediakan, termasuk validasi manusia.
 
 **Acuan:** dokumen *Sistem CBR Keluhan Konsumen.pdf* dan arah proyek FinResolve yang telah didiskusikan. Rancangan awal merupakan referensi, bukan spesifikasi yang harus diikuti tanpa peninjauan.

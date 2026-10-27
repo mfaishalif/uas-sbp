@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q38,10678279,0,"The case concerns a rejected transfer whose refund never arrived, not a merchant charging one transaction twice.",Wise rejected the transaction and said that they refunded it,reviewer-a
+Q38,10682778,0,"The case is an unauthorized ACH draft by an unknown person, not a duplicate charge for a single transaction.",someone authorized an XXXX draft on my account,reviewer-a
+Q38,10683886,0,"The case is stolen-wallet debit card fraud, not a subscription or merchant billing the same transaction twice.",my debit card was used without my authorization,reviewer-a
+Q38,10688449,0,"The case is an ATM that failed to dispense cash while debiting the account, an ATM withdrawal failure rather than duplicate billing.",THE FUNDS WERE LISTED AS WITHDRAWN FROM MY ACCOUNT,reviewer-a
+Q41,10674775,1,Both involve the consumer's debit card number being used without authorization at locations the consumer did not visit.,someone stole my card information when I inserted my card,reviewer-a
+Q41,10682778,1,Both involve an unknown person using the consumer's account credentials for an unauthorized debit that the bank refused to reverse.,someone authorized an XXXX draft on my account,reviewer-a
+Q41,10683886,1,Both involve a debit card used without authorization for charges the consumer did not make.,my debit card was used without my authorization,reviewer-a
+Q41,10683958,1,Both involve an unauthorized card purchase made far from the consumer's home and disputed with the bank.,"I noticed a purchase I did not make, nor did I authorize",reviewer-a
+Q41,10684486,0,"The case is a merchant debit that continued after the card was cancelled, not a third party using the card number for a purchase.",They said the charge would not go through and still did.,reviewer-a
+Q42,10657211,1,Both involve unauthorized debit card transactions the consumer disputed and the bank refused to reimburse.,I have unauthorized transactions over {$3000.00} under my debit card,reviewer-a
+Q42,10660224,1,"The case involves the same merchant debiting the same amount again after a refund, an unauthorized repeat debit on the card.","has once again, debited my account for the same amount",reviewer-a
+Q42,10668515,1,Both involve unauthorized debit card transactions that the bank did not reimburse.,never reimbursed me for unauthorized transactions of my debit card,reviewer-a
+Q42,10674775,1,Both involve unauthorized debit card charges at stores the consumer never visited.,did not use my debit card at XXXX or XXXX XXXX that day,reviewer-a
+Q42,10682105,0,"The case is an ATM that went out of service without dispensing cash, not an unauthorized purchase from a store.",ATM went out of service while I was using it,reviewer-a
+Q42,10683886,1,Both involve a stolen or compromised debit card used without authorization for purchases.,my debit card was used without my authorization,reviewer-a
+Q42,10683958,1,Both involve an unauthorized card purchase made far from home that the consumer disputed.,"I noticed a purchase I did not make, nor did I authorize",reviewer-a
+Q47,10657955,0,"The case is an exchange security freeze blocking a withdrawal, not an unauthorized transfer from the wallet to a stranger.",Gemini then placed a security freeze on the account,reviewer-a
+Q47,10664892,1,Both involve money being moved out of a mobile wallet account without the consumer's authorization.,all of that money was transferred off of my account,reviewer-a
+Q47,10665354,1,Both involve an unauthorized transfer completed to another person using the consumer's phone number and wallet.,Someone fraudulently use my phone number to complete a transaction to someone else,reviewer-a
+Q47,10669223,1,Both involve unauthorized payments sent from the consumer's mobile wallet that the consumer disputed.,Three unauthorized payments through XXXX XXXX went through my account,reviewer-a
+Q47,10682095,1,Both involve account takeover of a mobile wallet followed by unauthorized transfers out.,"the email, number, and password to the account were changed",reviewer-a
+Q47,10685059,0,"The case is a completed transfer sent to a mislabeled beneficiary with a delayed refund, not an unauthorized transfer to a stranger.",my partner was unable to withdraw the money as the beneficiary was labeled as the bank,reviewer-a
+Q47,10690564,0,"The case is a crypto investment scam where the consumer was induced to deposit funds, not an unauthorized wallet transfer.",I am a crypto fraud victim,reviewer-a
+Q48,10653430,0,"The case is a business account closed with funds held for 90 days, not an unauthorized transfer from a mobile wallet.",YOU CAN NOT GETYOUR MONEY BACK FOR 90 DAYS,reviewer-a
+Q48,10657955,0,"The case is an exchange security freeze blocking a withdrawal to a hardware wallet, not an unauthorized transfer to an unknown account.",trying to withdraw our XXXX,reviewer-a

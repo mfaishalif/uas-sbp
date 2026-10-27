@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q38,10678279,0,"The candidate is a rejected transfer whose refund never arrived, not a card charged twice for one purchase.",Wise rejected the transaction and said that they refunded it.,reviewer-b
+Q38,10682778,0,"The candidate is an unauthorized ACH draft on the account, not a duplicate card charge.",I had no knowledge of this person,reviewer-b
+Q38,10683886,0,"The candidate is theft of a wallet and unauthorized debit card charges, not a double charge for one transaction.",my debit card was used without my authorization,reviewer-b
+Q38,10688449,0,"The candidate is an ATM that failed to dispense cash while still debiting the account, not a duplicate charge.",THE FUNDS WERE LISTED AS WITHDRAWN FROM MY ACCOUNT,reviewer-b
+Q41,10674775,1,Same mechanism: card data was skimmed and used for purchases the cardholder never made at stores she did not visit.,did not use my debit card at XXXX or XXXX XXXX that day.,reviewer-b
+Q41,10682778,0,"The candidate is an unauthorized ACH draft using an account number, not a debit card number used for a purchase.",someone authorized an XXXX draft on my account,reviewer-b
+Q41,10683886,1,Same mechanism: the debit card was used without authorization for charges the cardholder did not make.,my debit card was used without my authorization,reviewer-b
+Q41,10683958,1,Same mechanism: an unauthorized debit card purchase of an electronics system in a city far from the cardholder's home.,"I noticed a purchase I did not make, nor did I authorize.",reviewer-b
+Q41,10684486,1,Same mechanism: the debit card was charged by a merchant without the cardholder's authorization and the bank did not reverse it.,I did not authorize that charge.,reviewer-b
+Q42,10657211,1,"Same mechanism: unauthorized debit card transactions from a merchant, with the bank denying the fraud claim without investigating.",I have unauthorized transactions over {$3000.00} under my debit card,reviewer-b
+Q42,10660224,1,Same mechanism: the bank allowed the same merchant to keep debiting the account without authorization even after replacing the card.,"This merchant XXXX has once again, debited my account for the same amount {$39.00}",reviewer-b
+Q42,10668515,1,Same mechanism: unauthorized debit card transactions were not reimbursed by the bank.,never reimbursed me for unauthorized transactions of my debit card,reviewer-b
+Q42,10674775,1,Same mechanism: unauthorized charges appeared from stores the cardholder never visited after card skimming.,did not use my debit card at XXXX or XXXX XXXX that day.,reviewer-b
+Q42,10682105,0,"The candidate is an ATM dispensing failure that still charged the account, not an unauthorized transaction by a third party.",No money came out. But the charge processed to my checking account.,reviewer-b
+Q42,10683886,1,Same mechanism: unauthorized debit card charges from merchants while the card was not in the holder's possession.,my debit card was used without my authorization,reviewer-b
+Q42,10683958,1,Same mechanism: an unauthorized debit card purchase at a store far from the cardholder's residence.,I did not make this purchase,reviewer-b
+Q47,10657955,0,"The candidate is a security freeze that blocks a withdrawal to a hardware wallet, not a transfer sent to an unknown account.",Gemini then placed a security freeze on the account,reviewer-b
+Q47,10664892,1,Same mechanism: the wallet account was taken over and the balance transferred out without the holder's authorization.,all of that money was transferred off of my account,reviewer-b
+Q47,10665354,1,Same mechanism: someone used the holder's phone number to complete a mobile wallet transfer to another person without authorization.,Someone fraudulently use my phone number to complete a transaction to someone else,reviewer-b
+Q47,10669223,1,Same mechanism: unauthorized mobile wallet payments were sent from the account and the chargeback was later reversed.,Three unauthorized payments through XXXX XXXX went through my account.,reviewer-b
+Q47,10682095,1,Same mechanism: the payment app account was hacked and a transaction was made that the holder did not authorize.,However I did not make that transaction not gave anyone permission.,reviewer-b
+Q47,10685059,0,"The candidate is a transfer sent to a mislabeled beneficiary and never returned, not an unauthorized transfer to an unknown account.",my partner was unable to withdraw the money as the beneficiary was labeled as the bank,reviewer-b
+Q47,10690564,0,"The candidate is a crypto investment scam in which the holder made the transfers, not an unauthorized wallet transfer by a third party.","Hi, I am a crypto fraud victim!",reviewer-b
+Q48,10653430,0,"The candidate is an ACH payment placed on security hold with the account deactivated, not a wallet transfer sent to a stranger.",YOU CAN NOT GETYOUR MONEY BACK FOR 90 DAYS,reviewer-b
+Q48,10657955,0,"The candidate is a security freeze blocking a hardware-wallet withdrawal, not money sent to a stranger without authorization.",Gemini then placed a security freeze on the account,reviewer-b

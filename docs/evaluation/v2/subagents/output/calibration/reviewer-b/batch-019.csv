@@ -1,0 +1,18 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q97,10655737,0,"The case is a savings account suspended during an external transfer, not an explanation of compound-interest calculation or crediting frequency.",my Ally account had been suspended,reviewer-b
+Q97,10655867,0,"The case is a savings account suspended after a deposit, not an explanation of compound-interest calculation or crediting frequency.",my account has been suspended since XX/XX/year>,reviewer-b
+Q97,10663218,0,"The case is a joint savings account restricted after the owner's death, not an explanation of compound-interest calculation or crediting frequency.",her account restricted ( locked ),reviewer-b
+Q97,10669957,0,"The case is a checking-account force post and fees, not savings interest calculation or crediting.",Truist forced posted XXXX from my credit balance to checking account,reviewer-b
+Q97,10671126,0,"The case is a fraud and frozen-account dispute, not an explanation of compound-interest calculation or crediting frequency.",I want my accounts frozen,reviewer-b
+Q97,10685141,0,"The case describes a savings account paying a lower interest rate than advertised, a rate-disclosure issue rather than how compound interest is calculated or credited.",new savings account with a higher interest rate than it was paying to existing customers,reviewer-b
+Q97,10688349,0,"The case describes a savings account earning a lower rate than another account, a rate-disclosure issue rather than compound-interest calculation or crediting frequency.",My money received probably less than 1 % interest compared to a mirror savings program,reviewer-b
+Q97,10691308,0,"The case is a data-compromise and short-balance dispute, not an explanation of compound-interest calculation or crediting frequency.",financial data being compromised,reviewer-b
+Q98,10655737,0,"The case is a savings account suspended during an external transfer, not an explanation of how much interest a deposit can earn.",my money ( {$14000.00} ) is in limbo,reviewer-b
+Q98,10655867,0,"The case is a savings account suspended after a deposit, not an explanation of how much interest a deposit can earn.",my account has been suspended since XX/XX/year>,reviewer-b
+Q98,10663218,0,"The case is a joint savings account restricted after the owner's death, not an explanation of how much interest a deposit can earn.",her account restricted ( locked ),reviewer-b
+Q98,10671126,0,"The case is a fraud and frozen-account dispute, not an explanation of how much interest a savings deposit can earn.",I want my accounts frozen,reviewer-b
+Q98,10685141,1,"The case describes missing out on potential interest earnings because a higher-rate savings account was not disclosed, directly relevant to how much interest a deposit can earn.",resulting in missing out on potential earnings,reviewer-b
+Q98,10688349,1,"The case quantifies the lower interest actually earned compared with a higher-rate savings account, directly relevant to annual interest earnings.",My money received probably less than 1 % interest compared to a mirror savings program,reviewer-b
+Q98,10689238,0,"The case is an unpaid promotional bonus, not interest earned on a savings deposit.",I did not receive my {$500.00} bonus,reviewer-b
+Q98,10692869,0,"The case is a promotional bonus tied to maintaining a balance, not interest earned on a savings deposit.",earning {$500.00} if you maintain a $ XXXX balance,reviewer-b
+Q98,10695903,0,"The case is a frozen savings deposit, not an explanation of how much interest it can earn.",have frozen in my account,reviewer-b

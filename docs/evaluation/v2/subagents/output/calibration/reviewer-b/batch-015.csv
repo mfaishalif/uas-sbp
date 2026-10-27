@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q68,10688349,0,"The case concerns savings interest-rate deception between Capital One's 360 accounts, not a maintenance fee charged without notice.",they didn't tell my about their other 360 Performance Savings account,reviewer-b
+Q68,10689238,0,"The case is a missing $500 account-opening bonus after meeting deposit conditions, not a maintenance fee.",I did not receive my {$500.00} bonus,reviewer-b
+Q68,10689967,1,"The case describes a $330 portfolio/managed-account fee deducted without explanation or notice, the same undisclosed-fee mechanism.",{$330.00} was subtracted without any explanation or information,reviewer-b
+Q69,10648795,0,"The narrative only reports stolen funds and identity theft, not duplicate NSF fees on a returned payment.",was stolen from my bank but wont retrieve my money,reviewer-b
+Q69,10660006,0,"Four $35 fees arose from fraudulent card charges and a resulting negative balance, not duplicate NSF fees for one returned payment.",the bank still charged me {$35.00} dollars 4 times for being negative on my account,reviewer-b
+Q69,10661880,0,"The case concerns an unauthorized account opening and a non-overdraft-eligible account, not duplicate NSF fees.",they do not allow overdrafts at all,reviewer-b
+Q69,10664049,0,"The case is an account closed for non-payment, not a single returned payment generating two NSF fees.",Bank Closed My Bank Account Down For None payment,reviewer-b
+Q69,10670136,1,"PNC allegedly overdrafted the account twice and added late fees, the same duplicate insufficient-funds-fee mechanism as duplicate NSF fees.",I WAS OVERDRAFTED DOUBLE TIME,reviewer-b
+Q69,10672637,0,"The case is about PNC holding funds for over a week and causing a negative balance and fees, not duplicate NSF fees on one returned item.",pnc bank has held my funds for over a week,reviewer-b
+Q70,10653146,0,"The case involves duplicate merchant transactions and a balance discrepancy, not duplicate NSF fees for one returned check.",notice duplicate transactions,reviewer-b
+Q70,10660006,0,"The fees were four separate $35 charges caused by fraudulent transactions and a negative balance, not duplicate NSF fees on one returned payment.",the bank still charged me {$35.00} dollars 4 times for being negative on my account,reviewer-b
+Q70,10661880,0,"The case concerns an unauthorized account opening and a non-overdraft-eligible account, not duplicate NSF fees.",they do not allow overdrafts at all,reviewer-b
+Q70,10664049,0,"The case is an account closed for non-payment, not duplicate NSF fees on a returned payment.",Bank Closed My Bank Account Down For None payment,reviewer-b
+Q70,10670136,1,"PNC allegedly overdrafted the account twice and added late fees, the same duplicate insufficient-funds-fee mechanism as duplicate NSF fees.",I WAS OVERDRAFTED DOUBLE TIME,reviewer-b
+Q70,10673921,0,"The case is a bank system migration that produced a wrong balance and lost funds, not a duplicate NSF fee assessment.",I lost a good amount of money when i was able to get access to my account my balance was way off,reviewer-b
+Q75,10652816,0,"The query asks for an ATM cash-deposit cutoff time; the case describes an ATM malfunction that swallowed a deposit, not the same-day cutoff rule.",the atm went black and shut itself off,reviewer-b
+Q75,10663181,0,"The query asks about ATM cash-deposit cutoff timing, while the case concerns a blocked transfer and fraud flag on a direct deposit.","the transfer was blocked, and my account was flagged for fraud",reviewer-b
+Q75,10665819,0,"The case is an ATM cash withdrawal that was not dispensed, not an ATM cash deposit or its same-day cutoff time.",the ATM machine turned off without giving me the money or receipt,reviewer-b
+Q75,10666048,0,"The case concerns Cash App account access after a forgotten password, not an ATM cash deposit cutoff.",I need the funds back from her cash app that I sent,reviewer-b
+Q75,10666406,0,"The case involves an ATM check deposit that failed and did not return the checks, not cash-deposit cutoff timing.",the checks did not eject,reviewer-b
+Q75,10684779,0,"The case is an ATM cash deposit that was not processed and a provisional-credit delay, not the cutoff time for same-day credit.",can not process your deposit at this time,reviewer-b
+Q75,10685508,0,"The case is an ATM withdrawal fraud claim based on surveillance photos, not an ATM cash deposit cutoff.",there were CLEAR pictures of the girl in a car pulling money straight from the ATM,reviewer-b
+Q75,10688449,0,"The case is an ATM withdrawal that malfunctioned without dispensing cash, not an ATM cash deposit cutoff.",THE MONEY I WAS ATTEMPTING TO TAKE OUT OF THE ATM WAS NOT GIVEN,reviewer-b
+Q76,10652816,0,The query asks how long an ATM check deposit takes to become available; the case is a malfunctioning cash deposit that was not credited.,None of the money was deposited into my account,reviewer-b
+Q76,10660424,0,"The case is a check deposited twice by mobile deposit, not ATM check-deposit availability timing.",the customer put the same check through as a mobile deposit,reviewer-b

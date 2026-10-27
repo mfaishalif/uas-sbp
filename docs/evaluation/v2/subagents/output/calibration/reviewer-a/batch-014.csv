@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q65,10669307,0,"The case disputes a $500 overdraft fee that suspended the account and contributed to a loan denial, not a fee charged when the purchase left a sufficient balance.",my checking account was suspended due to a {$500.00} overdraft fee,reviewer-a
+Q65,10670136,0,"The case alleges duplicate overdraft and late fees, a duplicate-fee issue rather than an overdraft fee charged despite a sufficient balance.",OVERDRAFTED DOUBLE TIME,reviewer-a
+Q65,10683958,0,The case is an unauthorized ATM-card purchase dispute; it does not involve an overdraft fee assessed on a purchase that left a positive balance.,"a purchase I did not make, nor did I authorize",reviewer-a
+Q65,10689967,0,"The case concerns a brokerage portfolio management fee, not an overdraft fee on a checking purchase.",portfolio service fee/managed account fee of {$330.00},reviewer-a
+Q66,10647800,0,"The case says the account lacked sufficient funds and had no overdraft protection, the opposite of a fee charged when enough money was available.",there were XXXX transactions for which I did not have enough money in the account,reviewer-a
+Q66,10655133,0,"The case involves a returned-check fee and an overdraft fee on a teen checking account with insufficient funds, not a fee charged despite sufficient funds.",I received a return check fee because my item was XXXX,reviewer-a
+Q66,10656741,0,"The case concerns a $3 overdraft fee on an empty account and difficulty closing it, not a fee charged when the balance was sufficient.",a {$3.00} overdraft fee they applied on an empty account,reviewer-a
+Q66,10658469,0,"The case concerns automatic enrollment in overdraft protection, not an overdraft fee charged despite sufficient funds.",automatically enrolled in Wells Fargos,reviewer-a
+Q66,10661880,0,"The case concerns an unauthorized account opening and a Safe-Debit account that supposedly cannot overdraft, not the queried fee error.",they do not allow overdrafts at all,reviewer-a
+Q66,10669307,0,"The case disputes a $500 overdraft fee that suspended the account, not a fee charged when the purchase left a sufficient balance.",my checking account was suspended due to a {$500.00} overdraft fee,reviewer-a
+Q66,10685192,0,"The case is about a missing $150,000 transfer and its fee, not an overdraft fee charged despite sufficient funds.",the money was not there,reviewer-a
+Q66,10689967,0,"The case concerns a brokerage portfolio management fee, not an overdraft fee on a checking purchase.",portfolio service fee/managed account fee of {$330.00},reviewer-a
+Q66,10694634,0,"The case is an identity-theft and identity-protection-plan complaint, not an overdraft fee dispute.",I have had my information stolen and money taking out of my account,reviewer-a
+Q67,10655737,0,"The case concerns a suspended savings account and a transfer stuck in limbo, not an unexplained monthly fee.",my Ally account had been suspended,reviewer-a
+Q67,10655867,0,"The case concerns a suspended savings account after a deposit, not an unexplained monthly fee.",my account has been suspended since,reviewer-a
+Q67,10658109,1,"The case complains about the same monthly savings maintenance fee, a $15 monthly charge on a savings account.",a {$15.00} MONTLY fee for my savings,reviewer-a
+Q67,10686062,0,"The case concerns a locked savings account and a failed withdrawal, not an unexplained monthly fee.",I got no notice that my account was locked either,reviewer-a
+Q67,10688349,0,"The case concerns undisclosed interest-rate differences between savings products, not a maintenance fee.",they didn't tell my about their other 360 Performance Savings account,reviewer-a
+Q67,10689967,0,"The case concerns a brokerage portfolio management fee, not a monthly savings maintenance fee.",portfolio service fee/managed account fee of {$330.00},reviewer-a
+Q68,10647276,0,"The case concerns a savings account opened without consent, not a maintenance fee charged without notice.",cashapp recently opened a savings account I did not consent to opening,reviewer-a
+Q68,10655133,0,"The case concerns return-check and overdraft fees on a checking account, not a savings maintenance fee.",return check fee because my item was XXXX,reviewer-a
+Q68,10655737,0,"The case concerns a suspended savings account and a transfer in limbo, not an unexplained monthly fee.",my Ally account had been suspended,reviewer-a
+Q68,10658109,1,"The case complains about the same monthly savings maintenance fee, a $15 monthly charge on a savings account.",a {$15.00} MONTLY fee for my savings,reviewer-a
+Q68,10685141,0,"The case concerns misrepresented savings interest rates, not a maintenance fee charged without notice.",misrepresents its savings account,reviewer-a
+Q68,10685192,0,"The case concerns a missing transfer, not a savings maintenance fee.",the money was not there,reviewer-a

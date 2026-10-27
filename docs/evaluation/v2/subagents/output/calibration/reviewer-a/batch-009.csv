@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q30,10665819,0,"The candidate is a failed ATM cash withdrawal with no cash dispensed, not a check deposit scanned at a different total.",the ATM machine turned off without giving me the money or receipt,reviewer-a
+Q30,10675165,0,"The candidate is a mobile check deposit followed by an account lock for suspected fraud, not an ATM scan discrepancy.",CitiBank locked my out of my account,reviewer-a
+Q30,10681671,0,"The candidate is an extended hold and account closure over a check, not an ATM deposit showing a different total.",The check was put on an extended hold,reviewer-a
+Q30,10690100,0,"The candidate is a bounced client check whose funds were removed after clearing, not an ATM deposit scan error.",the clients check had bounced,reviewer-a
+Q31,10652816,0,"The candidate is an ATM cash deposit that failed, not a cash withdrawal where the card was retained and the account debited.",None of the money was deposited into my account,reviewer-a
+Q31,10657453,0,"The candidate is an unauthorized $2100 withdrawal with shifting bank explanations, not an ATM malfunction that retained the card.","Unauthorized withdrawal, {$2100.00}",reviewer-a
+Q31,10658119,0,"The candidate's ATM withdrawals were repeatedly declined but no completed debit is reported, so the failed-withdrawal-plus-charge mechanism is absent.",It was declined multiple times,reviewer-a
+Q31,10658528,0,"The candidate is an imposter scam using a debit card number, not a failed ATM cash withdrawal that was still debited.",I was a victim of a bank imposter scam,reviewer-a
+Q31,10662925,0,"The candidate is unauthorized ATM withdrawals from a stolen phone's digital cards, not a declined withdrawal with a retained card.",whoever took it used my attached digital cards,reviewer-a
+Q31,10665819,1,"The ATM shut down without dispensing cash while the transaction cleared the account, the same failed-withdrawal-still-charged mechanism.",The transaction cleared my account,reviewer-a
+Q31,10673863,0,"The candidate involves ATM withdrawal limits and repeated denials without a completed debit, not a retained card with a posted charge.",I was not able to withdraw funds at two different in-network ATMs,reviewer-a
+Q31,10682105,1,"The ATM went out of service with no cash dispensed but the $200 charge posted, matching the query's deducted completed withdrawal.",No money came out. But the charge processed to my checking account,reviewer-a
+Q31,10688449,1,"The ATM malfunctioned and dispensed no cash while listing the funds as withdrawn, the same failed-withdrawal-still-debited mechanism.","THE FUNDS WERE LISTED AS WITHDRAWN FROM MY ACCOUNT, BUT THE MONEY I WAS ATTEMPTING TO TAKE OUT OF THE ATM WAS NOT GIVEN",reviewer-a
+Q32,10652816,0,"The candidate is an ATM deposit that failed, not a declined ATM cash withdrawal where the card was retained and the account debited.",the atm went black and shut itself off,reviewer-a
+Q32,10655001,0,"The candidate describes an ATM deposit that was declined and returned cash, not a cash withdrawal with a retained card and a posted debit.",He received a receipt stating transaction declined and a XXXX came back out,reviewer-a
+Q32,10657453,0,"The candidate is an unauthorized $2100 withdrawal, not a declined ATM withdrawal with the card retained.","Unauthorized withdrawal, {$2100.00}",reviewer-a
+Q32,10658119,0,"The withdrawals were declined but the narrative reports no amount deducted, so the key completed-debit element of the query is missing.",It was declined multiple times,reviewer-a
+Q32,10662925,0,"The candidate is fraudulent ATM withdrawals using a stolen phone, not a declined withdrawal with a card retained.",whoever took it used my attached digital cards,reviewer-a
+Q32,10665819,1,"The ATM failed to dispense cash yet the transaction cleared the account, the same declined-withdrawal-still-debited mechanism.",the ATM machine turned off without giving me the money or receipt,reviewer-a
+Q32,10666406,0,"The candidate is an ATM check deposit failure, not a cash withdrawal that was declined and debited.",the checks did not eject,reviewer-a
+Q32,10682105,1,"The ATM was out of service and gave no cash, but the amount posted to the checking account, matching the query.",No money came out. But the charge processed to my checking account,reviewer-a
+Q32,10688449,1,"The malfunctioning ATM listed the withdrawal as completed without dispensing cash, the same debited-but-not-dispensed mechanism.",THE FUNDS WERE LISTED AS WITHDRAWN FROM MY ACCOUNT,reviewer-a
+Q35,10653146,1,"The candidate reports duplicate transactions that changed the account balance, matching the query's duplicate-charge mechanism.",I looked at my account and notice duplicate transactions,reviewer-a
+Q35,10656475,0,"The candidate is a single charge after a cancelled subscription, an unauthorized continuation rather than a same-month duplicate billing.",I cancelled the subscription and received an email confirmed I would no longer be charged,reviewer-a
+Q35,10658529,1,"The subscription renewed at nearly double the contracted amount and the bank denied the refund, the same subscription overbilling and failed-reversal mechanism.",I was over charged almost double what I was supposed to be paying,reviewer-a

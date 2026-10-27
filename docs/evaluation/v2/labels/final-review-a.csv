@@ -1,0 +1,60 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q102,10673396,0,"Query asks how to report a scam text impersonating a delivery company; the case is a puppy-sale payment scam through Zelle, not a phishing-text reporting problem.",I got scam from a delivery company that will deliver a puppy to me,reviewer-a
+Q25,10652816,0,Query concerns an ATM cash withdrawal debited without dispensing cash; the case concerns an ATM cash deposit that was not credited.,I attempted to deposit a total of {$7300.00} into an ATM machine,reviewer-a
+Q25,10682105,1,Both describe an ATM withdrawal that dispensed no cash while the transaction was still charged to the checking account.,No money came out. But the charge processed to my checking account.,reviewer-a
+Q25,10688449,1,Both describe an ATM withdrawal debited from checking even though the machine malfunctioned and dispensed no cash.,"THE FUNDS WERE LISTED AS WITHDRAWN FROM MY ACCOUNT, BUT THE MONEY I WAS ATTEMPTING TO TAKE OUT OF THE ATM WAS NOT GIVEN.",reviewer-a
+Q26,10652816,0,Query concerns a withdrawal debited without cash; the case is an ATM deposit that failed to credit.,I attempted to deposit a total of {$7300.00} into an ATM machine,reviewer-a
+Q27,10655921,0,Query concerns cash deposited through an ATM envelope slot missing from the account; the case is a payroll direct deposit that never posted.,my payroll direct deposit was not placed into my checking account,reviewer-a
+Q27,10665819,0,Query concerns a missing ATM cash deposit; the case concerns a failed ATM withdrawal that dispensed no cash.,the ATM machine turned off without giving me the money or receipt,reviewer-a
+Q27,10666406,1,Both concern an ATM deposit that was not credited to the account and became a dispute over the missing funds.,The machine then displayed a message saying the transaction could not be processed,reviewer-a
+Q28,10665819,0,Query concerns a cash deposit accepted by an ATM but not credited; the case concerns a failed ATM withdrawal.,the ATM machine turned off without giving me the money or receipt,reviewer-a
+Q28,10666406,1,"Both concern an ATM deposit that failed to post and was not credited, requiring a dispute over the missing funds.",The machine then displayed a message saying the transaction could not be processed,reviewer-a
+Q28,10684969,0,Query concerns an uncredited ATM cash deposit; the case only reports an incorrect balance with no deposit failure.,The bank isnt reporting the correct balance amount.,reviewer-a
+Q28,10688449,0,Query concerns an uncredited ATM deposit; the case concerns a withdrawal debited without dispensing cash.,THE ATM MALFUNCTIONED AND PRINTED OUT A RECEIPT STATING,reviewer-a
+Q33,10652454,0,"Query concerns a duplicate charge for one purchase; the case describes unauthorized charges after account hacking, not duplicative billing.",my account seems to have been hacked,reviewer-a
+Q33,10674775,0,Query concerns the same purchase charged twice; the case describes separate unauthorized purchases after card skimming.,was posted simultaneously to my checking account,reviewer-a
+Q33,10683886,0,Query concerns a duplicate charge; the case concerns unauthorized charges after a stolen wallet.,my wallet was stolen while I was in XXXX XXXX Texas,reviewer-a
+Q33,10683958,0,Query concerns a duplicate charge for one purchase; the case is an unauthorized online purchase.,"I noticed a purchase I did not make, nor did I authorize.",reviewer-a
+Q33,10692213,0,Query concerns a duplicate charge; the case reports five unauthorized charges from different companies.,my business checking account was hit with five unauthorized charges,reviewer-a
+Q34,10673265,1,Both describe a single transaction being charged twice to the customer's account.,I was charged double for a transaction XXXX twice.,reviewer-a
+Q39,10692213,0,Query concerns duplicate charges retained after a cancelled item; the case reports unauthorized charges from several companies.,my business checking account was hit with five unauthorized charges,reviewer-a
+Q40,10673265,1,Both describe a duplicate charge for one transaction that was not reversed.,I was charged double for a transaction XXXX twice.,reviewer-a
+Q43,10692213,1,"Both concern unauthorized debits pulled from the checking account, matching the unknown unauthorized ACH debit mechanism.",All five of these charges were pulled at exactly the same time directly from my business checking account.,reviewer-a
+Q44,10662925,0,Query concerns a recurring ACH withdrawal never authorized; the case concerns one-time withdrawals through digital cards after a phone theft.,My phone was stolen and whoever took it used my attached digital cards,reviewer-a
+Q49,10658410,1,Both concern an international transfer that was deducted but did not reach the beneficiary as promised.,The bank assured me that the funds would be in the beneficiary 's account by that same day or the next day.,reviewer-a
+Q50,10670240,1,Both concern an international remittance that missed its promised arrival date and remains undelivered.,its supposed to arrive with the recipient on XX/XX/XXXX,reviewer-a
+Q50,10675163,1,Both concern an international transfer that was promised by a set date but has not been completed.,the transfer has yet to be completed,reviewer-a
+Q50,10683772,1,Both concern an international transfer that was not received by the recipient and remained unresolved.,the recipient has yet to receive these funds,reviewer-a
+Q57,10660825,1,Both concern deposited check funds held by the bank beyond the expected availability.,they held the funds to wait for the check to clear,reviewer-a
+Q57,10672637,1,"Both concern deposited funds held for over a week, leaving the account short.",pnc bank has held my funds for over a week,reviewer-a
+Q57,10681671,1,Both concern an extended hold on a deposited check that kept the funds unavailable beyond the release expectation.,The check was put on an extended hold,reviewer-a
+Q58,10663554,1,Both concern a hold placed on a deposited check that reduced the available balance.,She informed me she had put the hold on my account,reviewer-a
+Q58,10681589,1,Both concern a check-deposit hold that exceeded the promised release and violated availability timing.,they will not be removing the hold nor following regulation CC,reviewer-a
+Q59,10660424,0,"Query concerns a mobile deposit held for review; the case concerns the same check being mobile deposited twice, a duplicate-deposit problem.",the customer put the same check through as a mobile deposit,reviewer-a
+Q59,10660825,1,Both concern a mobile check deposit whose funds were held and left unavailable.,I mobile deposited a check into my account then they held the funds,reviewer-a
+Q59,10663554,1,Both concern check-deposit funds held by the bank and unavailable to the customer.,She informed me she had put the hold on my account,reviewer-a
+Q59,10672637,1,"Both concern deposited funds held by the bank longer than promised, leaving the account short.",pnc bank has held my funds for over a week,reviewer-a
+Q59,10675165,1,Both concern a mobile check deposit followed by a bank lock that left the deposited funds inaccessible.,"I made a mobile check deposit, CitiBank locked my out of my account.",reviewer-a
+Q60,10660424,0,"Query concerns frozen mobile-deposit funds; the case concerns a check deposited twice, a duplicate-deposit problem.",the customer put the same check through as a mobile deposit,reviewer-a
+Q60,10660825,1,Both concern a mobile check deposit followed by a bank freeze that blocked access to the funds.,they froze my account,reviewer-a
+Q60,10663554,1,Both concern a bank hold on deposited check funds that left the balance unavailable.,She informed me she had put the hold on my account,reviewer-a
+Q60,10675165,1,Both concern a mobile check deposit followed by a bank lock that blocked access to the funds.,"I made a mobile check deposit, CitiBank locked my out of my account.",reviewer-a
+Q60,10681671,1,Both concern deposited check funds restricted or frozen by the bank after an extended hold.,right before the hold expired XXXX put a restriction on my account,reviewer-a
+Q61,10674152,1,Both concern a closed account whose remaining balance was withheld from the customer.,Formal Complaint Regarding Account Closure by US Bank and Lack of Access to Funds,reviewer-a
+Q61,10696339,1,Both concern a closed checking account whose remaining balance was not returned.,The remaining balance in my account was around {$37000.00},reviewer-a
+Q62,10666376,1,Both concern an account closure or suspension after which the remaining balance was never returned.,"I come back to try to get my money out ( {$170.00} ), but was unable.",reviewer-a
+Q62,10668639,1,Both concern a closed account whose remaining funds were not returned.,they have not given me a response nor have they returned the funds to me,reviewer-a
+Q62,10696339,1,Both concern a closed checking account whose remaining balance was withheld.,The remaining balance in my account was around {$37000.00},reviewer-a
+Q64,10655921,0,Query concerns funds held in an account; the case is a payroll direct deposit that was never posted.,my payroll direct deposit was not placed into my checking account,reviewer-a
+Q64,10688629,0,"Query concerns a bank hold on available funds; the case is an account restriction from a tax levy, a different mechanism.",my account was restricted due to a levy being placed on it,reviewer-a
+Q74,10652816,0,Query is a general question about checking a balance at an ATM; the case is an ATM deposit failure.,I attempted to deposit a total of {$7300.00} into an ATM machine,reviewer-a
+Q74,10682105,0,Query is a general question about checking a balance at an ATM; the case is an ATM withdrawal failure.,ATM went out of service while I was using it.,reviewer-a
+Q74,10688449,0,Query is a general question about checking a balance at an ATM; the case is an ATM withdrawal malfunction with missing cash.,THE ATM MALFUNCTIONED AND PRINTED OUT A RECEIPT STATING,reviewer-a
+Q77,10657211,0,"Query asks what a duplicate charge looks like; the case reports unauthorized transactions, not a charge duplicated for one purchase.",I have unauthorized transactions over {$3000.00} under my debit card,reviewer-a
+Q77,10660224,1,"Both concern a merchant debiting the same amount again, producing a duplicate charge that should have been reversed.",debited my account for the same amount {$39.00},reviewer-a
+Q77,10683886,0,Query asks about duplicate charges; the case concerns unauthorized charges after a stolen wallet.,my wallet was stolen while I was in XXXX XXXX Texas,reviewer-a
+Q77,10684486,0,Query asks about duplicate charges; the case concerns a fraudulent toll debit that the customer did not authorize.,Asking if I authorized XXXX toll to debit my account.,reviewer-a
+Q78,10673265,1,Both concern a single transaction charged twice to the customer's account.,I was charged double for a transaction XXXX twice.,reviewer-a
+Q83,10683886,0,"Query asks how to freeze a debit card after exposure; the case concerns unauthorized charges and a dispute after a stolen wallet, not the freeze procedure.",my wallet was stolen while I was in XXXX XXXX Texas,reviewer-a
+Q93,10658469,1,"Both address overdraft fees and enrollment in overdraft coverage, including how fees are incurred.",which have resulted in multiple unjust fees being taken from my account,reviewer-a
+Q95,10658109,0,Query asks how to qualify for a savings monthly-fee waiver; the case only complains about being charged a monthly savings fee.,a {$15.00} MONTLY fee for my savings,reviewer-a

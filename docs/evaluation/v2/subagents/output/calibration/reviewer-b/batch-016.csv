@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q76,10663554,0,"The case is a suspected-fraud hold on a check deposit at a new account, not a question about how long an ATM check deposit normally takes to become available.",she had put the hold on my account,reviewer-b
+Q76,10665819,0,"The case is an ATM cash withdrawal that was denied, not ATM check-deposit availability timing.",the ATM kept denying my withdrawal,reviewer-b
+Q76,10666406,0,"The case is an ATM check deposit that failed and did not return the checks, a malfunction rather than normal availability timing.",the transaction could not be processed,reviewer-b
+Q76,10675165,0,"The case is a mobile check deposit that triggered an account lock, not ATM check-deposit availability timing.","I made a mobile check deposit, CitiBank locked my out of my account",reviewer-b
+Q76,10684050,0,The case reports a restricted account and inaccessible funds without any ATM check deposit or availability timeline.,I am unable to access my $ XXXX in funds,reviewer-b
+Q76,10685508,0,"The case is an ATM withdrawal fraud claim based on surveillance photos, not ATM check-deposit availability.",there were CLEAR pictures of the girl in a car pulling money straight from the ATM,reviewer-b
+Q81,10657211,0,The query asks how to set up alerts for unauthorized transactions; the case is a fraud dispute that was denied and does not discuss alerts.,I have unauthorized transactions over {$3000.00} under my debit card,reviewer-b
+Q81,10657920,0,"The case is a Chime dispute denial for unauthorized charges, not guidance on enabling transaction alerts.",Chime bank didnt help me fight back to get my money that was unauthorized,reviewer-b
+Q81,10663798,0,"The case concerns unauthorized bill-pay and card transactions and denied claims, not setting up alerts.",my checking account has an unauthorized bill pay of {$500.00},reviewer-b
+Q81,10668515,0,"The case is an unreimbursed unauthorized debit-card transaction complaint, not a discussion of notification settings.",never reimbursed me for unauthorized transactions of my debit card,reviewer-b
+Q81,10670418,0,"The case is a denied dispute for two unauthorized transactions plus a data breach, not how to enable alerts.",I identified XXXX different unauthorized transactions,reviewer-b
+Q81,10688837,0,"The case is a denied fraud dispute with a temporary credit, not alert configuration.",I dispute over XXXX transactions all fraudulent,reviewer-b
+Q81,10692213,0,"The case reports five unauthorized charges on a business account, not how to enable alerts.",my business checking account was hit with five unauthorized charges,reviewer-b
+Q82,10657211,0,The query asks how to enable notifications for unauthorized debit-card purchases; the case is a denied fraud dispute with no alert discussion.,I have unauthorized transactions over {$3000.00} under my debit card,reviewer-b
+Q82,10660224,0,"The case concerns a merchant re-debiting after a dispute and a replacement card, not notification settings.","This merchant XXXX has once again, debited my account for the same amount",reviewer-b
+Q82,10668515,0,"The case is an unreimbursed unauthorized debit-card transaction complaint, not how to enable purchase alerts.",never reimbursed me for unauthorized transactions of my debit card,reviewer-b
+Q82,10674775,0,"The case is card-skimming fraud at a gas station and a denied claim, not alert configuration.",someone stole my card information when I inserted my card at XXXX,reviewer-b
+Q82,10683886,0,"The case is a stolen wallet and unauthorized charges with a denied dispute, not how to set up alerts.",my debit card was used without my authorization,reviewer-b
+Q82,10683958,0,"The case is an unauthorized ATM-card purchase dispute, not guidance on enabling alerts.","I noticed a purchase I did not make, nor did I authorize",reviewer-b
+Q85,10658410,0,"The query asks the normal duration of a domestic transfer; the case is a specific wire sent to a wrong beneficiary account and a refund dispute, not a normal-timing answer.",the personal banker discovered that she had made a mistake regarding the beneficiary 's account,reviewer-b
+Q85,10662970,0,"The case is Venmo holding funds and blocking transfer out, not how long a domestic bank transfer normally takes.",I still dont have the ability to transfer out my funds,reviewer-b
+Q85,10670240,0,"The case is an individual delayed remittance, not an explanation of normal domestic transfer duration.",it has been delayed and it MIGHT be available,reviewer-b
+Q85,10683109,0,"The case is a stuck Cash App payment, not an explanation of normal domestic transfer duration.",it did not come through instantly how I expected it to so it went into a pending state,reviewer-b
+Q85,10687059,0,"The case is a crypto exchange withdrawal not reaching the bank, not domestic transfer timing.",the funds have not been deposited into my bank account,reviewer-b
+Q86,10658410,0,"The query asks the cutoff time for same-day domestic transfers; the case is a delayed wire sent to the wrong beneficiary account, not a cutoff-time answer.","I waited for XXXX days, but the money had still not arrived",reviewer-b

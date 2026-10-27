@@ -28,21 +28,24 @@ public final class EvaluationLabels {
     }
 
     public boolean relevant(String queryId, String cfpbId) {
-        Judgment judgment = judgments.get(new Pair(queryId, cfpbId));
-        if (judgment == null) {
-            throw new IllegalArgumentException(
-                    "Missing judgment for " + queryId + "/" + cfpbId);
-        }
-        return judgment.relevant();
+        return judgment(queryId, cfpbId).relevant();
     }
 
     public String reason(String queryId, String cfpbId) {
+        return judgment(queryId, cfpbId).reason();
+    }
+
+    public String evidence(String queryId, String cfpbId) {
+        return judgment(queryId, cfpbId).evidence();
+    }
+
+    public Judgment judgment(String queryId, String cfpbId) {
         Judgment judgment = judgments.get(new Pair(queryId, cfpbId));
         if (judgment == null) {
             throw new IllegalArgumentException(
                     "Missing judgment for " + queryId + "/" + cfpbId);
         }
-        return judgment.reason();
+        return judgment;
     }
 
     /** Fails when any pooled pair has no judgment; absent labels are never treated as irrelevant. */
@@ -65,7 +68,12 @@ public final class EvaluationLabels {
     }
 
     public record Judgment(
-            String queryId, String cfpbId, boolean relevant, String reason) {
+            String queryId,
+            String cfpbId,
+            boolean relevant,
+            String reason,
+            String evidence,
+            String reviewer) {
 
         public Judgment {
             if (queryId == null || queryId.isBlank()) {
@@ -78,6 +86,14 @@ public final class EvaluationLabels {
             if (reason == null || reason.isBlank()) {
                 throw new IllegalArgumentException(
                         "Judgment reason is required for " + queryId + "/" + cfpbId);
+            }
+            if (evidence == null || evidence.isBlank()) {
+                throw new IllegalArgumentException(
+                        "Judgment evidence is required for " + queryId + "/" + cfpbId);
+            }
+            if (reviewer == null || reviewer.isBlank()) {
+                throw new IllegalArgumentException(
+                        "Judgment reviewer is required for " + queryId + "/" + cfpbId);
             }
         }
     }

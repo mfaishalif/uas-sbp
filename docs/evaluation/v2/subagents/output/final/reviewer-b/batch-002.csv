@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q50,10683772,1,Same mechanism: an international transfer was promised to reach the recipient but the recipient never received the funds.,"as of today, the recipient has yet to receive these funds",reviewer-b
+Q57,10660825,1,Same mechanism: a deposited check was held for clearing beyond the expected release and the funds were not made available.,then they held the funds to wait for the check to clear,reviewer-b
+Q57,10672637,1,"Same mechanism: the bank held the consumer's deposited funds well past the promised availability, causing a negative balance and fees.",pnc bank has held my funds for over a week,reviewer-b
+Q57,10681671,1,Same mechanism: a deposited check was placed on an extended hold and the funds were not released even after the hold period.,The check was put on an extended hold,reviewer-b
+Q58,10663554,1,"Same mechanism: a deposited check was held after the bank suspected fraud, leaving the available balance reduced beyond the stated hold.",She informed me she had put the hold on my account,reviewer-b
+Q58,10681589,1,"Same mechanism: a deposited check remained on hold past the notice and Reg CC release point, leaving the account overdrawn.",they will not be removing the hold nor following regulation CC,reviewer-b
+Q59,10660424,0,"Different mechanism: the candidate concerns the same check being mobile deposited twice at two banks, not one accepted mobile deposit held for review.",the customer put the same check through as a mobile deposit with XXXX,reviewer-b
+Q59,10660825,1,"Same mechanism: a mobile check deposit was accepted and then held, with the funds not released.",I mobile deposited a check into my account then they held the funds,reviewer-b
+Q59,10663554,1,"Same mechanism: a deposited check was held as suspected fraudulent, so the consumer's funds remained unavailable.",insisted the check was fraudulent and it would not be deposited,reviewer-b
+Q59,10672637,0,"Different mechanism: the candidate only says funds were held, without a mobile check deposit held for review.",pnc bank has held my funds for over a week,reviewer-b
+Q59,10675165,1,"Same mechanism: a mobile check deposit led the bank to lock the account, leaving the check funds unavailable.","I made a mobile check deposit, CitiBank locked my out of my account",reviewer-b
+Q60,10660424,0,"Different mechanism: the candidate is a check deposited twice at two banks, not deposit funds frozen pending review.",the customer put the same check through as a mobile deposit with XXXX,reviewer-b
+Q60,10660825,1,Same mechanism: the bank froze the account after a mobile check deposit and has not released the funds.,they froze my account on XX/XX/XXXX and have not released my funds,reviewer-b
+Q60,10663554,1,Same mechanism: deposited check funds were frozen on a fraud suspicion without a clear release date.,insisted the check was fraudulent and it would not be deposited,reviewer-b
+Q60,10675165,1,"Same mechanism: the bank froze the account after a mobile check deposit, leaving the consumer without access to the check funds.",Now I have no access to my other funds or the check funds,reviewer-b
+Q60,10681671,1,"Same mechanism: deposited check funds were restricted and the account closed, with the funds still not released months later.",put a restriction on my account and then promptly closed the account,reviewer-b
+Q61,10674152,1,Same mechanism: the bank closed the account and withheld the remaining balance without explanation.,"the unexpected closure of my account, which resulted in my inability to access the funds",reviewer-b
+Q61,10696339,1,Same mechanism: the account was closed and the remaining balance was not returned despite repeated requests.,I have still not received a check for the remaining funds,reviewer-b
+Q62,10666376,1,Same mechanism: the account was suspended and the remaining balance was never returned.,yet to receive any update/money back,reviewer-b
+Q62,10668639,1,Same mechanism: the bank closed the account and has not returned the remaining funds.,they have not given me a response nor have they returned the funds to me,reviewer-b
+Q62,10696339,1,Same mechanism: the closed account's remaining balance was never sent to the consumer.,I have still not received a check for the remaining funds,reviewer-b
+Q64,10655921,0,"Different mechanism: the candidate is a payroll direct deposit that was never posted, not a hold on existing funds that blocks withdrawal.",my payroll direct deposit was not placed into my checking account,reviewer-b
+Q64,10688629,1,"Same mechanism: the account is restricted and the consumer cannot withdraw the funds, with no explanation or timeline.",My account is locked. I cant use my account or take any money out of my account.,reviewer-b
+Q74,10652816,0,"Different mechanism: the candidate is an ATM deposit failure, not guidance on checking a balance at an ATM.",the atm went black and shut itself off,reviewer-b
+Q74,10682105,0,"Different mechanism: the candidate is an ATM withdrawal malfunction, not a request for how to check a balance.",ATM went out of service while I was using it,reviewer-b

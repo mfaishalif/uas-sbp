@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q15,10671129,1,"Candidate describes an account locked and then deleted with the balance inaccessible, the same lock-and-hold mechanism.",They locked my account and deleted it,reviewer-b
+Q15,10680906,0,"Candidate concerns a Cash App transfer to a bank that never arrived, not an account locked with a held balance.",It supposed to take 3 business days but i don't received any money till now.,reviewer-b
+Q15,10686062,1,"Candidate describes an account locked without notice or explanation so the consumer cannot withdraw funds, the same lock mechanism as the queried wallet.","he said he has no idea when it was locked, why it was locked",reviewer-b
+Q15,10693591,0,"Candidate is a Cash App compliance request for information about a payment, with no account lock or held balance described.",Please reply to this email with information detailing the purpose of the payment,reviewer-b
+Q16,10660224,1,Candidate describes a merchant that re-debited the same amount after the consumer disputed it and the bank failed to block further charges.,"This merchant XXXX has once again, debited my account for the same amount",reviewer-b
+Q16,10669072,0,"Candidate concerns a gas purchase charged at the wrong amount and later account takeover, not a subscription that keeps billing after cancellation.",my account was charged {$160.00},reviewer-b
+Q16,10674775,0,"Candidate describes card skimming and unauthorized purchases disputed as fraud, not recurring billing after a cancellation.",someone stole my card information when I inserted my card at XXXX,reviewer-b
+Q16,10683886,0,"Candidate describes unauthorized charges after a stolen wallet, not a company that continues charging a cancelled subscription.",my wallet was stolen while I was in XXXX XXXX Texas,reviewer-b
+Q16,10684486,1,"Candidate describes a merchant charge that posted after the consumer cancelled the card and the bank refused to return it, matching the post-cancellation billing mechanism.",They said the charge would not go through and still did.,reviewer-b
+Q16,10692213,0,"Candidate lists five unauthorized charges posted at once, not a subscription company that keeps charging after cancellation.",my business checking account was hit with five unauthorized charges,reviewer-b
+Q17,10653625,0,"Candidate describes accounts closed after being flagged for fraud, but does not describe a remaining balance withheld after closure.",were both recently flagged for fraud and closed on the very same day,reviewer-b
+Q17,10668639,1,"Candidate describes an account closed by the bank with the funds never returned, the same closure-without-return mechanism.",nor have they returned the funds to me,reviewer-b
+Q17,10674152,1,Candidate describes an account closed without notice and the consumer unable to access the remaining balance.,resulted in my inability to access the funds in my account,reviewer-b
+Q17,10684043,1,Candidate describes an account closed the day after opening without explanation and the deposited money never returned.,they close my account without reason,reviewer-b
+Q17,10685101,1,Candidate describes a closed account with a remaining balance for which the refund check was never sent.,There was a remaining balance in the account.,reviewer-b
+Q17,10691464,1,Candidate describes an account closed without reason and a remaining balance never sent to the consumer.,Can not access my account have a balance and has not been sent to me,reviewer-b
+Q17,10696339,1,Candidate describes a closed account with a large remaining balance and no check or status for the funds.,I have still not received a check for the remaining funds,reviewer-b
+Q18,10653900,0,"Query is praise for branch service with no problem, while the candidate concerns a check hold and unavailable funds, a different matter.",I deposited a {$120000.00} personal check into my bank account,reviewer-b
+Q18,10664533,0,"Query is a compliment about branch service, while the candidate concerns being unable to log in to a closed account.",I tried to log in to the account and found that I couldn't log in.,reviewer-b
+Q18,10677125,0,"Query is a compliment about branch service, while the candidate concerns the bank retaining the consumer's money.",The banks has {$140.00} of my money.,reviewer-b
+Q18,10682650,0,"Query is praise for branch staff, while the candidate concerns a fraudulently cashed check and a denied claim.",A check was supposedly cashed from my account,reviewer-b
+Q18,10685149,0,"Query is a compliment about branch service, while the candidate concerns a locked account and a delayed payroll deposit.",My account was locked without a clear explanation,reviewer-b
+Q18,10686228,0,"Query is praise for branch staff, while the candidate concerns an unexplained account lock and blocked withdrawals.",My account was locked on XX/XX/XXXX with no notice or explanation.,reviewer-b
+Q18,10691952,0,"Query is a compliment about branch service, while the candidate concerns a missing $5000 deposit at a branch.",my initial deposit of {$5000.00} was not there.,reviewer-b
+Q19,10646281,0,"Query asks about airport currency exchange rates, while the candidate concerns unauthorized car payments draining a checking account.",they have been making multiple unauthorized transactions,reviewer-b

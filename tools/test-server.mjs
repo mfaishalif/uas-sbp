@@ -112,7 +112,7 @@ export async function startTestServer({ jarPath } = {}) {
     }
 
     try {
-        const deadline = Date.now() + 30_000;
+        const deadline = Date.now() + 60_000;
         for (;;) {
             if (child.exitCode !== null || child.signalCode !== null) {
                 throw new Error(
@@ -130,7 +130,7 @@ export async function startTestServer({ jarPath } = {}) {
                 // The port is not accepting requests yet.
             }
             if (Date.now() >= deadline) {
-                throw new Error(`Backend did not become healthy within 30s.\n${tail(output)}`);
+                throw new Error(`Backend did not become healthy within 60s.\n${tail(output)}`);
             }
             await delay(200);
         }

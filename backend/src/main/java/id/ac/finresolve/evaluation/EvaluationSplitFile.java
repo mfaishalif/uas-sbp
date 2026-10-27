@@ -52,8 +52,8 @@ public final class EvaluationSplitFile {
     }
 
     /**
-     * Reads the split and checks it against the deterministic seed. A committed split that differs
-     * from the generator would make calibration and test results irreproducible.
+     * Reads the split and checks it against the deterministic group rule. A committed split that
+     * differs from the generator would make calibration and test results irreproducible.
      */
     public static EvaluationSplit verify(
             Path path, List<EvaluationQuery> queries, EvaluationSplit expected) {
@@ -86,6 +86,7 @@ public final class EvaluationSplitFile {
             throw new IllegalArgumentException(
                     "Split file does not cover exactly the frozen queries");
         }
+        Map<String, EvaluationSplit.Part> groupParts = new LinkedHashMap<>();
         for (EvaluationQuery query : queries) {
             if (!kinds.get(query.queryId()).equals(query.kind().csvValue())) {
                 throw new IllegalArgumentException(
@@ -93,8 +94,13 @@ public final class EvaluationSplitFile {
             }
             if (actual.get(query.queryId()) != expected.partOf(query.queryId())) {
                 throw new IllegalArgumentException(
-                        "Split file disagrees with seed "
-                                + EvaluationSplit.SEED + " for " + query.queryId());
+                        "Split file disagrees with the grouped seed for " + query.queryId());
+            }
+            EvaluationSplit.Part existing = groupParts.putIfAbsent(
+                    query.groupId(), actual.get(query.queryId()));
+            if (existing != null && existing != actual.get(query.queryId())) {
+                throw new IllegalArgumentException(
+                        "Group " + query.groupId() + " leaks across split parts");
             }
         }
         return expected;

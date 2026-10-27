@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q90,10663554,1,"The case describes a check deposit held because the bank suspected fraud, directly addressing a factor that extends a deposit hold.",she had put the hold on my account,reviewer-b
+Q90,10675165,0,"The case is an account lock after a fraud flag, not a check-deposit hold whose duration is extended.",CitiBank locked my out of my account,reviewer-b
+Q90,10681589,1,"The case describes a check deposit hold and the bank's failure to follow Regulation CC release timing, directly addressing hold duration.",they will not be removing the hold nor following regulation CC,reviewer-b
+Q90,10681671,1,"The case describes an extended hold on a deposited check and refusal to release the funds, directly addressing hold duration.",The check was put on an extended hold,reviewer-b
+Q91,10653146,0,"The case is a duplicate-transaction and balance-discrepancy dispute, not a distinction between available and ledger balances caused by a hold.",I have no clue what my true bank account balance is,reviewer-b
+Q91,10658685,0,"The case is a blocked online account, not an explanation of available versus ledger balances when funds are held.",they blocked my online account access to use my money,reviewer-b
+Q91,10664533,0,"The case is an account closure and login failure, not an available-versus-ledger balance question about held funds.",my account was closed,reviewer-b
+Q91,10666700,0,"The case is money held after an account closure, not an explanation of the difference between available and ledger balances.",closed my checking account and hold my money of {$9200.00},reviewer-b
+Q91,10671052,0,"The case is an identity-verification lock on account access, not an available-versus-ledger balance question about held funds.",my account was locked,reviewer-b
+Q91,10672501,0,"The case describes duplicate charges disappearing from transaction history while the balance still reflects them, a transaction-posting error rather than a held-balance distinction.",the balance is showing the the charges were subtracted,reviewer-b
+Q91,10672637,1,"The case describes PNC holding funds for over a week and driving the account negative with fees, directly addressing the balance effect of held funds.",pnc bank has held my funds for over a week,reviewer-b
+Q91,10684969,0,"The case is an incorrect balance report without any held funds, not an available-versus-ledger balance distinction.",The bank isnt reporting the correct balance amount,reviewer-b
+Q91,10688629,0,"The case is an account restriction caused by a tax levy, not an available-versus-ledger balance question about held funds.",my account was restricted due to a levy being placed on it,reviewer-b
+Q91,10689238,0,"The case is an unpaid savings bonus, unrelated to available versus ledger balances or held funds.",I did not receive my {$500.00} bonus,reviewer-b
+Q91,10691464,0,"The case is an account closure with no access to the balance, not an explanation of available versus ledger balances when funds are held.",Can not access my account have a balance,reviewer-b
+Q92,10648089,0,"The case is an account lock caused by a forgotten password, not a held balance appearing separately from the current balance.",my account is inaccessible,reviewer-b
+Q92,10653758,0,"The case is an account emptied after a phone theft, not a held balance displayed separately from the current balance.",I later found my account was emptied,reviewer-b
+Q92,10658251,0,"The case is a denied fraud claim, not a held balance appearing separately from the current balance.",the unjust denial of my claim for fraudulent transactions,reviewer-b
+Q92,10658685,0,"The case is a blocked online account, not an explanation of why a held balance appears separately from the current balance.",they blocked my online account access to use my money,reviewer-b
+Q92,10671052,0,"The case is an identity-verification lock on account access, not a held-balance display issue.",my account was locked,reviewer-b
+Q92,10672501,0,"The case describes duplicate charges disappearing from transaction history while the balance still reflects them, a posting error rather than a held-balance display.",the balance is showing the the charges were subtracted,reviewer-b
+Q92,10684969,0,"The case is an incorrect balance report without any held funds, not a held balance shown separately from the current balance.",The bank isnt reporting the correct balance amount,reviewer-b
+Q92,10686119,0,"The case is an account lock after a payment attempt, not an explanation of a held balance appearing separately from the current balance.",Tried sending a payment and the locked my account,reviewer-b
+Q92,10686432,0,"The case is a customer-service and account-access dispute, not a held-balance display issue.",current access exists to accounts but access has dropped to minimal,reviewer-b
+Q92,10691464,0,"The case is an account closure with no access to the balance, not a held balance shown separately from the current balance.",Can not access my account have a balance,reviewer-b

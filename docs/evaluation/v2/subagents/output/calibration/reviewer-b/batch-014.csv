@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q65,10669307,0,The case involves a $500 overdraft fee that led to account suspension and a loan denial; it does not address a fee charged on a purchase that left a positive balance.,my checking account was suspended due to a {$500.00} overdraft fee,reviewer-b
+Q65,10670136,0,PNC charged duplicate overdraft and late fees; the case does not describe a purchase that stayed within the available balance.,I WAS OVERDRAFTED DOUBLE TIME,reviewer-b
+Q65,10683958,0,"The case is an unauthorized ATM-card purchase and the bank's liability decision, not an overdraft-fee miscalculation.","I noticed a purchase I did not make, nor did I authorize",reviewer-b
+Q65,10689967,0,"The $330 charge is a brokerage portfolio/managed-account fee, not an overdraft fee on a checking purchase.",did not mention about portfolio service fee/managed account fee of {$330.00},reviewer-b
+Q66,10647800,0,"The fees were assessed on recurring payments the account could not cover and without overdraft protection, so the balance genuinely went negative.",The bank paid them even though I did not have overdraft protection and then charged me {$36.00},reviewer-b
+Q66,10655133,0,"The return-check and overdraft fees followed a depleted balance, not a purchase that fit within the available funds.",its because I had no money in my account,reviewer-b
+Q66,10656741,0,"The fee was applied to an empty, inactive account in an account-closure dispute, a different mechanism.",{$3.00} overdraft fee they applied on an empty account,reviewer-b
+Q66,10658469,0,"The fees resulted from automatic overdraft-protection enrollment without consent, not from a fee charged despite sufficient funds.",significant overdraft fees being deducted from my account,reviewer-b
+Q66,10661880,0,"The case concerns an unauthorized account opening and a non-overdraft-eligible account, not a mischarged overdraft fee.",they do not allow overdrafts at all,reviewer-b
+Q66,10669307,0,The $500 overdraft fee led to suspension and a credit denial; it is not an overdraft fee charged although the purchase was covered.,my checking account was suspended due to a {$500.00} overdraft fee,reviewer-b
+Q66,10685192,0,"The consumer paid an instant-transfer fee and the $150,000 transfer went missing, not an overdraft fee on a funded purchase.",the money is still missing,reviewer-b
+Q66,10689967,0,"The $330 charge is an undisclosed brokerage management fee, not an overdraft fee.",{$330.00} was subtracted without any explanation or information,reviewer-b
+Q66,10694634,0,"The case concerns identity theft and an identity-protection plan, not an overdraft fee charged on a purchase within the balance.",I have had my information stolen and money taking out of my account,reviewer-b
+Q67,10655737,0,"The case is about a suspended savings transfer with $14,000 in limbo, with no maintenance fee at issue.",my money ( {$14000.00} ) is in limbo,reviewer-b
+Q67,10655867,0,"The case is a savings account suspension and failed deposit after opening, not a fee deduction.",my account has been suspended since XX/XX/year>,reviewer-b
+Q67,10658109,1,"The case challenges a recurring $15 monthly savings maintenance fee, the same fee mechanism as an unexplained monthly savings fee.",a {$15.00} MONTLY fee for my savings,reviewer-b
+Q67,10686062,0,"The case concerns a locked savings account and a failed withdrawal, not a fee charged to the account.",I tried to withdraw some money from my Marcus Savings account and it didnt go through,reviewer-b
+Q67,10688349,0,"The case is a savings interest-rate deception involving the 360 Performance Savings account, not a maintenance fee.",they didn't tell my about their other 360 Performance Savings account,reviewer-b
+Q67,10689967,1,"The case describes a $330 portfolio/managed-account fee deducted without explanation or notice, the same undisclosed-fee mechanism.",did not mention about portfolio service fee/managed account fee of {$330.00},reviewer-b
+Q68,10647276,0,"The case concerns a savings account opened without consent, not a maintenance fee charged to an existing account.",cashapp recently opened a savings account I did not consent to opening,reviewer-b
+Q68,10655133,0,"The $35 overdraft fee is on a checking account with a $1 balance, not a savings maintenance fee.",Im being charged an {$35.00} overdraft fee for {$1.00} that was in another account,reviewer-b
+Q68,10655737,0,"The case is a suspended savings transfer with funds in limbo, not a fee deduction.",my Ally account had been suspended,reviewer-b
+Q68,10658109,1,"The case disputes a $15 monthly savings maintenance fee, the same recurring savings-fee mechanism as the undisclosed maintenance fee.",a {$15.00} MONTLY fee for my savings,reviewer-b
+Q68,10685141,0,"The case concerns a savings interest-rate misrepresentation, not a maintenance fee.",They constantly introduced a new savings account with a higher interest rate,reviewer-b
+Q68,10685192,0,"The case is a missing $150,000 transfer with an instant-transfer fee, not a savings maintenance fee.",the money is still missing,reviewer-b

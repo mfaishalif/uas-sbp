@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q76,10663554,1,"The case describes a check deposit placed on hold and not made available, the same check-deposit availability and hold mechanism.",she had put the hold on my account,reviewer-a
+Q76,10665819,0,"The case describes an ATM cash withdrawal failure, not an ATM check deposit availability issue.",the ATM kept denying my withdrawal,reviewer-a
+Q76,10666406,1,"The case describes an ATM check deposit that the machine failed to process and that was not credited, the same ATM check-deposit availability mechanism.",The machine then displayed a message saying the transaction could not be processed,reviewer-a
+Q76,10675165,1,"The case describes a mobile check deposit whose funds were locked and unavailable, the same check-deposit availability mechanism.",I have no access to my other funds or the check funds,reviewer-a
+Q76,10684050,0,"The case concerns a restricted account and inability to access existing funds, not an ATM check deposit availability issue.",I am unable to access my $ XXXX in funds,reviewer-a
+Q76,10685508,0,"The case describes ATM cash withdrawal fraud, not an ATM check deposit availability issue.",pulling money from the account,reviewer-a
+Q81,10657211,0,The case reports unauthorized transactions and a denied dispute; it does not address setting up alerts for unauthorized transactions.,I have unauthorized transactions over {$3000.00} under my debit card,reviewer-a
+Q81,10657920,0,The case reports unauthorized transactions and a denied dispute; it does not address setting up alerts.,Chime bank didnt help me fight back to get my money that was unauthorized,reviewer-a
+Q81,10663798,0,The case reports unauthorized transactions and denied claims; it does not address setting up alerts.,my savings account had XXXX unauthorized XXXX transactions,reviewer-a
+Q81,10668515,0,The case reports unreimbursed unauthorized debit-card transactions; it does not address alert setup.,never reimbursed me for unauthorized transactions,reviewer-a
+Q81,10670418,0,The case reports unauthorized transactions and a denied dispute; it does not address alert setup.,I identified XXXX different unauthorized transactions,reviewer-a
+Q81,10688837,0,The case reports a fraudulent-transaction dispute; it does not address setting up alerts.,Dispute transaction on XX/XX/year> for fraudulent transactions,reviewer-a
+Q81,10692213,0,The case reports five unauthorized charges; it does not address setting up alerts.,my business checking account was hit with five unauthorized charges,reviewer-a
+Q82,10657211,0,The case reports unauthorized card transactions; it does not address which notifications can be enabled.,I have unauthorized transactions over {$3000.00} under my debit card,reviewer-a
+Q82,10660224,0,The case reports a merchant re-debiting after a card replacement; it does not address enabling transaction notifications.,"This merchant XXXX has once again, debited my account for the same amount {$39.00}",reviewer-a
+Q82,10668515,0,The case reports unreimbursed unauthorized debit-card transactions; it does not address enabling notifications.,never reimbursed me for unauthorized transactions,reviewer-a
+Q82,10674775,0,The case reports disputed unauthorized debit-card charges; it does not address enabling notifications.,I called Wells Fargo and Disputed the charges,reviewer-a
+Q82,10683886,0,The case reports unauthorized card use after a stolen wallet; it does not address enabling notifications.,my debit card was used without my authorization,reviewer-a
+Q82,10683958,0,The case reports an unauthorized ATM-card purchase; it does not address enabling notifications.,"a purchase I did not make, nor did I authorize",reviewer-a
+Q85,10658410,1,"The case describes a domestic transfer whose funds were deducted but never reached the beneficiary, the same domestic transfer timing mechanism.",the money had still not arrived,reviewer-a
+Q85,10662970,0,"The case concerns funds held in a Venmo balance after receipt, not a delayed transfer to another bank.",I still dont have the ability to transfer out my funds,reviewer-a
+Q85,10670240,0,"The case concerns an international remittance delay, not domestic transfer timing.",I sent the remittance on XX/XX/XXXX,reviewer-a
+Q85,10683109,1,"The case describes Cash App domestic payments stuck in pending, the same domestic transfer delay mechanism.",it went into a pending state,reviewer-a
+Q85,10687059,0,"The case concerns a crypto withdrawal from Kraken, not a domestic bank transfer.",I initiated a withdrawal of {$390.00} from my Kraken account,reviewer-a
+Q86,10658410,1,"The case describes a same-day domestic transfer promised by the bank that did not arrive, addressing the same-day transfer timing mechanism.",the funds would be in the beneficiary,reviewer-a

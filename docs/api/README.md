@@ -56,11 +56,13 @@ Untuk korpus kosong, server memvalidasi bentuk input dan token narasi terlebih d
 
 `returnedCount` sama dengan panjang `results`. `corpusSize` adalah jumlah kasus pada snapshot yang digunakan untuk menghitung skor, termasuk kasus ANALYST. Pencarian mengembalikan top-N tanpa pagination. Respons membawa konfigurasi server yang benar-benar dipakai; frontend tidak menghitung ulang atau mengasumsikan bobot default selalu sama.
 
+Server mendukung dua mode teks. `baseline` memakai tokenisasi saat ini dan mengembalikan `algorithmVersion=tfidf-cosine-v1`. `phrases` menerapkan kamus frasa domain berversi sebelum penghapusan stopword dan mengembalikan `algorithmVersion=tfidf-phrases-v2`; bentuk request/response dan status HTTP tidak berubah. Kamus awal memetakan `ATM`, `cash machine`, `automated teller machine` ke `atm`; lima varian penagihan ganda ke `duplicatecharge`; dan delapan varian saldo ditahan ke `heldfunds`. Pencocokan tidak membedakan kapital, memakai frasa terpanjang lebih dahulu, menghormati batas kata, tidak mengganti substring, tidak memproses ulang hasil penggantian, dan tidak mencocokkan lintas tanda akhir kalimat. Narasi asli tidak diubah; normalisasi hanya memengaruhi tokenisasi. Mode tidak dikenal menggagalkan startup. Default saat ini tetap `baseline` karena kandidat frasa gagal gerbang query negatif pada studi v2; lihat [hasil evaluasi](../evaluation/v2/README.md).
+
 Setiap hasil memiliki `case` (detail lengkap), `score`, `categoryScore`, `textScore`, `categoryExplanation`, dan `sharedTerms`. Semua skor berada pada 0–1. Bila ditampilkan sebagai persen, beri label **skor kemiripan**, bukan peluang keberhasilan. Pertahankan peringatan dalam `warnings` dan bedakan sumber CFPB dari ANALYST.
 
 Penjelasan kategori selalu memiliki empat elemen berurutan: product, subProduct, issue, subIssue. `MATCH` berarti cocok, `MISMATCH` berbeda, `MISSING_IN_CASE` berarti nilai query ada tetapi nilai kandidat kosong, dan `NOT_USED` berarti field query kosong. `configuredWeight` adalah bobot awal; `effectiveWeight` adalah bobot sesudah normalisasi field aktif. Jumlah `contribution` sama dengan `categoryScore` dalam toleransi floating point.
 
-`sharedTerms` memuat maksimal 10 token dengan kontribusi cosine terbesar, urut kontribusi turun lalu token naik. Jumlah kontribusinya dapat kurang dari `textScore` bila token bersama lebih dari 10. Skor gabungan = categoryWeight × categoryScore + textWeight × textScore. Respons hanya memuat hasil dengan score >= threshold dan textScore > 0. Nilai awal serta rumus lengkap ada dalam desain, dan belum merupakan hasil kalibrasi relevansi.
+`sharedTerms` memuat maksimal 10 token dengan kontribusi cosine terbesar, urut kontribusi turun lalu token naik. `term` adalah token kanonis yang benar-benar dipakai dalam skor: bentuk asli pada mode `baseline`, atau hasil kamus (`atm`, `duplicatecharge`, `heldfunds`) pada mode `phrases`. Jumlah kontribusinya dapat kurang dari `textScore` bila token bersama lebih dari 10. Skor gabungan = categoryWeight × categoryScore + textWeight × textScore. Respons hanya memuat hasil dengan score >= threshold dan textScore > 0. `algorithmVersion` selalu mencerminkan pipeline aktual. Nilai default serta rumus lengkap ada dalam desain; hasil studi relevansi v2 tidak mengubah default karena gerbang pengujian gagal.
 
 ## Daftar, detail, dan retensi kasus
 
@@ -186,4 +188,4 @@ npm run test:contract
 npm run verify
 ```
 
-`api:check` membandingkan pohon TypeScript hasil generation dengan yang di-commit. `test:contract` menjalankan packaged jar dengan database sementara, memvalidasi setiap respons terhadap skema operasi/status di `docs/api/openapi.json`, lalu menguji adapter client. `verify` menjalankan seluruh rangkaian termasuk 202 tes backend. Pengujian ini tidak mengunduh arsip CFPB.
+`api:check` membandingkan pohon TypeScript hasil generation dengan yang di-commit. `test:contract` menjalankan packaged jar dengan database sementara, memvalidasi setiap respons terhadap skema operasi/status di `docs/api/openapi.json`, lalu menguji adapter client. `verify` menjalankan seluruh rangkaian termasuk 267 tes backend. Pengujian ini tidak mengunduh arsip CFPB.

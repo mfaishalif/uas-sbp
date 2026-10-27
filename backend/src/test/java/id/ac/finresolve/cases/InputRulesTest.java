@@ -113,6 +113,21 @@ class InputRulesTest {
     }
 
     @Test
+    void acceptsAnIndonesianHeldFundsQuestionForSearch() {
+        ComplaintInput input = new ComplaintInput(
+                new CategoryValues(
+                        "Checking or savings account", "Checking account",
+                        "Managing an account", null),
+                "Bagaimana mengambil uang saya yang ditahan bank?",
+                null, null, null);
+
+        ComplaintInput normalized = InputRules.complaint(input);
+
+        assertThat(normalized.narrative())
+                .isEqualTo("Bagaimana mengambil uang saya yang ditahan bank?");
+    }
+
+    @Test
     void novelCategoriesAreAcceptedWithoutCatalogMembership() {
         ComplaintInput input = new ComplaintInput(
                 new CategoryValues(

@@ -36,7 +36,7 @@ export interface SearchRequest {
      */
     subIssue?: string | null;
     /**
-     * Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak.
+     * Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak. Mode phrases menerapkan kamus frasa domain hanya pada tokenisasi; narasi asli tidak diubah.
      */
     narrative: string;
     /**

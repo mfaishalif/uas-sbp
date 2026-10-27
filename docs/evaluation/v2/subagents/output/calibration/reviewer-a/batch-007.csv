@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q19,10668334,0,"The candidate concerns a Coinbase withdrawal hold under review, not airport currency exchange rates for euros.","I attempted to withdraw {$24000.00}, which was immediately flagged by Coinbase",reviewer-a
+Q19,10670422,0,"The candidate is a restricted Robinhood account blocking withdrawals, unrelated to the query's exchange-rate question.",I cant withdraw the {$820.00} in my account,reviewer-a
+Q19,10691593,0,"The candidate is a blocked debit card with no explanation, not a request for airport exchange-rate information.",My card it's completely blocked ago XXXX week,reviewer-a
+Q19,10691733,0,"The candidate is a misdirected PayPal transfer to an unknown recipient, not an exchange-rate inquiry.",I have never sent funds to this person,reviewer-a
+Q20,10647800,0,"The candidate concerns overdraft fees and an offset from a daughter's account, not documents needed to open a checking account.",The bank paid them even though I did not have overdraft protection,reviewer-a
+Q20,10662999,0,"The candidate is a denied checking account application over a state ID requirement, not guidance on what documents to bring.",my application was denied because I cant provide a copy of a XXXX ID,reviewer-a
+Q20,10669017,0,"The candidate is a ChexSystems dispute over a paid closed account, unrelated to the document question.",I am writing to formally dispute inaccurate information on my ChexSystems report,reviewer-a
+Q20,10669427,0,"The candidate is an identity-theft claim about an account opened without consent, not a question about opening documents.",ive never open this account with BOA,reviewer-a
+Q20,10677919,0,"The candidate disputes fraudulently opened accounts on a consumer report, not the documents required to open a checking account.","these accounts have been opened fraudulently, without my consent",reviewer-a
+Q20,10683687,0,"The candidate is a business account denied without explanation, not an inquiry about documents for a student checking account.",my application was denied without a reason,reviewer-a
+Q20,10685871,0,"The candidate concerns a fraudulent checking account reported in the consumer's name, unrelated to the document question.",a fraudulent checking account that has been opened in my name,reviewer-a
+Q21,10647800,0,"The candidate is about overdraft fees and an account offset, not budgeting after a payroll schedule change.",The bank paid them even though I did not have overdraft protection and then charged me {$36.00},reviewer-a
+Q21,10655921,0,"The candidate reports a missing payroll direct deposit, a bank deposit failure rather than a budgeting question.",my payroll direct deposit was not placed into my checking account by the bank,reviewer-a
+Q21,10661880,0,"The candidate concerns an unauthorized account opening and credit-report damage, not adjusting a budget after a smaller paycheck.",I have no knowledge of this account at all,reviewer-a
+Q21,10670291,0,"The candidate is about a closed Chase account and funds in limbo after payroll was deposited, not budget planning.",my funds are in limbo,reviewer-a
+Q21,10673921,0,"The candidate reports lost money and a wrong balance after a system switch, not a budgeting question.",I lost a good amount of money,reviewer-a
+Q21,10683415,0,"The candidate is an elaborate impersonation and withdrawal scam, unrelated to budgeting a smaller paycheck.",We realized we were scam on XXXX,reviewer-a
+Q21,10686119,0,"The candidate concerns a locked account blocking access to a paycheck, not advice on adjusting a budget.",now I can't access my account that has my paycheck in it,reviewer-a
+Q21,10694634,0,"The candidate concerns identity theft and lost account-opening ability, not a payroll-driven budget change.",I have had my information stolen and money taking out of my account,reviewer-a
+Q22,10658016,0,"The candidate is a completed non-delivery scam with money transferred out, not a phishing text the consumer ignored.",I am a victim of a non-delivery scam,reviewer-a
+Q22,10673396,0,"The candidate is a puppy-sale scam where the consumer paid fees via Zelle, unlike the query's ignored text.",I used zelle and hoping i can get those money back,reviewer-a
+Q22,10674597,0,"The candidate is a permanently blocked PayPal account with unauthorized withdrawals, not a deleted smishing text.",my account was permanently blocked without any justification,reviewer-a
+Q22,10682202,0,"The candidate is a chargeback dispute over a sale, unrelated to the query's ignored package-delivery text.",Buyer claimed item not received and did a chargeback,reviewer-a
+Q22,10683753,0,"The candidate is a completed online pet scam with payments and denied disputes, not an ignored phishing text.",I never received the snake,reviewer-a
+Q22,10686096,0,"The candidate is a fraudulent check and Cash App money-trafficking case, not a phishing text that was deleted.",Someone put fake checks into my checking account,reviewer-a

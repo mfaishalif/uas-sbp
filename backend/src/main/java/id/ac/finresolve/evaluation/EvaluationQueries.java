@@ -6,7 +6,6 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,12 +14,12 @@ import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.csv.DuplicateHeaderMode;
 
-/** Loads the frozen query set and rejects malformed or duplicated query IDs. */
+/** Loads the frozen v2 query set and rejects malformed or duplicated query IDs. */
 public final class EvaluationQueries {
 
     static final List<String> HEADERS = List.of(
-            "queryId", "kind", "product", "subProduct", "issue", "subIssue",
-            "narrative", "scenario");
+            "queryId", "kind", "groupId", "cohort", "product", "subProduct", "issue",
+            "subIssue", "narrative", "scenario");
 
     private EvaluationQueries() {
     }
@@ -42,13 +41,27 @@ public final class EvaluationQueries {
                             "Query CSV is missing column: " + header);
                 }
             }
+            int expectedColumns = headers.size();
+            for (String header : HEADERS) {
+                if (headers.get(header) >= expectedColumns) {
+                    throw new IllegalArgumentException("Query CSV has an invalid header row");
+                }
+            }
 
             Map<String, EvaluationQuery> queries = new LinkedHashMap<>();
             for (CSVRecord record : parser) {
+                if (record.size() != expectedColumns) {
+                    throw new IllegalArgumentException(
+                            "Query CSV record " + record.getRecordNumber()
+                                    + " has " + record.size() + " columns, expected "
+                                    + expectedColumns);
+                }
                 String queryId = required(record, "queryId");
                 EvaluationQuery query = new EvaluationQuery(
                         queryId,
                         EvaluationQuery.Kind.parse(required(record, "kind")),
+                        required(record, "groupId"),
+                        EvaluationQuery.Cohort.parse(required(record, "cohort")),
                         new CategoryValues(
                                 required(record, "product"),
                                 nullable(record, "subProduct"),
@@ -64,9 +77,43 @@ public final class EvaluationQueries {
             if (queries.isEmpty()) {
                 throw new IllegalArgumentException("Query CSV contains no queries");
             }
+            validateGroups(queries.values().stream().toList());
             return List.copyOf(queries.values());
         } catch (IOException failure) {
             throw new IllegalArgumentException("Cannot read query CSV: " + path, failure);
+        }
+    }
+
+    /** Groups must be homogeneous so paraphrases cannot leak across kinds or cohorts. */
+    public static void validateGroups(List<EvaluationQuery> queries) {
+        Map<String, EvaluationQuery> firstInGroup = new LinkedHashMap<>();
+        Map<String, Integer> groupSizes = new LinkedHashMap<>();
+        for (EvaluationQuery query : queries) {
+            EvaluationQuery first = firstInGroup.putIfAbsent(query.groupId(), query);
+            if (first != null) {
+                if (first.kind() != query.kind()) {
+                    throw new IllegalArgumentException(
+                            "Group " + query.groupId() + " mixes query kinds");
+                }
+                if (first.cohort() != query.cohort()) {
+                    throw new IllegalArgumentException(
+                            "Group " + query.groupId() + " mixes cohorts");
+                }
+            }
+            groupSizes.merge(query.groupId(), 1, Integer::sum);
+        }
+        for (Map.Entry<String, Integer> entry : groupSizes.entrySet()) {
+            EvaluationQuery query = firstInGroup.get(entry.getKey());
+            if (query.cohort() == EvaluationQuery.Cohort.STUDY
+                    && entry.getValue() != 2) {
+                throw new IllegalArgumentException(
+                        "Study group " + entry.getKey() + " must contain exactly two variants");
+            }
+            if (query.cohort() == EvaluationQuery.Cohort.DEVELOPMENT
+                    && entry.getValue() != 1) {
+                throw new IllegalArgumentException(
+                        "Development group " + entry.getKey() + " must contain one query");
+            }
         }
     }
 

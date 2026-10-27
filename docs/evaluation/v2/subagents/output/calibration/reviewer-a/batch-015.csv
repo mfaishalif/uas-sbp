@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q68,10688349,0,"The case concerns undisclosed savings interest-rate differences, not a maintenance fee.",they didn't tell my about their other 360 Performance Savings account,reviewer-a
+Q68,10689238,0,"The case concerns a promised checking/savings sign-up bonus that was not paid, not a maintenance fee.",I did not receive my {$500.00} bonus,reviewer-a
+Q68,10689967,0,"The case concerns a brokerage portfolio management fee, not a monthly savings maintenance fee.",portfolio service fee/managed account fee of {$330.00},reviewer-a
+Q69,10648795,0,The case is a theft/identity-theft complaint with no allegation of duplicate NSF fees on one returned payment.,victim of identity theft,reviewer-a
+Q69,10660006,0,"The case describes several overdraft fees caused by fraudulent card charges, not two NSF fees for the same returned payment.",charged me {$35.00} dollars 4 times for being negative on my account,reviewer-a
+Q69,10661880,0,"The case concerns an unauthorized account opening and a Safe-Debit account, not duplicate NSF fees.",they do not allow overdrafts at all,reviewer-a
+Q69,10664049,0,"The case concerns an account closed for nonpayment, not duplicate NSF fees on a single returned payment.",Bank Closed My Bank Account Down For None payment,reviewer-a
+Q69,10670136,1,"The case alleges being overdrafted twice with late fees, matching the duplicate-fee mechanism of charging more than once for the same event.",OVERDRAFTED DOUBLE TIME,reviewer-a
+Q69,10672637,0,"The case concerns funds held for over a week causing a negative balance and fees, not duplicate NSF fees on one returned payment.",pnc bank has held my funds for over a week,reviewer-a
+Q70,10653146,0,"The case concerns duplicate transactions and an inaccurate balance, not duplicate NSF fees.",notice duplicate transactions,reviewer-a
+Q70,10660006,0,"The case describes four overdraft fees caused by fraudulent card charges, not duplicate NSF fees for one returned payment.",charged me {$35.00} dollars 4 times for being negative on my account,reviewer-a
+Q70,10661880,0,"The case concerns an unauthorized account opening and a Safe-Debit account, not duplicate NSF fees.",they do not allow overdrafts at all,reviewer-a
+Q70,10664049,0,"The case concerns an account closed for nonpayment, not duplicate NSF fees on a single returned payment.",Bank Closed My Bank Account Down For None payment,reviewer-a
+Q70,10670136,1,"The case alleges being overdrafted twice with late fees, matching the duplicate-fee mechanism of charging more than once for the same event.",OVERDRAFTED DOUBLE TIME,reviewer-a
+Q70,10673921,0,"The case concerns a balance error after a system conversion, not duplicate NSF fees.",my balance was way off,reviewer-a
+Q75,10652816,1,"The case describes an ATM cash deposit that failed and was not credited, the same ATM cash-deposit posting mechanism the query asks about.",the atm went black and shut itself off,reviewer-a
+Q75,10663181,0,"The case concerns a blocked payroll direct deposit and fraud flag, not an ATM cash deposit cutoff time.",the transfer was blocked,reviewer-a
+Q75,10665819,0,"The case describes an ATM cash withdrawal failure, not an ATM cash deposit cutoff time.",the ATM kept denying my withdrawal,reviewer-a
+Q75,10666048,0,"The case concerns inaccessible Cash App funds, not an ATM cash deposit cutoff time.",I cant access the account,reviewer-a
+Q75,10666406,0,"The case describes an ATM check deposit failure, not a cash deposit cutoff time.",Attempted to deposit 2 checks into a Capitol One approved atm,reviewer-a
+Q75,10684779,1,"The case describes an ATM cash deposit that the machine failed to process, the same ATM cash-deposit posting mechanism the query asks about.",the machine spit out {$17.00},reviewer-a
+Q75,10685508,0,"The case describes an ATM cash withdrawal fraud, not an ATM cash deposit cutoff time.",pulling money from the account,reviewer-a
+Q75,10688449,0,"The case describes an ATM cash withdrawal malfunction, not an ATM cash deposit cutoff time.",THE ATM MALFUNCTIONED,reviewer-a
+Q76,10652816,0,"The case is an ATM cash deposit failure, not an ATM check deposit availability issue.",None of the money was deposited into my account,reviewer-a
+Q76,10660424,0,"The case concerns the same check being mobile-deposited twice, not how long an ATM check deposit takes to become available.",the same check through as a mobile deposit,reviewer-a

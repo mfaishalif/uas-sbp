@@ -1,0 +1,26 @@
+queryId,cfpbId,relevant,reason,evidence,reviewer
+Q103,10652832,0,"The case concerns an unexplained account closure, not budget planning for a changed payroll schedule.",Don't know why account was closed and they will not give me a reason,reviewer-b
+Q103,10655813,0,"The case concerns an account closed without reason disrupting bill payments, not advice on adjusting a budget to a new payroll date.",they closed my account I cant process it,reviewer-b
+Q103,10655921,0,"The case concerns a missing payroll direct deposit, not planning recurring bills around a changed payroll schedule.",my payroll direct deposit was not placed into my checking account by the bank.,reviewer-b
+Q103,10661880,0,"The case concerns an unauthorized account opening reported to Chex Systems, not budget planning for a changed pay date.",Unauthorized Account Opening.,reviewer-b
+Q103,10662008,0,"The case concerns scam mobile deposits into a joint savings account, not advice about adjusting a budget to a changed payroll schedule.",I was not aware that the scammers where going to mobile deposit checks into my son 's saving account,reviewer-b
+Q103,10670291,0,"The case concerns a closed Chase account and delayed payroll deposit, not budget planning advice for a changed payroll schedule.",my funds are in limbo,reviewer-b
+Q103,10683415,0,"The case is a Chase impersonation scam that drained accounts, not budget planning for a changed payroll schedule.",my funds were completely depleted,reviewer-b
+Q103,10694634,0,"The case concerns stolen information and money taken from an account, not advice on adjusting a budget to a changed payroll schedule.",I have had my information stolen and money taking out of my account,reviewer-b
+Q104,10660006,0,"The case concerns unauthorized card charges after a lost card, not planning monthly expenses around a changed pay date.",I noticed a charge for almost {$300.00},reviewer-b
+Q104,10661880,0,"The case concerns an unauthorized account opening, not a method for planning monthly expenses when pay dates change.",Unauthorized Account Opening.,reviewer-b
+Q104,10673921,0,"The case concerns a bank system switch that produced a wrong balance, not expense planning around a changed pay date.",my balance was way off,reviewer-b
+Q104,10683415,0,"The case is a Chase impersonation scam that drained accounts, not monthly expense planning.",my funds were completely depleted,reviewer-b
+Q104,10686119,0,"The case concerns a locked account blocking access to a paycheck, not advice on planning expenses around a changed pay date.",I can't access my account that has my paycheck in it to pay bills,reviewer-b
+Q104,10694634,0,"The case concerns identity theft and money taken from an account, not monthly expense planning.",I have had my information stolen and money taking out of my account,reviewer-b
+Q11,10655737,0,"The case concerns a suspended savings transfer and funds in limbo, not an unexplained monthly fee.",my money ( {$14000.00} ) is in limbo,reviewer-b
+Q11,10658109,1,"The complainant was charged an unexplained $15 monthly fee on a savings account, matching the queried mechanism.",a {$15.00} MONTLY fee for my savings,reviewer-b
+Q11,10685141,0,"The case concerns savings interest-rate misrepresentation, not an unexplained monthly fee.",Popular Direct Bank misrepresents its savings account.,reviewer-b
+Q11,10685192,0,"The case concerns a $25 instant-transfer fee and missing transferred funds, not an unexplained recurring monthly savings fee.",I paid a fee of {$25.00} for a instant transfer,reviewer-b
+Q11,10688349,0,"The case concerns a lower-interest savings account not being disclosed, not an unexplained monthly fee.",they didn't tell my about their other 360 Performance Savings account,reviewer-b
+Q11,10689238,0,"The case concerns an unpaid account bonus, not an unexplained monthly fee on savings.",I did not receive my {$500.00} bonus,reviewer-b
+Q11,10689967,1,"A $330 managed-account fee was deducted without explanation, matching the unexplained-fee mechanism.",{$330.00} was subtracted without any explanation or information.,reviewer-b
+Q12,10652816,0,"The case is an ATM cash-deposit failure where the money was not credited, not a withdrawal that debited the account without dispensing cash.",None of the money was deposited into my account.,reviewer-b
+Q12,10655001,0,"The case is an ATM deposit dispute where the deposit was reversed, not a cash withdrawal that debited the account without dispensing cash.",my husband deposited XXXX through the ATM machine,reviewer-b
+Q12,10665819,1,"The ATM completed a cash-withdrawal request but shut down without dispensing cash while the transaction cleared the account, matching the queried mechanism.",the ATM machine turned off without giving me the money or receipt.,reviewer-b
+Q12,10666406,0,"The case is an ATM check-deposit failure where the checks were not returned, not a cash withdrawal without disbursement.",Attempted to deposit 2 checks into a Capitol One approved atm,reviewer-b

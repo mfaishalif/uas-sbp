@@ -260,6 +260,61 @@ class SimilarityEngineTest {
                 .isEmpty();
     }
 
+    @Test
+    void phrasesModeMatchesParaphrasesAndExposesCanonicalSharedTerms() {
+        SimilaritySettings phrases = new SimilaritySettings(
+                0.4, 0.6, 0.35, 0.15, 0.35, 0.15, 0.5, 5, 20,
+                SimilarityMode.PHRASES);
+        CaseRecord candidate = caseRecord(
+                uuid(1), CaseRecord.Source.CFPB,
+                new CategoryValues("P", null, "I", null),
+                "The ATM charged twice and the funds held were never released.");
+
+        List<SimilarityResult> results = engine.rank(
+                complaint(
+                        "P", null, "I", null,
+                        "A cash machine charged double and the withheld balance stayed unavailable."),
+                List.of(candidate), 5, phrases);
+
+        assertThat(results).hasSize(1);
+        assertThat(results.get(0).textScore()).isCloseTo(Math.sqrt(3.0 / 5.0), within(1e-12));
+        assertThat(results.get(0).sharedTerms())
+                .extracting(TfidfSnapshot.Term::term)
+                .containsExactlyInAnyOrder("atm", "duplicatecharge", "heldfunds");
+        assertThat(results.get(0).sharedTerms().stream()
+                .mapToDouble(TfidfSnapshot.Term::contribution)
+                .sum())
+                .isCloseTo(results.get(0).textScore(), within(1e-12));
+    }
+
+    @Test
+    void phrasesModeDoesNotMergeAtmDepositAndWithdrawalMechanisms() {
+        EnglishTokenizer tokenizer = new EnglishTokenizer(SimilarityMode.PHRASES);
+
+        assertThat(tokenizer.tokens(
+                        "The ATM accepted my cash deposit but did not credit the funds."))
+                .containsExactly("atm", "accepted", "cash", "deposit", "did", "credit", "funds");
+        assertThat(tokenizer.tokens(
+                        "The ATM debited my withdrawal but did not dispense cash."))
+                .containsExactly("atm", "debited", "withdrawal", "did", "dispense", "cash");
+    }
+
+    @Test
+    void baselineModeDoesNotReplaceDomainPhrases() {
+        CaseRecord candidate = caseRecord(
+                uuid(1), CaseRecord.Source.CFPB,
+                new CategoryValues("P", null, "I", null),
+                "The ATM charged twice and funds held.");
+
+        List<SimilarityResult> results = engine.rank(
+                complaint(
+                        "P", null, "I", null,
+                        "A cash machine duplicate charge withheld balance."),
+                List.of(candidate), 5, DEFAULTS);
+
+        assertThat(results).isEmpty();
+    }
+
     private static SimilaritySettings categoryOnlySettings(
             double productWeight, double issueWeight) {
         return new SimilaritySettings(

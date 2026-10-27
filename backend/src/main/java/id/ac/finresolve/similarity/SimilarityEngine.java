@@ -17,15 +17,13 @@ import java.util.Objects;
 public final class SimilarityEngine implements SimilarityScorer {
 
     private final CategoryScorer categoryScorer;
-    private final EnglishTokenizer tokenizer;
 
     public SimilarityEngine() {
-        this(new CategoryScorer(), new EnglishTokenizer());
+        this(new CategoryScorer());
     }
 
-    public SimilarityEngine(CategoryScorer categoryScorer, EnglishTokenizer tokenizer) {
+    public SimilarityEngine(CategoryScorer categoryScorer) {
         this.categoryScorer = Objects.requireNonNull(categoryScorer, "categoryScorer");
-        this.tokenizer = Objects.requireNonNull(tokenizer, "tokenizer");
     }
 
     @Override
@@ -41,13 +39,19 @@ public final class SimilarityEngine implements SimilarityScorer {
             throw new IllegalArgumentException("limit must be at least 1");
         }
 
-        return rank(query, cases, TfidfSnapshot.fit(cases, tokenizer), limit, settings);
+        return rank(
+                query,
+                cases,
+                TfidfSnapshot.fit(cases, new EnglishTokenizer(settings.mode())),
+                limit,
+                settings);
     }
 
     /**
      * Ranks against an already-fitted snapshot. The caller must fit it on exactly the supplied
-     * corpus; this overload exists so offline evaluation can reuse one snapshot across many
-     * configurations without changing production scoring semantics.
+     * corpus with the tokenizer for the configured mode; this overload exists so offline
+     * evaluation can reuse one snapshot across many configurations without changing production
+     * scoring semantics.
      */
     public List<SimilarityResult> rank(
             ComplaintInput query,
