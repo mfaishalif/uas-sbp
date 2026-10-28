@@ -1,7 +1,12 @@
 package id.ac.finresolve.presentation.validation;
 
 import id.ac.finresolve.api.model.ImportMetadata;
+import id.ac.finresolve.domain.error.BusinessException;
+import id.ac.finresolve.domain.error.BusinessException.Problem;
+import id.ac.finresolve.domain.text.UnicodeText;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
@@ -57,6 +62,7 @@ public final class StrictImportMetadataConverter
                     "Metadata is not valid JSON.", failure, inputMessage);
         }
         normalizeText(body);
+        validateUnicode(body);
         rules.validateJson("ImportMetadata", body);
         try {
             return json.treeToValue(body, ImportMetadata.class);
@@ -80,6 +86,30 @@ public final class StrictImportMetadataConverter
             if (value != null && value.isTextual()) {
                 object.put(field, value.asString().strip());
             }
+        }
+    }
+
+    /**
+     * Metadata problems use the public {@code metadata.*} field path, matching the domain
+     * validator rather than the unprefixed component-schema names used during raw binding.
+     */
+    private static void validateUnicode(JsonNode body) {
+        if (!(body instanceof ObjectNode object)) {
+            return;
+        }
+        List<Problem> problems = new ArrayList<>();
+        Iterator<String> names = object.propertyNames().iterator();
+        while (names.hasNext()) {
+            String field = names.next();
+            JsonNode value = object.get(field);
+            if (value.isTextual()) {
+                UnicodeText.addProblemIfInvalid(
+                        value.asString(), "metadata." + field, problems);
+            }
+        }
+        if (!problems.isEmpty()) {
+            throw new BusinessException(
+                    "VALIDATION_ERROR", "Metadata impor tidak valid.", problems);
         }
     }
 }

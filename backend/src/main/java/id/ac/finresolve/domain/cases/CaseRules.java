@@ -1,5 +1,6 @@
 package id.ac.finresolve.domain.cases;
 
+import id.ac.finresolve.domain.text.UnicodeText;
 import java.math.BigInteger;
 import java.util.HashSet;
 import java.util.List;
@@ -20,6 +21,10 @@ public final class CaseRules {
         requireText(record.categories().product(), "product");
         requireText(record.categories().issue(), "issue");
         requireText(record.narrative(), "narrative");
+        requireOptionalText(record.categories().subProduct(), "subProduct");
+        requireOptionalText(record.categories().subIssue(), "subIssue");
+        requireOptionalText(record.company(), "company");
+        requireOptionalText(record.companyResponse(), "companyResponse");
         Objects.requireNonNull(record.createdAt(), "createdAt");
         Objects.requireNonNull(record.updatedAt(), "updatedAt");
         if (record.updatedAt().isBefore(record.createdAt())) {
@@ -76,12 +81,20 @@ public final class CaseRules {
             throw new IllegalArgumentException("ANALYST cases require analyst notes.");
         }
         requireText(record.notes().handlingNotes(), "analyst handling notes");
+        requireOptionalText(record.notes().evaluationNotes(), "notes.evaluationNotes");
         requireNonNull(record.notes().outcomeAssessment(), "notes.outcomeAssessment");
     }
 
     private static void requireText(String value, String field) {
         if (value == null || value.isBlank()) {
             throw new IllegalArgumentException(field + " is required.");
+        }
+        UnicodeText.requireWellFormed(value, field);
+    }
+
+    private static void requireOptionalText(String value, String field) {
+        if (value != null) {
+            UnicodeText.requireWellFormed(value, field);
         }
     }
 

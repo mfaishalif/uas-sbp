@@ -191,6 +191,80 @@ class RequestRulesTest {
     }
 
     @Test
+    void nulAndLoneSurrogatesAreRejectedBeforeBinding() {
+        String nul = "\\" + "u0000";
+        String high = "\\" + "ud800";
+        String low = "\\" + "udfff";
+        for (String[] scenario : List.of(
+                new String[] {
+                    "narrative",
+                    "\"narrative\": \"My transfer is missing from my checking account.\"",
+                    "\"narrative\": \"My transfer is missing" + nul + " from my account.\""},
+                new String[] {
+                    "narrative",
+                    "\"narrative\": \"My transfer is missing from my checking account.\"",
+                    "\"narrative\": \"My transfer is missing" + high + " from my account.\""},
+                new String[] {
+                    "product",
+                    "\"product\": \"Checking or savings account\"",
+                    "\"product\": \"" + nul + "Checking or savings account\""},
+                new String[] {
+                    "issue",
+                    "\"issue\": \"Managing an account\"",
+                    "\"issue\": \"Managing" + low + " an account\""},
+                new String[] {
+                    "company",
+                    "\"company\": null",
+                    "\"company\": \"Company" + nul + "\""},
+                new String[] {
+                    "companyResponse",
+                    "\"companyResponse\": null",
+                    "\"companyResponse\": \"Closed" + high + "\""},
+                new String[] {
+                    "handlingNotes",
+                    "\"handlingNotes\": \"Reviewed transfer evidence and requested a trace.\"",
+                    "\"handlingNotes\": \"Notes" + nul + "\""},
+                new String[] {
+                    "evaluationNotes",
+                    "\"evaluationNotes\": null",
+                    "\"evaluationNotes\": \"Eval" + low + "\""})) {
+            BusinessException failure = rejected(
+                    "RetainCaseRequest",
+                    replace(RETAIN_CASE, scenario[1], scenario[2]));
+            assertThat(fields(failure)).as(scenario[0]).containsExactly(scenario[0]);
+            assertThat(failure.fieldErrors())
+                    .extracting(Problem::code)
+                    .containsExactly("INVALID_FORMAT");
+        }
+    }
+
+    @Test
+    void uuidDuplicatesUseUuidIdentityAndCaseVariantsAreRejected() {
+        String id = java.util.UUID.randomUUID().toString();
+        for (String[] pair : List.of(
+                new String[] {id, id},
+                new String[] {id, id.toUpperCase()})) {
+            BusinessException failure = rejected(
+                    "RetainCaseRequest",
+                    replace(
+                            RETAIN_CASE,
+                            "\"referenceCaseIds\": []",
+                            "\"referenceCaseIds\": [\"" + pair[0] + "\", \"" + pair[1] + "\"]"));
+            assertThat(fields(failure)).containsExactly("referenceCaseIds[1]");
+            assertThat(failure.fieldErrors())
+                    .extracting(Problem::code)
+                    .containsExactly("DUPLICATE");
+        }
+
+        RULES.validateJson(
+                "RetainCaseRequest",
+                replace(
+                        RETAIN_CASE,
+                        "\"referenceCaseIds\": []",
+                        "\"referenceCaseIds\": [\"" + id.toUpperCase() + "\"]"));
+    }
+
+    @Test
     void integerValuedDecimalsAreAcceptedButFractionsAreRejected() {
         for (String accepted : List.of("1.0", "1.00", "1e0", "2E1")) {
             RULES.validateJson("SearchRequest", replace(SEARCH, "\"limit\": 5", "\"limit\": " + accepted));

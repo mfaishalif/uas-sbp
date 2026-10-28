@@ -3,6 +3,7 @@ package id.ac.finresolve.presentation.validation;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import id.ac.finresolve.domain.error.BusinessException;
 import id.ac.finresolve.domain.error.BusinessException.Problem;
+import id.ac.finresolve.domain.text.UnicodeText;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
@@ -271,6 +272,12 @@ public final class RequestRules implements RequestBodyAdvice {
 
     private void validateString(
             String path, String text, JsonNode schema, List<Problem> problems) {
+        if (!UnicodeText.isWellFormed(text)) {
+            problems.add(new Problem(
+                    path, "INVALID_FORMAT", UnicodeText.INVALID_FORMAT_MESSAGE));
+            return;
+        }
+
         int length = text.codePointCount(0, text.length());
         JsonNode minLength = schema.get("minLength");
         if (minLength != null && minLength.isIntegralNumber() && length < minLength.asInt()) {
@@ -363,19 +370,26 @@ public final class RequestRules implements RequestBodyAdvice {
                     path, "OUT_OF_RANGE", "Jumlah item maksimal " + maxItems.asInt() + "."));
         }
 
+        JsonNode itemSchema = schema.get("items");
+        JsonNode resolved = itemSchema == null ? null : resolve(itemSchema);
         if (schema.path("uniqueItems").asBoolean(false)) {
             Set<String> seen = new HashSet<>();
             for (int index = 0; index < value.size(); index++) {
-                if (!seen.add(value.get(index).toString())) {
+                JsonNode item = value.get(index);
+                String identity = item.toString();
+                if (resolved != null
+                        && "uuid".equals(resolved.path("format").asString())
+                        && item.isTextual()) {
+                    identity = item.asString().toLowerCase(Locale.ROOT);
+                }
+                if (!seen.add(identity)) {
                     problems.add(new Problem(
                             path + "[" + index + "]", "DUPLICATE", "Item tidak boleh duplikat."));
                 }
             }
         }
 
-        JsonNode itemSchema = schema.get("items");
-        if (itemSchema != null) {
-            JsonNode resolved = resolve(itemSchema);
+        if (resolved != null) {
             for (int index = 0; index < value.size(); index++) {
                 validateValue(path + "[" + index + "]", value.get(index), resolved, problems);
             }
