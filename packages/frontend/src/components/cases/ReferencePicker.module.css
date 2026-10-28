@@ -1,0 +1,113 @@
+.picker {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.toolbar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-lg);
+}
+
+.sourceSelect {
+  width: min(280px, 100%);
+}
+
+.count {
+  color: var(--color-body);
+  font-size: 0.8125rem;
+  padding-bottom: 13px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  border: 1px solid var(--color-canvas-soft);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+}
+
+.itemMain {
+  min-width: 0;
+}
+
+.itemBadges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.date {
+  color: var(--color-body);
+  font-size: 0.75rem;
+}
+
+.itemTitle {
+  margin-top: var(--space-xs);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.itemIssue {
+  color: var(--color-body);
+  font-size: 0.8125rem;
+}
+
+.company {
+  margin-top: 2px;
+  color: var(--color-body);
+  font-size: 0.75rem;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  border-top: 1px solid var(--color-canvas-soft);
+  padding-top: var(--space-md);
+}
+
+.pagination span {
+  color: var(--color-body);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 620px) {
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sourceSelect {
+    width: 100%;
+  }
+
+  .count {
+    padding-bottom: 0;
+  }
+
+  .item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .item button {
+    width: 100%;
+  }
+}

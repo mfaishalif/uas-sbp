@@ -13,5 +13,13 @@ data/*.db-shm
 data/cfpb/*.zip
 packages/api-client/dist
 packages/api-client/dist-test
+packages/frontend/.next
+packages/frontend/coverage
+packages/frontend/test-results
+packages/frontend/playwright-report
 tests/contract/dist
 .plantuml-mcp.log
+.env
+.env.*
+!.env.example
+*.tsbuildinfo

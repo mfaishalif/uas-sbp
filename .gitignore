@@ -9,4 +9,12 @@ data/cfpb/*.zip
 .cache/
 packages/api-client/dist/
 packages/api-client/dist-test/
+packages/frontend/.next/
+packages/frontend/coverage/
+packages/frontend/test-results/
+packages/frontend/playwright-report/
 tests/contract/dist/
+.env
+.env.*
+!.env.example
+*.tsbuildinfo

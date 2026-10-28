@@ -10,7 +10,7 @@ Ketika ada pengaduan baru, sistem mencari pengaduan terdahulu yang relevan, memp
 
 Dokumen desain awal proyek ini berjudul *Sistem CBR Keluhan Konsumen*.
 
-Proyek saat ini memiliki **backend Java yang dapat dijalankan, kontrak OpenAPI 3.1, dan client TypeScript hasil generation**. Frontend Next.js, autentikasi, dan deployment publik belum diimplementasikan. README ini mencatat arah produk, keputusan implementasi yang sudah diverifikasi, dan batas demo lokal.
+Proyek saat ini memiliki **backend Java yang dapat dijalankan, kontrak OpenAPI 3.1, client TypeScript hasil generation, dan frontend Next.js berbahasa Inggris untuk alur analis**. Autentikasi dan deployment publik belum diimplementasikan. README ini mencatat arah produk, keputusan implementasi yang sudah diverifikasi, cara menjalankan aplikasi melalui npm atau Docker, dan batas demo lokal.
 
 ## Masalah dan tujuan
 
@@ -22,8 +22,8 @@ Pengguna utama yang dibayangkan adalah **analis atau petugas penanganan pengadua
 
 | Aspek | Pilihan |
 | --- | --- |
-| Bentuk aplikasi | Web full stack; backend sudah ada, frontend belum |
-| Frontend | Next.js (belum diimplementasikan pada repository ini) |
+| Bentuk aplikasi | Web full stack dengan backend Java dan frontend Next.js |
+| Frontend | Next.js App Router, TypeScript, CSS Modules, antarmuka Inggris |
 | Bahasa backend | Java 21 |
 | Framework backend | Spring Boot 4.1.2, Maven Wrapper 3.9.11 |
 | Database | SQLite dengan migrasi berversi, WAL, dan satu koneksi tulis |
@@ -33,7 +33,7 @@ Pengguna utama yang dibayangkan adalah **analis atau petugas penanganan pengadua
 | Sumber kasus historis | Arsip resmi narasi CFPB, sampel tetap 500 kasus |
 | Retensi kasus baru | Penyimpanan manual oleh analis, tanpa peran verifikator atau alur persetujuan khusus |
 
-Frontend akan menyediakan antarmuka kerja analis. Backend menangani proses CBR dan pengelolaan kasus; SQLite menyimpan basis kasus serta catatan analis. Frontend belum dibuat, sehingga repository ini bukan aplikasi web yang siap dipakai pengguna akhir.
+Frontend menyediakan antarmuka kerja analis pada `packages/frontend`: pencarian preseden, penjelasan kemiripan, pustaka kasus, detail dan retensi/pengeditan kasus analis, serta impor CSV. Backend menangani proses CBR dan pengelolaan kasus; SQLite menyimpan basis kasus serta catatan analis. Frontend memakai `@finresolve/api-client` dan memanggil `/api` pada origin yang sama; Next.js meneruskan request ke backend. Aplikasi ini adalah demo lokal tanpa login atau deployment publik.
 
 ## Arsitektur backend berlapis
 
@@ -87,7 +87,7 @@ Cara menggunakan:
 3. Buka Command Palette (`Ctrl+Shift+P`) dan pilih **Dev Containers: Reopen in Container**. Pembuatan pertama membutuhkan koneksi internet untuk mengunduh image, runtime, dan build tools.
 4. Setelah container siap, buka terminal di VS Code. Jalankan `codex` untuk memakai Codex CLI atau `opencode` untuk memakai OpenCode CLI dari folder proyek. Hubungkan provider AI lewat perintah `/connect` di OpenCode. Versi kedua CLI beserta toolchain diperiksa otomatis saat container pertama kali dibuat.
 
-Devcontainer menyiapkan toolchain pengembangan. Backend sudah dapat dijalankan dari repository ini; frontend Next.js belum tersedia. Setelah frontend ditambahkan, jalankan server Next.js dengan bind ke `0.0.0.0` (misalnya `npm run dev -- --hostname 0.0.0.0` dari folder frontend) agar dapat diakses melalui port yang diteruskan. Backend memakai port `8080`. Build Java memakai Maven Wrapper yang sudah di-commit agar versi build tool konsisten.
+Devcontainer menyiapkan toolchain pengembangan untuk frontend dan backend. Setelah `npm ci`, jalankan `npm run frontend:dev` dari root repository; perintah ini membangun client TypeScript lalu menjalankan Next.js pada `http://127.0.0.1:3000` dengan bind `0.0.0.0` agar port dapat diteruskan. Backend memakai port `8080`. Build Java memakai Maven Wrapper yang sudah di-commit agar versi build tool konsisten.
 
 Fitur `docker-outside-of-docker` memasang Docker CLI dan Compose di container, lalu memakai socket Docker dari host. Docker Desktop atau Docker Engine harus berjalan di host. Setelah konfigurasi devcontainer berubah, pilih **Dev Containers: Rebuild Container** agar fitur dan socket tersedia; perintah Docker tidak dapat dipakai di container yang belum dibangun ulang.
 
@@ -129,7 +129,7 @@ Pemilihan arsip diperlukan karena narasi pengaduan telah dihapus dari database a
 
 Pemeriksaan awal terhadap sebagian arsip November–Desember 2024 menemukan data produk, subproduk, masalah, submasalah, narasi pengaduan, perusahaan, kategori respons perusahaan, dan ID pengaduan. Contoh narasi yang diperiksa berbahasa Inggris dan mencakup pengaduan rekening serta transfer uang. Pemeriksaan ini belum merupakan evaluasi kualitas seluruh arsip.
 
-Basis kasus awal memakai **sampel tetap yang memiliki narasi**. Sampel yang di-commit berisi 500 kasus dari arsip CFPB periode `2024-11-01` sampai `2024-12-31`, produk **Checking or savings account** dan **Money transfer, virtual currency, or money service**. Sumber arsip, periode, ID pengaduan, dan checksum dicatat agar asal kasus dapat ditelusuri. Bahasa input mengikuti narasi sumber; bahasa antarmuka belum ditetapkan.
+Basis kasus awal memakai **sampel tetap yang memiliki narasi**. Sampel yang di-commit berisi 500 kasus dari arsip CFPB periode `2024-11-01` sampai `2024-12-31`, produk **Checking or savings account** dan **Money transfer, virtual currency, or money service**. Sumber arsip, periode, ID pengaduan, dan checksum dicatat agar asal kasus dapat ditelusuri. Bahasa input mengikuti narasi sumber (Inggris); seluruh antarmuka analis berbahasa Inggris, sedangkan narasi, label kategori, dan peringatan server ditampilkan tanpa terjemahan atau perubahan makna.
 
 ### Menyiapkan sampel demo
 
@@ -152,11 +152,11 @@ Kebutuhan: **Java 21** dan **Node.js 24** (dengan npm). Maven tidak perlu dipasa
 
 ```bash
 npm ci
-npm run verify                 # kontrak, generation, backend, client, dan live contract
+npm run verify                 # kontrak, frontend, backend, client, dan live contract
 cd backend && ./mvnw test      # hanya tes backend
 ```
 
-`npm run verify` menjalankan validasi kontrak, generation check, 294 tes backend, pembuatan packaged jar, serta contract/client test terhadap server nyata. Perintah ini tidak mengunduh arsip CFPB.
+`npm run verify` menjalankan validasi kontrak, generation check, typecheck/test/build frontend, 294 tes backend, pembuatan packaged jar, serta contract/client test terhadap server nyata. Perintah ini tidak mengunduh arsip CFPB.
 
 Menjalankan server dengan database default:
 
@@ -229,7 +229,55 @@ try {
 }
 ```
 
-Client membawa `basePath` `/api` sekali, tidak mengulang mutasi, dan memetakan kegagalan transport/non-JSON ke `TRANSPORT_ERROR`. Repositori ini tidak menyertakan UI Next.js; client hanya dapat diperiksa melalui typecheck, tes, dan live contract test.
+Client membawa `basePath` `/api` sekali, tidak mengulang mutasi, dan memetakan kegagalan transport/non-JSON ke `TRANSPORT_ERROR`.
+
+## Menjalankan frontend
+
+Workspace frontend berada di `packages/frontend`. Kebutuhan: **Node.js 24** dan npm. Jalankan backend lebih dahulu, lalu dari root repository:
+
+```bash
+npm ci
+npm run frontend:dev
+```
+
+Buka `http://127.0.0.1:3000`. Perintah root `frontend:dev` otomatis membangun `@finresolve/api-client` sebelum menjalankan Next.js. Backend tetap di `http://127.0.0.1:8080`; browser hanya memanggil `/api` pada origin frontend, dan Next.js meneruskan request melalui rewrites. Dengan begitu UI tidak bergantung pada CORS dan tidak menyimpan alamat backend di kode browser.
+
+| Perintah | Fungsi |
+| --- | --- |
+| `npm run frontend:dev` | Build client lalu jalankan Next.js dev server pada port 3000 |
+| `npm run frontend:build` | Build client lalu buat build produksi Next.js |
+| `npm run frontend:start` | Build client lalu jalankan build Next.js yang sudah dibuat |
+| `npm run frontend:typecheck` | Build client lalu typecheck frontend |
+| `npm run frontend:test` | Build client lalu jalankan 22 tes Vitest frontend |
+| `npm run frontend:e2e` | Build client dan frontend, lalu jalankan alur browser Playwright |
+
+Untuk uji browser, siapkan sekali `npx playwright install chromium` dan `npx playwright install-deps chromium`, lalu `npm run backend:package` agar JAR tersedia. `frontend:e2e` menjalankan backend dengan database SQLite sementara di port 8080 dan frontend di port 3000, lalu menguji impor → cari → pilih referensi → simpan → lihat → edit, proteksi edit CFPB, layout mobile, keyboard, kontras, serta unggahan 19 MiB melalui proxy rewrite. Perintah ini tidak dijalankan di CI karena membutuhkan browser dan port lokal.
+
+Konfigurasi upstream rewrites memakai `FINRESOLVE_API_ORIGIN`. Default untuk npm adalah `http://127.0.0.1:8080`. Untuk mengubahnya, salin contoh environment ke folder aplikasi agar Next.js memuatnya:
+
+```bash
+cp packages/frontend/.env.example packages/frontend/.env.local
+# FINRESOLVE_API_ORIGIN=http://127.0.0.1:8080
+```
+
+Contoh root `.env.example` juga tersedia sebagai dokumentasi nilai yang sama. Docker Compose mengisi variabel ini secara eksplisit dengan `http://api:8080`, jadi tidak perlu `.env.local` di container. Nilai build rewrite dibaca saat build production; dengan npm, variabel harus tersedia pada proses `npm run frontend:build`.
+
+Halaman yang tersedia:
+
+| Route | Fungsi |
+| --- | --- |
+| `/` | Formulir kategori dan narasi, lalu hasil pencarian dua kolom di desktop dan bertumpuk di ponsel |
+| `/cases` | Pustaka kasus, filter sumber, pagination 20 kasus, dan tombol **Add analyst case** |
+| `/cases/[id]` | Narasi lengkap, kategori, respons historis, provenance CFPB atau catatan analis, serta referensi |
+| `/cases/new` | Retensi kasus analis lengkap dengan pemilih referensi dari pustaka |
+| `/cases/[id]/edit` | Edit lengkap kasus ANALYST; kasus CFPB ditolak sebagai read-only |
+| `/imports` | Unggah CSV, metadata sumber, laporan processed/imported/duplicates/rejected, contoh error, dan replay |
+
+Alur UI memakai hasil form pencarian di memori selama navigasi. Draft dan hasil pencarian **tidak** dimasukkan ke URL, `localStorage`, atau `sessionStorage`; refresh halaman menghapus draft. Memilih hasil pencarian menambahkan referensi, dan **Continue to retention** memindahkan input pengaduan ke form retensi. Form edit memuat detail lengkap sebelum ditampilkan, mengirim payload pengganti lengkap melalui `PUT`, menonaktifkan tombol selama request, tidak mengulang mutasi otomatis, dan mempertahankan seluruh isi form saat gagal. Impor memakai client multipart generation, memvalidasi batas 20 MiB serta metadata, lalu menyegarkan katalog dan daftar kasus setelah sukses atau replay.
+
+Seluruh teks antarmuka berbahasa Inggris. Narasi kasus, label kategori dari API, dan `warnings` server ditampilkan tanpa diterjemahkan atau diubah. Kode error API dipetakan ke pesan Inggris. `design.md` menjadi acuan visual: lime `#9fe870`, canvas sage `#e8ebe6`, ink `#0e0f0c`, kartu putih radius 24px, input radius 12px, Inter lokal, judul weight 900, dan kontrol antarmuka weight 400–600. Pasangan warna status yang tidak terbaca pada contoh desain diperbaiki: badge negatif memakai teks putih di atas maroon gelap, teks status memakai palet semantik yang memiliki kontras memadai, dan warna placeholder dinaikkan kontrasnya.
+
+Frontend menyediakan indikator pemuatan, empty state, pesan error, fokus keyboard yang terlihat, label form, `aria-live`, serta target sentuh minimal 48px. Tidak ada login, dark mode, deployment publik, atau perubahan algoritme pencarian pada tahap ini. Tidak ada statistik atau hasil contoh yang disajikan sebagai data nyata.
 
 ### Konfigurasi, batas, dan operasi
 
@@ -242,18 +290,18 @@ Client membawa `basePath` `/api` sekali, tidak mengulang mutasi, dan memetakan k
 - Konfigurasi skor ada di `finresolve.similarity.*` pada `backend/src/main/resources/application.yml` (mode `baseline`/`phrases`; dapat dioverride dengan `FINRESOLVE_SIMILARITY_MODE`, bobot kategori/teks 0.4/0.6, bobot empat field 0.35/0.15/0.35/0.15, ambang 0.50, limit). `phrases` menerapkan kamus domain berversi sebelum stopword tanpa mengubah narasi asli. Nilai/mode tidak valid membuat startup gagal. Batas kontrak tidak dapat dinaikkan oleh konfigurasi.
 - Studi relevansi v2 (27 Oktober 2026) membandingkan 294 konfigurasi (2 mode × 147 titik) pada 104 query. Kandidat frasa `phrases/w=0.5/t=0.575` menaikkan precision@5 pengujian 0.175 → 0.242, tetapi query negatif yang mendapat hasil naik 5 → 7, sehingga gerbang penerapan gagal dan default **dipertahankan**. Label dibuat dua subagent AI independen dan belum divalidasi manusia; rincian serta rollback ada di [docs/evaluation/v2/README.md](docs/evaluation/v2/README.md). Respons historis tetap konteks, bukan bukti keberhasilan penanganan.
 - Katalog kategori hanya berasal dari kasus CFPB yang diimpor; retensi ANALYST tidak memperluas katalog. Sebelum impor, katalog kosong dan retensi ditolak **409** `EMPTY_CATEGORY_CATALOG`.
-- Tidak ada autentikasi, peran, deployment publik, atau UI pada demo ini.
+- Tidak ada autentikasi, peran, atau deployment publik pada demo ini. UI frontend berjalan lokal tanpa login.
 
-## Menjalankan backend dengan Docker Compose
+## Menjalankan aplikasi dengan Docker Compose
 
-Backend dapat dijalankan tanpa memasang Java atau Node.js di host. Prasyaratnya adalah Docker Engine atau Docker Desktop dengan **Docker Compose 2.32.2 atau lebih baru** agar `sync+restart` dan `initial_sync` tersedia. Build pertama membutuhkan internet untuk mengunduh image Java 21 dan dependensi Maven. Sampel 500 kasus sudah tersedia di repository dan tidak diunduh saat startup.
+Aplikasi dapat dijalankan tanpa memasang Java atau Node.js di host. Prasyaratnya adalah Docker Engine atau Docker Desktop dengan **Docker Compose 2.32.2 atau lebih baru** agar `sync+restart` dan `initial_sync` tersedia. Build pertama membutuhkan internet untuk mengunduh image Java 21, Node.js 24, dan dependensi. Sampel 500 kasus sudah tersedia di repository dan tidak diunduh saat startup.
 
-| Mode | Perintah | Volume SQLite | Isi image |
-| --- | --- | --- | --- |
-| Development | `docker compose up --build --watch` | `finresolve-dev-data` | JDK 21, source, Maven Wrapper |
-| Demo JAR | `docker compose -f compose.demo.yaml up --build` | `finresolve-data` | JRE 21 dan packaged jar |
+| Mode | Perintah | Frontend | Volume SQLite | Isi image |
+| --- | --- | --- | --- | --- |
+| Development | `docker compose up --build --watch` | Next.js dev + hot reload pada `127.0.0.1:3000` | `finresolve-dev-data` | JDK 21 + Node 24, source, Maven Wrapper |
+| Demo JAR + standalone | `docker compose -f compose.demo.yaml up --build` | Next.js standalone pada `127.0.0.1:3000` | `finresolve-data` | JRE 21 + packaged jar, Node 24 standalone |
 
-Keduanya memakai `127.0.0.1:8080`, jadi hentikan mode yang sedang berjalan sebelum menjalankan mode lain.
+Keduanya memakai `127.0.0.1:8080` untuk API dan `127.0.0.1:3000` untuk frontend. Hentikan mode yang sedang berjalan sebelum menjalankan mode lain.
 
 ### Development dengan hot reload
 
@@ -263,13 +311,15 @@ Dari root repository:
 docker compose up --build --watch
 ```
 
-Compose membangun target `development`, menyimpan cache Maven pada named volume `finresolve-maven-cache`, lalu menjalankan `./mvnw -B -DskipTests clean spring-boot:run` dari folder `backend`. Sinkronisasi awal aktif, sehingga isi container langsung mengikuti source di host.
+Compose membangun target `development` API dan frontend. API menyimpan cache Maven pada named volume `finresolve-maven-cache`, lalu menjalankan `./mvnw -B -DskipTests clean spring-boot:run` dari folder `backend`. Frontend menjalankan Next.js dev server dengan rewrite `FINRESOLVE_API_ORIGIN=http://api:8080`; browser mengakses frontend melalui `/api`. Sinkronisasi awal aktif, sehingga source frontend dan backend mengikuti host.
 
 Selama watch berjalan:
 
-- Perubahan pada `backend/src` (Java, resources, dan template generator), `docs/api/openapi.json`, atau `tools/openapi` disinkronkan lalu memicu restart.
-- Setiap restart menjalankan kompilasi bersih. Penghapusan file Java juga diterapkan karena `target/` dibersihkan, bukan hanya ditimpa.
-- Perubahan `Dockerfile`, `docker/development-entrypoint.sh`, `.dockerignore`, `backend/pom.xml`, atau Maven Wrapper (`backend/mvnw`, `backend/mvnw.cmd`, `backend/.mvn`) memicu rebuild image dan pembuatan ulang container.
+- Perubahan pada `backend/src` (Java, resources, dan template generator), `docs/api/openapi.json`, atau `tools/openapi` disinkronkan lalu memicu restart API.
+- Setiap restart API menjalankan kompilasi bersih. Penghapusan file Java juga diterapkan karena `target/` dibersihkan, bukan hanya ditimpa.
+- Perubahan `packages/frontend/src` dan `packages/frontend/public` disinkronkan ke container dan hot reload Next.js berjalan.
+- Perubahan `packages/api-client/src` disinkronkan dan me-restart frontend agar client generation dibangun ulang.
+- Perubahan `Dockerfile`, `docker/frontend.Dockerfile`, `docker/development-entrypoint.sh`, `.dockerignore`, `backend/pom.xml`, manifest workspace, atau Maven Wrapper (`backend/mvnw`, `backend/mvnw.cmd`, `backend/.mvn`) memicu rebuild image dan pembuatan ulang container.
 - Hasil kompilasi tetap berada di container, sedangkan database SQLite disimpan di volume `/data` dan bertahan saat reload atau container dibuat ulang.
 
 Selama kompilasi dan restart, API berhenti sebentar dan endpoint kesehatan dapat menolak koneksi atau mengembalikan **503**. Pantau log dengan:
@@ -280,15 +330,16 @@ docker compose logs -f api
 
 Jika kompilasi gagal, pesan error tampil di log. Container development tetap berjalan dan menunggu perubahan berikutnya; setelah kode diperbaiki, Compose Watch melakukan restart, kompilasi bersih, dan backend pulih otomatis.
 
-Status `healthy` baru muncul setelah container siap dan inisialisasi 500 kasus selesai. Setelah itu endpoint kesehatan mengembalikan **200** `{"status":"UP","database":"UP"}`. API hanya dipublikasikan pada loopback `http://127.0.0.1:8080`, tanpa autentikasi dan tanpa akses dari jaringan lain.
+Status `healthy` API baru muncul setelah container siap dan inisialisasi 500 kasus selesai. Setelah itu endpoint kesehatan mengembalikan **200** `{"status":"UP","database":"UP"}`. Frontend menunggu API healthy lalu dapat dibuka di `http://127.0.0.1:3000`. Kedua layanan hanya dipublikasikan pada loopback, tanpa autentikasi dan tanpa akses dari jaringan lain.
 
 Contoh pemeriksaan:
 
 ```bash
 docker compose ps
 curl -i http://127.0.0.1:8080/api/health
-curl -sS 'http://127.0.0.1:8080/api/cases?source=CFPB&size=2'
-curl -sS -X POST http://127.0.0.1:8080/api/search \
+curl -i http://127.0.0.1:3000/
+curl -sS 'http://127.0.0.1:3000/api/cases?source=CFPB&size=2'
+curl -sS -X POST http://127.0.0.1:3000/api/search \
   -H 'Content-Type: application/json' \
   -d '{"product":"Checking or savings account","subProduct":"Checking account","issue":"Managing an account","subIssue":"Deposits and withdrawals","narrative":"Money left my bank balance twice even though I only authorized one payment.","limit":5}'
 ```
@@ -307,13 +358,15 @@ docker compose down --volumes
 docker compose up --build --watch
 ```
 
-### Demo berbasis JAR
+### Demo berbasis JAR dan standalone
 
-Demo memakai target `runtime` dan menjalankan packaged jar seperti sebelumnya. Volume demo `finresolve-data` dipertahankan terpisah dari volume development, sehingga reset development tidak menghapus data demo.
+Demo memakai target `runtime` untuk API dan build produksi Next.js standalone untuk frontend. Frontend dibangun dengan `FINRESOLVE_API_ORIGIN=http://api:8080`, lalu dijalankan oleh Node 24 tanpa dev dependency. Volume demo `finresolve-data` dipertahankan terpisah dari volume development, sehingga reset development tidak menghapus data demo.
 
 ```bash
 docker compose -f compose.demo.yaml up --build
 docker compose -f compose.demo.yaml ps
+# Frontend: http://127.0.0.1:3000
+# API:      http://127.0.0.1:8080
 ```
 
 Hentikan demo tanpa menghapus datanya, atau reset volume demo secara eksplisit:
@@ -324,7 +377,7 @@ docker compose -f compose.demo.yaml down --volumes
 docker compose -f compose.demo.yaml up --build
 ```
 
-Perintah `down --volumes` pada demo menghapus seluruh kasus analis pada volume demo. Jangan jalankan bila data tersebut ingin dipertahankan. Startup akan gagal dengan pesan yang jelas bila `data/cfpb/sample.csv` hilang atau tidak valid, sehingga aplikasi tidak menyajikan demo kosong. Inisialisasi demo hanya diaktifkan oleh Compose; startup non-container tetap memakai perilaku default dan tidak membaca CSV. Fitur Docker pada devcontainer hanya menambahkan akses CLI ke daemon host setelah rebuild; kedua mode ini tetap hanya API tanpa frontend, autentikasi, atau deployment publik.
+Perintah `down --volumes` pada demo menghapus seluruh kasus analis pada volume demo. Jangan jalankan bila data tersebut ingin dipertahankan. Startup akan gagal dengan pesan yang jelas bila `data/cfpb/sample.csv` hilang atau tidak valid, sehingga aplikasi tidak menyajikan demo kosong. Inisialisasi demo hanya diaktifkan oleh Compose; startup non-container tetap memakai perilaku default dan tidak membaca CSV. Fitur Docker pada devcontainer hanya menambahkan akses CLI ke daemon host setelah rebuild; kedua mode ini tetap tanpa autentikasi atau deployment publik.
 
 ## Evaluasi relevansi
 
@@ -376,9 +429,8 @@ Keberhasilan proyek terutama berkaitan dengan **relevansi dan kegunaan preseden*
 
 ## Ruang keputusan yang masih terbuka
 
-Keputusan yang sudah ditetapkan meliputi Spring Boot 4.1.2 + Java 21, SQLite, OpenAPI 3.1 sebagai sumber kontrak, client TypeScript hasil generation, pipeline `tfidf-cosine-v1`/`tfidf-phrases-v2`, batas demo 5.000 kasus, dan retensi manual tanpa verifikator. Yang masih terbuka:
+Keputusan yang sudah ditetapkan meliputi Spring Boot 4.1.2 + Java 21, SQLite, OpenAPI 3.1 sebagai sumber kontrak, client TypeScript hasil generation, frontend Next.js berbahasa Inggris dengan desain pada `design.md`, pipeline `tfidf-cosine-v1`/`tfidf-phrases-v2`, batas demo 5.000 kasus, dan retensi manual tanpa verifikator. Yang masih terbuka:
 
-- Frontend Next.js, desain dan bahasa antarmuka, serta rincian interaksi evaluasi dan retensi.
 - Autentikasi, hak akses, dan deployment publik.
 - Validasi manusia atas label relevansi dan konfigurasi 0.4/0.6 serta ambang 0.50; nilai tersebut belum diklaim optimal.
 - Perluasan cakupan produk/periode dan pembersihan data di luar sampel demo 500 kasus.

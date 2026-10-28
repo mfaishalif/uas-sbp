@@ -1,0 +1,27 @@
+.page {
+  padding-block: var(--space-2xl);
+}
+
+.card {
+  display: flex;
+  max-width: 760px;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.card h1 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  line-height: 1;
+}
+
+.card p:not(:global(.page-eyebrow)) {
+  color: var(--color-body);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}

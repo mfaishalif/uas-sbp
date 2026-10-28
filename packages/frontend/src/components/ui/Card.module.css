@@ -1,0 +1,22 @@
+.card {
+  border-radius: var(--radius-xl);
+  padding: var(--space-xl);
+  color: var(--color-ink);
+}
+
+.white {
+  background: var(--color-canvas);
+}
+
+.sage {
+  background: var(--color-canvas-soft);
+}
+
+.green {
+  background: var(--color-primary-pale);
+}
+
+.dark {
+  background: var(--color-ink);
+  color: var(--color-canvas-soft);
+}
