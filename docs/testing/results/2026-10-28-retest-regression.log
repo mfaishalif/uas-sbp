@@ -1,0 +1,141 @@
+PASS empty health/categories/list
+PASS empty search validates narrative before returning EMPTY_KNOWLEDGE_BASE
+PASS retention before import rejected
+PASS import rejects missing file
+PASS import rejects missing metadata
+PASS import rejects empty file
+PASS import rejects header only
+PASS import rejects missing required header
+PASS import rejects duplicate header
+PASS import rejects broken quoted field
+PASS import rejects invalid UTF-8
+PASS import metadata rejects HTTP URL
+PASS import metadata rejects URL without host
+PASS import metadata rejects path in source filename
+PASS import metadata rejects reversed period
+PASS import metadata rejects impossible date
+PASS import metadata rejects unknown property
+PASS import committed sample: 500 accepted and SHA-256 matches manifest
+PASS identical and whitespace-normalized import replay
+PASS same CSV with different metadata reports 500 duplicates
+PASS category tuple uniqueness and detail provenance
+PASS pagination covers 500 unique cases in stable order
+PASS list rejects page=-1
+PASS list rejects size=0
+PASS list rejects size=101
+PASS list rejects page=abc
+PASS list rejects page=1.5
+PASS list rejects page=2147483648
+PASS list rejects page=
+PASS list rejects size=
+PASS list rejects source=
+PASS list rejects source=cfpb
+PASS list rejects source=UNKNOWN
+PASS list rejects source=%27%20OR%201%3D1--
+PASS detail invalid/missing 1-1-1-1-1
+PASS detail invalid/missing not-a-uuid
+PASS detail invalid/missing 00000000-0000-4000-8000-000000000000
+PASS exact narrative retrieval ranks original CFPB case first
+PASS search NO_RELEVANT_CASES and no persistence
+PASS case/spacing normalization and optional blank categories
+PASS search rejects unknown category
+PASS search rejects invalid issue
+PASS search rejects wrong subproduct
+PASS search rejects wrong subissue
+PASS search rejects blank required field
+PASS search rejects empty narrative
+PASS search rejects stopwords only
+PASS search rejects numbers only
+PASS search rejects redaction only
+PASS search rejects Unicode punctuation only
+PASS search rejects narrative over 50000
+PASS search rejects category over 500
+PASS search rejects unknown field
+PASS search rejects null limit
+PASS search rejects zero limit
+PASS search rejects over limit
+PASS search rejects fraction limit
+PASS search rejects string limit
+PASS search rejects null narrative
+PASS search rejects array category
+PASS search rejects malformed/invalid object "{"
+PASS search rejects malformed/invalid object "null"
+PASS search rejects malformed/invalid object "[]"
+PASS search rejects malformed/invalid object "42"
+PASS search rejects malformed/invalid object "{}"
+PASS search rejects malformed/invalid object ""
+PASS search rejects malformed/invalid object "{\"product\":\"Checking or savings account\",\"issue\"
+PASS search accepts limit boundaries and 50000-character narrative
+PASS evaluation query Q01: Close wording for a missing or misapplied deposit
+PASS evaluation query Q02: Paraphrase with low lexical overlap
+PASS evaluation query Q03: Both optional category fields omitted
+PASS evaluation query Q04: Independent valid optional branch
+PASS evaluation query Q05: Cross-product narrative mentions a checking account
+PASS evaluation query Q06: Numeric and redacted date filler mixed with meaningful text
+PASS evaluation query Q07: Unrelated narrative with a matching category tuple
+PASS evaluation query Q08: Domestic transfer fraud wording
+PASS evaluation query Q09: International transfer availability paraphrase
+PASS evaluation query Q10: Virtual-currency transaction problem
+PASS evaluation query Q11: Savings-account fee problem
+PASS evaluation query Q12: ATM card problem
+PASS evaluation query Q13: Paraphrase of an ATM dispense failure with a duplicate debit
+PASS evaluation query Q14: Optional sub-issue omitted with a checking-account cross-reference
+PASS evaluation query Q15: Optional sub-issue omitted for a locked wallet balance
+PASS evaluation query Q16: Recurring merchant charge described as unauthorized
+PASS evaluation query Q17: Closed account with an unreleased balance
+PASS evaluation query Q18: Unrelated praise sharing branch and account words
+PASS evaluation query Q19: Travel question sharing currency and exchange words
+PASS evaluation query Q20: General account-opening question with no problem to resolve
+PASS evaluation query Q21: Payroll question sharing funds, deposit, and low-balance words
+PASS evaluation query Q22: Phishing text sharing fraud, scam, text, and delayed words
+PASS evaluation query Q23: Retail fee question sharing charge and fee words
+PASS evaluation query Q24: General savings question sharing deposit and account words
+PASS create analyst with notes, date, reference and Location
+PASS analyst is immediately searchable; category catalog stays unchanged
+PASS retain rejects missing handling notes
+PASS retain rejects blank notes
+PASS retain rejects notes over 10000
+PASS retain rejects evaluation over 10000
+PASS retain rejects company over 500
+PASS retain rejects response over 2000
+PASS retain rejects invalid outcome
+PASS retain rejects invalid date
+PASS retain rejects null reference array
+PASS retain rejects unknown reference
+PASS retain rejects duplicate references
+PASS retain rejects abbreviated reference UUID
+PASS retain rejects null reference member
+PASS retain rejects 21 references
+PASS retain rejects source injection
+PASS retain rejects id injection
+PASS failed retention is atomic
+PASS CFPB update immutable; missing case and self-reference rejected
+PASS full PUT clears omitted fields and preserves identity/createdAt
+PASS Unicode supplementary characters respect code-point length
+PASS concurrent retention preserves all six writes
+PASS concurrent identical imports replay the same batch once
+PASS mixed CSV reports rejected rows and duplicates without overwriting
+PASS CSV record limit is atomic
+PASS multipart file over 20 MiB rejected with JSON 413
+PASS routing PATCH /api/health
+PASS routing DELETE /api/cases
+PASS routing GET /api/search
+PASS routing GET /api/imports/cfpb
+PASS routing GET /api/not-found
+PASS routing GET /api/api/health
+PASS wrong content type returns 415
+PASS allowed CORS preflight and actual response
+PASS CORS rejects foreign origin and unapproved headers
+PASS strict JSON parsing: trailing JSON object
+PASS strict JSON parsing: trailing scalar
+PASS observe duplicate JSON keys: last value wins (contract has no explicit policy)
+PASS unsupported Accept is a controlled client error
+PASS integer-valued decimal limit follows OpenAPI integer semantics
+PASS RFC3339 full-date rejects expanded years
+PASS date rejects negative years
+PASS PUT rejects expanded date before writing
+PASS 405 response advertises supported methods in Allow
+PASS metadata rejects wrong JSON type: number filename
+PASS metadata rejects wrong JSON type: boolean filename
+PASS metadata rejects wrong JSON type: date array
+{"checks":140,"passed":140,"failed":0,"httpRequests":201,"output":"/workspaces/uas-sbp/docs/testing/results/2026-10-28-retest-regression.json"}

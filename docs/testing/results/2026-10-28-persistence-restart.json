@@ -1,0 +1,27 @@
+{
+  "session": "persistence-restart",
+  "checkedAt": "2026-10-28T01:15:43.799Z",
+  "baseUrl": "http://127.0.0.1:18104",
+  "result": "PASS",
+  "mismatches": [],
+  "comparisons": [
+    "health",
+    "categories",
+    "pages",
+    "caseIds",
+    "details",
+    "replayMetadata"
+  ],
+  "replay": {
+    "status": 200,
+    "replayed": true,
+    "batchId": "a7b81eda-9d1c-423d-9b13-2b236a4dc669"
+  },
+  "caseCount": 501,
+  "detailIds": [
+    "2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+    "002e6d2b-d7b5-4160-961f-40a77dc1e4f1",
+    "0208c152-fd87-4c70-bc4c-c0593dc80131",
+    "026a5234-2621-4604-a36e-59baa3a30cd6"
+  ]
+}

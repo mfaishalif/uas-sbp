@@ -1,0 +1,3650 @@
+{
+  "session": "concurrency",
+  "startedAt": "2026-10-28T02:14:40.169Z",
+  "completedAt": "2026-10-28T02:14:41.663Z",
+  "baseUrl": "http://127.0.0.1:19104",
+  "dbPath": "/tmp/finresolve-retest-concurrency.db",
+  "summary": {
+    "scenarios": 5,
+    "passed": 5,
+    "failed": 0,
+    "blocked": 0,
+    "observations": 0,
+    "httpRequests": 37
+  },
+  "results": [
+    {
+      "id": "CONC-09",
+      "hypothesis": "Four concurrent imports of identical bytes and metadata produce one new batch and three replays.",
+      "result": "PASS",
+      "durationMs": 681,
+      "detail": {
+        "statuses": [
+          200,
+          200,
+          200,
+          201
+        ],
+        "batchId": "15b8528b-872e-4112-9d4c-24728d130040",
+        "counts": {
+          "cases": 501,
+          "batches": 2
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "concurrency.csv",
+                "type": "text/csv",
+                "size": 753455
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 209
+              }
+            ]
+          },
+          "status": 201,
+          "ms": 605,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "34a5fc79-46f3-4861-841b-de6377a85c59",
+            "replayed": false,
+            "metadata": {
+              "archiveUrl": "https://files.consumerfinance.gov/f/documents/CCDB_Export_8_November_2024_through_December_2024.zip",
+              "sourceFileName": "finresolve-sample.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "682bb04cf77a7df10104c822ab24af4bd42e1a088cd2678c7c72921b7983a644",
+            "processed": 500,
+            "imported": 500,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T02:14:40.601772183Z"
+          },
+          "bytes": 508
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "concurrency.csv",
+                "type": "text/csv",
+                "size": 180
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 157
+              }
+            ]
+          },
+          "status": 201,
+          "ms": 19,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "15b8528b-872e-4112-9d4c-24728d130040",
+            "replayed": false,
+            "metadata": {
+              "archiveUrl": "https://example.com/concurrent-identical.zip",
+              "sourceFileName": "concurrent-identical.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "634ba368d9d47a3e81fa9c7d7ddb83a374aa985b41c1ea1a16363c9cc277b8f3",
+            "processed": 1,
+            "imported": 1,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T02:14:40.826948943Z"
+          },
+          "bytes": 452
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "concurrency.csv",
+                "type": "text/csv",
+                "size": 180
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 157
+              }
+            ]
+          },
+          "status": 200,
+          "ms": 37,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "15b8528b-872e-4112-9d4c-24728d130040",
+            "replayed": true,
+            "metadata": {
+              "archiveUrl": "https://example.com/concurrent-identical.zip",
+              "sourceFileName": "concurrent-identical.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "634ba368d9d47a3e81fa9c7d7ddb83a374aa985b41c1ea1a16363c9cc277b8f3",
+            "processed": 1,
+            "imported": 1,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T02:14:40.826948943Z"
+          },
+          "bytes": 451
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "concurrency.csv",
+                "type": "text/csv",
+                "size": 180
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 157
+              }
+            ]
+          },
+          "status": 200,
+          "ms": 36,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "15b8528b-872e-4112-9d4c-24728d130040",
+            "replayed": true,
+            "metadata": {
+              "archiveUrl": "https://example.com/concurrent-identical.zip",
+              "sourceFileName": "concurrent-identical.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "634ba368d9d47a3e81fa9c7d7ddb83a374aa985b41c1ea1a16363c9cc277b8f3",
+            "processed": 1,
+            "imported": 1,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T02:14:40.826948943Z"
+          },
+          "bytes": 451
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "concurrency.csv",
+                "type": "text/csv",
+                "size": 180
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 157
+              }
+            ]
+          },
+          "status": 200,
+          "ms": 38,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "15b8528b-872e-4112-9d4c-24728d130040",
+            "replayed": true,
+            "metadata": {
+              "archiveUrl": "https://example.com/concurrent-identical.zip",
+              "sourceFileName": "concurrent-identical.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "634ba368d9d47a3e81fa9c7d7ddb83a374aa985b41c1ea1a16363c9cc277b8f3",
+            "processed": 1,
+            "imported": 1,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T02:14:40.826948943Z"
+          },
+          "bytes": 451
+        }
+      ]
+    },
+    {
+      "id": "CONC-10",
+      "hypothesis": "Six concurrent retention requests all succeed with distinct IDs and all rows are readable.",
+      "result": "PASS",
+      "durationMs": 213,
+      "detail": {
+        "ids": [
+          "1b691105-3710-42c4-9957-1e85e1ac7e16",
+          "c6190fda-c62f-4565-bf3a-db3632a99d2d",
+          "9b187d70-07c8-4c30-b505-a0463b7e2a3d",
+          "ee5d170e-3140-40ec-b19b-613db4d70595",
+          "53e16a8f-d01b-4c93-a85c-c3e04ff5a321",
+          "7c6df98d-1c1d-4724-9f0c-421ccb159d8f"
+        ],
+        "counts": {
+          "cases": 507,
+          "batches": 2
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 164,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.983826454Z",
+            "updatedAt": "2026-10-28T02:14:40.983826454Z",
+            "narrative": "Concurrent analyst narrative about a transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent create 0",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 525
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 163,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/53e16a8f-d01b-4c93-a85c-c3e04ff5a321",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "53e16a8f-d01b-4c93-a85c-c3e04ff5a321",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.996438346Z",
+            "updatedAt": "2026-10-28T02:14:40.996438346Z",
+            "narrative": "Concurrent analyst narrative about a transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent create 4",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 525
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 165,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/c6190fda-c62f-4565-bf3a-db3632a99d2d",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "c6190fda-c62f-4565-bf3a-db3632a99d2d",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.977766821Z",
+            "updatedAt": "2026-10-28T02:14:40.977766821Z",
+            "narrative": "Concurrent analyst narrative about a transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent create 1",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 525
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 165,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/7c6df98d-1c1d-4724-9f0c-421ccb159d8f",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "7c6df98d-1c1d-4724-9f0c-421ccb159d8f",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.972048607Z",
+            "updatedAt": "2026-10-28T02:14:40.972048607Z",
+            "narrative": "Concurrent analyst narrative about a transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent create 5",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 525
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 167,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/ee5d170e-3140-40ec-b19b-613db4d70595",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "ee5d170e-3140-40ec-b19b-613db4d70595",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.989631673Z",
+            "updatedAt": "2026-10-28T02:14:40.989631673Z",
+            "narrative": "Concurrent analyst narrative about a transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent create 3",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 525
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 168,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/9b187d70-07c8-4c30-b505-a0463b7e2a3d",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "9b187d70-07c8-4c30-b505-a0463b7e2a3d",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.966150284Z",
+            "updatedAt": "2026-10-28T02:14:40.966150284Z",
+            "narrative": "Concurrent analyst narrative about a transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent create 2",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 525
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+          "status": 200,
+          "ms": 13,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.983826454Z",
+            "updatedAt": "2026-10-28T02:14:40.983826454Z",
+            "narrative": "Concurrent analyst narrative about a transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent create 0",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 525
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/c6190fda-c62f-4565-bf3a-db3632a99d2d",
+          "status": 200,
+          "ms": 7,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "c6190fda-c62f-4565-bf3a-db3632a99d2d",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.977766821Z",
+            "updatedAt": "2026-10-28T02:14:40.977766821Z",
+            "narrative": "Concurrent analyst narrative about a transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent create 1",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 525
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/9b187d70-07c8-4c30-b505-a0463b7e2a3d",
+          "status": 200,
+          "ms": 8,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "9b187d70-07c8-4c30-b505-a0463b7e2a3d",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.966150284Z",
+            "updatedAt": "2026-10-28T02:14:40.966150284Z",
+            "narrative": "Concurrent analyst narrative about a transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent create 2",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 525
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/ee5d170e-3140-40ec-b19b-613db4d70595",
+          "status": 200,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "ee5d170e-3140-40ec-b19b-613db4d70595",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.989631673Z",
+            "updatedAt": "2026-10-28T02:14:40.989631673Z",
+            "narrative": "Concurrent analyst narrative about a transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent create 3",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 525
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/53e16a8f-d01b-4c93-a85c-c3e04ff5a321",
+          "status": 200,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "53e16a8f-d01b-4c93-a85c-c3e04ff5a321",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.996438346Z",
+            "updatedAt": "2026-10-28T02:14:40.996438346Z",
+            "narrative": "Concurrent analyst narrative about a transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent create 4",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 525
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/7c6df98d-1c1d-4724-9f0c-421ccb159d8f",
+          "status": 200,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "7c6df98d-1c1d-4724-9f0c-421ccb159d8f",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.972048607Z",
+            "updatedAt": "2026-10-28T02:14:40.972048607Z",
+            "narrative": "Concurrent analyst narrative about a transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent create 5",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 525
+        }
+      ]
+    },
+    {
+      "id": "CONC-11",
+      "hypothesis": "Eight concurrent full PUTs serialize to one complete payload, and concurrent GETs never observe a mixed case.",
+      "result": "PASS",
+      "durationMs": 145,
+      "detail": {
+        "finalPayload": 7,
+        "observedReads": 2,
+        "final": {
+          "source": "ANALYST",
+          "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": null,
+          "receivedDate": null,
+          "company": "Company 7",
+          "companyResponse": null,
+          "createdAt": "2026-10-28T02:14:40.983826454Z",
+          "updatedAt": "2026-10-28T02:14:41.188945713Z",
+          "narrative": "Concurrent PUT narrative 7.",
+          "provenance": null,
+          "analystNotes": {
+            "handlingNotes": "Concurrent PUT notes 7",
+            "outcomeAssessment": "UNKNOWN",
+            "evaluationNotes": "Evaluation 7"
+          },
+          "referenceCaseIds": [
+            "f832e8b5-0ee5-4954-81b5-749583efaa5b"
+          ]
+        }
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+          "status": 200,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.983826454Z",
+            "updatedAt": "2026-10-28T02:14:40.983826454Z",
+            "narrative": "Concurrent analyst narrative about a transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent create 0",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 525
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?source=CFPB&size=2",
+          "status": 200,
+          "ms": 49,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "items": [
+              {
+                "id": "f832e8b5-0ee5-4954-81b5-749583efaa5b",
+                "source": "CFPB",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": "2024-11-12",
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T02:14:40.826948943Z",
+                "updatedAt": "2026-10-28T02:14:40.826948943Z"
+              },
+              {
+                "id": "00735a2a-b6ad-4f21-ba15-3a2b6b38b368",
+                "source": "CFPB",
+                "product": "Checking or savings account",
+                "subProduct": "Checking account",
+                "issue": "Opening an account",
+                "subIssue": "Account opened without my consent or knowledge",
+                "receivedDate": "2024-11-05",
+                "company": "NAVY FEDERAL CREDIT UNION",
+                "companyResponse": "Closed with explanation",
+                "createdAt": "2026-10-28T02:14:40.601772183Z",
+                "updatedAt": "2026-10-28T02:14:40.601772183Z"
+              }
+            ],
+            "page": 0,
+            "size": 2,
+            "totalElements": 501,
+            "totalPages": 251,
+            "hasNext": true
+          },
+          "bytes": 826
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+          "status": 200,
+          "ms": 11,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.983826454Z",
+            "updatedAt": "2026-10-28T02:14:40.983826454Z",
+            "narrative": "Concurrent analyst narrative about a transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent create 0",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 525
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 24,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "Company 0",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.983826454Z",
+            "updatedAt": "2026-10-28T02:14:41.138374237Z",
+            "narrative": "Concurrent PUT narrative 0.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent PUT notes 0",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "Evaluation 0"
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 540
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 30,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "Company 4",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.983826454Z",
+            "updatedAt": "2026-10-28T02:14:41.14643548Z",
+            "narrative": "Concurrent PUT narrative 4.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent PUT notes 4",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "Evaluation 4"
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 539
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 37,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "Company 2",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.983826454Z",
+            "updatedAt": "2026-10-28T02:14:41.152849332Z",
+            "narrative": "Concurrent PUT narrative 2.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent PUT notes 2",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "Evaluation 2"
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 540
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 44,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "Company 5",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.983826454Z",
+            "updatedAt": "2026-10-28T02:14:41.160149732Z",
+            "narrative": "Concurrent PUT narrative 5.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent PUT notes 5",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "Evaluation 5"
+            },
+            "referenceCaseIds": [
+              "f832e8b5-0ee5-4954-81b5-749583efaa5b"
+            ]
+          },
+          "bytes": 578
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 50,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "Company 6",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.983826454Z",
+            "updatedAt": "2026-10-28T02:14:41.166599887Z",
+            "narrative": "Concurrent PUT narrative 6.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent PUT notes 6",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "Evaluation 6"
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 540
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 59,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "Company 1",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.983826454Z",
+            "updatedAt": "2026-10-28T02:14:41.173455263Z",
+            "narrative": "Concurrent PUT narrative 1.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent PUT notes 1",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "Evaluation 1"
+            },
+            "referenceCaseIds": [
+              "f832e8b5-0ee5-4954-81b5-749583efaa5b"
+            ]
+          },
+          "bytes": 578
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 66,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "Company 3",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.983826454Z",
+            "updatedAt": "2026-10-28T02:14:41.181838323Z",
+            "narrative": "Concurrent PUT narrative 3.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent PUT notes 3",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "Evaluation 3"
+            },
+            "referenceCaseIds": [
+              "f832e8b5-0ee5-4954-81b5-749583efaa5b"
+            ]
+          },
+          "bytes": 578
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 71,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "Company 7",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.983826454Z",
+            "updatedAt": "2026-10-28T02:14:41.188945713Z",
+            "narrative": "Concurrent PUT narrative 7.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent PUT notes 7",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "Evaluation 7"
+            },
+            "referenceCaseIds": [
+              "f832e8b5-0ee5-4954-81b5-749583efaa5b"
+            ]
+          },
+          "bytes": 578
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+          "status": 200,
+          "ms": 52,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "Company 7",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.983826454Z",
+            "updatedAt": "2026-10-28T02:14:41.188945713Z",
+            "narrative": "Concurrent PUT narrative 7.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent PUT notes 7",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "Evaluation 7"
+            },
+            "referenceCaseIds": [
+              "f832e8b5-0ee5-4954-81b5-749583efaa5b"
+            ]
+          },
+          "bytes": 578
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+          "status": 200,
+          "ms": 6,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "Company 7",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.983826454Z",
+            "updatedAt": "2026-10-28T02:14:41.188945713Z",
+            "narrative": "Concurrent PUT narrative 7.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Concurrent PUT notes 7",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "Evaluation 7"
+            },
+            "referenceCaseIds": [
+              "f832e8b5-0ee5-4954-81b5-749583efaa5b"
+            ]
+          },
+          "bytes": 578
+        }
+      ]
+    },
+    {
+      "id": "CONC-12",
+      "hypothesis": "A search racing a five-case import sees only a complete before or after corpus.",
+      "result": "PASS",
+      "durationMs": 425,
+      "detail": {
+        "before": 507,
+        "after": 512,
+        "searches": 3,
+        "beforeCount": 2,
+        "afterCount": 1,
+        "mixed": 0
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 213,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "status": "NO_RELEVANT_CASES",
+            "message": "Tidak ada preseden yang cukup relevan; penilaian tetap dilakukan analis.",
+            "results": [],
+            "returnedCount": 0,
+            "limit": 20,
+            "corpusSize": 507,
+            "warnings": [
+              "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Kalibrasi eksploratif dan belum divalidasi manusia."
+            ],
+            "configuration": {
+              "categoryWeight": 0.4,
+              "textWeight": 0.6,
+              "categoryFieldWeights": {
+                "product": 0.35,
+                "subProduct": 0.15,
+                "issue": 0.35,
+                "subIssue": 0.15
+              },
+              "threshold": 0.5,
+              "requiresTextOverlap": true,
+              "algorithmVersion": "tfidf-cosine-v1"
+            }
+          },
+          "bytes": 532
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "concurrency.csv",
+                "type": "text/csv",
+                "size": 680
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 147
+              }
+            ]
+          },
+          "status": 201,
+          "ms": 29,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "d03720ec-97ec-434f-9e86-0092c134340d",
+            "replayed": false,
+            "metadata": {
+              "archiveUrl": "https://example.com/search-snapshot.zip",
+              "sourceFileName": "search-snapshot.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "b3446001dab5b801788b393790d5439a4a35720ee7b366606dc6a58f42b60071",
+            "processed": 5,
+            "imported": 5,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T02:14:41.486811663Z"
+          },
+          "bytes": 442
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 90,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "status": "NO_RELEVANT_CASES",
+            "message": "Tidak ada preseden yang cukup relevan; penilaian tetap dilakukan analis.",
+            "results": [],
+            "returnedCount": 0,
+            "limit": 20,
+            "corpusSize": 507,
+            "warnings": [
+              "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Kalibrasi eksploratif dan belum divalidasi manusia."
+            ],
+            "configuration": {
+              "categoryWeight": 0.4,
+              "textWeight": 0.6,
+              "categoryFieldWeights": {
+                "product": 0.35,
+                "subProduct": 0.15,
+                "issue": 0.35,
+                "subIssue": 0.15
+              },
+              "threshold": 0.5,
+              "requiresTextOverlap": true,
+              "algorithmVersion": "tfidf-cosine-v1"
+            }
+          },
+          "bytes": 532
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 115,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "status": "MATCHES",
+            "message": "Ditemukan preseden yang memenuhi ambang awal.",
+            "results": [
+              {
+                "score": 0.9513922627914553,
+                "categoryScore": 1,
+                "textScore": 0.9189871046524254,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "zzsnapshotterm",
+                    "contribution": 0.9189871046524254
+                  }
+                ],
+                "case": {
+                  "source": "CFPB",
+                  "id": "0f204f35-6490-45ba-93e7-b56154a778a4",
+                  "product": "Checking or savings account",
+                  "subProduct": null,
+                  "issue": "Managing an account",
+                  "subIssue": null,
+                  "receivedDate": "2024-11-12",
+                  "company": null,
+                  "companyResponse": null,
+                  "createdAt": "2026-10-28T02:14:41.486811663Z",
+                  "updatedAt": "2026-10-28T02:14:41.486811663Z",
+                  "narrative": "zzsnapshotterm zzsnapshotterm narrative 975000003.",
+                  "provenance": {
+                    "complaintId": "975000003",
+                    "importBatchId": "d03720ec-97ec-434f-9e86-0092c134340d",
+                    "archiveUrl": "https://example.com/search-snapshot.zip",
+                    "sourceFileName": "search-snapshot.csv",
+                    "periodStart": "2024-11-01",
+                    "periodEnd": "2024-12-31",
+                    "csvSha256": "b3446001dab5b801788b393790d5439a4a35720ee7b366606dc6a58f42b60071"
+                  },
+                  "analystNotes": null,
+                  "referenceCaseIds": []
+                }
+              },
+              {
+                "score": 0.9513922627914553,
+                "categoryScore": 1,
+                "textScore": 0.9189871046524254,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "zzsnapshotterm",
+                    "contribution": 0.9189871046524254
+                  }
+                ],
+                "case": {
+                  "source": "CFPB",
+                  "id": "cece2bee-1320-486e-9ee4-6bbe572190e5",
+                  "product": "Checking or savings account",
+                  "subProduct": null,
+                  "issue": "Managing an account",
+                  "subIssue": null,
+                  "receivedDate": "2024-11-12",
+                  "company": null,
+                  "companyResponse": null,
+                  "createdAt": "2026-10-28T02:14:41.486811663Z",
+                  "updatedAt": "2026-10-28T02:14:41.486811663Z",
+                  "narrative": "zzsnapshotterm zzsnapshotterm narrative 975000004.",
+                  "provenance": {
+                    "complaintId": "975000004",
+                    "importBatchId": "d03720ec-97ec-434f-9e86-0092c134340d",
+                    "archiveUrl": "https://example.com/search-snapshot.zip",
+                    "sourceFileName": "search-snapshot.csv",
+                    "periodStart": "2024-11-01",
+                    "periodEnd": "2024-12-31",
+                    "csvSha256": "b3446001dab5b801788b393790d5439a4a35720ee7b366606dc6a58f42b60071"
+                  },
+                  "analystNotes": null,
+                  "referenceCaseIds": []
+                }
+              },
+              {
+                "score": 0.9513922627914553,
+                "categoryScore": 1,
+                "textScore": 0.9189871046524254,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "zzsnapshotterm",
+                    "contribution": 0.9189871046524254
+                  }
+                ],
+                "case": {
+                  "source": "CFPB",
+                  "id": "e8db642e-921d-4772-a609-a50ff7662f90",
+                  "product": "Checking or savings account",
+                  "subProduct": null,
+                  "issue": "Managing an account",
+                  "subIssue": null,
+                  "receivedDate": "2024-11-12",
+                  "company": null,
+                  "companyResponse": null,
+                  "createdAt": "2026-10-28T02:14:41.486811663Z",
+                  "updatedAt": "2026-10-28T02:14:41.486811663Z",
+                  "narrative": "zzsnapshotterm zzsnapshotterm narrative 975000005.",
+                  "provenance": {
+                    "complaintId": "975000005",
+                    "importBatchId": "d03720ec-97ec-434f-9e86-0092c134340d",
+                    "archiveUrl": "https://example.com/search-snapshot.zip",
+                    "sourceFileName": "search-snapshot.csv",
+                    "periodStart": "2024-11-01",
+                    "periodEnd": "2024-12-31",
+                    "csvSha256": "b3446001dab5b801788b393790d5439a4a35720ee7b366606dc6a58f42b60071"
+                  },
+                  "analystNotes": null,
+                  "referenceCaseIds": []
+                }
+              },
+              {
+                "score": 0.9513922627914553,
+                "categoryScore": 1,
+                "textScore": 0.9189871046524254,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "zzsnapshotterm",
+                    "contribution": 0.9189871046524254
+                  }
+                ],
+                "case": {
+                  "source": "CFPB",
+                  "id": "ea7fa279-ee0b-48d2-a519-ac54431154b6",
+                  "product": "Checking or savings account",
+                  "subProduct": null,
+                  "issue": "Managing an account",
+                  "subIssue": null,
+                  "receivedDate": "2024-11-12",
+                  "company": null,
+                  "companyResponse": null,
+                  "createdAt": "2026-10-28T02:14:41.486811663Z",
+                  "updatedAt": "2026-10-28T02:14:41.486811663Z",
+                  "narrative": "zzsnapshotterm zzsnapshotterm narrative 975000002.",
+                  "provenance": {
+                    "complaintId": "975000002",
+                    "importBatchId": "d03720ec-97ec-434f-9e86-0092c134340d",
+                    "archiveUrl": "https://example.com/search-snapshot.zip",
+                    "sourceFileName": "search-snapshot.csv",
+                    "periodStart": "2024-11-01",
+                    "periodEnd": "2024-12-31",
+                    "csvSha256": "b3446001dab5b801788b393790d5439a4a35720ee7b366606dc6a58f42b60071"
+                  },
+                  "analystNotes": null,
+                  "referenceCaseIds": []
+                }
+              },
+              {
+                "score": 0.9513922627914553,
+                "categoryScore": 1,
+                "textScore": 0.9189871046524254,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "zzsnapshotterm",
+                    "contribution": 0.9189871046524254
+                  }
+                ],
+                "case": {
+                  "source": "CFPB",
+                  "id": "eff0ed98-473b-40b2-bab8-95f696076092",
+                  "product": "Checking or savings account",
+                  "subProduct": null,
+                  "issue": "Managing an account",
+                  "subIssue": null,
+                  "receivedDate": "2024-11-12",
+                  "company": null,
+                  "companyResponse": null,
+                  "createdAt": "2026-10-28T02:14:41.486811663Z",
+                  "updatedAt": "2026-10-28T02:14:41.486811663Z",
+                  "narrative": "zzsnapshotterm zzsnapshotterm narrative 975000001.",
+                  "provenance": {
+                    "complaintId": "975000001",
+                    "importBatchId": "d03720ec-97ec-434f-9e86-0092c134340d",
+                    "archiveUrl": "https://example.com/search-snapshot.zip",
+                    "sourceFileName": "search-snapshot.csv",
+                    "periodStart": "2024-11-01",
+                    "periodEnd": "2024-12-31",
+                    "csvSha256": "b3446001dab5b801788b393790d5439a4a35720ee7b366606dc6a58f42b60071"
+                  },
+                  "analystNotes": null,
+                  "referenceCaseIds": []
+                }
+              }
+            ],
+            "returnedCount": 5,
+            "limit": 20,
+            "corpusSize": 512,
+            "warnings": [
+              "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Kalibrasi eksploratif dan belum divalidasi manusia."
+            ],
+            "configuration": {
+              "categoryWeight": 0.4,
+              "textWeight": 0.6,
+              "categoryFieldWeights": {
+                "product": 0.35,
+                "subProduct": 0.15,
+                "issue": 0.35,
+                "subIssue": 0.15
+              },
+              "threshold": 0.5,
+              "requiresTextOverlap": true,
+              "algorithmVersion": "tfidf-cosine-v1"
+            }
+          },
+          "bytes": 8379
+        }
+      ]
+    },
+    {
+      "id": "CONC-13",
+      "hypothesis": "Two different imports with the same complaint ID keep exactly one case and the winning provenance.",
+      "result": "PASS",
+      "durationMs": 23,
+      "detail": {
+        "statuses": [
+          201,
+          201
+        ],
+        "imported": 1,
+        "duplicates": 1,
+        "narrative": "Overlapping import first narrative.",
+        "provenance": "overlap-a.csv",
+        "counts": {
+          "cases": 513,
+          "batches": 5
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "concurrency.csv",
+                "type": "text/csv",
+                "size": 177
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 135
+              }
+            ]
+          },
+          "status": 201,
+          "ms": 14,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "44ebaddf-4931-44bd-95d1-bdc45c8aced6",
+            "replayed": false,
+            "metadata": {
+              "archiveUrl": "https://example.com/overlap-a.zip",
+              "sourceFileName": "overlap-a.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "b41ba62a88da1c8845135cb917974e53b5e1f0a7bc38848d7b5e7442394de94d",
+            "processed": 1,
+            "imported": 1,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T02:14:41.647891805Z"
+          },
+          "bytes": 430
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "concurrency.csv",
+                "type": "text/csv",
+                "size": 178
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 135
+              }
+            ]
+          },
+          "status": 201,
+          "ms": 17,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "ed137b8f-7d3e-49d8-bfb7-e1dd3be3bf36",
+            "replayed": false,
+            "metadata": {
+              "archiveUrl": "https://example.com/overlap-b.zip",
+              "sourceFileName": "overlap-b.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "d4d8a076b5141c86325b9eb3b4d984ff7542e3dfdd7588b1ec579ab84a1533dd",
+            "processed": 1,
+            "imported": 0,
+            "duplicates": 1,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T02:14:41.651943428Z"
+          },
+          "bytes": 430
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/9da6926d-8fe4-47b8-bddc-79b923cd447e",
+          "status": 200,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "CFPB",
+            "id": "9da6926d-8fe4-47b8-bddc-79b923cd447e",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": "2024-11-12",
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:41.647891805Z",
+            "updatedAt": "2026-10-28T02:14:41.647891805Z",
+            "narrative": "Overlapping import first narrative.",
+            "provenance": {
+              "complaintId": "976000001",
+              "importBatchId": "44ebaddf-4931-44bd-95d1-bdc45c8aced6",
+              "archiveUrl": "https://example.com/overlap-a.zip",
+              "sourceFileName": "overlap-a.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31",
+              "csvSha256": "b41ba62a88da1c8845135cb917974e53b5e1f0a7bc38848d7b5e7442394de94d"
+            },
+            "analystNotes": null,
+            "referenceCaseIds": []
+          },
+          "bytes": 722
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "concurrency.csv",
+            "type": "text/csv",
+            "size": 753455
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 209
+          }
+        ]
+      },
+      "status": 201,
+      "ms": 605,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "34a5fc79-46f3-4861-841b-de6377a85c59",
+        "replayed": false,
+        "metadata": {
+          "archiveUrl": "https://files.consumerfinance.gov/f/documents/CCDB_Export_8_November_2024_through_December_2024.zip",
+          "sourceFileName": "finresolve-sample.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "682bb04cf77a7df10104c822ab24af4bd42e1a088cd2678c7c72921b7983a644",
+        "processed": 500,
+        "imported": 500,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T02:14:40.601772183Z"
+      },
+      "bytes": 508
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "concurrency.csv",
+            "type": "text/csv",
+            "size": 180
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 157
+          }
+        ]
+      },
+      "status": 201,
+      "ms": 19,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "15b8528b-872e-4112-9d4c-24728d130040",
+        "replayed": false,
+        "metadata": {
+          "archiveUrl": "https://example.com/concurrent-identical.zip",
+          "sourceFileName": "concurrent-identical.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "634ba368d9d47a3e81fa9c7d7ddb83a374aa985b41c1ea1a16363c9cc277b8f3",
+        "processed": 1,
+        "imported": 1,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T02:14:40.826948943Z"
+      },
+      "bytes": 452
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "concurrency.csv",
+            "type": "text/csv",
+            "size": 180
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 157
+          }
+        ]
+      },
+      "status": 200,
+      "ms": 37,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "15b8528b-872e-4112-9d4c-24728d130040",
+        "replayed": true,
+        "metadata": {
+          "archiveUrl": "https://example.com/concurrent-identical.zip",
+          "sourceFileName": "concurrent-identical.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "634ba368d9d47a3e81fa9c7d7ddb83a374aa985b41c1ea1a16363c9cc277b8f3",
+        "processed": 1,
+        "imported": 1,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T02:14:40.826948943Z"
+      },
+      "bytes": 451
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "concurrency.csv",
+            "type": "text/csv",
+            "size": 180
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 157
+          }
+        ]
+      },
+      "status": 200,
+      "ms": 36,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "15b8528b-872e-4112-9d4c-24728d130040",
+        "replayed": true,
+        "metadata": {
+          "archiveUrl": "https://example.com/concurrent-identical.zip",
+          "sourceFileName": "concurrent-identical.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "634ba368d9d47a3e81fa9c7d7ddb83a374aa985b41c1ea1a16363c9cc277b8f3",
+        "processed": 1,
+        "imported": 1,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T02:14:40.826948943Z"
+      },
+      "bytes": 451
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "concurrency.csv",
+            "type": "text/csv",
+            "size": 180
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 157
+          }
+        ]
+      },
+      "status": 200,
+      "ms": 38,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "15b8528b-872e-4112-9d4c-24728d130040",
+        "replayed": true,
+        "metadata": {
+          "archiveUrl": "https://example.com/concurrent-identical.zip",
+          "sourceFileName": "concurrent-identical.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "634ba368d9d47a3e81fa9c7d7ddb83a374aa985b41c1ea1a16363c9cc277b8f3",
+        "processed": 1,
+        "imported": 1,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T02:14:40.826948943Z"
+      },
+      "bytes": 451
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 164,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.983826454Z",
+        "updatedAt": "2026-10-28T02:14:40.983826454Z",
+        "narrative": "Concurrent analyst narrative about a transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent create 0",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 525
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 163,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/53e16a8f-d01b-4c93-a85c-c3e04ff5a321",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "53e16a8f-d01b-4c93-a85c-c3e04ff5a321",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.996438346Z",
+        "updatedAt": "2026-10-28T02:14:40.996438346Z",
+        "narrative": "Concurrent analyst narrative about a transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent create 4",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 525
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 165,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/c6190fda-c62f-4565-bf3a-db3632a99d2d",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "c6190fda-c62f-4565-bf3a-db3632a99d2d",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.977766821Z",
+        "updatedAt": "2026-10-28T02:14:40.977766821Z",
+        "narrative": "Concurrent analyst narrative about a transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent create 1",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 525
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 165,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/7c6df98d-1c1d-4724-9f0c-421ccb159d8f",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "7c6df98d-1c1d-4724-9f0c-421ccb159d8f",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.972048607Z",
+        "updatedAt": "2026-10-28T02:14:40.972048607Z",
+        "narrative": "Concurrent analyst narrative about a transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent create 5",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 525
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 167,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/ee5d170e-3140-40ec-b19b-613db4d70595",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "ee5d170e-3140-40ec-b19b-613db4d70595",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.989631673Z",
+        "updatedAt": "2026-10-28T02:14:40.989631673Z",
+        "narrative": "Concurrent analyst narrative about a transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent create 3",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 525
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 168,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/9b187d70-07c8-4c30-b505-a0463b7e2a3d",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "9b187d70-07c8-4c30-b505-a0463b7e2a3d",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.966150284Z",
+        "updatedAt": "2026-10-28T02:14:40.966150284Z",
+        "narrative": "Concurrent analyst narrative about a transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent create 2",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 525
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+      "status": 200,
+      "ms": 13,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.983826454Z",
+        "updatedAt": "2026-10-28T02:14:40.983826454Z",
+        "narrative": "Concurrent analyst narrative about a transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent create 0",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 525
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/c6190fda-c62f-4565-bf3a-db3632a99d2d",
+      "status": 200,
+      "ms": 7,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "c6190fda-c62f-4565-bf3a-db3632a99d2d",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.977766821Z",
+        "updatedAt": "2026-10-28T02:14:40.977766821Z",
+        "narrative": "Concurrent analyst narrative about a transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent create 1",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 525
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/9b187d70-07c8-4c30-b505-a0463b7e2a3d",
+      "status": 200,
+      "ms": 8,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "9b187d70-07c8-4c30-b505-a0463b7e2a3d",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.966150284Z",
+        "updatedAt": "2026-10-28T02:14:40.966150284Z",
+        "narrative": "Concurrent analyst narrative about a transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent create 2",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 525
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/ee5d170e-3140-40ec-b19b-613db4d70595",
+      "status": 200,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "ee5d170e-3140-40ec-b19b-613db4d70595",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.989631673Z",
+        "updatedAt": "2026-10-28T02:14:40.989631673Z",
+        "narrative": "Concurrent analyst narrative about a transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent create 3",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 525
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/53e16a8f-d01b-4c93-a85c-c3e04ff5a321",
+      "status": 200,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "53e16a8f-d01b-4c93-a85c-c3e04ff5a321",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.996438346Z",
+        "updatedAt": "2026-10-28T02:14:40.996438346Z",
+        "narrative": "Concurrent analyst narrative about a transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent create 4",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 525
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/7c6df98d-1c1d-4724-9f0c-421ccb159d8f",
+      "status": 200,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "7c6df98d-1c1d-4724-9f0c-421ccb159d8f",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.972048607Z",
+        "updatedAt": "2026-10-28T02:14:40.972048607Z",
+        "narrative": "Concurrent analyst narrative about a transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent create 5",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 525
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+      "status": 200,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.983826454Z",
+        "updatedAt": "2026-10-28T02:14:40.983826454Z",
+        "narrative": "Concurrent analyst narrative about a transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent create 0",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 525
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?source=CFPB&size=2",
+      "status": 200,
+      "ms": 49,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "items": [
+          {
+            "id": "f832e8b5-0ee5-4954-81b5-749583efaa5b",
+            "source": "CFPB",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": "2024-11-12",
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:40.826948943Z",
+            "updatedAt": "2026-10-28T02:14:40.826948943Z"
+          },
+          {
+            "id": "00735a2a-b6ad-4f21-ba15-3a2b6b38b368",
+            "source": "CFPB",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Opening an account",
+            "subIssue": "Account opened without my consent or knowledge",
+            "receivedDate": "2024-11-05",
+            "company": "NAVY FEDERAL CREDIT UNION",
+            "companyResponse": "Closed with explanation",
+            "createdAt": "2026-10-28T02:14:40.601772183Z",
+            "updatedAt": "2026-10-28T02:14:40.601772183Z"
+          }
+        ],
+        "page": 0,
+        "size": 2,
+        "totalElements": 501,
+        "totalPages": 251,
+        "hasNext": true
+      },
+      "bytes": 826
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+      "status": 200,
+      "ms": 11,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.983826454Z",
+        "updatedAt": "2026-10-28T02:14:40.983826454Z",
+        "narrative": "Concurrent analyst narrative about a transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent create 0",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 525
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 24,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+        "product": "Checking or savings account",
+        "subProduct": "Checking account",
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "Company 0",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.983826454Z",
+        "updatedAt": "2026-10-28T02:14:41.138374237Z",
+        "narrative": "Concurrent PUT narrative 0.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent PUT notes 0",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "Evaluation 0"
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 540
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 30,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+        "product": "Checking or savings account",
+        "subProduct": "Checking account",
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "Company 4",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.983826454Z",
+        "updatedAt": "2026-10-28T02:14:41.14643548Z",
+        "narrative": "Concurrent PUT narrative 4.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent PUT notes 4",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "Evaluation 4"
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 539
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 37,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+        "product": "Checking or savings account",
+        "subProduct": "Checking account",
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "Company 2",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.983826454Z",
+        "updatedAt": "2026-10-28T02:14:41.152849332Z",
+        "narrative": "Concurrent PUT narrative 2.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent PUT notes 2",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "Evaluation 2"
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 540
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 44,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+        "product": "Checking or savings account",
+        "subProduct": "Checking account",
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "Company 5",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.983826454Z",
+        "updatedAt": "2026-10-28T02:14:41.160149732Z",
+        "narrative": "Concurrent PUT narrative 5.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent PUT notes 5",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "Evaluation 5"
+        },
+        "referenceCaseIds": [
+          "f832e8b5-0ee5-4954-81b5-749583efaa5b"
+        ]
+      },
+      "bytes": 578
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 50,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+        "product": "Checking or savings account",
+        "subProduct": "Checking account",
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "Company 6",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.983826454Z",
+        "updatedAt": "2026-10-28T02:14:41.166599887Z",
+        "narrative": "Concurrent PUT narrative 6.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent PUT notes 6",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "Evaluation 6"
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 540
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 59,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+        "product": "Checking or savings account",
+        "subProduct": "Checking account",
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "Company 1",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.983826454Z",
+        "updatedAt": "2026-10-28T02:14:41.173455263Z",
+        "narrative": "Concurrent PUT narrative 1.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent PUT notes 1",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "Evaluation 1"
+        },
+        "referenceCaseIds": [
+          "f832e8b5-0ee5-4954-81b5-749583efaa5b"
+        ]
+      },
+      "bytes": 578
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 66,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+        "product": "Checking or savings account",
+        "subProduct": "Checking account",
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "Company 3",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.983826454Z",
+        "updatedAt": "2026-10-28T02:14:41.181838323Z",
+        "narrative": "Concurrent PUT narrative 3.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent PUT notes 3",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "Evaluation 3"
+        },
+        "referenceCaseIds": [
+          "f832e8b5-0ee5-4954-81b5-749583efaa5b"
+        ]
+      },
+      "bytes": 578
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 71,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+        "product": "Checking or savings account",
+        "subProduct": "Checking account",
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "Company 7",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.983826454Z",
+        "updatedAt": "2026-10-28T02:14:41.188945713Z",
+        "narrative": "Concurrent PUT narrative 7.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent PUT notes 7",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "Evaluation 7"
+        },
+        "referenceCaseIds": [
+          "f832e8b5-0ee5-4954-81b5-749583efaa5b"
+        ]
+      },
+      "bytes": 578
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+      "status": 200,
+      "ms": 52,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+        "product": "Checking or savings account",
+        "subProduct": "Checking account",
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "Company 7",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.983826454Z",
+        "updatedAt": "2026-10-28T02:14:41.188945713Z",
+        "narrative": "Concurrent PUT narrative 7.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent PUT notes 7",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "Evaluation 7"
+        },
+        "referenceCaseIds": [
+          "f832e8b5-0ee5-4954-81b5-749583efaa5b"
+        ]
+      },
+      "bytes": 578
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/1b691105-3710-42c4-9957-1e85e1ac7e16",
+      "status": 200,
+      "ms": 6,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "1b691105-3710-42c4-9957-1e85e1ac7e16",
+        "product": "Checking or savings account",
+        "subProduct": "Checking account",
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "Company 7",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:40.983826454Z",
+        "updatedAt": "2026-10-28T02:14:41.188945713Z",
+        "narrative": "Concurrent PUT narrative 7.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Concurrent PUT notes 7",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "Evaluation 7"
+        },
+        "referenceCaseIds": [
+          "f832e8b5-0ee5-4954-81b5-749583efaa5b"
+        ]
+      },
+      "bytes": 578
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 213,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "status": "NO_RELEVANT_CASES",
+        "message": "Tidak ada preseden yang cukup relevan; penilaian tetap dilakukan analis.",
+        "results": [],
+        "returnedCount": 0,
+        "limit": 20,
+        "corpusSize": 507,
+        "warnings": [
+          "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Kalibrasi eksploratif dan belum divalidasi manusia."
+        ],
+        "configuration": {
+          "categoryWeight": 0.4,
+          "textWeight": 0.6,
+          "categoryFieldWeights": {
+            "product": 0.35,
+            "subProduct": 0.15,
+            "issue": 0.35,
+            "subIssue": 0.15
+          },
+          "threshold": 0.5,
+          "requiresTextOverlap": true,
+          "algorithmVersion": "tfidf-cosine-v1"
+        }
+      },
+      "bytes": 532
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "concurrency.csv",
+            "type": "text/csv",
+            "size": 680
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 147
+          }
+        ]
+      },
+      "status": 201,
+      "ms": 29,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "d03720ec-97ec-434f-9e86-0092c134340d",
+        "replayed": false,
+        "metadata": {
+          "archiveUrl": "https://example.com/search-snapshot.zip",
+          "sourceFileName": "search-snapshot.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "b3446001dab5b801788b393790d5439a4a35720ee7b366606dc6a58f42b60071",
+        "processed": 5,
+        "imported": 5,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T02:14:41.486811663Z"
+      },
+      "bytes": 442
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 90,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "status": "NO_RELEVANT_CASES",
+        "message": "Tidak ada preseden yang cukup relevan; penilaian tetap dilakukan analis.",
+        "results": [],
+        "returnedCount": 0,
+        "limit": 20,
+        "corpusSize": 507,
+        "warnings": [
+          "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Kalibrasi eksploratif dan belum divalidasi manusia."
+        ],
+        "configuration": {
+          "categoryWeight": 0.4,
+          "textWeight": 0.6,
+          "categoryFieldWeights": {
+            "product": 0.35,
+            "subProduct": 0.15,
+            "issue": 0.35,
+            "subIssue": 0.15
+          },
+          "threshold": 0.5,
+          "requiresTextOverlap": true,
+          "algorithmVersion": "tfidf-cosine-v1"
+        }
+      },
+      "bytes": 532
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 115,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "status": "MATCHES",
+        "message": "Ditemukan preseden yang memenuhi ambang awal.",
+        "results": [
+          {
+            "score": 0.9513922627914553,
+            "categoryScore": 1,
+            "textScore": 0.9189871046524254,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subProduct",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subIssue",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "zzsnapshotterm",
+                "contribution": 0.9189871046524254
+              }
+            ],
+            "case": {
+              "source": "CFPB",
+              "id": "0f204f35-6490-45ba-93e7-b56154a778a4",
+              "product": "Checking or savings account",
+              "subProduct": null,
+              "issue": "Managing an account",
+              "subIssue": null,
+              "receivedDate": "2024-11-12",
+              "company": null,
+              "companyResponse": null,
+              "createdAt": "2026-10-28T02:14:41.486811663Z",
+              "updatedAt": "2026-10-28T02:14:41.486811663Z",
+              "narrative": "zzsnapshotterm zzsnapshotterm narrative 975000003.",
+              "provenance": {
+                "complaintId": "975000003",
+                "importBatchId": "d03720ec-97ec-434f-9e86-0092c134340d",
+                "archiveUrl": "https://example.com/search-snapshot.zip",
+                "sourceFileName": "search-snapshot.csv",
+                "periodStart": "2024-11-01",
+                "periodEnd": "2024-12-31",
+                "csvSha256": "b3446001dab5b801788b393790d5439a4a35720ee7b366606dc6a58f42b60071"
+              },
+              "analystNotes": null,
+              "referenceCaseIds": []
+            }
+          },
+          {
+            "score": 0.9513922627914553,
+            "categoryScore": 1,
+            "textScore": 0.9189871046524254,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subProduct",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subIssue",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "zzsnapshotterm",
+                "contribution": 0.9189871046524254
+              }
+            ],
+            "case": {
+              "source": "CFPB",
+              "id": "cece2bee-1320-486e-9ee4-6bbe572190e5",
+              "product": "Checking or savings account",
+              "subProduct": null,
+              "issue": "Managing an account",
+              "subIssue": null,
+              "receivedDate": "2024-11-12",
+              "company": null,
+              "companyResponse": null,
+              "createdAt": "2026-10-28T02:14:41.486811663Z",
+              "updatedAt": "2026-10-28T02:14:41.486811663Z",
+              "narrative": "zzsnapshotterm zzsnapshotterm narrative 975000004.",
+              "provenance": {
+                "complaintId": "975000004",
+                "importBatchId": "d03720ec-97ec-434f-9e86-0092c134340d",
+                "archiveUrl": "https://example.com/search-snapshot.zip",
+                "sourceFileName": "search-snapshot.csv",
+                "periodStart": "2024-11-01",
+                "periodEnd": "2024-12-31",
+                "csvSha256": "b3446001dab5b801788b393790d5439a4a35720ee7b366606dc6a58f42b60071"
+              },
+              "analystNotes": null,
+              "referenceCaseIds": []
+            }
+          },
+          {
+            "score": 0.9513922627914553,
+            "categoryScore": 1,
+            "textScore": 0.9189871046524254,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subProduct",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subIssue",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "zzsnapshotterm",
+                "contribution": 0.9189871046524254
+              }
+            ],
+            "case": {
+              "source": "CFPB",
+              "id": "e8db642e-921d-4772-a609-a50ff7662f90",
+              "product": "Checking or savings account",
+              "subProduct": null,
+              "issue": "Managing an account",
+              "subIssue": null,
+              "receivedDate": "2024-11-12",
+              "company": null,
+              "companyResponse": null,
+              "createdAt": "2026-10-28T02:14:41.486811663Z",
+              "updatedAt": "2026-10-28T02:14:41.486811663Z",
+              "narrative": "zzsnapshotterm zzsnapshotterm narrative 975000005.",
+              "provenance": {
+                "complaintId": "975000005",
+                "importBatchId": "d03720ec-97ec-434f-9e86-0092c134340d",
+                "archiveUrl": "https://example.com/search-snapshot.zip",
+                "sourceFileName": "search-snapshot.csv",
+                "periodStart": "2024-11-01",
+                "periodEnd": "2024-12-31",
+                "csvSha256": "b3446001dab5b801788b393790d5439a4a35720ee7b366606dc6a58f42b60071"
+              },
+              "analystNotes": null,
+              "referenceCaseIds": []
+            }
+          },
+          {
+            "score": 0.9513922627914553,
+            "categoryScore": 1,
+            "textScore": 0.9189871046524254,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subProduct",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subIssue",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "zzsnapshotterm",
+                "contribution": 0.9189871046524254
+              }
+            ],
+            "case": {
+              "source": "CFPB",
+              "id": "ea7fa279-ee0b-48d2-a519-ac54431154b6",
+              "product": "Checking or savings account",
+              "subProduct": null,
+              "issue": "Managing an account",
+              "subIssue": null,
+              "receivedDate": "2024-11-12",
+              "company": null,
+              "companyResponse": null,
+              "createdAt": "2026-10-28T02:14:41.486811663Z",
+              "updatedAt": "2026-10-28T02:14:41.486811663Z",
+              "narrative": "zzsnapshotterm zzsnapshotterm narrative 975000002.",
+              "provenance": {
+                "complaintId": "975000002",
+                "importBatchId": "d03720ec-97ec-434f-9e86-0092c134340d",
+                "archiveUrl": "https://example.com/search-snapshot.zip",
+                "sourceFileName": "search-snapshot.csv",
+                "periodStart": "2024-11-01",
+                "periodEnd": "2024-12-31",
+                "csvSha256": "b3446001dab5b801788b393790d5439a4a35720ee7b366606dc6a58f42b60071"
+              },
+              "analystNotes": null,
+              "referenceCaseIds": []
+            }
+          },
+          {
+            "score": 0.9513922627914553,
+            "categoryScore": 1,
+            "textScore": 0.9189871046524254,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subProduct",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subIssue",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "zzsnapshotterm",
+                "contribution": 0.9189871046524254
+              }
+            ],
+            "case": {
+              "source": "CFPB",
+              "id": "eff0ed98-473b-40b2-bab8-95f696076092",
+              "product": "Checking or savings account",
+              "subProduct": null,
+              "issue": "Managing an account",
+              "subIssue": null,
+              "receivedDate": "2024-11-12",
+              "company": null,
+              "companyResponse": null,
+              "createdAt": "2026-10-28T02:14:41.486811663Z",
+              "updatedAt": "2026-10-28T02:14:41.486811663Z",
+              "narrative": "zzsnapshotterm zzsnapshotterm narrative 975000001.",
+              "provenance": {
+                "complaintId": "975000001",
+                "importBatchId": "d03720ec-97ec-434f-9e86-0092c134340d",
+                "archiveUrl": "https://example.com/search-snapshot.zip",
+                "sourceFileName": "search-snapshot.csv",
+                "periodStart": "2024-11-01",
+                "periodEnd": "2024-12-31",
+                "csvSha256": "b3446001dab5b801788b393790d5439a4a35720ee7b366606dc6a58f42b60071"
+              },
+              "analystNotes": null,
+              "referenceCaseIds": []
+            }
+          }
+        ],
+        "returnedCount": 5,
+        "limit": 20,
+        "corpusSize": 512,
+        "warnings": [
+          "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Kalibrasi eksploratif dan belum divalidasi manusia."
+        ],
+        "configuration": {
+          "categoryWeight": 0.4,
+          "textWeight": 0.6,
+          "categoryFieldWeights": {
+            "product": 0.35,
+            "subProduct": 0.15,
+            "issue": 0.35,
+            "subIssue": 0.15
+          },
+          "threshold": 0.5,
+          "requiresTextOverlap": true,
+          "algorithmVersion": "tfidf-cosine-v1"
+        }
+      },
+      "bytes": 8379
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "concurrency.csv",
+            "type": "text/csv",
+            "size": 177
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 135
+          }
+        ]
+      },
+      "status": 201,
+      "ms": 14,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "44ebaddf-4931-44bd-95d1-bdc45c8aced6",
+        "replayed": false,
+        "metadata": {
+          "archiveUrl": "https://example.com/overlap-a.zip",
+          "sourceFileName": "overlap-a.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "b41ba62a88da1c8845135cb917974e53b5e1f0a7bc38848d7b5e7442394de94d",
+        "processed": 1,
+        "imported": 1,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T02:14:41.647891805Z"
+      },
+      "bytes": 430
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "concurrency.csv",
+            "type": "text/csv",
+            "size": 178
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 135
+          }
+        ]
+      },
+      "status": 201,
+      "ms": 17,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "ed137b8f-7d3e-49d8-bfb7-e1dd3be3bf36",
+        "replayed": false,
+        "metadata": {
+          "archiveUrl": "https://example.com/overlap-b.zip",
+          "sourceFileName": "overlap-b.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "d4d8a076b5141c86325b9eb3b4d984ff7542e3dfdd7588b1ec579ab84a1533dd",
+        "processed": 1,
+        "imported": 0,
+        "duplicates": 1,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T02:14:41.651943428Z"
+      },
+      "bytes": 430
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/9da6926d-8fe4-47b8-bddc-79b923cd447e",
+      "status": 200,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "CFPB",
+        "id": "9da6926d-8fe4-47b8-bddc-79b923cd447e",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": "2024-11-12",
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:41.647891805Z",
+        "updatedAt": "2026-10-28T02:14:41.647891805Z",
+        "narrative": "Overlapping import first narrative.",
+        "provenance": {
+          "complaintId": "976000001",
+          "importBatchId": "44ebaddf-4931-44bd-95d1-bdc45c8aced6",
+          "archiveUrl": "https://example.com/overlap-a.zip",
+          "sourceFileName": "overlap-a.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31",
+          "csvSha256": "b41ba62a88da1c8845135cb917974e53b5e1f0a7bc38848d7b5e7442394de94d"
+        },
+        "analystNotes": null,
+        "referenceCaseIds": []
+      },
+      "bytes": 722
+    }
+  ],
+  "finalCounts": {
+    "cases": 513,
+    "batches": 5
+  },
+  "exitCode": 0
+}
