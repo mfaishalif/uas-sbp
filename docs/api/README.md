@@ -1,14 +1,14 @@
 # Kontrak API FinResolve
 
-Status: **kontrak `0.1.0` disetujui pengguna pada 26 Oktober 2026; backend, client TypeScript, dan live contract test sudah diimplementasikan dan diverifikasi**. Kontrak ini melengkapi [desain backend](../superpowers/specs/2026-10-26-finresolve-backend-design.md). [openapi.json](openapi.json) adalah acuan nama field, tipe, batas input, enum, endpoint, dan bentuk respons. Dokumen ini menjelaskan aturan bisnis dan penggunaan dari frontend. Perubahan kontrak harus memperbarui kedua dokumen secara bersamaan.
+Status: **kontrak `0.1.0` disetujui pengguna pada 26 Oktober 2026; backend, client TypeScript, frontend Next.js, dan live contract test sudah diimplementasikan dan diverifikasi**. Kontrak ini melengkapi [desain backend](../superpowers/specs/2026-10-26-finresolve-backend-design.md). [openapi.json](openapi.json) adalah acuan nama field, tipe, batas input, enum, endpoint, dan bentuk respons. Dokumen ini menjelaskan aturan bisnis dan penggunaan dari frontend. Perubahan kontrak harus memperbarui kedua dokumen secara bersamaan.
 
-Format menggunakan [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0.html). File dapat dibuka di alat yang mendukung versi tersebut untuk melihat skema atau menyiapkan client dan mock. Semua contoh di OpenAPI bersifat sintetis, termasuk ID CFPB dan skor; kategori aktual harus diambil dari API. Server nyata dan generated client tersedia; UI Next.js belum.
+Format menggunakan [OpenAPI 3.1](https://spec.openapis.org/oas/v3.1.0.html). File dapat dibuka di alat yang mendukung versi tersebut untuk melihat skema atau menyiapkan client dan mock. Semua contoh di OpenAPI bersifat sintetis, termasuk ID CFPB dan skor; kategori aktual harus diambil dari API. Server nyata, generated client, dan frontend Next.js tersedia.
 
-**Kebutuhan generation:** backend dan frontend wajib menggunakan kode HTTP yang dihasilkan dari kontrak ini. [Rancangan generation](generation.md) menetapkan output Java/TypeScript, batas kode manual, dan pemeriksaan sinkronisasi di CI. Alat yang disetujui dalam desain adalah OpenAPI Generator untuk kedua sisi. Pembuatan paket client termasuk tahap backend; pembangunan UI Next.js tetap tahap berikutnya.
+**Kebutuhan generation:** backend dan frontend wajib menggunakan kode HTTP yang dihasilkan dari kontrak ini. [Rancangan generation](generation.md) menetapkan output Java/TypeScript, batas kode manual, dan pemeriksaan sinkronisasi di CI. Alat yang disetujui dalam desain adalah OpenAPI Generator untuk kedua sisi. Paket client dan UI Next.js memakai output generation yang sama.
 
 ## Aturan bersama
 
-- Base URL lokal: `http://localhost:8080/api`; simpan dalam konfigurasi frontend, misalnya `NEXT_PUBLIC_API_BASE_URL`. Jangan memasukkan `/api` dua kali.
+- Browser memanggil `/api` pada origin frontend. Next.js rewrite meneruskan ke backend; upstream diatur melalui `FINRESOLVE_API_ORIGIN` (`http://127.0.0.1:8080` untuk npm, `http://api:8080` untuk Docker). Jangan memasukkan `/api` dua kali pada origin.
 - JSON menggunakan `camelCase`, UTF-8, `Content-Type: application/json`, dan `Accept: application/json`. Tidak ada envelope `data`: baca objek respons langsung.
 - Tidak ada login, token, cookie sesi, atau kebutuhan `credentials: include` pada demo lokal.
 - ID internal adalah UUID string. `complaintId` CFPB juga string, tetapi berupa digit; keduanya tidak dapat dipertukarkan.

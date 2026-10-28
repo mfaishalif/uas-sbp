@@ -1,0 +1,303 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 5vw, 56px);
+}
+
+.header {
+  display: flex;
+  max-width: 900px;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.title {
+  font-size: clamp(2.75rem, 6vw, 4.5rem);
+  line-height: 0.98;
+}
+
+.lead {
+  max-width: 72ch;
+  color: var(--color-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  align-items: start;
+  gap: var(--space-2xl);
+}
+
+.formCard,
+.report {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.sectionTitle {
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.sectionCopy {
+  color: var(--color-body);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.fileField {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.fileLabel {
+  color: var(--color-ink);
+  font-size: 0.9375rem;
+  font-weight: 600;
+}
+
+.fileInput {
+  width: 100%;
+  min-height: 52px;
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-md);
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  padding: 8px 12px;
+  font-size: 0.9375rem;
+}
+
+.fileInput::file-selector-button {
+  min-height: 36px;
+  margin-right: var(--space-md);
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-md);
+  background: var(--color-canvas-soft);
+  color: var(--color-ink);
+  padding: 6px 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.fileInput:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.hint {
+  color: var(--color-body);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+}
+
+.fieldError {
+  color: var(--color-negative-darkest);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.dateGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.saveNote {
+  color: var(--color-body);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.errorList {
+  margin: var(--space-sm) 0 0;
+  padding-left: 1.2rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.reportColumn {
+  min-width: 0;
+}
+
+.report {
+  min-width: 0;
+}
+
+.reportHeading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.counts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-sm);
+  margin: 0;
+}
+
+.counts > div {
+  border-radius: var(--radius-lg);
+  background: var(--color-canvas-soft);
+  padding: var(--space-lg);
+}
+
+.counts dt {
+  color: var(--color-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.counts dd {
+  margin: var(--space-xs) 0 0;
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+}
+
+.errorTableWrap {
+  overflow-x: auto;
+}
+
+.errorTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8125rem;
+}
+
+.errorTable caption {
+  margin-bottom: var(--space-sm);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: left;
+  text-transform: uppercase;
+}
+
+.errorTable th,
+.errorTable td {
+  border-bottom: 1px solid var(--color-canvas-soft);
+  padding: var(--space-sm) var(--space-md);
+  text-align: left;
+  vertical-align: top;
+}
+
+.errorTable th {
+  background: var(--color-canvas-soft);
+  font-weight: 600;
+}
+
+.errorCode {
+  display: block;
+  margin-bottom: 2px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.truncated {
+  margin-top: var(--space-sm);
+  color: var(--color-body);
+  font-size: 0.8125rem;
+}
+
+.reportMeta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin: 0;
+}
+
+.reportMeta > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.reportMeta dt {
+  color: var(--color-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.reportMeta dd {
+  margin: 0;
+  font-size: 0.875rem;
+  overflow-wrap: anywhere;
+}
+
+.mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.8125rem !important;
+}
+
+.emptyReport {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-md);
+  background: var(--color-primary-pale);
+  color: var(--color-ink-deep);
+}
+
+.emptyMark {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  place-items: center;
+  border-radius: var(--radius-pill);
+  background: var(--color-canvas);
+  font-size: 1.5rem;
+}
+
+.emptyTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.emptyReport p {
+  max-width: 60ch;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 1023px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .dateGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .reportHeading {
+    flex-direction: column;
+  }
+}

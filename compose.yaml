@@ -11,6 +11,7 @@ services:
       FINRESOLVE_DB_PATH: /data/finresolve.db
       FINRESOLVE_DEMO_ENABLED: "true"
       FINRESOLVE_DEMO_SAMPLE_PATH: /workspace/data/cfpb/sample.csv
+      FINRESOLVE_CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
       SERVER_ADDRESS: 0.0.0.0
     volumes:
       - type: volume
@@ -67,6 +68,63 @@ services:
         - http://127.0.0.1:8080/api/health
       interval: 5s
       timeout: 3s
+      retries: 30
+      start_period: 30s
+
+  frontend:
+    build:
+      context: .
+      dockerfile: docker/frontend.Dockerfile
+      target: development
+    image: finresolve-frontend-dev:local
+    ports:
+      - "127.0.0.1:3000:3000"
+    environment:
+      FINRESOLVE_API_ORIGIN: http://api:8080
+      NEXT_TELEMETRY_DISABLED: "1"
+    depends_on:
+      api:
+        condition: service_healthy
+    develop:
+      watch:
+        # Next.js hot reloads from synchronized source and public assets.
+        - action: sync
+          path: ./packages/frontend/src
+          target: /workspace/packages/frontend/src
+          initial_sync: true
+        - action: sync
+          path: ./packages/frontend/public
+          target: /workspace/packages/frontend/public
+          initial_sync: true
+        - action: sync+restart
+          path: ./packages/api-client/src
+          target: /workspace/packages/api-client/src
+          initial_sync: true
+        # Config, workspace manifests, and the lockfile require a new image.
+        - action: sync+restart
+          path: ./packages/frontend/next.config.ts
+          target: /workspace/packages/frontend/next.config.ts
+          initial_sync: true
+        - action: rebuild
+          path: ./packages/frontend/package.json
+        - action: rebuild
+          path: ./packages/api-client/package.json
+        - action: rebuild
+          path: ./package.json
+        - action: rebuild
+          path: ./package-lock.json
+        - action: rebuild
+          path: ./docker/frontend.Dockerfile
+        - action: rebuild
+          path: ./.dockerignore
+    healthcheck:
+      test:
+        - CMD
+        - node
+        - -e
+        - "fetch('http://127.0.0.1:3000/').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"
+      interval: 10s
+      timeout: 5s
       retries: 30
       start_period: 30s
 

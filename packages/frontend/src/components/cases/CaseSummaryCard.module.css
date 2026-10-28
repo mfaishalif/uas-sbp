@@ -1,0 +1,109 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  border: 1px solid transparent;
+  transition: border-color 140ms ease;
+}
+
+.card:focus-within,
+.card:hover {
+  border-color: var(--color-ink);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.company {
+  color: var(--color-body);
+  font-size: 0.8125rem;
+}
+
+.date {
+  flex: 0 0 auto;
+  color: var(--color-body);
+  font-size: 0.75rem;
+}
+
+.title {
+  font-size: 1.375rem;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.25;
+}
+
+.title a {
+  text-decoration: none;
+}
+
+.title a::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+}
+
+.title a:focus-visible {
+  outline: none;
+}
+
+.card {
+  position: relative;
+}
+
+.card:has(.title a:focus-visible) {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+.issue {
+  color: var(--color-body);
+  font-weight: 400;
+}
+
+.path {
+  color: var(--color-body);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  border-top: 1px solid var(--color-canvas-soft);
+  padding-top: var(--space-md);
+}
+
+.meta {
+  color: var(--color-body);
+  font-size: 0.75rem;
+}
+
+.open {
+  position: relative;
+  z-index: 1;
+  display: inline-flex;
+  min-height: 48px;
+  align-items: center;
+  border-radius: var(--radius-pill);
+  padding-inline: var(--space-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.open:hover {
+  background: var(--color-canvas-soft);
+}

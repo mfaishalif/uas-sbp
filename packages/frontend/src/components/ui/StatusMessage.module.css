@@ -1,0 +1,55 @@
+.message {
+  border-radius: var(--radius-lg);
+  border-left: 5px solid;
+  padding: var(--space-lg);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.title {
+  margin: 0 0 var(--space-xs);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.body > :first-child {
+  margin-top: 0;
+}
+
+.body > :last-child {
+  margin-bottom: 0;
+}
+
+.body p {
+  margin: 0;
+}
+
+.body a {
+  color: inherit;
+  font-weight: 600;
+  text-underline-offset: 3px;
+}
+
+.info {
+  border-color: var(--color-ink);
+  background: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+.success {
+  border-color: var(--color-positive-deep);
+  background: var(--color-primary-pale);
+  color: var(--color-positive-deep);
+}
+
+.warning {
+  border-color: var(--color-warning-content);
+  background: var(--color-warning);
+  color: var(--color-warning-content);
+}
+
+.error {
+  border-color: var(--color-negative-darkest);
+  background: var(--color-error-bg);
+  color: var(--color-negative-darkest);
+}

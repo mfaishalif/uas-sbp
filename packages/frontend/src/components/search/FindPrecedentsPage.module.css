@@ -1,0 +1,104 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 5vw, 56px);
+}
+
+.hero {
+  display: flex;
+  max-width: 960px;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.title {
+  max-width: 900px;
+  font-size: clamp(2.75rem, 7vw, 5rem);
+  line-height: 0.98;
+  text-wrap: balance;
+}
+
+.lead {
+  max-width: 68ch;
+  color: var(--color-body);
+  font-size: clamp(1.0625rem, 1.6vw, 1.25rem);
+  line-height: 1.55;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  align-items: start;
+  gap: var(--space-2xl);
+}
+
+.formCard {
+  min-width: 0;
+}
+
+.formHeading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xl);
+}
+
+.formTitle {
+  font-size: clamp(1.75rem, 2.4vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+.formIntro {
+  color: var(--color-body);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.fieldGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+
+.formActions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.resultsColumn {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.errorList {
+  margin: var(--space-sm) 0 0;
+  padding-left: 1.2rem;
+  font-size: 0.875rem;
+  line-height: 1.55;
+}
+
+.startCard {
+  padding: 0;
+}
+
+@media (max-width: 1023px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .fieldGrid {
+    grid-template-columns: 1fr;
+  }
+}
