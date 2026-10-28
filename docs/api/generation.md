@@ -114,7 +114,7 @@ Generation dan kompilasi tidak membuktikan perilaku HTTP nyata, aturan bisnis CB
 ```bash
 npm run test:generation   # 13 tes
 npm run test:contract     # 5 tes (1 live + 4 adapter)
-npm run verify            # generation, client, 267 tes backend, package, live contract
+npm run verify            # generation, client, 294 tes backend, package, live contract
 ```
 
 `npm run verify` selesai sukses pada 27 Oktober 2026 dan tidak mengubah file generated yang di-track. `docs/api/openapi.json` tetap sumber tunggal; `api:check` membandingkan pohon TypeScript hasil generation dengan yang di-commit.

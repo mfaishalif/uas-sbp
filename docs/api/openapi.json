@@ -768,7 +768,7 @@
           "Imports"
         ],
         "summary": "Mengimpor CSV CFPB dengan metadata sumber",
-        "description": "Sinkron, bukan job background. file maksimal 20 MiB, request multipart maksimal 21 MiB, maksimal 5.000 record. Validasi file sebelum transaksi; error file membatalkan semua penulisan. Error per-record dilaporkan pada respons sukses. Replay dikenali dari SHA-256 byte CSV beserta seluruh nilai metadata setelah trim. Duplicate ID dalam file atau database dilewati setelah validasi record. CSV sumber mendukung BOM, kutipan dan newline. Content-Type file text/csv atau application/octet-stream; metadata harus application/json.",
+        "description": "Sinkron, bukan job background. file maksimal 20 MiB, request multipart maksimal 21 MiB, maksimal 5.000 record. Validasi file sebelum transaksi; error file membatalkan semua penulisan. Error per-record dilaporkan pada respons sukses. Replay dikenali dari SHA-256 byte CSV beserta seluruh nilai metadata setelah trim. Duplicate ID dalam file atau database dilewati setelah validasi record. CSV sumber mendukung BOM, kutipan dan newline; baris fisik yang benar-benar kosong di luar quoted field diabaikan, sedangkan baris berisi spasi, delimiter, atau quoted empty field tetap divalidasi sebagai record. Teks dengan U+0000 atau lone UTF-16 surrogate menjadi row-level INVALID_FORMAT; metadata dengan karakter tersebut adalah 400 VALIDATION_ERROR tanpa penulisan. Content-Type file text/csv atau application/octet-stream; metadata harus application/json.",
         "requestBody": {
           "required": true,
           "content": {
@@ -1094,7 +1094,7 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 50000,
-            "description": "Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak. Mode phrases menerapkan kamus frasa domain hanya pada tokenisasi; narasi asli tidak diubah."
+            "description": "Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak. U+0000 dan lone UTF-16 surrogate ditolak INVALID_FORMAT; emoji/pasangan surrogate valid, tab, dan newline dipertahankan. Mode phrases menerapkan kamus frasa domain hanya pada tokenisasi; narasi asli tidak diubah."
           },
           "limit": {
             "type": "integer",
@@ -1108,7 +1108,7 @@
           "issue",
           "narrative"
         ],
-        "description": "Subproduk/submasalah boleh dihilangkan atau null; string blank dinormalisasi ke null. Properti lain ditolak. Limit null ditolak."
+        "description": "Subproduk/submasalah boleh dihilangkan atau null; string blank dinormalisasi ke null. Properti lain ditolak. Limit null ditolak. Teks dengan U+0000 atau lone UTF-16 surrogate ditolak VALIDATION_ERROR/INVALID_FORMAT; emoji/pasangan surrogate valid, tab, dan newline tetap mengikuti aturan normalisasi field."
       },
       "RetainCaseRequest": {
         "type": "object",
@@ -1142,7 +1142,7 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 50000,
-            "description": "Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak."
+            "description": "Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak. U+0000 dan lone UTF-16 surrogate ditolak INVALID_FORMAT; emoji/pasangan surrogate valid, tab, dan newline dipertahankan."
           },
           "receivedDate": {
             "type": [
@@ -1204,7 +1204,7 @@
           "handlingNotes",
           "outcomeAssessment"
         ],
-        "description": "POST membuat kasus ANALYST. PUT mengganti lengkap: field opsional yang dihilangkan dihapus menjadi null atau []; bukan PATCH. referenceCaseIds null ditolak. Semua referensi wajib ada dan bukan ID kasus itu sendiri. source, id, provenance, timestamps tidak boleh dikirim."
+        "description": "POST membuat kasus ANALYST. PUT mengganti lengkap: field opsional yang dihilangkan dihapus menjadi null atau []; bukan PATCH. referenceCaseIds null ditolak. Duplikat UUID identik maupun yang hanya berbeda kapitalisasi ditolak DUPLICATE; UUID uppercase tunggal tetap diterima. Semua referensi wajib ada dan bukan ID kasus itu sendiri. Teks dengan U+0000 atau lone UTF-16 surrogate ditolak VALIDATION_ERROR/INVALID_FORMAT sebelum penulisan. source, id, provenance, timestamps tidak boleh dikirim."
       },
       "ArchiveProvenance": {
         "type": "object",
@@ -1440,7 +1440,7 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 50000,
-            "description": "Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak."
+            "description": "Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak. U+0000 dan lone UTF-16 surrogate ditolak INVALID_FORMAT; emoji/pasangan surrogate valid, tab, dan newline dipertahankan."
           },
           "provenance": {
             "$ref": "#/components/schemas/ArchiveProvenance"
@@ -1546,7 +1546,7 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 50000,
-            "description": "Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak."
+            "description": "Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak. U+0000 dan lone UTF-16 surrogate ditolak INVALID_FORMAT; emoji/pasangan surrogate valid, tab, dan newline dipertahankan."
           },
           "provenance": {
             "type": "null"
@@ -1917,7 +1917,7 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 255,
-            "description": "Nama CSV sumber untuk provenance; tanpa path lokal."
+            "description": "Nama CSV sumber untuk provenance. Setelah trim, nilai '.', '..', yang mengandung '/' atau '\\\\', atau berawalan drive [A-Za-z]: ditolak INVALID_FORMAT. Ekstensi tidak diwajibkan. U+0000 dan lone UTF-16 surrogate juga ditolak."
           },
           "periodStart": {
             "type": "string",
@@ -1934,7 +1934,7 @@
           "periodStart",
           "periodEnd"
         ],
-        "description": "periodEnd harus >= periodStart. Semua field wajib."
+        "description": "periodEnd harus >= periodStart. Semua field wajib. Teks dengan U+0000 atau lone UTF-16 surrogate ditolak VALIDATION_ERROR/INVALID_FORMAT sebelum import; emoji/pasangan surrogate valid dipertahankan."
       },
       "ImportRequest": {
         "type": "object",
@@ -2055,7 +2055,7 @@
           "errorsTruncated",
           "importedAt"
         ],
-        "description": "processed=imported+duplicates+rejected. Satu error pertama per record ditolak; maksimal 20 contoh. errorsTruncated iff rejected>20. HTTP 200 replay mengembalikan batch dan hitungan asli, replayed=true; hitungan bukan tambahan baru. Header-only CSV ditolak INVALID_CSV. File dengan semua record invalid tetap membuat laporan batch 201 dengan imported=0."
+        "description": "processed=imported+duplicates+rejected. Baris fisik kosong di luar quoted field tidak dihitung sebagai record. Satu error pertama per record ditolak; maksimal 20 contoh. errorsTruncated iff rejected>20. HTTP 200 replay mengembalikan batch dan hitungan asli, replayed=true; hitungan bukan tambahan baru. Header-only atau header-plus-blank-lines CSV ditolak INVALID_CSV. File dengan semua record invalid tetap membuat laporan batch 201 dengan imported=0."
       }
     },
     "responses": {

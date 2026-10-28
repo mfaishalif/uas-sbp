@@ -42,6 +42,8 @@ Bangun opsi produk dari semua tuple. Opsi subproduk dan masalah difilter oleh pr
 
 Server menormalisasi trim, spasi kategori berulang, dan kapitalisasi untuk pencocokan. Label respons menggunakan label kanonis sumber. Produk dan masalah wajib; tiap label maksimum 500 karakter. Narasi wajib 1–50.000 karakter setelah trim dan harus mengandung token bermakna. Input hanya stopword, angka, atau placeholder redaksi ditolak. Company opsional maksimum 500 karakter; companyResponse opsional maksimum 2.000 karakter.
 
+Semua field teks menolak U+0000 di posisi mana pun dan lone UTF-16 surrogate (high/low tanpa pasangan) dengan `VALIDATION_ERROR` / `INVALID_FORMAT` sebelum normalisasi atau persistence. Emoji dan pasangan surrogate valid, tab, serta newline tetap diterima dan dipertahankan sesuai aturan normalisasi field. Pesan error tidak menyalin narasi pengguna.
+
 Untuk korpus kosong, server memvalidasi bentuk input dan token narasi terlebih dahulu, lalu mengembalikan `EMPTY_KNOWLEDGE_BASE` tanpa memeriksa keanggotaan kategori. Retensi sebelum ada katalog ditolak dengan 409 `EMPTY_CATEGORY_CATALOG`.
 
 ## Pencarian dan cara membaca skor
@@ -77,6 +79,8 @@ Retain membutuhkan `handlingNotes` nonblank maksimum 10.000 karakter dan `outcom
 
 `POST /cases` membuat kasus ANALYST baru. Ini tidak idempoten: nonaktifkan tombol selama request berlangsung dan jangan melakukan retry otomatis ketika hasil request tidak diketahui. `PUT` memakai bentuk input sama tetapi mengganti keseluruhan kasus ANALYST; field opsional yang dihilangkan menjadi null/[], termasuk referensi. Muat detail dan isi form lengkap sebelum menyimpan. PUT mempertahankan createdAt dan memperbarui updatedAt, tidak membuat ID yang belum ada, serta tidak memakai version lock pada demo satu analis. Penggantian terakhir yang tersimpan berlaku.
 
+Referensi UUID dibandingkan sebagai identitas, bukan sebagai string mentah: `[id, id]` dan `[id, id.toUpperCase()]` sama-sama ditolak `VALIDATION_ERROR` pada `referenceCaseIds[1]` dengan code `DUPLICATE`. UUID uppercase tunggal tetap diterima dan dikembalikan dalam bentuk kanonis. Request PUT yang gagal validasi tidak mengubah satu pun field kasus sebelumnya.
+
 ## Impor CSV
 
 Part `file` berisi CSV UTF-8, maksimum 20 MiB (20.971.520 byte), maksimum 5.000 record data. Total request multipart maksimum 21 MiB. Header wajib: `Complaint ID`, `Product`, `Issue`, `Consumer complaint narrative`. Parser mendukung BOM, quoted comma, dan newline dalam field. Metadata wajib dikirim sebagai part JSON dengan `Content-Type: application/json`:
@@ -90,9 +94,11 @@ Part `file` berisi CSV UTF-8, maksimum 20 MiB (20.971.520 byte), maksimum 5.000 
 }
 ```
 
-URL harus HTTPS dan hanya dicatat. Nama sumber berupa nama CSV tanpa path lokal. PeriodEnd tidak boleh lebih awal dari periodStart. ID CFPB harus digit bilangan bulat positif; subkategori kosong dibolehkan. Untuk kolom CSV `Date received`, importer menerima tanggal ISO `YYYY-MM-DD` atau format arsip `MM/DD/YYYY`; hasil API selalu ISO. Jika tanggal tersedia, harus berada dalam periode metadata. Narasi mentah dipertahankan, kategori dinormalisasi; field opsional blank menjadi null. Panjang field mengikuti batas API. Record baru di luar katalog lama dibolehkan dan memperluas katalog.
+URL harus HTTPS dan hanya dicatat. Nama sumber berupa nama CSV tanpa path lokal. Setelah trim, nilai `.`, `..`, nama yang mengandung `/` atau `\`, dan bentuk drive-relative seperti `C:x` ditolak `VALIDATION_ERROR` pada `metadata.sourceFileName` dengan code `INVALID_FORMAT`; ekstensi tidak diwajibkan. PeriodEnd tidak boleh lebih awal dari periodStart. ID CFPB harus digit bilangan bulat positif; subkategori kosong dibolehkan. Untuk kolom CSV `Date received`, importer menerima tanggal ISO `YYYY-MM-DD` atau format arsip `MM/DD/YYYY`; hasil API selalu ISO. Jika tanggal tersedia, harus berada dalam periode metadata. Narasi mentah dipertahankan, kategori dinormalisasi; field opsional blank menjadi null. Panjang field mengikuti batas API. Record baru di luar katalog lama dibolehkan dan memperluas katalog.
 
-Impor sinkron. CSV rusak, header wajib hilang, file hanya header, atau batas file/record terlampaui membatalkan semua penulisan. Untuk file yang strukturnya valid, record invalid ditolak satu per satu; ID valid yang sudah ada dilewati. Klasifikasi record berurutan: validasi dahulu, baru pemeriksaan duplikat. Bila sebuah ID muncul beberapa kali, record valid pertama yang diterima dipertahankan. Tidak ada overwrite kasus lama.
+U+0000 dan lone UTF-16 surrogate pada metadata adalah 400 `VALIDATION_ERROR` tanpa penulisan kasus maupun batch. Pada CSV yang strukturnya valid, karakter tersebut pada field record menjadi error baris `INVALID_FORMAT`; record valid lain dalam file yang sama tetap disimpan. Emoji dan pasangan surrogate valid, tab, serta newline tetap dipertahankan.
+
+Impor sinkron. CSV rusak, header wajib hilang, file hanya header (termasuk header yang diikuti baris kosong saja), atau batas file/record terlampaui membatalkan semua penulisan. Baris fisik yang benar-benar kosong di luar quoted field diabaikan dan tidak menambah `processed`/`rejected`; baris berisi spasi, delimiter, atau quoted empty field tetap divalidasi sebagai record. Newline di dalam quoted field dipertahankan dan tidak menambah nomor record. Untuk file yang strukturnya valid, record invalid ditolak satu per satu; ID valid yang sudah ada dilewati. Klasifikasi record berurutan: validasi dahulu, baru pemeriksaan duplikat. Bila sebuah ID muncul beberapa kali, record valid pertama yang diterima dipertahankan. Tidak ada overwrite kasus lama.
 
 Laporan selalu memiliki `processed = imported + duplicates + rejected`, maksimal 20 contoh error (satu error pertama per record), dan `errorsTruncated = rejected > 20`. `recordNumber` berbasis 1 setelah header, bukan nomor baris fisik. Frontend perlu menampilkan jumlah rejected meski status HTTP sukses. File dengan semua record invalid tetap menghasilkan laporan batch baru 201; tidak menambah kasus.
 
@@ -188,4 +194,4 @@ npm run test:contract
 npm run verify
 ```
 
-`api:check` membandingkan pohon TypeScript hasil generation dengan yang di-commit. `test:contract` menjalankan packaged jar dengan database sementara, memvalidasi setiap respons terhadap skema operasi/status di `docs/api/openapi.json`, lalu menguji adapter client. `verify` menjalankan seluruh rangkaian termasuk 267 tes backend. Pengujian ini tidak mengunduh arsip CFPB.
+`api:check` membandingkan pohon TypeScript hasil generation dengan yang di-commit. `test:contract` menjalankan packaged jar dengan database sementara, memvalidasi setiap respons terhadap skema operasi/status di `docs/api/openapi.json`, lalu menguji adapter client. `verify` menjalankan seluruh rangkaian termasuk 294 tes backend. Pengujian ini tidak mengunduh arsip CFPB.

@@ -104,7 +104,7 @@ export class ImportsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Sinkron, bukan job background. file maksimal 20 MiB, request multipart maksimal 21 MiB, maksimal 5.000 record. Validasi file sebelum transaksi; error file membatalkan semua penulisan. Error per-record dilaporkan pada respons sukses. Replay dikenali dari SHA-256 byte CSV beserta seluruh nilai metadata setelah trim. Duplicate ID dalam file atau database dilewati setelah validasi record. CSV sumber mendukung BOM, kutipan dan newline. Content-Type file text/csv atau application/octet-stream; metadata harus application/json.
+     * Sinkron, bukan job background. file maksimal 20 MiB, request multipart maksimal 21 MiB, maksimal 5.000 record. Validasi file sebelum transaksi; error file membatalkan semua penulisan. Error per-record dilaporkan pada respons sukses. Replay dikenali dari SHA-256 byte CSV beserta seluruh nilai metadata setelah trim. Duplicate ID dalam file atau database dilewati setelah validasi record. CSV sumber mendukung BOM, kutipan dan newline; baris fisik yang benar-benar kosong di luar quoted field diabaikan, sedangkan baris berisi spasi, delimiter, atau quoted empty field tetap divalidasi sebagai record. Teks dengan U+0000 atau lone UTF-16 surrogate menjadi row-level INVALID_FORMAT; metadata dengan karakter tersebut adalah 400 VALIDATION_ERROR tanpa penulisan. Content-Type file text/csv atau application/octet-stream; metadata harus application/json.
      * Mengimpor CSV CFPB dengan metadata sumber
      */
     async importCfpbRaw(requestParameters: ImportCfpbRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ImportReport>> {
@@ -115,7 +115,7 @@ export class ImportsApi extends runtime.BaseAPI {
     }
 
     /**
-     * Sinkron, bukan job background. file maksimal 20 MiB, request multipart maksimal 21 MiB, maksimal 5.000 record. Validasi file sebelum transaksi; error file membatalkan semua penulisan. Error per-record dilaporkan pada respons sukses. Replay dikenali dari SHA-256 byte CSV beserta seluruh nilai metadata setelah trim. Duplicate ID dalam file atau database dilewati setelah validasi record. CSV sumber mendukung BOM, kutipan dan newline. Content-Type file text/csv atau application/octet-stream; metadata harus application/json.
+     * Sinkron, bukan job background. file maksimal 20 MiB, request multipart maksimal 21 MiB, maksimal 5.000 record. Validasi file sebelum transaksi; error file membatalkan semua penulisan. Error per-record dilaporkan pada respons sukses. Replay dikenali dari SHA-256 byte CSV beserta seluruh nilai metadata setelah trim. Duplicate ID dalam file atau database dilewati setelah validasi record. CSV sumber mendukung BOM, kutipan dan newline; baris fisik yang benar-benar kosong di luar quoted field diabaikan, sedangkan baris berisi spasi, delimiter, atau quoted empty field tetap divalidasi sebagai record. Teks dengan U+0000 atau lone UTF-16 surrogate menjadi row-level INVALID_FORMAT; metadata dengan karakter tersebut adalah 400 VALIDATION_ERROR tanpa penulisan. Content-Type file text/csv atau application/octet-stream; metadata harus application/json.
      * Mengimpor CSV CFPB dengan metadata sumber
      */
     async importCfpb(requestParameters: ImportCfpbRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ImportReport> {

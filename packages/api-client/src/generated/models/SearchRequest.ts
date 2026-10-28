@@ -14,7 +14,7 @@
 
 import { mapValues } from '../runtime.js';
 /**
- * Subproduk/submasalah boleh dihilangkan atau null; string blank dinormalisasi ke null. Properti lain ditolak. Limit null ditolak.
+ * Subproduk/submasalah boleh dihilangkan atau null; string blank dinormalisasi ke null. Properti lain ditolak. Limit null ditolak. Teks dengan U+0000 atau lone UTF-16 surrogate ditolak VALIDATION_ERROR/INVALID_FORMAT; emoji/pasangan surrogate valid, tab, dan newline tetap mengikuti aturan normalisasi field.
  * @export
  * @interface SearchRequest
  */
@@ -36,7 +36,7 @@ export interface SearchRequest {
      */
     subIssue?: string | null;
     /**
-     * Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak. Mode phrases menerapkan kamus frasa domain hanya pada tokenisasi; narasi asli tidak diubah.
+     * Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak. U+0000 dan lone UTF-16 surrogate ditolak INVALID_FORMAT; emoji/pasangan surrogate valid, tab, dan newline dipertahankan. Mode phrases menerapkan kamus frasa domain hanya pada tokenisasi; narasi asli tidak diubah.
      */
     narrative: string;
     /**

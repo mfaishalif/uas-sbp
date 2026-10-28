@@ -29,7 +29,7 @@ import {
 } from './ImportMetadata.js';
 
 /**
- * processed=imported+duplicates+rejected. Satu error pertama per record ditolak; maksimal 20 contoh. errorsTruncated iff rejected>20. HTTP 200 replay mengembalikan batch dan hitungan asli, replayed=true; hitungan bukan tambahan baru. Header-only CSV ditolak INVALID_CSV. File dengan semua record invalid tetap membuat laporan batch 201 dengan imported=0.
+ * processed=imported+duplicates+rejected. Baris fisik kosong di luar quoted field tidak dihitung sebagai record. Satu error pertama per record ditolak; maksimal 20 contoh. errorsTruncated iff rejected>20. HTTP 200 replay mengembalikan batch dan hitungan asli, replayed=true; hitungan bukan tambahan baru. Header-only atau header-plus-blank-lines CSV ditolak INVALID_CSV. File dengan semua record invalid tetap membuat laporan batch 201 dengan imported=0.
  * @export
  * @interface ImportReport
  */
