@@ -1,7 +1,7 @@
 
 # SearchRequest
 
-Subproduk/submasalah boleh dihilangkan atau null; string blank dinormalisasi ke null. Properti lain ditolak. Limit null ditolak.
+Subproduk/submasalah boleh dihilangkan atau null; string blank dinormalisasi ke null. Properti lain ditolak. Limit null ditolak. Teks dengan U+0000 atau lone UTF-16 surrogate ditolak VALIDATION_ERROR/INVALID_FORMAT; emoji/pasangan surrogate valid, tab, dan newline tetap mengikuti aturan normalisasi field.
 
 ## Properties
 

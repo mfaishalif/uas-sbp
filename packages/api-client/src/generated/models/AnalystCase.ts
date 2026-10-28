@@ -72,7 +72,7 @@ export interface AnalystCase {
      */
     updatedAt: string;
     /**
-     * Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak.
+     * Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak. U+0000 dan lone UTF-16 surrogate ditolak INVALID_FORMAT; emoji/pasangan surrogate valid, tab, dan newline dipertahankan.
      */
     narrative: string;
     /**

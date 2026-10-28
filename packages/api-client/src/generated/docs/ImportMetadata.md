@@ -1,7 +1,7 @@
 
 # ImportMetadata
 
-periodEnd harus >= periodStart. Semua field wajib.
+periodEnd harus >= periodStart. Semua field wajib. Teks dengan U+0000 atau lone UTF-16 surrogate ditolak VALIDATION_ERROR/INVALID_FORMAT sebelum import; emoji/pasangan surrogate valid dipertahankan.
 
 ## Properties
 

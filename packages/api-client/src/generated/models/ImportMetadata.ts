@@ -14,7 +14,7 @@
 
 import { mapValues } from '../runtime.js';
 /**
- * periodEnd harus >= periodStart. Semua field wajib.
+ * periodEnd harus >= periodStart. Semua field wajib. Teks dengan U+0000 atau lone UTF-16 surrogate ditolak VALIDATION_ERROR/INVALID_FORMAT sebelum import; emoji/pasangan surrogate valid dipertahankan.
  * @export
  * @interface ImportMetadata
  */
@@ -24,7 +24,7 @@ export interface ImportMetadata {
      */
     archiveUrl: string;
     /**
-     * Nama CSV sumber untuk provenance; tanpa path lokal.
+     * Nama CSV sumber untuk provenance. Setelah trim, nilai '.', '..', yang mengandung '/' atau '\\', atau berawalan drive [A-Za-z]: ditolak INVALID_FORMAT. Ekstensi tidak diwajibkan. U+0000 dan lone UTF-16 surrogate juga ditolak.
      */
     sourceFileName: string;
     /**

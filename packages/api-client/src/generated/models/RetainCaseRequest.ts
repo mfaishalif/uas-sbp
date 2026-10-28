@@ -14,7 +14,7 @@
 
 import { mapValues } from '../runtime.js';
 /**
- * POST membuat kasus ANALYST. PUT mengganti lengkap: field opsional yang dihilangkan dihapus menjadi null atau []; bukan PATCH. referenceCaseIds null ditolak. Semua referensi wajib ada dan bukan ID kasus itu sendiri. source, id, provenance, timestamps tidak boleh dikirim.
+ * POST membuat kasus ANALYST. PUT mengganti lengkap: field opsional yang dihilangkan dihapus menjadi null atau []; bukan PATCH. referenceCaseIds null ditolak. Duplikat UUID identik maupun yang hanya berbeda kapitalisasi ditolak DUPLICATE; UUID uppercase tunggal tetap diterima. Semua referensi wajib ada dan bukan ID kasus itu sendiri. Teks dengan U+0000 atau lone UTF-16 surrogate ditolak VALIDATION_ERROR/INVALID_FORMAT sebelum penulisan. source, id, provenance, timestamps tidak boleh dikirim.
  * @export
  * @interface RetainCaseRequest
  */
@@ -36,7 +36,7 @@ export interface RetainCaseRequest {
      */
     subIssue?: string | null;
     /**
-     * Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak.
+     * Narasi Inggris mengikuti dataset. Setelah trim/tokenisasi wajib memiliki token bermakna; input hanya stopword/angka/redaksi ditolak. U+0000 dan lone UTF-16 surrogate ditolak INVALID_FORMAT; emoji/pasangan surrogate valid, tab, dan newline dipertahankan.
      */
     narrative: string;
     /**
