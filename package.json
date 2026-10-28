@@ -16,6 +16,7 @@
     "client:typecheck": "tsc -p packages/api-client/tsconfig.json",
     "client:test": "tsc -p packages/api-client/tsconfig.test.json && node --test packages/api-client/dist-test/test/*.test.js",
     "test:generation": "node --test tools/openapi/generation.test.mjs",
+    "test:tooling": "node --test tools/exploratory-tooling.test.mjs",
     "test:contract": "npm run client:build && tsc -p tests/contract/tsconfig.json && node --test tests/contract/dist/client.test.js tests/contract/api.test.mjs",
     "eval:split": "cd backend && ./mvnw -q -Pevaluation exec:java -Dexec.args=\"write-split\"",
     "eval:export": "cd backend && ./mvnw -q -Pevaluation exec:java -Dexec.args=\"export-candidates --part calibration\"",
@@ -26,7 +27,7 @@
     "eval:compare": "cd backend && ./mvnw -q -Pevaluation exec:java -Dexec.args=\"compare\"",
     "backend:test": "cd backend && ./mvnw test",
     "backend:package": "cd backend && ./mvnw -DskipTests package",
-    "verify": "npm run api:validate && npm run api:check && npm run test:generation && npm run client:typecheck && npm run client:test && npm run backend:test && npm run backend:package && npm run test:contract"
+    "verify": "npm run api:validate && npm run api:check && npm run test:generation && npm run test:tooling && npm run client:typecheck && npm run client:test && npm run backend:test && npm run backend:package && npm run test:contract"
   },
   "devDependencies": {
     "@types/node": "24.19.2",

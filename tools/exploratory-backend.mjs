@@ -3,6 +3,7 @@
 import assert from 'node:assert/strict';
 import { readFile, writeFile } from 'node:fs/promises';
 import { assertResponse, assertErrorSchema } from '../tests/contract/schema.mjs';
+import { evaluationRows } from './evaluation-fixtures.mjs';
 
 const base = process.argv[2] ?? 'http://127.0.0.1:8080';
 const output = process.argv[3] ?? '/tmp/finresolve-exploratory.json';
@@ -199,26 +200,23 @@ await check('search accepts limit boundaries and 50000-character narrative', asy
     scoreInvariants(expect(await post('/api/search', { ...search, narrative: 'transfer '.repeat(5556).slice(0, 50000) }, 'searchCases'), 200));
 });
 
-// The committed evaluation CSV contains one record per line; honor quoted commas/quotes.
-function csvFields(line) {
-    const fields = []; let field = ''; let quoted = false;
-    for (let i = 0; i < line.length; i++) {
-        const c = line[i];
-        if (c === '"' && line[i + 1] === '"' && quoted) { field += '"'; i++; }
-        else if (c === '"') quoted = !quoted;
-        else if (c === ',' && !quoted) { fields.push(field); field = ''; }
-        else field += c;
-    }
-    fields.push(field); return fields;
-}
+// Parse the committed evaluation CSV by header so fixture columns cannot shift silently.
 context.evaluation = [];
-const queries = (await readFile(new URL('../docs/evaluation/queries.csv', import.meta.url), 'utf8')).trim().split(/\r?\n/).slice(1);
-for (const line of queries) {
-    const [queryId, product, subProduct, issue, subIssue, narrative, scenario] = csvFields(line);
+const queries = evaluationRows(await readFile(new URL('../docs/evaluation/queries.csv', import.meta.url), 'utf8'));
+for (const { queryId, kind, product, subProduct, issue, subIssue, narrative, scenario } of queries) {
     await check(`evaluation query ${queryId}: ${scenario}`, async () => {
+        const before = expect(await request('/api/cases', {}, 'listCases'), 200).totalElements;
         const response = await post('/api/search', { product, subProduct: subProduct || null, issue, subIssue: subIssue || null, narrative }, 'searchCases');
+        if (queryId === 'Q23') {
+            expect(response, 400, 'INVALID_CATEGORY');
+            assert.ok(response.data.fieldErrors.some((error) => error.field === 'issue'), 'Q23 must report the issue field');
+            const after = expect(await request('/api/cases', {}, 'listCases'), 200).totalElements;
+            assert.equal(after, before, 'Q23 negative test must not mutate data');
+            const observation = { queryId, kind, scenario, status: response.status, code: response.data.code, fieldErrors: response.data.fieldErrors, ms: response.ms, negative: true };
+            context.evaluation.push(observation); return observation;
+        }
         const data = expect(response, 200); scoreInvariants(data); assert.equal(data.corpusSize, 500);
-        const observation = { queryId, scenario, status: data.status, returnedCount: data.returnedCount, ms: response.ms, topIds: data.results.map(x => x.case.id), topScores: data.results.map(x => x.score) };
+        const observation = { queryId, kind, scenario, status: data.status, returnedCount: data.returnedCount, ms: response.ms, topIds: data.results.map(x => x.case.id), topScores: data.results.map(x => x.score) };
         context.evaluation.push(observation); return observation;
     });
 }
