@@ -1,0 +1,2388 @@
+{
+  "session": "capacity-race",
+  "startedAt": "2026-10-28T02:14:30.950Z",
+  "completedAt": "2026-10-28T02:14:33.173Z",
+  "baseUrl": "http://127.0.0.1:19103",
+  "dbPath": "/tmp/finresolve-retest-capacity.db",
+  "capacity": 5000,
+  "summary": {
+    "scenarios": 8,
+    "passed": 8,
+    "failed": 0,
+    "blocked": 0,
+    "observations": 0,
+    "httpRequests": 11
+  },
+  "results": [
+    {
+      "id": "CONC-01",
+      "hypothesis": "A 4,998-row import is accepted atomically and leaves the database at 4,998 cases.",
+      "result": "PASS",
+      "durationMs": 1330,
+      "detail": {
+        "batchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+        "counts": {
+          "cases": 4998,
+          "batches": 1
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "capacity.csv",
+                "type": "text/csv",
+                "size": 1008615
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 138
+              }
+            ]
+          },
+          "status": 201,
+          "ms": 1303,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+            "replayed": false,
+            "metadata": {
+              "archiveUrl": "https://example.com/capacity.zip",
+              "sourceFileName": "capacity-4998.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3",
+            "processed": 4998,
+            "imported": 4998,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T02:14:31.40153456Z"
+          },
+          "bytes": 438
+        }
+      ]
+    },
+    {
+      "id": "CONC-02",
+      "hypothesis": "A normal retention takes the 4,999th slot before the race.",
+      "result": "PASS",
+      "durationMs": 139,
+      "detail": {
+        "id": "de7626fc-05e0-4adf-8d08-6e25f4ff71a1",
+        "counts": {
+          "cases": 4999,
+          "batches": 1
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 139,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/de7626fc-05e0-4adf-8d08-6e25f4ff71a1",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "de7626fc-05e0-4adf-8d08-6e25f4ff71a1",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": "Deposits and withdrawals",
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:32.391748074Z",
+            "updatedAt": "2026-10-28T02:14:32.391748074Z",
+            "narrative": "Retention before capacity race.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Pre-race fixture.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 544
+        }
+      ]
+    },
+    {
+      "id": "CONC-03",
+      "hypothesis": "Concurrent import and retention racing for the 5,000th slot produce exactly one winner and never exceed 5,000.",
+      "result": "PASS",
+      "durationMs": 36,
+      "detail": {
+        "statuses": {
+          "import": 201,
+          "retention": 409
+        },
+        "winner": "import",
+        "loserCode": "KNOWLEDGE_BASE_LIMIT_EXCEEDED",
+        "raceRow": 1,
+        "raceBatch": 1,
+        "counts": {
+          "cases": 5000,
+          "batches": 2
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "capacity.csv",
+                "type": "text/csv",
+                "size": 317
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 138
+              }
+            ]
+          },
+          "status": 201,
+          "ms": 21,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "442a7bb7-6566-4b23-8807-e8c1e49ceb2b",
+            "replayed": false,
+            "metadata": {
+              "archiveUrl": "https://example.com/capacity.zip",
+              "sourceFileName": "capacity-race.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "7523f879cac3238c363c17b567ff92a52cf3218887fe9efb123add3717dadfb8",
+            "processed": 1,
+            "imported": 1,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T02:14:32.447647035Z"
+          },
+          "bytes": 433
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 409,
+          "ms": 34,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "KNOWLEDGE_BASE_LIMIT_EXCEEDED",
+            "message": "Basis kasus mencapai batas 5.000; retensi tidak dapat disimpan.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T02:14:32.460974364Z"
+          },
+          "bytes": 178
+        }
+      ]
+    },
+    {
+      "id": "CONC-04",
+      "hypothesis": "At 5,000, new import and new retention are both rejected with 409 and do not add rows or batches.",
+      "result": "PASS",
+      "durationMs": 29,
+      "detail": {
+        "statuses": [
+          409,
+          409
+        ],
+        "counts": {
+          "cases": 5000,
+          "batches": 2
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "capacity.csv",
+                "type": "text/csv",
+                "size": 311
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 138
+              }
+            ]
+          },
+          "status": 409,
+          "ms": 16,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "KNOWLEDGE_BASE_LIMIT_EXCEEDED",
+            "message": "Basis kasus mencapai batas 5.000; impor dibatalkan seluruhnya.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T02:14:32.483386191Z"
+          },
+          "bytes": 177
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 409,
+          "ms": 12,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "KNOWLEDGE_BASE_LIMIT_EXCEEDED",
+            "message": "Basis kasus mencapai batas 5.000; retensi tidak dapat disimpan.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T02:14:32.49578097Z"
+          },
+          "bytes": 177
+        }
+      ]
+    },
+    {
+      "id": "CONC-05",
+      "hypothesis": "Replaying the original 4,998-row batch at 5,000 returns 200 and does not add cases.",
+      "result": "PASS",
+      "durationMs": 131,
+      "detail": {
+        "replayed": true,
+        "batchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "capacity.csv",
+                "type": "text/csv",
+                "size": 1008615
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 138
+              }
+            ]
+          },
+          "status": 200,
+          "ms": 129,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+            "replayed": true,
+            "metadata": {
+              "archiveUrl": "https://example.com/capacity.zip",
+              "sourceFileName": "capacity-4998.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3",
+            "processed": 4998,
+            "imported": 4998,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T02:14:31.40153456Z"
+          },
+          "bytes": 437
+        }
+      ]
+    },
+    {
+      "id": "CONC-06",
+      "hypothesis": "A duplicate-only import at 5,000 is accepted as a report batch and adds no cases.",
+      "result": "PASS",
+      "durationMs": 109,
+      "detail": {
+        "counts": {
+          "cases": 5000,
+          "batches": 3
+        },
+        "imported": 0,
+        "duplicates": 4998
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "capacity.csv",
+                "type": "text/csv",
+                "size": 1008615
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 138
+              }
+            ]
+          },
+          "status": 201,
+          "ms": 104,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "3b8c8329-ae0e-4489-8321-3ebce0f45621",
+            "replayed": false,
+            "metadata": {
+              "archiveUrl": "https://example.com/capacity.zip",
+              "sourceFileName": "capacity-copy.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3",
+            "processed": 4998,
+            "imported": 0,
+            "duplicates": 4998,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T02:14:32.727086034Z"
+          },
+          "bytes": 439
+        }
+      ]
+    },
+    {
+      "id": "CONC-07",
+      "hypothesis": "A full PUT of an existing analyst case still works at 5,000 and preserves createdAt.",
+      "result": "PASS",
+      "durationMs": 64,
+      "detail": {
+        "id": "de7626fc-05e0-4adf-8d08-6e25f4ff71a1",
+        "updatedAt": "2026-10-28T02:14:32.795041555Z",
+        "counts": {
+          "cases": 5000,
+          "batches": 3
+        }
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases/de7626fc-05e0-4adf-8d08-6e25f4ff71a1",
+          "status": 200,
+          "ms": 26,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "de7626fc-05e0-4adf-8d08-6e25f4ff71a1",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": "Deposits and withdrawals",
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:32.391748074Z",
+            "updatedAt": "2026-10-28T02:14:32.391748074Z",
+            "narrative": "Retention before capacity race.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Pre-race fixture.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 544
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/de7626fc-05e0-4adf-8d08-6e25f4ff71a1",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 37,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "de7626fc-05e0-4adf-8d08-6e25f4ff71a1",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": "Deposits and withdrawals",
+            "receivedDate": null,
+            "company": "Updated at capacity",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T02:14:32.391748074Z",
+            "updatedAt": "2026-10-28T02:14:32.795041555Z",
+            "narrative": "Retention before capacity race.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "PUT at capacity.",
+              "outcomeAssessment": "RESOLVED",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 561
+        }
+      ]
+    },
+    {
+      "id": "CONC-08",
+      "hypothesis": "Search at 5,000 reports corpusSize 5000 and stays within the requested limit.",
+      "result": "PASS",
+      "durationMs": 366,
+      "detail": {
+        "status": "MATCHES",
+        "returnedCount": 20,
+        "corpusSize": 5000
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 366,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "status": "MATCHES",
+            "message": "Ditemukan preseden yang memenuhi ambang awal.",
+            "results": [
+              {
+                "score": 1,
+                "categoryScore": 1,
+                "textScore": 1,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.35,
+                    "contribution": 0.35
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": "Checking account",
+                    "caseValue": "Checking account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0.15,
+                    "contribution": 0.15
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.35,
+                    "contribution": 0.35
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": "Deposits and withdrawals",
+                    "caseValue": "Deposits and withdrawals",
+                    "status": "MATCH",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0.15,
+                    "contribution": 0.15
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "synthetic",
+                    "contribution": 0.2000639948825425
+                  },
+                  {
+                    "term": "about",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "capacity",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "narrative",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "transfer",
+                    "contribution": 0.19998400127936444
+                  }
+                ],
+                "case": {
+                  "source": "CFPB",
+                  "id": "000ce0c4-8d18-4a6d-a733-d66e5f43801b",
+                  "product": "Checking or savings account",
+                  "subProduct": "Checking account",
+                  "issue": "Managing an account",
+                  "subIssue": "Deposits and withdrawals",
+                  "receivedDate": "2024-11-12",
+                  "company": "Example Bank",
+                  "companyResponse": "Closed with explanation",
+                  "createdAt": "2026-10-28T02:14:31.40153456Z",
+                  "updatedAt": "2026-10-28T02:14:31.40153456Z",
+                  "narrative": "Synthetic capacity narrative 2898 about a transfer.",
+                  "provenance": {
+                    "complaintId": "950002898",
+                    "importBatchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+                    "archiveUrl": "https://example.com/capacity.zip",
+                    "sourceFileName": "capacity-4998.csv",
+                    "periodStart": "2024-11-01",
+                    "periodEnd": "2024-12-31",
+                    "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3"
+                  },
+                  "analystNotes": null,
+                  "referenceCaseIds": []
+                }
+              },
+              {
+                "score": 1,
+                "categoryScore": 1,
+                "textScore": 1,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.35,
+                    "contribution": 0.35
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": "Checking account",
+                    "caseValue": "Checking account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0.15,
+                    "contribution": 0.15
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.35,
+                    "contribution": 0.35
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": "Deposits and withdrawals",
+                    "caseValue": "Deposits and withdrawals",
+                    "status": "MATCH",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0.15,
+                    "contribution": 0.15
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "synthetic",
+                    "contribution": 0.2000639948825425
+                  },
+                  {
+                    "term": "about",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "capacity",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "narrative",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "transfer",
+                    "contribution": 0.19998400127936444
+                  }
+                ],
+                "case": {
+                  "source": "CFPB",
+                  "id": "0011e141-2977-4c3b-aa06-60f282d9b4e0",
+                  "product": "Checking or savings account",
+                  "subProduct": "Checking account",
+                  "issue": "Managing an account",
+                  "subIssue": "Deposits and withdrawals",
+                  "receivedDate": "2024-11-12",
+                  "company": "Example Bank",
+                  "companyResponse": "Closed with explanation",
+                  "createdAt": "2026-10-28T02:14:31.40153456Z",
+                  "updatedAt": "2026-10-28T02:14:31.40153456Z",
+                  "narrative": "Synthetic capacity narrative 1647 about a transfer.",
+                  "provenance": {
+                    "complaintId": "950001647",
+                    "importBatchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+                    "archiveUrl": "https://example.com/capacity.zip",
+                    "sourceFileName": "capacity-4998.csv",
+                    "periodStart": "2024-11-01",
+                    "periodEnd": "2024-12-31",
+                    "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3"
+                  },
+                  "analystNotes": null,
+                  "referenceCaseIds": []
+                }
+              },
+              {
+                "score": 1,
+                "categoryScore": 1,
+                "textScore": 1,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.35,
+                    "contribution": 0.35
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": "Checking account",
+                    "caseValue": "Checking account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0.15,
+                    "contribution": 0.15
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.35,
+                    "contribution": 0.35
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": "Deposits and withdrawals",
+                    "caseValue": "Deposits and withdrawals",
+                    "status": "MATCH",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0.15,
+                    "contribution": 0.15
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "synthetic",
+                    "contribution": 0.2000639948825425
+                  },
+                  {
+                    "term": "about",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "capacity",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "narrative",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "transfer",
+                    "contribution": 0.19998400127936444
+                  }
+                ],
+                "case": {
+                  "source": "CFPB",
+                  "id": "002842e1-50d1-416e-931b-51fe9d3c16b5",
+                  "product": "Checking or savings account",
+                  "subProduct": "Checking account",
+                  "issue": "Managing an account",
+                  "subIssue": "Deposits and withdrawals",
+                  "receivedDate": "2024-11-12",
+                  "company": "Example Bank",
+                  "companyResponse": "Closed with explanation",
+                  "createdAt": "2026-10-28T02:14:31.40153456Z",
+                  "updatedAt": "2026-10-28T02:14:31.40153456Z",
+                  "narrative": "Synthetic capacity narrative 178 about a transfer.",
+                  "provenance": {
+                    "complaintId": "950000178",
+                    "importBatchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+                    "archiveUrl": "https://example.com/capacity.zip",
+                    "sourceFileName": "capacity-4998.csv",
+                    "periodStart": "2024-11-01",
+                    "periodEnd": "2024-12-31",
+                    "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3"
+                  },
+                  "analystNotes": null,
+                  "referenceCaseIds": []
+                }
+              },
+              {
+                "score": 1,
+                "categoryScore": 1,
+                "textScore": 1,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.35,
+                    "contribution": 0.35
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": "Checking account",
+                    "caseValue": "Checking account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0.15,
+                    "contribution": 0.15
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.35,
+                    "contribution": 0.35
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": "Deposits and withdrawals",
+                    "caseValue": "Deposits and withdrawals",
+                    "status": "MATCH",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0.15,
+                    "contribution": 0.15
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "synthetic",
+                    "contribution": 0.2000639948825425
+                  },
+                  {
+                    "term": "about",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "capacity",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "narrative",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "transfer",
+                    "contribution": 0.19998400127936444
+                  }
+                ],
+                "case": {
+                  "source": "CFPB",
+                  "id": "00379c6b-9440-4404-9307-0629916cb459",
+                  "product": "Checking or savings account",
+                  "subProduct": "Checking account",
+                  "issue": "Managing an account",
+                  "subIssue": "Deposits and withdrawals",
+                  "receivedDate": "2024-11-12",
+                  "company": "Example Bank",
+                  "companyResponse": "Closed with explanation",
+                  "createdAt": "2026-10-28T02:14:31.40153456Z",
+                  "updatedAt": "2026-10-28T02:14:31.40153456Z",
+                  "narrative": "Synthetic capacity narrative 449 about a transfer.",
+                  "provenance": {
+                    "complaintId": "950000449",
+                    "importBatchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+                    "archiveUrl": "https://example.com/capacity.zip",
+                    "sourceFileName": "capacity-4998.csv",
+                    "periodStart": "2024-11-01",
+                    "periodEnd": "2024-12-31",
+                    "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3"
+                  },
+                  "analystNotes": null,
+                  "referenceCaseIds": []
+                }
+              },
+              {
+                "score": 1,
+                "categoryScore": 1,
+                "textScore": 1,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.35,
+                    "contribution": 0.35
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": "Checking account",
+                    "caseValue": "Checking account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0.15,
+                    "contribution": 0.15
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.35,
+                    "contribution": 0.35
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": "Deposits and withdrawals",
+                    "caseValue": "Deposits and withdrawals",
+                    "status": "MATCH",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0.15,
+                    "contribution": 0.15
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "synthetic",
+                    "contribution": 0.2000639948825425
+                  },
+                  {
+                    "term": "about",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "capacity",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "narrative",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "transfer",
+                    "contribution": 0.19998400127936444
+                  }
+                ],
+                "case": {
+                  "source": "CFPB",
+                  "id": "004dbae8-84a9-45b3-b0f3-ad0fa372a63c",
+                  "product": "Checking or savings account",
+                  "subProduct": "Checking account",
+                  "issue": "Managing an account",
+                  "subIssue": "Deposits and withdrawals",
+                  "receivedDate": "2024-11-12",
+                  "company": "Example Bank",
+                  "companyResponse": "Closed with explanation",
+                  "createdAt": "2026-10-28T02:14:31.40153456Z",
+                  "updatedAt": "2026-10-28T02:14:31.40153456Z",
+                  "narrative": "Synthetic capacity narrative 556 about a transfer.",
+                  "provenance": {
+                    "complaintId": "950000556",
+                    "importBatchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+                    "archiveUrl": "https://example.com/capacity.zip",
+                    "sourceFileName": "capacity-4998.csv",
+                    "periodStart": "2024-11-01",
+                    "periodEnd": "2024-12-31",
+                    "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3"
+                  },
+                  "analystNotes": null,
+                  "referenceCaseIds": []
+                }
+              },
+              {
+                "score": 1,
+                "categoryScore": 1,
+                "textScore": 1,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.35,
+                    "contribution": 0.35
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": "Checking account",
+                    "caseValue": "Checking account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0.15,
+                    "contribution": 0.15
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.35,
+                    "contribution": 0.35
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": "Deposits and withdrawals",
+                    "caseValue": "Deposits and withdrawals",
+                    "status": "MATCH",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0.15,
+                    "contribution": 0.15
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "synthetic",
+                    "contribution": 0.2000639948825425
+                  },
+                  {
+                    "term": "about",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "capacity",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "narrative",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "transfer",
+                    "contribution": 0.19998400127936444
+                  }
+                ],
+                "case": {
+                  "source": "CFPB",
+                  "id": "0053d813-9f7c-43bf-8507-3d2a05c2f8be",
+                  "product": "Checking or savings account",
+                  "subProduct": "Checking account",
+                  "issue": "Managing an account",
+                  "subIssue": "Deposits and withdrawals",
+                  "receivedDate": "2024-11-12",
+                  "company": "Example Bank",
+                  "companyResponse": "Closed with explanation",
+                  "createdAt": "2026-10-28T02:14:31.40153456Z",
+                  "updatedAt": "2026-10-28T02:14:31.40153456Z",
+                  "narrative": "Synthetic capacity narrative 4969 about a transfer.",
+                  "provenance": {
+                    "complaintId": "950004969",
+                    "importBatchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+                    "archiveUrl": "https://example.com/capacity.zip",
+                    "sourceFileName": "capacity-4998.csv",
+                    "periodStart": "2024-11-01",
+                    "periodEnd": "2024-12-31",
+                    "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3"
+                  },
+                  "analystNotes": null,
+                  "referenceCaseIds": []
+                }
+              },
+              {
+                "score": 1,
+                "categoryScore": 1,
+                "textScore": 1,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.35,
+                    "contribution": 0.35
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": "Checking account",
+                    "caseValue": "Checking account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0.15,
+                    "contribution": 0.15
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.35,
+                    "contribution": 0.35
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": "Deposits and withdrawals",
+                    "caseValue": "Deposits and withdrawals",
+                    "status": "MATCH",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0.15,
+                    "contribution": 0.15
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "synthetic",
+                    "contribution": 0.2000639948825425
+                  },
+                  {
+                    "term": "about",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "capacity",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "narrative",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "transfer",
+                    "contribution": 0.19998400127936444
+                  }
+                ],
+                "case": {
+                  "source": "CFPB",
+                  "id": "006181b9-37f3-4d69-9bfe-17a5b440910b",
+                  "product": "Checking or savings account",
+                  "subProduct": "Checking account",
+                  "issue": "Managing an account",
+                  "subIssue": "Deposits and withdrawals",
+                  "receivedDate": "2024-11-12",
+                  "company": "Example Bank",
+                  "companyResponse": "Closed with explanation",
+                  "createdAt": "2026-10-28T02:14:31.40153456Z",
+                  "updatedAt": "2026-10-28T02:14:31.40153456Z",
+                  "narrative": "Synthetic capacity narrative 1604 about a transfer.",
+                  "provenance": {
+                    "complaintId": "950001604",
+                    "importBatchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+                    "archiveUrl": "https://example.com/capacity.zip",
+                    "sourceFileName": "capacity-4998.csv",
+                    "periodStart": "2024-11-01",
+                    "periodEnd": "2024-12-31",
+                    "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3"
+                  },
+                  "analystNotes": null,
+                  "referenceCaseIds": []
+                }
+              },
+              {
+                "score": 1,
+                "categoryScore": 1,
+                "textScore": 1,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.35,
+                    "contribution": 0.35
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": "Checking account",
+                    "caseValue": "Checking account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0.15,
+                    "contribution": 0.15
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.35,
+                    "contribution": 0.35
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": "Deposits and withdrawals",
+                    "caseValue": "Deposits and withdrawals",
+                    "status": "MATCH",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0.15,
+                    "contribution": 0.15
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "synthetic",
+                    "contribution": 0.2000639948825425
+                  },
+                  {
+                    "term": "about",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "capacity",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "narrative",
+                    "contribution": 0.19998400127936444
+                  },
+                  {
+                    "term": "transfer",
+                    "contribution": 0.19998400127936444
+                  }
+                ],
+                "case": {
+                  "source": "CFPB",
+                  "id": "00649725-0687-4c44-b2cf-b568e578e9a8",
+                  "product": "Checking or savings account",
+                  "subProduct": "Checking account",
+                  "issue": "Managing an account",
+                  "subIssue": "Deposits and withdrawals",
+                  "receivedDate": "2024-11-12",
+                  "company": "Example Bank",
+                  "companyResponse": "Closed with explanation",
+                  "createdAt": "2026-10-28T02:14:31.40153456Z",
+                  "updatedAt": "2026-10-28T02:14:31.40153456Z",
+                  "narrative": "Synthetic capacity narrative 4095 about a transfer.",
+                  "provenance": {
+                    "complaintId": "950004095",
+                    "importBatchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+                    "archiveUrl": "https://example.com/capacity.zip",
+                    "sourceFileName": "capacity-4998.csv",
+                    "periodStart": "2024-11-01",
+                    "periodEnd": "2024-12-31",
+                    "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3"
+                  },
+                  "analystNotes": null,
+                  "referenceCaseIds": []
+                }
+              },
+              "...[12 more]"
+            ],
+            "returnedCount": 20,
+            "limit": 20,
+            "corpusSize": 5000,
+            "warnings": [
+              "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Kalibrasi eksploratif dan belum divalidasi manusia."
+            ],
+            "configuration": {
+              "categoryWeight": 0.4,
+              "textWeight": 0.6,
+              "categoryFieldWeights": {
+                "product": 0.35,
+                "subProduct": 0.15,
+                "issue": 0.35,
+                "subIssue": 0.15
+              },
+              "threshold": 0.5,
+              "requiresTextOverlap": true,
+              "algorithmVersion": "tfidf-cosine-v1"
+            }
+          },
+          "bytes": 38312
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "capacity.csv",
+            "type": "text/csv",
+            "size": 1008615
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 138
+          }
+        ]
+      },
+      "status": 201,
+      "ms": 1303,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+        "replayed": false,
+        "metadata": {
+          "archiveUrl": "https://example.com/capacity.zip",
+          "sourceFileName": "capacity-4998.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3",
+        "processed": 4998,
+        "imported": 4998,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T02:14:31.40153456Z"
+      },
+      "bytes": 438
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 139,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/de7626fc-05e0-4adf-8d08-6e25f4ff71a1",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "de7626fc-05e0-4adf-8d08-6e25f4ff71a1",
+        "product": "Checking or savings account",
+        "subProduct": "Checking account",
+        "issue": "Managing an account",
+        "subIssue": "Deposits and withdrawals",
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:32.391748074Z",
+        "updatedAt": "2026-10-28T02:14:32.391748074Z",
+        "narrative": "Retention before capacity race.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Pre-race fixture.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 544
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "capacity.csv",
+            "type": "text/csv",
+            "size": 317
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 138
+          }
+        ]
+      },
+      "status": 201,
+      "ms": 21,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "442a7bb7-6566-4b23-8807-e8c1e49ceb2b",
+        "replayed": false,
+        "metadata": {
+          "archiveUrl": "https://example.com/capacity.zip",
+          "sourceFileName": "capacity-race.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "7523f879cac3238c363c17b567ff92a52cf3218887fe9efb123add3717dadfb8",
+        "processed": 1,
+        "imported": 1,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T02:14:32.447647035Z"
+      },
+      "bytes": 433
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 409,
+      "ms": 34,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "KNOWLEDGE_BASE_LIMIT_EXCEEDED",
+        "message": "Basis kasus mencapai batas 5.000; retensi tidak dapat disimpan.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:14:32.460974364Z"
+      },
+      "bytes": 178
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "capacity.csv",
+            "type": "text/csv",
+            "size": 311
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 138
+          }
+        ]
+      },
+      "status": 409,
+      "ms": 16,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "KNOWLEDGE_BASE_LIMIT_EXCEEDED",
+        "message": "Basis kasus mencapai batas 5.000; impor dibatalkan seluruhnya.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:14:32.483386191Z"
+      },
+      "bytes": 177
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 409,
+      "ms": 12,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "KNOWLEDGE_BASE_LIMIT_EXCEEDED",
+        "message": "Basis kasus mencapai batas 5.000; retensi tidak dapat disimpan.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:14:32.49578097Z"
+      },
+      "bytes": 177
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "capacity.csv",
+            "type": "text/csv",
+            "size": 1008615
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 138
+          }
+        ]
+      },
+      "status": 200,
+      "ms": 129,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+        "replayed": true,
+        "metadata": {
+          "archiveUrl": "https://example.com/capacity.zip",
+          "sourceFileName": "capacity-4998.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3",
+        "processed": 4998,
+        "imported": 4998,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T02:14:31.40153456Z"
+      },
+      "bytes": 437
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "capacity.csv",
+            "type": "text/csv",
+            "size": 1008615
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 138
+          }
+        ]
+      },
+      "status": 201,
+      "ms": 104,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "3b8c8329-ae0e-4489-8321-3ebce0f45621",
+        "replayed": false,
+        "metadata": {
+          "archiveUrl": "https://example.com/capacity.zip",
+          "sourceFileName": "capacity-copy.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3",
+        "processed": 4998,
+        "imported": 0,
+        "duplicates": 4998,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T02:14:32.727086034Z"
+      },
+      "bytes": 439
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/de7626fc-05e0-4adf-8d08-6e25f4ff71a1",
+      "status": 200,
+      "ms": 26,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "de7626fc-05e0-4adf-8d08-6e25f4ff71a1",
+        "product": "Checking or savings account",
+        "subProduct": "Checking account",
+        "issue": "Managing an account",
+        "subIssue": "Deposits and withdrawals",
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:32.391748074Z",
+        "updatedAt": "2026-10-28T02:14:32.391748074Z",
+        "narrative": "Retention before capacity race.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Pre-race fixture.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 544
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/de7626fc-05e0-4adf-8d08-6e25f4ff71a1",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 37,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "de7626fc-05e0-4adf-8d08-6e25f4ff71a1",
+        "product": "Checking or savings account",
+        "subProduct": "Checking account",
+        "issue": "Managing an account",
+        "subIssue": "Deposits and withdrawals",
+        "receivedDate": null,
+        "company": "Updated at capacity",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T02:14:32.391748074Z",
+        "updatedAt": "2026-10-28T02:14:32.795041555Z",
+        "narrative": "Retention before capacity race.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "PUT at capacity.",
+          "outcomeAssessment": "RESOLVED",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 561
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 366,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "status": "MATCHES",
+        "message": "Ditemukan preseden yang memenuhi ambang awal.",
+        "results": [
+          {
+            "score": 1,
+            "categoryScore": 1,
+            "textScore": 1,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.35,
+                "contribution": 0.35
+              },
+              {
+                "field": "subProduct",
+                "queryValue": "Checking account",
+                "caseValue": "Checking account",
+                "status": "MATCH",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0.15,
+                "contribution": 0.15
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.35,
+                "contribution": 0.35
+              },
+              {
+                "field": "subIssue",
+                "queryValue": "Deposits and withdrawals",
+                "caseValue": "Deposits and withdrawals",
+                "status": "MATCH",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0.15,
+                "contribution": 0.15
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "synthetic",
+                "contribution": 0.2000639948825425
+              },
+              {
+                "term": "about",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "capacity",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "narrative",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "transfer",
+                "contribution": 0.19998400127936444
+              }
+            ],
+            "case": {
+              "source": "CFPB",
+              "id": "000ce0c4-8d18-4a6d-a733-d66e5f43801b",
+              "product": "Checking or savings account",
+              "subProduct": "Checking account",
+              "issue": "Managing an account",
+              "subIssue": "Deposits and withdrawals",
+              "receivedDate": "2024-11-12",
+              "company": "Example Bank",
+              "companyResponse": "Closed with explanation",
+              "createdAt": "2026-10-28T02:14:31.40153456Z",
+              "updatedAt": "2026-10-28T02:14:31.40153456Z",
+              "narrative": "Synthetic capacity narrative 2898 about a transfer.",
+              "provenance": {
+                "complaintId": "950002898",
+                "importBatchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+                "archiveUrl": "https://example.com/capacity.zip",
+                "sourceFileName": "capacity-4998.csv",
+                "periodStart": "2024-11-01",
+                "periodEnd": "2024-12-31",
+                "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3"
+              },
+              "analystNotes": null,
+              "referenceCaseIds": []
+            }
+          },
+          {
+            "score": 1,
+            "categoryScore": 1,
+            "textScore": 1,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.35,
+                "contribution": 0.35
+              },
+              {
+                "field": "subProduct",
+                "queryValue": "Checking account",
+                "caseValue": "Checking account",
+                "status": "MATCH",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0.15,
+                "contribution": 0.15
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.35,
+                "contribution": 0.35
+              },
+              {
+                "field": "subIssue",
+                "queryValue": "Deposits and withdrawals",
+                "caseValue": "Deposits and withdrawals",
+                "status": "MATCH",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0.15,
+                "contribution": 0.15
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "synthetic",
+                "contribution": 0.2000639948825425
+              },
+              {
+                "term": "about",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "capacity",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "narrative",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "transfer",
+                "contribution": 0.19998400127936444
+              }
+            ],
+            "case": {
+              "source": "CFPB",
+              "id": "0011e141-2977-4c3b-aa06-60f282d9b4e0",
+              "product": "Checking or savings account",
+              "subProduct": "Checking account",
+              "issue": "Managing an account",
+              "subIssue": "Deposits and withdrawals",
+              "receivedDate": "2024-11-12",
+              "company": "Example Bank",
+              "companyResponse": "Closed with explanation",
+              "createdAt": "2026-10-28T02:14:31.40153456Z",
+              "updatedAt": "2026-10-28T02:14:31.40153456Z",
+              "narrative": "Synthetic capacity narrative 1647 about a transfer.",
+              "provenance": {
+                "complaintId": "950001647",
+                "importBatchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+                "archiveUrl": "https://example.com/capacity.zip",
+                "sourceFileName": "capacity-4998.csv",
+                "periodStart": "2024-11-01",
+                "periodEnd": "2024-12-31",
+                "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3"
+              },
+              "analystNotes": null,
+              "referenceCaseIds": []
+            }
+          },
+          {
+            "score": 1,
+            "categoryScore": 1,
+            "textScore": 1,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.35,
+                "contribution": 0.35
+              },
+              {
+                "field": "subProduct",
+                "queryValue": "Checking account",
+                "caseValue": "Checking account",
+                "status": "MATCH",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0.15,
+                "contribution": 0.15
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.35,
+                "contribution": 0.35
+              },
+              {
+                "field": "subIssue",
+                "queryValue": "Deposits and withdrawals",
+                "caseValue": "Deposits and withdrawals",
+                "status": "MATCH",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0.15,
+                "contribution": 0.15
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "synthetic",
+                "contribution": 0.2000639948825425
+              },
+              {
+                "term": "about",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "capacity",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "narrative",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "transfer",
+                "contribution": 0.19998400127936444
+              }
+            ],
+            "case": {
+              "source": "CFPB",
+              "id": "002842e1-50d1-416e-931b-51fe9d3c16b5",
+              "product": "Checking or savings account",
+              "subProduct": "Checking account",
+              "issue": "Managing an account",
+              "subIssue": "Deposits and withdrawals",
+              "receivedDate": "2024-11-12",
+              "company": "Example Bank",
+              "companyResponse": "Closed with explanation",
+              "createdAt": "2026-10-28T02:14:31.40153456Z",
+              "updatedAt": "2026-10-28T02:14:31.40153456Z",
+              "narrative": "Synthetic capacity narrative 178 about a transfer.",
+              "provenance": {
+                "complaintId": "950000178",
+                "importBatchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+                "archiveUrl": "https://example.com/capacity.zip",
+                "sourceFileName": "capacity-4998.csv",
+                "periodStart": "2024-11-01",
+                "periodEnd": "2024-12-31",
+                "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3"
+              },
+              "analystNotes": null,
+              "referenceCaseIds": []
+            }
+          },
+          {
+            "score": 1,
+            "categoryScore": 1,
+            "textScore": 1,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.35,
+                "contribution": 0.35
+              },
+              {
+                "field": "subProduct",
+                "queryValue": "Checking account",
+                "caseValue": "Checking account",
+                "status": "MATCH",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0.15,
+                "contribution": 0.15
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.35,
+                "contribution": 0.35
+              },
+              {
+                "field": "subIssue",
+                "queryValue": "Deposits and withdrawals",
+                "caseValue": "Deposits and withdrawals",
+                "status": "MATCH",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0.15,
+                "contribution": 0.15
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "synthetic",
+                "contribution": 0.2000639948825425
+              },
+              {
+                "term": "about",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "capacity",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "narrative",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "transfer",
+                "contribution": 0.19998400127936444
+              }
+            ],
+            "case": {
+              "source": "CFPB",
+              "id": "00379c6b-9440-4404-9307-0629916cb459",
+              "product": "Checking or savings account",
+              "subProduct": "Checking account",
+              "issue": "Managing an account",
+              "subIssue": "Deposits and withdrawals",
+              "receivedDate": "2024-11-12",
+              "company": "Example Bank",
+              "companyResponse": "Closed with explanation",
+              "createdAt": "2026-10-28T02:14:31.40153456Z",
+              "updatedAt": "2026-10-28T02:14:31.40153456Z",
+              "narrative": "Synthetic capacity narrative 449 about a transfer.",
+              "provenance": {
+                "complaintId": "950000449",
+                "importBatchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+                "archiveUrl": "https://example.com/capacity.zip",
+                "sourceFileName": "capacity-4998.csv",
+                "periodStart": "2024-11-01",
+                "periodEnd": "2024-12-31",
+                "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3"
+              },
+              "analystNotes": null,
+              "referenceCaseIds": []
+            }
+          },
+          {
+            "score": 1,
+            "categoryScore": 1,
+            "textScore": 1,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.35,
+                "contribution": 0.35
+              },
+              {
+                "field": "subProduct",
+                "queryValue": "Checking account",
+                "caseValue": "Checking account",
+                "status": "MATCH",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0.15,
+                "contribution": 0.15
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.35,
+                "contribution": 0.35
+              },
+              {
+                "field": "subIssue",
+                "queryValue": "Deposits and withdrawals",
+                "caseValue": "Deposits and withdrawals",
+                "status": "MATCH",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0.15,
+                "contribution": 0.15
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "synthetic",
+                "contribution": 0.2000639948825425
+              },
+              {
+                "term": "about",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "capacity",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "narrative",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "transfer",
+                "contribution": 0.19998400127936444
+              }
+            ],
+            "case": {
+              "source": "CFPB",
+              "id": "004dbae8-84a9-45b3-b0f3-ad0fa372a63c",
+              "product": "Checking or savings account",
+              "subProduct": "Checking account",
+              "issue": "Managing an account",
+              "subIssue": "Deposits and withdrawals",
+              "receivedDate": "2024-11-12",
+              "company": "Example Bank",
+              "companyResponse": "Closed with explanation",
+              "createdAt": "2026-10-28T02:14:31.40153456Z",
+              "updatedAt": "2026-10-28T02:14:31.40153456Z",
+              "narrative": "Synthetic capacity narrative 556 about a transfer.",
+              "provenance": {
+                "complaintId": "950000556",
+                "importBatchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+                "archiveUrl": "https://example.com/capacity.zip",
+                "sourceFileName": "capacity-4998.csv",
+                "periodStart": "2024-11-01",
+                "periodEnd": "2024-12-31",
+                "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3"
+              },
+              "analystNotes": null,
+              "referenceCaseIds": []
+            }
+          },
+          {
+            "score": 1,
+            "categoryScore": 1,
+            "textScore": 1,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.35,
+                "contribution": 0.35
+              },
+              {
+                "field": "subProduct",
+                "queryValue": "Checking account",
+                "caseValue": "Checking account",
+                "status": "MATCH",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0.15,
+                "contribution": 0.15
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.35,
+                "contribution": 0.35
+              },
+              {
+                "field": "subIssue",
+                "queryValue": "Deposits and withdrawals",
+                "caseValue": "Deposits and withdrawals",
+                "status": "MATCH",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0.15,
+                "contribution": 0.15
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "synthetic",
+                "contribution": 0.2000639948825425
+              },
+              {
+                "term": "about",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "capacity",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "narrative",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "transfer",
+                "contribution": 0.19998400127936444
+              }
+            ],
+            "case": {
+              "source": "CFPB",
+              "id": "0053d813-9f7c-43bf-8507-3d2a05c2f8be",
+              "product": "Checking or savings account",
+              "subProduct": "Checking account",
+              "issue": "Managing an account",
+              "subIssue": "Deposits and withdrawals",
+              "receivedDate": "2024-11-12",
+              "company": "Example Bank",
+              "companyResponse": "Closed with explanation",
+              "createdAt": "2026-10-28T02:14:31.40153456Z",
+              "updatedAt": "2026-10-28T02:14:31.40153456Z",
+              "narrative": "Synthetic capacity narrative 4969 about a transfer.",
+              "provenance": {
+                "complaintId": "950004969",
+                "importBatchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+                "archiveUrl": "https://example.com/capacity.zip",
+                "sourceFileName": "capacity-4998.csv",
+                "periodStart": "2024-11-01",
+                "periodEnd": "2024-12-31",
+                "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3"
+              },
+              "analystNotes": null,
+              "referenceCaseIds": []
+            }
+          },
+          {
+            "score": 1,
+            "categoryScore": 1,
+            "textScore": 1,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.35,
+                "contribution": 0.35
+              },
+              {
+                "field": "subProduct",
+                "queryValue": "Checking account",
+                "caseValue": "Checking account",
+                "status": "MATCH",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0.15,
+                "contribution": 0.15
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.35,
+                "contribution": 0.35
+              },
+              {
+                "field": "subIssue",
+                "queryValue": "Deposits and withdrawals",
+                "caseValue": "Deposits and withdrawals",
+                "status": "MATCH",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0.15,
+                "contribution": 0.15
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "synthetic",
+                "contribution": 0.2000639948825425
+              },
+              {
+                "term": "about",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "capacity",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "narrative",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "transfer",
+                "contribution": 0.19998400127936444
+              }
+            ],
+            "case": {
+              "source": "CFPB",
+              "id": "006181b9-37f3-4d69-9bfe-17a5b440910b",
+              "product": "Checking or savings account",
+              "subProduct": "Checking account",
+              "issue": "Managing an account",
+              "subIssue": "Deposits and withdrawals",
+              "receivedDate": "2024-11-12",
+              "company": "Example Bank",
+              "companyResponse": "Closed with explanation",
+              "createdAt": "2026-10-28T02:14:31.40153456Z",
+              "updatedAt": "2026-10-28T02:14:31.40153456Z",
+              "narrative": "Synthetic capacity narrative 1604 about a transfer.",
+              "provenance": {
+                "complaintId": "950001604",
+                "importBatchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+                "archiveUrl": "https://example.com/capacity.zip",
+                "sourceFileName": "capacity-4998.csv",
+                "periodStart": "2024-11-01",
+                "periodEnd": "2024-12-31",
+                "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3"
+              },
+              "analystNotes": null,
+              "referenceCaseIds": []
+            }
+          },
+          {
+            "score": 1,
+            "categoryScore": 1,
+            "textScore": 1,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.35,
+                "contribution": 0.35
+              },
+              {
+                "field": "subProduct",
+                "queryValue": "Checking account",
+                "caseValue": "Checking account",
+                "status": "MATCH",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0.15,
+                "contribution": 0.15
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.35,
+                "contribution": 0.35
+              },
+              {
+                "field": "subIssue",
+                "queryValue": "Deposits and withdrawals",
+                "caseValue": "Deposits and withdrawals",
+                "status": "MATCH",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0.15,
+                "contribution": 0.15
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "synthetic",
+                "contribution": 0.2000639948825425
+              },
+              {
+                "term": "about",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "capacity",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "narrative",
+                "contribution": 0.19998400127936444
+              },
+              {
+                "term": "transfer",
+                "contribution": 0.19998400127936444
+              }
+            ],
+            "case": {
+              "source": "CFPB",
+              "id": "00649725-0687-4c44-b2cf-b568e578e9a8",
+              "product": "Checking or savings account",
+              "subProduct": "Checking account",
+              "issue": "Managing an account",
+              "subIssue": "Deposits and withdrawals",
+              "receivedDate": "2024-11-12",
+              "company": "Example Bank",
+              "companyResponse": "Closed with explanation",
+              "createdAt": "2026-10-28T02:14:31.40153456Z",
+              "updatedAt": "2026-10-28T02:14:31.40153456Z",
+              "narrative": "Synthetic capacity narrative 4095 about a transfer.",
+              "provenance": {
+                "complaintId": "950004095",
+                "importBatchId": "360fe376-598c-4c62-97a9-7ee0d0077fd2",
+                "archiveUrl": "https://example.com/capacity.zip",
+                "sourceFileName": "capacity-4998.csv",
+                "periodStart": "2024-11-01",
+                "periodEnd": "2024-12-31",
+                "csvSha256": "03971ab9c501b1d957034530eca7aeb5e15156a832bc622f08f2e847aba839e3"
+              },
+              "analystNotes": null,
+              "referenceCaseIds": []
+            }
+          },
+          "...[12 more]"
+        ],
+        "returnedCount": 20,
+        "limit": 20,
+        "corpusSize": 5000,
+        "warnings": [
+          "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Kalibrasi eksploratif dan belum divalidasi manusia."
+        ],
+        "configuration": {
+          "categoryWeight": 0.4,
+          "textWeight": 0.6,
+          "categoryFieldWeights": {
+            "product": 0.35,
+            "subProduct": 0.15,
+            "issue": 0.35,
+            "subIssue": 0.15
+          },
+          "threshold": 0.5,
+          "requiresTextOverlap": true,
+          "algorithmVersion": "tfidf-cosine-v1"
+        }
+      },
+      "bytes": 38312
+    }
+  ],
+  "finalCounts": {
+    "cases": 5000,
+    "batches": 3
+  },
+  "raceStatuses": {
+    "import": 201,
+    "retention": 409
+  },
+  "exitCode": 0
+}

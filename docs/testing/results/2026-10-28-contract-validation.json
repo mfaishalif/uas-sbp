@@ -1,0 +1,5623 @@
+{
+  "session": "contract-validation",
+  "startedAt": "2026-10-28T01:17:56.704Z",
+  "completedAt": "2026-10-28T01:17:57.215Z",
+  "baseUrl": "http://127.0.0.1:18101",
+  "summary": {
+    "scenarios": 19,
+    "passed": 18,
+    "failed": 0,
+    "blocked": 0,
+    "observations": 1,
+    "httpRequests": 70
+  },
+  "results": [
+    {
+      "id": "CTR-01",
+      "hypothesis": "All eight public operations return their documented success shape on a populated database.",
+      "result": "PASS",
+      "durationMs": 129,
+      "detail": {
+        "detailId": "c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+        "createdId": "b48de967-22b6-43a2-b238-8765ed2ad2e8"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "ms": 52,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "status": "UP",
+            "database": "UP"
+          },
+          "bytes": 31
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200,
+          "ms": 6,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "items": [
+              {
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null
+              }
+            ],
+            "scope": "IMPORTED_CFPB_SAMPLE"
+          },
+          "bytes": 148
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?size=2",
+          "status": 200,
+          "ms": 8,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "items": [
+              {
+                "id": "c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.196211466Z",
+                "updatedAt": "2026-10-28T01:17:45.196211466Z"
+              },
+              {
+                "id": "37f2fbd2-7988-467c-adc9-ffa0e87ced17",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.18547252Z",
+                "updatedAt": "2026-10-28T01:17:45.18547252Z"
+              }
+            ],
+            "page": 0,
+            "size": 2,
+            "totalElements": 14,
+            "totalPages": 7,
+            "hasNext": true
+          },
+          "bytes": 710
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+          "status": 200,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.196211466Z",
+            "updatedAt": "2026-10-28T01:17:45.196211466Z",
+            "narrative": "My transfer is missing from my checking account.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Contract probe notes.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 529
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 28,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "status": "MATCHES",
+            "message": "Ditemukan preseden yang memenuhi ambang awal.",
+            "results": [
+              {
+                "score": 1,
+                "categoryScore": 1,
+                "textScore": 1,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "checking",
+                    "contribution": 0.32072276462311794
+                  },
+                  {
+                    "term": "missing",
+                    "contribution": 0.32072276462311794
+                  },
+                  {
+                    "term": "account",
+                    "contribution": 0.20402767406824224
+                  },
+                  {
+                    "term": "transfer",
+                    "contribution": 0.15452679668552202
+                  }
+                ],
+                "case": {
+                  "source": "ANALYST",
+                  "id": "37f2fbd2-7988-467c-adc9-ffa0e87ced17",
+                  "product": "Checking or savings account",
+                  "subProduct": null,
+                  "issue": "Managing an account",
+                  "subIssue": null,
+                  "receivedDate": null,
+                  "company": null,
+                  "companyResponse": null,
+                  "createdAt": "2026-10-28T01:17:45.18547252Z",
+                  "updatedAt": "2026-10-28T01:17:45.18547252Z",
+                  "narrative": "My transfer is missing from my checking account.",
+                  "provenance": null,
+                  "analystNotes": {
+                    "handlingNotes": "Contract probe notes.",
+                    "outcomeAssessment": "UNKNOWN",
+                    "evaluationNotes": null
+                  },
+                  "referenceCaseIds": [
+                    "b068875a-94ee-4e12-82a5-28b9fabf0159"
+                  ]
+                }
+              },
+              {
+                "score": 1,
+                "categoryScore": 1,
+                "textScore": 1,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "checking",
+                    "contribution": 0.32072276462311794
+                  },
+                  {
+                    "term": "missing",
+                    "contribution": 0.32072276462311794
+                  },
+                  {
+                    "term": "account",
+                    "contribution": 0.20402767406824224
+                  },
+                  {
+                    "term": "transfer",
+                    "contribution": 0.15452679668552202
+                  }
+                ],
+                "case": {
+                  "source": "ANALYST",
+                  "id": "52191af7-a34f-459a-b1a9-99f0566a8416",
+                  "product": "Checking or savings account",
+                  "subProduct": null,
+                  "issue": "Managing an account",
+                  "subIssue": null,
+                  "receivedDate": null,
+                  "company": null,
+                  "companyResponse": null,
+                  "createdAt": "2026-10-28T01:17:45.116872526Z",
+                  "updatedAt": "2026-10-28T01:17:45.116872526Z",
+                  "narrative": "My transfer is missing from my checking account.",
+                  "provenance": null,
+                  "analystNotes": {
+                    "handlingNotes": "Contract probe notes.",
+                    "outcomeAssessment": "UNKNOWN",
+                    "evaluationNotes": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[20000 chars]"
+                  },
+                  "referenceCaseIds": []
+                }
+              },
+              {
+                "score": 1,
+                "categoryScore": 1,
+                "textScore": 1,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "checking",
+                    "contribution": 0.32072276462311794
+                  },
+                  {
+                    "term": "missing",
+                    "contribution": 0.32072276462311794
+                  },
+                  {
+                    "term": "account",
+                    "contribution": 0.20402767406824224
+                  },
+                  {
+                    "term": "transfer",
+                    "contribution": 0.15452679668552202
+                  }
+                ],
+                "case": {
+                  "source": "ANALYST",
+                  "id": "9ee0cb3d-be93-4df3-ba6f-be7664d3c957",
+                  "product": "Checking or savings account",
+                  "subProduct": null,
+                  "issue": "Managing an account",
+                  "subIssue": null,
+                  "receivedDate": null,
+                  "company": null,
+                  "companyResponse": null,
+                  "createdAt": "2026-10-28T01:17:44.663721865Z",
+                  "updatedAt": "2026-10-28T01:17:44.685197187Z",
+                  "narrative": "My transfer is missing from my checking account.",
+                  "provenance": null,
+                  "analystNotes": {
+                    "handlingNotes": "Updated contract probe notes.",
+                    "outcomeAssessment": "UNKNOWN",
+                    "evaluationNotes": null
+                  },
+                  "referenceCaseIds": []
+                }
+              },
+              {
+                "score": 1,
+                "categoryScore": 1,
+                "textScore": 1,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "checking",
+                    "contribution": 0.32072276462311794
+                  },
+                  {
+                    "term": "missing",
+                    "contribution": 0.32072276462311794
+                  },
+                  {
+                    "term": "account",
+                    "contribution": 0.20402767406824224
+                  },
+                  {
+                    "term": "transfer",
+                    "contribution": 0.15452679668552202
+                  }
+                ],
+                "case": {
+                  "source": "ANALYST",
+                  "id": "c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+                  "product": "Checking or savings account",
+                  "subProduct": null,
+                  "issue": "Managing an account",
+                  "subIssue": null,
+                  "receivedDate": null,
+                  "company": null,
+                  "companyResponse": null,
+                  "createdAt": "2026-10-28T01:17:45.196211466Z",
+                  "updatedAt": "2026-10-28T01:17:45.196211466Z",
+                  "narrative": "My transfer is missing from my checking account.",
+                  "provenance": null,
+                  "analystNotes": {
+                    "handlingNotes": "Contract probe notes.",
+                    "outcomeAssessment": "UNKNOWN",
+                    "evaluationNotes": null
+                  },
+                  "referenceCaseIds": []
+                }
+              },
+              {
+                "score": 1,
+                "categoryScore": 1,
+                "textScore": 1,
+                "categoryExplanation": [
+                  {
+                    "field": "product",
+                    "queryValue": "Checking or savings account",
+                    "caseValue": "Checking or savings account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subProduct",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  },
+                  {
+                    "field": "issue",
+                    "queryValue": "Managing an account",
+                    "caseValue": "Managing an account",
+                    "status": "MATCH",
+                    "configuredWeight": 0.35,
+                    "effectiveWeight": 0.5,
+                    "contribution": 0.5
+                  },
+                  {
+                    "field": "subIssue",
+                    "queryValue": null,
+                    "caseValue": null,
+                    "status": "NOT_USED",
+                    "configuredWeight": 0.15,
+                    "effectiveWeight": 0,
+                    "contribution": 0
+                  }
+                ],
+                "sharedTerms": [
+                  {
+                    "term": "checking",
+                    "contribution": 0.32072276462311794
+                  },
+                  {
+                    "term": "missing",
+                    "contribution": 0.32072276462311794
+                  },
+                  {
+                    "term": "account",
+                    "contribution": 0.20402767406824224
+                  },
+                  {
+                    "term": "transfer",
+                    "contribution": 0.15452679668552202
+                  }
+                ],
+                "case": {
+                  "source": "ANALYST",
+                  "id": "d97926e6-d40e-413a-8f25-b850e8299624",
+                  "product": "Checking or savings account",
+                  "subProduct": null,
+                  "issue": "Managing an account",
+                  "subIssue": null,
+                  "receivedDate": null,
+                  "company": null,
+                  "companyResponse": null,
+                  "createdAt": "2026-10-28T01:17:45.083339418Z",
+                  "updatedAt": "2026-10-28T01:17:45.083339418Z",
+                  "narrative": "My transfer is missing from my checking account.",
+                  "provenance": null,
+                  "analystNotes": {
+                    "handlingNotes": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[20000 chars]",
+                    "outcomeAssessment": "UNKNOWN",
+                    "evaluationNotes": null
+                  },
+                  "referenceCaseIds": []
+                }
+              }
+            ],
+            "returnedCount": 5,
+            "limit": 5,
+            "corpusSize": 14,
+            "warnings": [
+              "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Kalibrasi eksploratif dan belum divalidasi manusia."
+            ],
+            "configuration": {
+              "categoryWeight": 0.4,
+              "textWeight": 0.6,
+              "categoryFieldWeights": {
+                "product": 0.35,
+                "subProduct": 0.15,
+                "issue": 0.35,
+                "subIssue": 0.15
+              },
+              "threshold": 0.5,
+              "requiresTextOverlap": true,
+              "algorithmVersion": "tfidf-cosine-v1"
+            }
+          },
+          "bytes": 47938
+        },
+        {
+          "method": "GET",
+          "path": "/api/imports/cfpb",
+          "status": 405,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "allow": "POST"
+          },
+          "body": {
+            "code": "METHOD_NOT_ALLOWED",
+            "message": "Metode HTTP tidak didukung.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T01:17:56.809218665Z"
+          },
+          "bytes": 131
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 14,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/b48de967-22b6-43a2-b238-8765ed2ad2e8",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "b48de967-22b6-43a2-b238-8765ed2ad2e8",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:56.819593592Z",
+            "updatedAt": "2026-10-28T01:17:56.819593592Z",
+            "narrative": "My transfer is missing from my checking account.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Contract probe notes.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 529
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/b48de967-22b6-43a2-b238-8765ed2ad2e8",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 10,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "b48de967-22b6-43a2-b238-8765ed2ad2e8",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:56.819593592Z",
+            "updatedAt": "2026-10-28T01:17:56.828878765Z",
+            "narrative": "My transfer is missing from my checking account.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Updated contract probe notes.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 537
+        }
+      ]
+    },
+    {
+      "id": "CTR-02",
+      "hypothesis": "Pagination is stable when data is unchanged, covers every case once, and filters by source before counting.",
+      "result": "PASS",
+      "durationMs": 63,
+      "detail": {
+        "total": 15,
+        "cfpb": 2,
+        "analyst": 13
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?size=100",
+          "status": 200,
+          "ms": 12,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "items": [
+              {
+                "id": "b48de967-22b6-43a2-b238-8765ed2ad2e8",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:56.819593592Z",
+                "updatedAt": "2026-10-28T01:17:56.828878765Z"
+              },
+              {
+                "id": "c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.196211466Z",
+                "updatedAt": "2026-10-28T01:17:45.196211466Z"
+              },
+              {
+                "id": "37f2fbd2-7988-467c-adc9-ffa0e87ced17",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.18547252Z",
+                "updatedAt": "2026-10-28T01:17:45.18547252Z"
+              },
+              {
+                "id": "7028c8ae-cc52-4080-8b07-9f2dd7c166b4",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.149271776Z",
+                "updatedAt": "2026-10-28T01:17:45.160836365Z"
+              },
+              {
+                "id": "52191af7-a34f-459a-b1a9-99f0566a8416",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.116872526Z",
+                "updatedAt": "2026-10-28T01:17:45.116872526Z"
+              },
+              {
+                "id": "d97926e6-d40e-413a-8f25-b850e8299624",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.083339418Z",
+                "updatedAt": "2026-10-28T01:17:45.083339418Z"
+              },
+              {
+                "id": "f7446d7b-2a07-4c67-9c15-ee5602a0ec99",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[1000 chars]",
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.055222187Z",
+                "updatedAt": "2026-10-28T01:17:45.055222187Z"
+              },
+              {
+                "id": "481a163a-71a0-47e8-841f-55288da1e1c5",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.033910301Z",
+                "updatedAt": "2026-10-28T01:17:45.033910301Z"
+              },
+              "...[7 more]"
+            ],
+            "page": 0,
+            "size": 100,
+            "totalElements": 15,
+            "totalPages": 1,
+            "hasNext": false
+          },
+          "bytes": 5876
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=0&size=100",
+          "status": 200,
+          "ms": 14,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "items": [
+              {
+                "id": "b48de967-22b6-43a2-b238-8765ed2ad2e8",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:56.819593592Z",
+                "updatedAt": "2026-10-28T01:17:56.828878765Z"
+              },
+              {
+                "id": "c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.196211466Z",
+                "updatedAt": "2026-10-28T01:17:45.196211466Z"
+              },
+              {
+                "id": "37f2fbd2-7988-467c-adc9-ffa0e87ced17",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.18547252Z",
+                "updatedAt": "2026-10-28T01:17:45.18547252Z"
+              },
+              {
+                "id": "7028c8ae-cc52-4080-8b07-9f2dd7c166b4",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.149271776Z",
+                "updatedAt": "2026-10-28T01:17:45.160836365Z"
+              },
+              {
+                "id": "52191af7-a34f-459a-b1a9-99f0566a8416",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.116872526Z",
+                "updatedAt": "2026-10-28T01:17:45.116872526Z"
+              },
+              {
+                "id": "d97926e6-d40e-413a-8f25-b850e8299624",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.083339418Z",
+                "updatedAt": "2026-10-28T01:17:45.083339418Z"
+              },
+              {
+                "id": "f7446d7b-2a07-4c67-9c15-ee5602a0ec99",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[1000 chars]",
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.055222187Z",
+                "updatedAt": "2026-10-28T01:17:45.055222187Z"
+              },
+              {
+                "id": "481a163a-71a0-47e8-841f-55288da1e1c5",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.033910301Z",
+                "updatedAt": "2026-10-28T01:17:45.033910301Z"
+              },
+              "...[7 more]"
+            ],
+            "page": 0,
+            "size": 100,
+            "totalElements": 15,
+            "totalPages": 1,
+            "hasNext": false
+          },
+          "bytes": 5876
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=0&size=100",
+          "status": 200,
+          "ms": 13,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "items": [
+              {
+                "id": "b48de967-22b6-43a2-b238-8765ed2ad2e8",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:56.819593592Z",
+                "updatedAt": "2026-10-28T01:17:56.828878765Z"
+              },
+              {
+                "id": "c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.196211466Z",
+                "updatedAt": "2026-10-28T01:17:45.196211466Z"
+              },
+              {
+                "id": "37f2fbd2-7988-467c-adc9-ffa0e87ced17",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.18547252Z",
+                "updatedAt": "2026-10-28T01:17:45.18547252Z"
+              },
+              {
+                "id": "7028c8ae-cc52-4080-8b07-9f2dd7c166b4",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.149271776Z",
+                "updatedAt": "2026-10-28T01:17:45.160836365Z"
+              },
+              {
+                "id": "52191af7-a34f-459a-b1a9-99f0566a8416",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.116872526Z",
+                "updatedAt": "2026-10-28T01:17:45.116872526Z"
+              },
+              {
+                "id": "d97926e6-d40e-413a-8f25-b850e8299624",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.083339418Z",
+                "updatedAt": "2026-10-28T01:17:45.083339418Z"
+              },
+              {
+                "id": "f7446d7b-2a07-4c67-9c15-ee5602a0ec99",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[1000 chars]",
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.055222187Z",
+                "updatedAt": "2026-10-28T01:17:45.055222187Z"
+              },
+              {
+                "id": "481a163a-71a0-47e8-841f-55288da1e1c5",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.033910301Z",
+                "updatedAt": "2026-10-28T01:17:45.033910301Z"
+              },
+              "...[7 more]"
+            ],
+            "page": 0,
+            "size": 100,
+            "totalElements": 15,
+            "totalPages": 1,
+            "hasNext": false
+          },
+          "bytes": 5876
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?source=CFPB",
+          "status": 200,
+          "ms": 6,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "items": [
+              {
+                "id": "b068875a-94ee-4e12-82a5-28b9fabf0159",
+                "source": "CFPB",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": "2024-11-12",
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:12:13.072385543Z",
+                "updatedAt": "2026-10-28T01:12:13.072385543Z"
+              },
+              {
+                "id": "4939ea31-e21d-4401-a110-df5117486084",
+                "source": "CFPB",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": "2024-11-12",
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:12:12.692082267Z",
+                "updatedAt": "2026-10-28T01:12:12.692082267Z"
+              }
+            ],
+            "page": 0,
+            "size": 20,
+            "totalElements": 2,
+            "totalPages": 1,
+            "hasNext": false
+          },
+          "bytes": 723
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?source=ANALYST",
+          "status": 200,
+          "ms": 13,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "items": [
+              {
+                "id": "b48de967-22b6-43a2-b238-8765ed2ad2e8",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:56.819593592Z",
+                "updatedAt": "2026-10-28T01:17:56.828878765Z"
+              },
+              {
+                "id": "c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.196211466Z",
+                "updatedAt": "2026-10-28T01:17:45.196211466Z"
+              },
+              {
+                "id": "37f2fbd2-7988-467c-adc9-ffa0e87ced17",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.18547252Z",
+                "updatedAt": "2026-10-28T01:17:45.18547252Z"
+              },
+              {
+                "id": "7028c8ae-cc52-4080-8b07-9f2dd7c166b4",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.149271776Z",
+                "updatedAt": "2026-10-28T01:17:45.160836365Z"
+              },
+              {
+                "id": "52191af7-a34f-459a-b1a9-99f0566a8416",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.116872526Z",
+                "updatedAt": "2026-10-28T01:17:45.116872526Z"
+              },
+              {
+                "id": "d97926e6-d40e-413a-8f25-b850e8299624",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.083339418Z",
+                "updatedAt": "2026-10-28T01:17:45.083339418Z"
+              },
+              {
+                "id": "f7446d7b-2a07-4c67-9c15-ee5602a0ec99",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[1000 chars]",
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.055222187Z",
+                "updatedAt": "2026-10-28T01:17:45.055222187Z"
+              },
+              {
+                "id": "481a163a-71a0-47e8-841f-55288da1e1c5",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": null,
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:17:45.033910301Z",
+                "updatedAt": "2026-10-28T01:17:45.033910301Z"
+              },
+              "...[5 more]"
+            ],
+            "page": 0,
+            "size": 20,
+            "totalElements": 13,
+            "totalPages": 1,
+            "hasNext": false
+          },
+          "bytes": 5231
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=2147483647&size=100",
+          "status": 200,
+          "ms": 6,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "items": [],
+            "page": 2147483647,
+            "size": 100,
+            "totalElements": 15,
+            "totalPages": 1,
+            "hasNext": false
+          },
+          "bytes": 91
+        }
+      ]
+    },
+    {
+      "id": "CTR-03-negative page",
+      "hypothesis": "List rejects negative page with a 400 contract error.",
+      "result": "PASS",
+      "durationMs": 5,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_VALUE",
+            "message": "Nilai parameter tidak valid."
+          }
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=-1",
+          "status": 400,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Parameter permintaan tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "page",
+                "code": "INVALID_VALUE",
+                "message": "Nilai parameter tidak valid."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.900701018Z"
+          },
+          "bytes": 215
+        }
+      ]
+    },
+    {
+      "id": "CTR-03-non-numeric page",
+      "hypothesis": "List rejects non-numeric page with a 400 contract error.",
+      "result": "PASS",
+      "durationMs": 4,
+      "detail": {
+        "status": 400,
+        "code": "MALFORMED_REQUEST",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_FORMAT",
+            "message": "Format nilai parameter tidak sesuai."
+          }
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=abc",
+          "status": 400,
+          "ms": 4,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "MALFORMED_REQUEST",
+            "message": "Format parameter permintaan tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "page",
+                "code": "INVALID_FORMAT",
+                "message": "Format nilai parameter tidak sesuai."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.906430909Z"
+          },
+          "bytes": 232
+        }
+      ]
+    },
+    {
+      "id": "CTR-03-fraction page",
+      "hypothesis": "List rejects fraction page with a 400 contract error.",
+      "result": "PASS",
+      "durationMs": 6,
+      "detail": {
+        "status": 400,
+        "code": "MALFORMED_REQUEST",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_FORMAT",
+            "message": "Format nilai parameter tidak sesuai."
+          }
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=1.5",
+          "status": 400,
+          "ms": 6,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "MALFORMED_REQUEST",
+            "message": "Format parameter permintaan tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "page",
+                "code": "INVALID_FORMAT",
+                "message": "Format nilai parameter tidak sesuai."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.91195569Z"
+          },
+          "bytes": 231
+        }
+      ]
+    },
+    {
+      "id": "CTR-03-empty page",
+      "hypothesis": "List rejects empty page with a 400 contract error.",
+      "result": "PASS",
+      "durationMs": 4,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_FORMAT",
+            "message": "Parameter tidak boleh kosong."
+          }
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=",
+          "status": 400,
+          "ms": 4,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Parameter permintaan tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "page",
+                "code": "INVALID_FORMAT",
+                "message": "Parameter tidak boleh kosong."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.917290961Z"
+          },
+          "bytes": 217
+        }
+      ]
+    },
+    {
+      "id": "CTR-03-zero size",
+      "hypothesis": "List rejects zero size with a 400 contract error.",
+      "result": "PASS",
+      "durationMs": 4,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "size",
+            "code": "INVALID_VALUE",
+            "message": "Nilai parameter tidak valid."
+          }
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?size=0",
+          "status": 400,
+          "ms": 4,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Parameter permintaan tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "size",
+                "code": "INVALID_VALUE",
+                "message": "Nilai parameter tidak valid."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.921657983Z"
+          },
+          "bytes": 215
+        }
+      ]
+    },
+    {
+      "id": "CTR-03-size above maximum",
+      "hypothesis": "List rejects size above maximum with a 400 contract error.",
+      "result": "PASS",
+      "durationMs": 5,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "size",
+            "code": "INVALID_VALUE",
+            "message": "Nilai parameter tidak valid."
+          }
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?size=101",
+          "status": 400,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Parameter permintaan tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "size",
+                "code": "INVALID_VALUE",
+                "message": "Nilai parameter tidak valid."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.926673538Z"
+          },
+          "bytes": 215
+        }
+      ]
+    },
+    {
+      "id": "CTR-03-empty size",
+      "hypothesis": "List rejects empty size with a 400 contract error.",
+      "result": "PASS",
+      "durationMs": 4,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "size",
+            "code": "INVALID_FORMAT",
+            "message": "Parameter tidak boleh kosong."
+          }
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?size=",
+          "status": 400,
+          "ms": 4,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Parameter permintaan tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "size",
+                "code": "INVALID_FORMAT",
+                "message": "Parameter tidak boleh kosong."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.930339025Z"
+          },
+          "bytes": 217
+        }
+      ]
+    },
+    {
+      "id": "CTR-03-empty source",
+      "hypothesis": "List rejects empty source with a 400 contract error.",
+      "result": "PASS",
+      "durationMs": 6,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "INVALID_FORMAT",
+            "message": "Parameter tidak boleh kosong."
+          }
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?source=",
+          "status": 400,
+          "ms": 6,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Parameter permintaan tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "source",
+                "code": "INVALID_FORMAT",
+                "message": "Parameter tidak boleh kosong."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.935043464Z"
+          },
+          "bytes": 219
+        }
+      ]
+    },
+    {
+      "id": "CTR-03-lowercase source",
+      "hypothesis": "List rejects lowercase source with a 400 contract error.",
+      "result": "PASS",
+      "durationMs": 5,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "INVALID_VALUE",
+            "message": "Nilai source harus CFPB atau ANALYST."
+          }
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?source=cfpb",
+          "status": 400,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Parameter permintaan tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "source",
+                "code": "INVALID_VALUE",
+                "message": "Nilai source harus CFPB atau ANALYST."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.941660301Z"
+          },
+          "bytes": 226
+        }
+      ]
+    },
+    {
+      "id": "CTR-03-unknown source",
+      "hypothesis": "List rejects unknown source with a 400 contract error.",
+      "result": "PASS",
+      "durationMs": 5,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "INVALID_VALUE",
+            "message": "Nilai source harus CFPB atau ANALYST."
+          }
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?source=UNKNOWN",
+          "status": 400,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Parameter permintaan tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "source",
+                "code": "INVALID_VALUE",
+                "message": "Nilai source harus CFPB atau ANALYST."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.946251634Z"
+          },
+          "bytes": 226
+        }
+      ]
+    },
+    {
+      "id": "CTR-04",
+      "hypothesis": "Required fields, explicit nulls, wrong JSON types, unknown properties, malformed UUIDs, dates, and unknown fields are rejected.",
+      "result": "PASS",
+      "durationMs": 87,
+      "detail": [
+        {
+          "path": "/api/search",
+          "status": 400,
+          "code": "VALIDATION_ERROR"
+        },
+        {
+          "path": "/api/search",
+          "status": 400,
+          "code": "VALIDATION_ERROR"
+        },
+        {
+          "path": "/api/search",
+          "status": 400,
+          "code": "VALIDATION_ERROR"
+        },
+        {
+          "path": "/api/search",
+          "status": 400,
+          "code": "VALIDATION_ERROR"
+        },
+        {
+          "path": "/api/search",
+          "status": 400,
+          "code": "VALIDATION_ERROR"
+        },
+        {
+          "path": "/api/search",
+          "status": 400,
+          "code": "VALIDATION_ERROR"
+        },
+        {
+          "path": "/api/search",
+          "status": 400,
+          "code": "VALIDATION_ERROR"
+        },
+        {
+          "path": "/api/search",
+          "status": 400,
+          "code": "VALIDATION_ERROR"
+        },
+        "...[10 more]"
+      ],
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 6,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "product",
+                "code": "INVALID_VALUE",
+                "message": "Field tidak boleh null."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.953767417Z"
+          },
+          "bytes": 198
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input pengaduan tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "issue",
+                "code": "REQUIRED",
+                "message": "Masalah wajib diisi."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.958725669Z"
+          },
+          "bytes": 198
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "narrative",
+                "code": "INVALID_VALUE",
+                "message": "Field tidak boleh null."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.963891431Z"
+          },
+          "bytes": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 4,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input pengaduan tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "narrative",
+                "code": "NO_MEANINGFUL_TOKENS",
+                "message": "Narasi harus mengandung setidaknya satu kata bermakna."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.969079295Z"
+          },
+          "bytes": 248
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 4,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "limit",
+                "code": "INVALID_VALUE",
+                "message": "Field tidak boleh null."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.972545672Z"
+          },
+          "bytes": 196
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "limit",
+                "code": "OUT_OF_RANGE",
+                "message": "Nilai di bawah batas minimum."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.977098303Z"
+          },
+          "bytes": 201
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 4,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "limit",
+                "code": "OUT_OF_RANGE",
+                "message": "Nilai di atas batas maksimum."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.981611333Z"
+          },
+          "bytes": 201
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 3,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "limit",
+                "code": "INVALID_FORMAT",
+                "message": "Tipe nilai tidak sesuai dengan kontrak."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.984927001Z"
+          },
+          "bytes": 213
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 4,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "product",
+                "code": "INVALID_FORMAT",
+                "message": "Tipe nilai tidak sesuai dengan kontrak."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.988457681Z"
+          },
+          "bytes": 215
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "source",
+                "code": "UNKNOWN_FIELD",
+                "message": "Properti tidak dikenal dan harus dihilangkan."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.992580091Z"
+          },
+          "bytes": 219
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 4,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "referenceCaseIds",
+                "code": "INVALID_VALUE",
+                "message": "Field tidak boleh null."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:56.99728013Z"
+          },
+          "bytes": 206
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "referenceCaseIds[0]",
+                "code": "INVALID_FORMAT",
+                "message": "UUID harus memakai format lengkap 8-4-4-4-12."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:57.002126376Z"
+          },
+          "bytes": 233
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "referenceCaseIds[0]",
+                "code": "INVALID_VALUE",
+                "message": "Field tidak boleh null."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:57.007078528Z"
+          },
+          "bytes": 210
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "receivedDate",
+                "code": "INVALID_FORMAT",
+                "message": "Tanggal harus berformat YYYY-MM-DD."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:57.012869122Z"
+          },
+          "bytes": 216
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 4,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "receivedDate",
+                "code": "INVALID_FORMAT",
+                "message": "Tanggal harus berformat YYYY-MM-DD."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:57.01733445Z"
+          },
+          "bytes": 215
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 4,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "outcomeAssessment",
+                "code": "INVALID_VALUE",
+                "message": "Nilai tidak dikenal."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:57.021100941Z"
+          },
+          "bytes": 205
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 6,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input retensi tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "handlingNotes",
+                "code": "REQUIRED",
+                "message": "Catatan penanganan wajib diisi."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:57.02717555Z"
+          },
+          "bytes": 214
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 4,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "id",
+                "code": "UNKNOWN_FIELD",
+                "message": "Properti tidak dikenal dan harus dihilangkan."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:57.031050247Z"
+          },
+          "bytes": 215
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "text": "{"
+          },
+          "status": 400,
+          "ms": 3,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "MALFORMED_REQUEST",
+            "message": "Badan permintaan tidak dapat dibaca.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T01:17:57.034462621Z"
+          },
+          "bytes": 139
+        }
+      ]
+    },
+    {
+      "id": "CTR-05",
+      "hypothesis": "Exact Unicode code-point boundaries are enforced for narrative, company, notes, and evaluation notes.",
+      "result": "PASS",
+      "durationMs": 73,
+      "detail": [
+        {
+          "name": "narrative-50000",
+          "status": 201
+        },
+        {
+          "name": "narrative-50001",
+          "status": 400
+        },
+        {
+          "name": "company-500",
+          "status": 201
+        },
+        {
+          "name": "company-501",
+          "status": 400
+        },
+        {
+          "name": "handling-10000",
+          "status": 201
+        },
+        {
+          "name": "handling-10001",
+          "status": 400
+        },
+        {
+          "name": "evaluation-10000",
+          "status": 201
+        },
+        {
+          "name": "evaluation-10001",
+          "status": 400
+        }
+      ],
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 12,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/fbde46dd-6a96-4b79-b837-7444b3a07aed",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "fbde46dd-6a96-4b79-b837-7444b3a07aed",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:57.043129762Z",
+            "updatedAt": "2026-10-28T01:17:57.043129762Z",
+            "narrative": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...[50000 chars]",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Contract probe notes.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 50481
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 6,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "narrative",
+                "code": "TOO_LONG",
+                "message": "Panjang maksimal 50000 karakter."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:57.052895258Z"
+          },
+          "bytes": 204
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 10,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/0938a692-9278-40bd-93c8-b7c3a671aa66",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "0938a692-9278-40bd-93c8-b7c3a671aa66",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[1000 chars]",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:57.059480893Z",
+            "updatedAt": "2026-10-28T01:17:57.059480893Z",
+            "narrative": "My transfer is missing from my checking account.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Contract probe notes.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 1527
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "company",
+                "code": "TOO_LONG",
+                "message": "Panjang maksimal 500 karakter."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:57.067355294Z"
+          },
+          "bytes": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 14,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/c2bdb9fd-5ffc-4e4c-9078-9bc8081e7e41",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "c2bdb9fd-5ffc-4e4c-9078-9bc8081e7e41",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:57.07574502Z",
+            "updatedAt": "2026-10-28T01:17:57.07574502Z",
+            "narrative": "My transfer is missing from my checking account.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[20000 chars]",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 20506
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 6,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "handlingNotes",
+                "code": "TOO_LONG",
+                "message": "Panjang maksimal 10000 karakter."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:57.08734491Z"
+          },
+          "bytes": 207
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 14,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/eaa152ca-67b0-4db6-8566-70c6a8ed0127",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "eaa152ca-67b0-4db6-8566-70c6a8ed0127",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:57.095182009Z",
+            "updatedAt": "2026-10-28T01:17:57.095182009Z",
+            "narrative": "My transfer is missing from my checking account.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Contract probe notes.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[20000 chars]"
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 20527
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 6,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "evaluationNotes",
+                "code": "TOO_LONG",
+                "message": "Panjang maksimal 10000 karakter."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:57.106363878Z"
+          },
+          "bytes": 210
+        }
+      ]
+    },
+    {
+      "id": "CTR-06",
+      "hypothesis": "Reference order is preserved and the full PUT clears omitted optional fields while preserving identity.",
+      "result": "PASS",
+      "durationMs": 29,
+      "detail": {
+        "id": "6adc3425-d4dd-4c5c-aa12-cdf3adf21b6a",
+        "referenceCount": 2
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?source=CFPB&size=5",
+          "status": 200,
+          "ms": 6,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "items": [
+              {
+                "id": "b068875a-94ee-4e12-82a5-28b9fabf0159",
+                "source": "CFPB",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": "2024-11-12",
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:12:13.072385543Z",
+                "updatedAt": "2026-10-28T01:12:13.072385543Z"
+              },
+              {
+                "id": "4939ea31-e21d-4401-a110-df5117486084",
+                "source": "CFPB",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": "2024-11-12",
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:12:12.692082267Z",
+                "updatedAt": "2026-10-28T01:12:12.692082267Z"
+              }
+            ],
+            "page": 0,
+            "size": 5,
+            "totalElements": 2,
+            "totalPages": 1,
+            "hasNext": false
+          },
+          "bytes": 722
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 12,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/6adc3425-d4dd-4c5c-aa12-cdf3adf21b6a",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "6adc3425-d4dd-4c5c-aa12-cdf3adf21b6a",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": "2024-12-01",
+            "company": "Probe Bank",
+            "companyResponse": "Closed with explanation",
+            "createdAt": "2026-10-28T01:17:57.122609504Z",
+            "updatedAt": "2026-10-28T01:17:57.122609504Z",
+            "narrative": "My transfer is missing from my checking account.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Contract probe notes.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "Probe evaluation."
+            },
+            "referenceCaseIds": [
+              "4939ea31-e21d-4401-a110-df5117486084",
+              "b068875a-94ee-4e12-82a5-28b9fabf0159"
+            ]
+          },
+          "bytes": 658
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/6adc3425-d4dd-4c5c-aa12-cdf3adf21b6a",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 10,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "6adc3425-d4dd-4c5c-aa12-cdf3adf21b6a",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:57.122609504Z",
+            "updatedAt": "2026-10-28T01:17:57.13196208Z",
+            "narrative": "Replacement contract narrative.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Replacement notes.",
+              "outcomeAssessment": "RESOLVED",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 509
+        }
+      ]
+    },
+    {
+      "id": "CTR-07",
+      "hypothesis": "Exact duplicate references are rejected; case-variant UUIDs are silently deduplicated (observation).",
+      "result": "OBSERVATION",
+      "durationMs": 19,
+      "detail": {
+        "exactDuplicate": {
+          "status": 400,
+          "code": "VALIDATION_ERROR"
+        },
+        "caseVariantDuplicate": {
+          "status": 201,
+          "references": [
+            "b068875a-94ee-4e12-82a5-28b9fabf0159"
+          ]
+        },
+        "note": "UUID identity is case-insensitive; the generated Set deduplicates before RetentionRules sees it."
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?source=CFPB&size=1",
+          "status": 200,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "items": [
+              {
+                "id": "b068875a-94ee-4e12-82a5-28b9fabf0159",
+                "source": "CFPB",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": "2024-11-12",
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:12:13.072385543Z",
+                "updatedAt": "2026-10-28T01:12:13.072385543Z"
+              }
+            ],
+            "page": 0,
+            "size": 1,
+            "totalElements": 2,
+            "totalPages": 2,
+            "hasNext": true
+          },
+          "bytes": 399
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "referenceCaseIds[1]",
+                "code": "DUPLICATE",
+                "message": "Item tidak boleh duplikat."
+              }
+            ],
+            "timestamp": "2026-10-28T01:17:57.146201304Z"
+          },
+          "bytes": 209
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 9,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/be004245-3c1e-4a14-9a26-8f2dec4413cc",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "be004245-3c1e-4a14-9a26-8f2dec4413cc",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:57.151490573Z",
+            "updatedAt": "2026-10-28T01:17:57.151490573Z",
+            "narrative": "My transfer is missing from my checking account.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Contract probe notes.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": [
+              "b068875a-94ee-4e12-82a5-28b9fabf0159"
+            ]
+          },
+          "bytes": 567
+        }
+      ]
+    },
+    {
+      "id": "CTR-08",
+      "hypothesis": "Location, Allow, 404, 405, 415, and malformed-route responses follow the contract.",
+      "result": "PASS",
+      "durationMs": 32,
+      "detail": {
+        "location": "/api/cases/984a9398-d5ed-4332-a839-581464f9efb2",
+        "allow": "GET",
+        "route": 404,
+        "caseMissing": 404,
+        "unsupported": 415
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 9,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/984a9398-d5ed-4332-a839-581464f9efb2",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "984a9398-d5ed-4332-a839-581464f9efb2",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:57.161313273Z",
+            "updatedAt": "2026-10-28T01:17:57.161313273Z",
+            "narrative": "My transfer is missing from my checking account.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Contract probe notes.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 529
+        },
+        {
+          "method": "PATCH",
+          "path": "/api/health",
+          "status": 405,
+          "ms": 4,
+          "headers": {
+            "content-type": "application/json",
+            "allow": "GET"
+          },
+          "body": {
+            "code": "METHOD_NOT_ALLOWED",
+            "message": "Metode HTTP tidak didukung.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T01:17:57.168764451Z"
+          },
+          "bytes": 131
+        },
+        {
+          "method": "GET",
+          "path": "/api/not-found",
+          "status": 404,
+          "ms": 10,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "ROUTE_NOT_FOUND",
+            "message": "Route tidak ditemukan.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T01:17:57.180040825Z"
+          },
+          "bytes": 123
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/00000000-0000-4000-8000-000000000000",
+          "status": 404,
+          "ms": 4,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "CASE_NOT_FOUND",
+            "message": "Kasus tidak ditemukan.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T01:17:57.183951624Z"
+          },
+          "bytes": 122
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "json": {
+              "product": "Checking or savings account",
+              "issue": "Managing an account",
+              "narrative": "My transfer is missing from my checking account."
+            }
+          },
+          "status": 415,
+          "ms": 4,
+          "headers": {
+            "content-type": "application/json"
+          },
+          "body": {
+            "code": "UNSUPPORTED_MEDIA_TYPE",
+            "message": "Tipe konten permintaan tidak didukung.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T01:17:57.187379298Z"
+          },
+          "bytes": 146
+        }
+      ]
+    },
+    {
+      "id": "CTR-09",
+      "hypothesis": "CORS allows the configured origin on actual requests and preflight, and rejects foreign origins and unapproved headers.",
+      "result": "PASS",
+      "durationMs": 14,
+      "detail": {
+        "actual": 200,
+        "preflight": 204,
+        "foreign": 403
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "ms": 5,
+          "headers": {
+            "content-type": "application/json",
+            "access-control-allow-origin": "http://localhost:3000",
+            "access-control-expose-headers": "Location",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "status": "UP",
+            "database": "UP"
+          },
+          "bytes": 31
+        },
+        {
+          "method": "OPTIONS",
+          "path": "/api/cases",
+          "status": 204,
+          "ms": 2,
+          "headers": {
+            "access-control-allow-origin": "http://localhost:3000",
+            "access-control-allow-methods": "GET, POST, PUT, OPTIONS",
+            "access-control-allow-headers": "Content-Type, Accept",
+            "access-control-expose-headers": "Location",
+            "vary": "Origin"
+          },
+          "body": null,
+          "bytes": 0
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 403,
+          "ms": 2,
+          "headers": {
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": "Invalid CORS request",
+          "bytes": 20
+        },
+        {
+          "method": "OPTIONS",
+          "path": "/api/cases",
+          "status": 403,
+          "ms": 2,
+          "headers": {},
+          "body": null,
+          "bytes": 0
+        },
+        {
+          "method": "OPTIONS",
+          "path": "/api/cases",
+          "status": 403,
+          "ms": 2,
+          "headers": {},
+          "body": null,
+          "bytes": 0
+        }
+      ]
+    },
+    {
+      "id": "CTR-10",
+      "hypothesis": "Unsupported Accept is a controlled 406 and supported Accept values return JSON.",
+      "result": "PASS",
+      "durationMs": 13,
+      "detail": {
+        "unsupported": 406,
+        "wildcard": 200
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 406,
+          "ms": 6,
+          "headers": {},
+          "body": null,
+          "bytes": 0
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "ms": 3,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "status": "UP",
+            "database": "UP"
+          },
+          "bytes": 31
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "ms": 4,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "status": "UP",
+            "database": "UP"
+          },
+          "bytes": 31
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 200,
+      "ms": 52,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "status": "UP",
+        "database": "UP"
+      },
+      "bytes": 31
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200,
+      "ms": 6,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "items": [
+          {
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null
+          }
+        ],
+        "scope": "IMPORTED_CFPB_SAMPLE"
+      },
+      "bytes": 148
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?size=2",
+      "status": 200,
+      "ms": 8,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "items": [
+          {
+            "id": "c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.196211466Z",
+            "updatedAt": "2026-10-28T01:17:45.196211466Z"
+          },
+          {
+            "id": "37f2fbd2-7988-467c-adc9-ffa0e87ced17",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.18547252Z",
+            "updatedAt": "2026-10-28T01:17:45.18547252Z"
+          }
+        ],
+        "page": 0,
+        "size": 2,
+        "totalElements": 14,
+        "totalPages": 7,
+        "hasNext": true
+      },
+      "bytes": 710
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+      "status": 200,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:17:45.196211466Z",
+        "updatedAt": "2026-10-28T01:17:45.196211466Z",
+        "narrative": "My transfer is missing from my checking account.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Contract probe notes.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 529
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 28,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "status": "MATCHES",
+        "message": "Ditemukan preseden yang memenuhi ambang awal.",
+        "results": [
+          {
+            "score": 1,
+            "categoryScore": 1,
+            "textScore": 1,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subProduct",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subIssue",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "checking",
+                "contribution": 0.32072276462311794
+              },
+              {
+                "term": "missing",
+                "contribution": 0.32072276462311794
+              },
+              {
+                "term": "account",
+                "contribution": 0.20402767406824224
+              },
+              {
+                "term": "transfer",
+                "contribution": 0.15452679668552202
+              }
+            ],
+            "case": {
+              "source": "ANALYST",
+              "id": "37f2fbd2-7988-467c-adc9-ffa0e87ced17",
+              "product": "Checking or savings account",
+              "subProduct": null,
+              "issue": "Managing an account",
+              "subIssue": null,
+              "receivedDate": null,
+              "company": null,
+              "companyResponse": null,
+              "createdAt": "2026-10-28T01:17:45.18547252Z",
+              "updatedAt": "2026-10-28T01:17:45.18547252Z",
+              "narrative": "My transfer is missing from my checking account.",
+              "provenance": null,
+              "analystNotes": {
+                "handlingNotes": "Contract probe notes.",
+                "outcomeAssessment": "UNKNOWN",
+                "evaluationNotes": null
+              },
+              "referenceCaseIds": [
+                "b068875a-94ee-4e12-82a5-28b9fabf0159"
+              ]
+            }
+          },
+          {
+            "score": 1,
+            "categoryScore": 1,
+            "textScore": 1,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subProduct",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subIssue",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "checking",
+                "contribution": 0.32072276462311794
+              },
+              {
+                "term": "missing",
+                "contribution": 0.32072276462311794
+              },
+              {
+                "term": "account",
+                "contribution": 0.20402767406824224
+              },
+              {
+                "term": "transfer",
+                "contribution": 0.15452679668552202
+              }
+            ],
+            "case": {
+              "source": "ANALYST",
+              "id": "52191af7-a34f-459a-b1a9-99f0566a8416",
+              "product": "Checking or savings account",
+              "subProduct": null,
+              "issue": "Managing an account",
+              "subIssue": null,
+              "receivedDate": null,
+              "company": null,
+              "companyResponse": null,
+              "createdAt": "2026-10-28T01:17:45.116872526Z",
+              "updatedAt": "2026-10-28T01:17:45.116872526Z",
+              "narrative": "My transfer is missing from my checking account.",
+              "provenance": null,
+              "analystNotes": {
+                "handlingNotes": "Contract probe notes.",
+                "outcomeAssessment": "UNKNOWN",
+                "evaluationNotes": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[20000 chars]"
+              },
+              "referenceCaseIds": []
+            }
+          },
+          {
+            "score": 1,
+            "categoryScore": 1,
+            "textScore": 1,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subProduct",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subIssue",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "checking",
+                "contribution": 0.32072276462311794
+              },
+              {
+                "term": "missing",
+                "contribution": 0.32072276462311794
+              },
+              {
+                "term": "account",
+                "contribution": 0.20402767406824224
+              },
+              {
+                "term": "transfer",
+                "contribution": 0.15452679668552202
+              }
+            ],
+            "case": {
+              "source": "ANALYST",
+              "id": "9ee0cb3d-be93-4df3-ba6f-be7664d3c957",
+              "product": "Checking or savings account",
+              "subProduct": null,
+              "issue": "Managing an account",
+              "subIssue": null,
+              "receivedDate": null,
+              "company": null,
+              "companyResponse": null,
+              "createdAt": "2026-10-28T01:17:44.663721865Z",
+              "updatedAt": "2026-10-28T01:17:44.685197187Z",
+              "narrative": "My transfer is missing from my checking account.",
+              "provenance": null,
+              "analystNotes": {
+                "handlingNotes": "Updated contract probe notes.",
+                "outcomeAssessment": "UNKNOWN",
+                "evaluationNotes": null
+              },
+              "referenceCaseIds": []
+            }
+          },
+          {
+            "score": 1,
+            "categoryScore": 1,
+            "textScore": 1,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subProduct",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subIssue",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "checking",
+                "contribution": 0.32072276462311794
+              },
+              {
+                "term": "missing",
+                "contribution": 0.32072276462311794
+              },
+              {
+                "term": "account",
+                "contribution": 0.20402767406824224
+              },
+              {
+                "term": "transfer",
+                "contribution": 0.15452679668552202
+              }
+            ],
+            "case": {
+              "source": "ANALYST",
+              "id": "c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+              "product": "Checking or savings account",
+              "subProduct": null,
+              "issue": "Managing an account",
+              "subIssue": null,
+              "receivedDate": null,
+              "company": null,
+              "companyResponse": null,
+              "createdAt": "2026-10-28T01:17:45.196211466Z",
+              "updatedAt": "2026-10-28T01:17:45.196211466Z",
+              "narrative": "My transfer is missing from my checking account.",
+              "provenance": null,
+              "analystNotes": {
+                "handlingNotes": "Contract probe notes.",
+                "outcomeAssessment": "UNKNOWN",
+                "evaluationNotes": null
+              },
+              "referenceCaseIds": []
+            }
+          },
+          {
+            "score": 1,
+            "categoryScore": 1,
+            "textScore": 1,
+            "categoryExplanation": [
+              {
+                "field": "product",
+                "queryValue": "Checking or savings account",
+                "caseValue": "Checking or savings account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subProduct",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              },
+              {
+                "field": "issue",
+                "queryValue": "Managing an account",
+                "caseValue": "Managing an account",
+                "status": "MATCH",
+                "configuredWeight": 0.35,
+                "effectiveWeight": 0.5,
+                "contribution": 0.5
+              },
+              {
+                "field": "subIssue",
+                "queryValue": null,
+                "caseValue": null,
+                "status": "NOT_USED",
+                "configuredWeight": 0.15,
+                "effectiveWeight": 0,
+                "contribution": 0
+              }
+            ],
+            "sharedTerms": [
+              {
+                "term": "checking",
+                "contribution": 0.32072276462311794
+              },
+              {
+                "term": "missing",
+                "contribution": 0.32072276462311794
+              },
+              {
+                "term": "account",
+                "contribution": 0.20402767406824224
+              },
+              {
+                "term": "transfer",
+                "contribution": 0.15452679668552202
+              }
+            ],
+            "case": {
+              "source": "ANALYST",
+              "id": "d97926e6-d40e-413a-8f25-b850e8299624",
+              "product": "Checking or savings account",
+              "subProduct": null,
+              "issue": "Managing an account",
+              "subIssue": null,
+              "receivedDate": null,
+              "company": null,
+              "companyResponse": null,
+              "createdAt": "2026-10-28T01:17:45.083339418Z",
+              "updatedAt": "2026-10-28T01:17:45.083339418Z",
+              "narrative": "My transfer is missing from my checking account.",
+              "provenance": null,
+              "analystNotes": {
+                "handlingNotes": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[20000 chars]",
+                "outcomeAssessment": "UNKNOWN",
+                "evaluationNotes": null
+              },
+              "referenceCaseIds": []
+            }
+          }
+        ],
+        "returnedCount": 5,
+        "limit": 5,
+        "corpusSize": 14,
+        "warnings": [
+          "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Kalibrasi eksploratif dan belum divalidasi manusia."
+        ],
+        "configuration": {
+          "categoryWeight": 0.4,
+          "textWeight": 0.6,
+          "categoryFieldWeights": {
+            "product": 0.35,
+            "subProduct": 0.15,
+            "issue": 0.35,
+            "subIssue": 0.15
+          },
+          "threshold": 0.5,
+          "requiresTextOverlap": true,
+          "algorithmVersion": "tfidf-cosine-v1"
+        }
+      },
+      "bytes": 47938
+    },
+    {
+      "method": "GET",
+      "path": "/api/imports/cfpb",
+      "status": 405,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "allow": "POST"
+      },
+      "body": {
+        "code": "METHOD_NOT_ALLOWED",
+        "message": "Metode HTTP tidak didukung.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T01:17:56.809218665Z"
+      },
+      "bytes": 131
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 14,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/b48de967-22b6-43a2-b238-8765ed2ad2e8",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "b48de967-22b6-43a2-b238-8765ed2ad2e8",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:17:56.819593592Z",
+        "updatedAt": "2026-10-28T01:17:56.819593592Z",
+        "narrative": "My transfer is missing from my checking account.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Contract probe notes.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 529
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/b48de967-22b6-43a2-b238-8765ed2ad2e8",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 10,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "b48de967-22b6-43a2-b238-8765ed2ad2e8",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:17:56.819593592Z",
+        "updatedAt": "2026-10-28T01:17:56.828878765Z",
+        "narrative": "My transfer is missing from my checking account.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Updated contract probe notes.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 537
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?size=100",
+      "status": 200,
+      "ms": 12,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "items": [
+          {
+            "id": "b48de967-22b6-43a2-b238-8765ed2ad2e8",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:56.819593592Z",
+            "updatedAt": "2026-10-28T01:17:56.828878765Z"
+          },
+          {
+            "id": "c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.196211466Z",
+            "updatedAt": "2026-10-28T01:17:45.196211466Z"
+          },
+          {
+            "id": "37f2fbd2-7988-467c-adc9-ffa0e87ced17",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.18547252Z",
+            "updatedAt": "2026-10-28T01:17:45.18547252Z"
+          },
+          {
+            "id": "7028c8ae-cc52-4080-8b07-9f2dd7c166b4",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.149271776Z",
+            "updatedAt": "2026-10-28T01:17:45.160836365Z"
+          },
+          {
+            "id": "52191af7-a34f-459a-b1a9-99f0566a8416",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.116872526Z",
+            "updatedAt": "2026-10-28T01:17:45.116872526Z"
+          },
+          {
+            "id": "d97926e6-d40e-413a-8f25-b850e8299624",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.083339418Z",
+            "updatedAt": "2026-10-28T01:17:45.083339418Z"
+          },
+          {
+            "id": "f7446d7b-2a07-4c67-9c15-ee5602a0ec99",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[1000 chars]",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.055222187Z",
+            "updatedAt": "2026-10-28T01:17:45.055222187Z"
+          },
+          {
+            "id": "481a163a-71a0-47e8-841f-55288da1e1c5",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.033910301Z",
+            "updatedAt": "2026-10-28T01:17:45.033910301Z"
+          },
+          "...[7 more]"
+        ],
+        "page": 0,
+        "size": 100,
+        "totalElements": 15,
+        "totalPages": 1,
+        "hasNext": false
+      },
+      "bytes": 5876
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=0&size=100",
+      "status": 200,
+      "ms": 14,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "items": [
+          {
+            "id": "b48de967-22b6-43a2-b238-8765ed2ad2e8",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:56.819593592Z",
+            "updatedAt": "2026-10-28T01:17:56.828878765Z"
+          },
+          {
+            "id": "c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.196211466Z",
+            "updatedAt": "2026-10-28T01:17:45.196211466Z"
+          },
+          {
+            "id": "37f2fbd2-7988-467c-adc9-ffa0e87ced17",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.18547252Z",
+            "updatedAt": "2026-10-28T01:17:45.18547252Z"
+          },
+          {
+            "id": "7028c8ae-cc52-4080-8b07-9f2dd7c166b4",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.149271776Z",
+            "updatedAt": "2026-10-28T01:17:45.160836365Z"
+          },
+          {
+            "id": "52191af7-a34f-459a-b1a9-99f0566a8416",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.116872526Z",
+            "updatedAt": "2026-10-28T01:17:45.116872526Z"
+          },
+          {
+            "id": "d97926e6-d40e-413a-8f25-b850e8299624",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.083339418Z",
+            "updatedAt": "2026-10-28T01:17:45.083339418Z"
+          },
+          {
+            "id": "f7446d7b-2a07-4c67-9c15-ee5602a0ec99",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[1000 chars]",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.055222187Z",
+            "updatedAt": "2026-10-28T01:17:45.055222187Z"
+          },
+          {
+            "id": "481a163a-71a0-47e8-841f-55288da1e1c5",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.033910301Z",
+            "updatedAt": "2026-10-28T01:17:45.033910301Z"
+          },
+          "...[7 more]"
+        ],
+        "page": 0,
+        "size": 100,
+        "totalElements": 15,
+        "totalPages": 1,
+        "hasNext": false
+      },
+      "bytes": 5876
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=0&size=100",
+      "status": 200,
+      "ms": 13,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "items": [
+          {
+            "id": "b48de967-22b6-43a2-b238-8765ed2ad2e8",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:56.819593592Z",
+            "updatedAt": "2026-10-28T01:17:56.828878765Z"
+          },
+          {
+            "id": "c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.196211466Z",
+            "updatedAt": "2026-10-28T01:17:45.196211466Z"
+          },
+          {
+            "id": "37f2fbd2-7988-467c-adc9-ffa0e87ced17",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.18547252Z",
+            "updatedAt": "2026-10-28T01:17:45.18547252Z"
+          },
+          {
+            "id": "7028c8ae-cc52-4080-8b07-9f2dd7c166b4",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.149271776Z",
+            "updatedAt": "2026-10-28T01:17:45.160836365Z"
+          },
+          {
+            "id": "52191af7-a34f-459a-b1a9-99f0566a8416",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.116872526Z",
+            "updatedAt": "2026-10-28T01:17:45.116872526Z"
+          },
+          {
+            "id": "d97926e6-d40e-413a-8f25-b850e8299624",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.083339418Z",
+            "updatedAt": "2026-10-28T01:17:45.083339418Z"
+          },
+          {
+            "id": "f7446d7b-2a07-4c67-9c15-ee5602a0ec99",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[1000 chars]",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.055222187Z",
+            "updatedAt": "2026-10-28T01:17:45.055222187Z"
+          },
+          {
+            "id": "481a163a-71a0-47e8-841f-55288da1e1c5",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.033910301Z",
+            "updatedAt": "2026-10-28T01:17:45.033910301Z"
+          },
+          "...[7 more]"
+        ],
+        "page": 0,
+        "size": 100,
+        "totalElements": 15,
+        "totalPages": 1,
+        "hasNext": false
+      },
+      "bytes": 5876
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?source=CFPB",
+      "status": 200,
+      "ms": 6,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "items": [
+          {
+            "id": "b068875a-94ee-4e12-82a5-28b9fabf0159",
+            "source": "CFPB",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": "2024-11-12",
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:12:13.072385543Z",
+            "updatedAt": "2026-10-28T01:12:13.072385543Z"
+          },
+          {
+            "id": "4939ea31-e21d-4401-a110-df5117486084",
+            "source": "CFPB",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": "2024-11-12",
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:12:12.692082267Z",
+            "updatedAt": "2026-10-28T01:12:12.692082267Z"
+          }
+        ],
+        "page": 0,
+        "size": 20,
+        "totalElements": 2,
+        "totalPages": 1,
+        "hasNext": false
+      },
+      "bytes": 723
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?source=ANALYST",
+      "status": 200,
+      "ms": 13,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "items": [
+          {
+            "id": "b48de967-22b6-43a2-b238-8765ed2ad2e8",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:56.819593592Z",
+            "updatedAt": "2026-10-28T01:17:56.828878765Z"
+          },
+          {
+            "id": "c0cac4f9-9042-4ca3-903c-4c608198ccd8",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.196211466Z",
+            "updatedAt": "2026-10-28T01:17:45.196211466Z"
+          },
+          {
+            "id": "37f2fbd2-7988-467c-adc9-ffa0e87ced17",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.18547252Z",
+            "updatedAt": "2026-10-28T01:17:45.18547252Z"
+          },
+          {
+            "id": "7028c8ae-cc52-4080-8b07-9f2dd7c166b4",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.149271776Z",
+            "updatedAt": "2026-10-28T01:17:45.160836365Z"
+          },
+          {
+            "id": "52191af7-a34f-459a-b1a9-99f0566a8416",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.116872526Z",
+            "updatedAt": "2026-10-28T01:17:45.116872526Z"
+          },
+          {
+            "id": "d97926e6-d40e-413a-8f25-b850e8299624",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.083339418Z",
+            "updatedAt": "2026-10-28T01:17:45.083339418Z"
+          },
+          {
+            "id": "f7446d7b-2a07-4c67-9c15-ee5602a0ec99",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[1000 chars]",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.055222187Z",
+            "updatedAt": "2026-10-28T01:17:45.055222187Z"
+          },
+          {
+            "id": "481a163a-71a0-47e8-841f-55288da1e1c5",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:17:45.033910301Z",
+            "updatedAt": "2026-10-28T01:17:45.033910301Z"
+          },
+          "...[5 more]"
+        ],
+        "page": 0,
+        "size": 20,
+        "totalElements": 13,
+        "totalPages": 1,
+        "hasNext": false
+      },
+      "bytes": 5231
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=2147483647&size=100",
+      "status": 200,
+      "ms": 6,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "items": [],
+        "page": 2147483647,
+        "size": 100,
+        "totalElements": 15,
+        "totalPages": 1,
+        "hasNext": false
+      },
+      "bytes": 91
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=-1",
+      "status": 400,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_VALUE",
+            "message": "Nilai parameter tidak valid."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.900701018Z"
+      },
+      "bytes": 215
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=abc",
+      "status": 400,
+      "ms": 4,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Format parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_FORMAT",
+            "message": "Format nilai parameter tidak sesuai."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.906430909Z"
+      },
+      "bytes": 232
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=1.5",
+      "status": 400,
+      "ms": 6,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Format parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_FORMAT",
+            "message": "Format nilai parameter tidak sesuai."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.91195569Z"
+      },
+      "bytes": 231
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=",
+      "status": 400,
+      "ms": 4,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_FORMAT",
+            "message": "Parameter tidak boleh kosong."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.917290961Z"
+      },
+      "bytes": 217
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?size=0",
+      "status": 400,
+      "ms": 4,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "size",
+            "code": "INVALID_VALUE",
+            "message": "Nilai parameter tidak valid."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.921657983Z"
+      },
+      "bytes": 215
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?size=101",
+      "status": 400,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "size",
+            "code": "INVALID_VALUE",
+            "message": "Nilai parameter tidak valid."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.926673538Z"
+      },
+      "bytes": 215
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?size=",
+      "status": 400,
+      "ms": 4,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "size",
+            "code": "INVALID_FORMAT",
+            "message": "Parameter tidak boleh kosong."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.930339025Z"
+      },
+      "bytes": 217
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?source=",
+      "status": 400,
+      "ms": 6,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "INVALID_FORMAT",
+            "message": "Parameter tidak boleh kosong."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.935043464Z"
+      },
+      "bytes": 219
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?source=cfpb",
+      "status": 400,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "INVALID_VALUE",
+            "message": "Nilai source harus CFPB atau ANALYST."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.941660301Z"
+      },
+      "bytes": 226
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?source=UNKNOWN",
+      "status": 400,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "INVALID_VALUE",
+            "message": "Nilai source harus CFPB atau ANALYST."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.946251634Z"
+      },
+      "bytes": 226
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 6,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "product",
+            "code": "INVALID_VALUE",
+            "message": "Field tidak boleh null."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.953767417Z"
+      },
+      "bytes": 198
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input pengaduan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "issue",
+            "code": "REQUIRED",
+            "message": "Masalah wajib diisi."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.958725669Z"
+      },
+      "bytes": 198
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "INVALID_VALUE",
+            "message": "Field tidak boleh null."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.963891431Z"
+      },
+      "bytes": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 4,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input pengaduan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "NO_MEANINGFUL_TOKENS",
+            "message": "Narasi harus mengandung setidaknya satu kata bermakna."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.969079295Z"
+      },
+      "bytes": 248
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 4,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "limit",
+            "code": "INVALID_VALUE",
+            "message": "Field tidak boleh null."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.972545672Z"
+      },
+      "bytes": 196
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "limit",
+            "code": "OUT_OF_RANGE",
+            "message": "Nilai di bawah batas minimum."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.977098303Z"
+      },
+      "bytes": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 4,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "limit",
+            "code": "OUT_OF_RANGE",
+            "message": "Nilai di atas batas maksimum."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.981611333Z"
+      },
+      "bytes": 201
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 3,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "limit",
+            "code": "INVALID_FORMAT",
+            "message": "Tipe nilai tidak sesuai dengan kontrak."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.984927001Z"
+      },
+      "bytes": 213
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 4,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "product",
+            "code": "INVALID_FORMAT",
+            "message": "Tipe nilai tidak sesuai dengan kontrak."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.988457681Z"
+      },
+      "bytes": 215
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "UNKNOWN_FIELD",
+            "message": "Properti tidak dikenal dan harus dihilangkan."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.992580091Z"
+      },
+      "bytes": 219
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 4,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "referenceCaseIds",
+            "code": "INVALID_VALUE",
+            "message": "Field tidak boleh null."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:56.99728013Z"
+      },
+      "bytes": 206
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "referenceCaseIds[0]",
+            "code": "INVALID_FORMAT",
+            "message": "UUID harus memakai format lengkap 8-4-4-4-12."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:57.002126376Z"
+      },
+      "bytes": 233
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "referenceCaseIds[0]",
+            "code": "INVALID_VALUE",
+            "message": "Field tidak boleh null."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:57.007078528Z"
+      },
+      "bytes": 210
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "receivedDate",
+            "code": "INVALID_FORMAT",
+            "message": "Tanggal harus berformat YYYY-MM-DD."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:57.012869122Z"
+      },
+      "bytes": 216
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 4,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "receivedDate",
+            "code": "INVALID_FORMAT",
+            "message": "Tanggal harus berformat YYYY-MM-DD."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:57.01733445Z"
+      },
+      "bytes": 215
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 4,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "outcomeAssessment",
+            "code": "INVALID_VALUE",
+            "message": "Nilai tidak dikenal."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:57.021100941Z"
+      },
+      "bytes": 205
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 6,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input retensi tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "handlingNotes",
+            "code": "REQUIRED",
+            "message": "Catatan penanganan wajib diisi."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:57.02717555Z"
+      },
+      "bytes": 214
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 4,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "id",
+            "code": "UNKNOWN_FIELD",
+            "message": "Properti tidak dikenal dan harus dihilangkan."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:57.031050247Z"
+      },
+      "bytes": 215
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "text": "{"
+      },
+      "status": 400,
+      "ms": 3,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T01:17:57.034462621Z"
+      },
+      "bytes": 139
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 12,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/fbde46dd-6a96-4b79-b837-7444b3a07aed",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "fbde46dd-6a96-4b79-b837-7444b3a07aed",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:17:57.043129762Z",
+        "updatedAt": "2026-10-28T01:17:57.043129762Z",
+        "narrative": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...[50000 chars]",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Contract probe notes.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 50481
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 6,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "TOO_LONG",
+            "message": "Panjang maksimal 50000 karakter."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:57.052895258Z"
+      },
+      "bytes": 204
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 10,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/0938a692-9278-40bd-93c8-b7c3a671aa66",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "0938a692-9278-40bd-93c8-b7c3a671aa66",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[1000 chars]",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:17:57.059480893Z",
+        "updatedAt": "2026-10-28T01:17:57.059480893Z",
+        "narrative": "My transfer is missing from my checking account.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Contract probe notes.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 1527
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "company",
+            "code": "TOO_LONG",
+            "message": "Panjang maksimal 500 karakter."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:57.067355294Z"
+      },
+      "bytes": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 14,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/c2bdb9fd-5ffc-4e4c-9078-9bc8081e7e41",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "c2bdb9fd-5ffc-4e4c-9078-9bc8081e7e41",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:17:57.07574502Z",
+        "updatedAt": "2026-10-28T01:17:57.07574502Z",
+        "narrative": "My transfer is missing from my checking account.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[20000 chars]",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 20506
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 6,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "handlingNotes",
+            "code": "TOO_LONG",
+            "message": "Panjang maksimal 10000 karakter."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:57.08734491Z"
+      },
+      "bytes": 207
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 14,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/eaa152ca-67b0-4db6-8566-70c6a8ed0127",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "eaa152ca-67b0-4db6-8566-70c6a8ed0127",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:17:57.095182009Z",
+        "updatedAt": "2026-10-28T01:17:57.095182009Z",
+        "narrative": "My transfer is missing from my checking account.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Contract probe notes.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀...[20000 chars]"
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 20527
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 6,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "evaluationNotes",
+            "code": "TOO_LONG",
+            "message": "Panjang maksimal 10000 karakter."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:57.106363878Z"
+      },
+      "bytes": 210
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?source=CFPB&size=5",
+      "status": 200,
+      "ms": 6,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "items": [
+          {
+            "id": "b068875a-94ee-4e12-82a5-28b9fabf0159",
+            "source": "CFPB",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": "2024-11-12",
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:12:13.072385543Z",
+            "updatedAt": "2026-10-28T01:12:13.072385543Z"
+          },
+          {
+            "id": "4939ea31-e21d-4401-a110-df5117486084",
+            "source": "CFPB",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": "2024-11-12",
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:12:12.692082267Z",
+            "updatedAt": "2026-10-28T01:12:12.692082267Z"
+          }
+        ],
+        "page": 0,
+        "size": 5,
+        "totalElements": 2,
+        "totalPages": 1,
+        "hasNext": false
+      },
+      "bytes": 722
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 12,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/6adc3425-d4dd-4c5c-aa12-cdf3adf21b6a",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "6adc3425-d4dd-4c5c-aa12-cdf3adf21b6a",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": "2024-12-01",
+        "company": "Probe Bank",
+        "companyResponse": "Closed with explanation",
+        "createdAt": "2026-10-28T01:17:57.122609504Z",
+        "updatedAt": "2026-10-28T01:17:57.122609504Z",
+        "narrative": "My transfer is missing from my checking account.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Contract probe notes.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "Probe evaluation."
+        },
+        "referenceCaseIds": [
+          "4939ea31-e21d-4401-a110-df5117486084",
+          "b068875a-94ee-4e12-82a5-28b9fabf0159"
+        ]
+      },
+      "bytes": 658
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/6adc3425-d4dd-4c5c-aa12-cdf3adf21b6a",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 10,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "6adc3425-d4dd-4c5c-aa12-cdf3adf21b6a",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:17:57.122609504Z",
+        "updatedAt": "2026-10-28T01:17:57.13196208Z",
+        "narrative": "Replacement contract narrative.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Replacement notes.",
+          "outcomeAssessment": "RESOLVED",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 509
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?source=CFPB&size=1",
+      "status": 200,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "items": [
+          {
+            "id": "b068875a-94ee-4e12-82a5-28b9fabf0159",
+            "source": "CFPB",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": "2024-11-12",
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:12:13.072385543Z",
+            "updatedAt": "2026-10-28T01:12:13.072385543Z"
+          }
+        ],
+        "page": 0,
+        "size": 1,
+        "totalElements": 2,
+        "totalPages": 2,
+        "hasNext": true
+      },
+      "bytes": 399
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "referenceCaseIds[1]",
+            "code": "DUPLICATE",
+            "message": "Item tidak boleh duplikat."
+          }
+        ],
+        "timestamp": "2026-10-28T01:17:57.146201304Z"
+      },
+      "bytes": 209
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 9,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/be004245-3c1e-4a14-9a26-8f2dec4413cc",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "be004245-3c1e-4a14-9a26-8f2dec4413cc",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:17:57.151490573Z",
+        "updatedAt": "2026-10-28T01:17:57.151490573Z",
+        "narrative": "My transfer is missing from my checking account.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Contract probe notes.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": [
+          "b068875a-94ee-4e12-82a5-28b9fabf0159"
+        ]
+      },
+      "bytes": 567
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 9,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/984a9398-d5ed-4332-a839-581464f9efb2",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "984a9398-d5ed-4332-a839-581464f9efb2",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:17:57.161313273Z",
+        "updatedAt": "2026-10-28T01:17:57.161313273Z",
+        "narrative": "My transfer is missing from my checking account.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Contract probe notes.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 529
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/health",
+      "status": 405,
+      "ms": 4,
+      "headers": {
+        "content-type": "application/json",
+        "allow": "GET"
+      },
+      "body": {
+        "code": "METHOD_NOT_ALLOWED",
+        "message": "Metode HTTP tidak didukung.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T01:17:57.168764451Z"
+      },
+      "bytes": 131
+    },
+    {
+      "method": "GET",
+      "path": "/api/not-found",
+      "status": 404,
+      "ms": 10,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "ROUTE_NOT_FOUND",
+        "message": "Route tidak ditemukan.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T01:17:57.180040825Z"
+      },
+      "bytes": 123
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/00000000-0000-4000-8000-000000000000",
+      "status": 404,
+      "ms": 4,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "CASE_NOT_FOUND",
+        "message": "Kasus tidak ditemukan.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T01:17:57.183951624Z"
+      },
+      "bytes": 122
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "json": {
+          "product": "Checking or savings account",
+          "issue": "Managing an account",
+          "narrative": "My transfer is missing from my checking account."
+        }
+      },
+      "status": 415,
+      "ms": 4,
+      "headers": {
+        "content-type": "application/json"
+      },
+      "body": {
+        "code": "UNSUPPORTED_MEDIA_TYPE",
+        "message": "Tipe konten permintaan tidak didukung.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T01:17:57.187379298Z"
+      },
+      "bytes": 146
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 200,
+      "ms": 5,
+      "headers": {
+        "content-type": "application/json",
+        "access-control-allow-origin": "http://localhost:3000",
+        "access-control-expose-headers": "Location",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "status": "UP",
+        "database": "UP"
+      },
+      "bytes": 31
+    },
+    {
+      "method": "OPTIONS",
+      "path": "/api/cases",
+      "status": 204,
+      "ms": 2,
+      "headers": {
+        "access-control-allow-origin": "http://localhost:3000",
+        "access-control-allow-methods": "GET, POST, PUT, OPTIONS",
+        "access-control-allow-headers": "Content-Type, Accept",
+        "access-control-expose-headers": "Location",
+        "vary": "Origin"
+      },
+      "body": null,
+      "bytes": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 403,
+      "ms": 2,
+      "headers": {
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": "Invalid CORS request",
+      "bytes": 20
+    },
+    {
+      "method": "OPTIONS",
+      "path": "/api/cases",
+      "status": 403,
+      "ms": 2,
+      "headers": {},
+      "body": null,
+      "bytes": 0
+    },
+    {
+      "method": "OPTIONS",
+      "path": "/api/cases",
+      "status": 403,
+      "ms": 2,
+      "headers": {},
+      "body": null,
+      "bytes": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 406,
+      "ms": 6,
+      "headers": {},
+      "body": null,
+      "bytes": 0
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 200,
+      "ms": 3,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "status": "UP",
+        "database": "UP"
+      },
+      "bytes": 31
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 200,
+      "ms": 4,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "status": "UP",
+        "database": "UP"
+      },
+      "bytes": 31
+    }
+  ]
+}

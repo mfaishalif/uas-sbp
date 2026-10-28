@@ -1,0 +1,754 @@
+{
+  "session": "persistence-busy",
+  "startedAt": "2026-10-28T01:16:51.032Z",
+  "completedAt": "2026-10-28T01:16:51.166Z",
+  "baseUrl": "http://127.0.0.1:18104",
+  "dbPath": "/tmp/opencode/finresolve/persist2.db",
+  "summary": {
+    "scenarios": 1,
+    "passed": 1,
+    "failed": 0,
+    "blocked": 0,
+    "observations": 0,
+    "httpRequests": 10
+  },
+  "results": [
+    {
+      "id": "PERS-05",
+      "hypothesis": "A controlled SQLite write lock produces 503 DATABASE_BUSY for writes, leaves reads and data intact, and recovers after release.",
+      "result": "PASS",
+      "durationMs": 0,
+      "detail": {
+        "failures": [],
+        "lockCalls": [
+          {
+            "name": "PUT",
+            "status": 503,
+            "code": "DATABASE_BUSY",
+            "ms": 31
+          },
+          {
+            "name": "POST",
+            "status": 503,
+            "code": "DATABASE_BUSY",
+            "ms": 32
+          },
+          {
+            "name": "import",
+            "status": 503,
+            "code": "DATABASE_BUSY",
+            "ms": 32
+          },
+          {
+            "name": "health",
+            "status": 200,
+            "body": {
+              "status": "UP",
+              "database": "UP"
+            },
+            "ms": 16
+          },
+          {
+            "name": "read",
+            "status": 200,
+            "total": 1,
+            "ms": 16
+          }
+        ],
+        "counts": {
+          "before": {
+            "cases": 503,
+            "batches": 3
+          },
+          "during": {
+            "cases": 503,
+            "batches": 3
+          },
+          "final": {
+            "cases": 504,
+            "batches": 4
+          }
+        },
+        "retry": {
+          "put": 200,
+          "import": 201,
+          "importBatch": "55de3035-4e6f-4628-bd35-13b5c14b735e"
+        },
+        "putUnchangedWhileLocked": true
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?source=ANALYST",
+          "status": 200,
+          "ms": 55,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "items": [
+              {
+                "id": "2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": "Checking account",
+                "issue": "Managing an account",
+                "subIssue": "Deposits and withdrawals",
+                "receivedDate": "2024-12-01",
+                "company": "Updated Bank",
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:14:48.781228802Z",
+                "updatedAt": "2026-10-28T01:16:36.898541432Z"
+              }
+            ],
+            "page": 0,
+            "size": 20,
+            "totalElements": 1,
+            "totalPages": 1,
+            "hasNext": false
+          },
+          "bytes": 450
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+          "status": 200,
+          "ms": 7,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": "Deposits and withdrawals",
+            "receivedDate": "2024-12-01",
+            "company": "Updated Bank",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:14:48.781228802Z",
+            "updatedAt": "2026-10-28T01:16:36.898541432Z",
+            "narrative": "Updated persistent narrative about a wire transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Locked PUT must not persist",
+              "outcomeAssessment": "UNRESOLVED",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 595
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "ms": 16,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "status": "UP",
+            "database": "UP"
+          },
+          "bytes": 31
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?source=ANALYST",
+          "status": 200,
+          "ms": 16,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "items": [
+              {
+                "id": "2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+                "source": "ANALYST",
+                "product": "Checking or savings account",
+                "subProduct": "Checking account",
+                "issue": "Managing an account",
+                "subIssue": "Deposits and withdrawals",
+                "receivedDate": "2024-12-01",
+                "company": "Updated Bank",
+                "companyResponse": null,
+                "createdAt": "2026-10-28T01:14:48.781228802Z",
+                "updatedAt": "2026-10-28T01:16:36.898541432Z"
+              }
+            ],
+            "page": 0,
+            "size": 20,
+            "totalElements": 1,
+            "totalPages": 1,
+            "hasNext": false
+          },
+          "bytes": 450
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 503,
+          "ms": 31,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "DATABASE_BUSY",
+            "message": "Database sedang sibuk; coba kembali.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T01:16:51.11933581Z"
+          },
+          "bytes": 134
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 503,
+          "ms": 31,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "DATABASE_BUSY",
+            "message": "Database sedang sibuk; coba kembali.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T01:16:51.121761618Z"
+          },
+          "bytes": 135
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "locked.csv",
+                "type": "text/csv",
+                "size": 170
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 157
+              }
+            ]
+          },
+          "status": 503,
+          "ms": 31,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "DATABASE_BUSY",
+            "message": "Database sedang sibuk; coba kembali.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T01:16:51.123187482Z"
+          },
+          "bytes": 135
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+          "status": 200,
+          "ms": 6,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": "Deposits and withdrawals",
+            "receivedDate": "2024-12-01",
+            "company": "Updated Bank",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:14:48.781228802Z",
+            "updatedAt": "2026-10-28T01:16:36.898541432Z",
+            "narrative": "Updated persistent narrative about a wire transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Locked PUT must not persist",
+              "outcomeAssessment": "UNRESOLVED",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 595
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 16,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": "Deposits and withdrawals",
+            "receivedDate": "2024-12-01",
+            "company": "Updated Bank",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:14:48.781228802Z",
+            "updatedAt": "2026-10-28T01:16:51.145593087Z",
+            "narrative": "Updated persistent narrative about a wire transfer.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Locked PUT must not persist",
+              "outcomeAssessment": "UNRESOLVED",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 595
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "locked.csv",
+                "type": "text/csv",
+                "size": 170
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 157
+              }
+            ]
+          },
+          "status": 201,
+          "ms": 11,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "55de3035-4e6f-4628-bd35-13b5c14b735e",
+            "replayed": false,
+            "metadata": {
+              "archiveUrl": "https://example.com/locked-1793150211097.zip",
+              "sourceFileName": "locked-1793150211097.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "2c16dbd077eb271258fa153a2b804592468a9e2bf2d65028e1f660596a02e601",
+            "processed": 1,
+            "imported": 1,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T01:16:51.160508156Z"
+          },
+          "bytes": 452
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/cases?source=ANALYST",
+      "status": 200,
+      "ms": 55,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "items": [
+          {
+            "id": "2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": "Deposits and withdrawals",
+            "receivedDate": "2024-12-01",
+            "company": "Updated Bank",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:14:48.781228802Z",
+            "updatedAt": "2026-10-28T01:16:36.898541432Z"
+          }
+        ],
+        "page": 0,
+        "size": 20,
+        "totalElements": 1,
+        "totalPages": 1,
+        "hasNext": false
+      },
+      "bytes": 450
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+      "status": 200,
+      "ms": 7,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+        "product": "Checking or savings account",
+        "subProduct": "Checking account",
+        "issue": "Managing an account",
+        "subIssue": "Deposits and withdrawals",
+        "receivedDate": "2024-12-01",
+        "company": "Updated Bank",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:14:48.781228802Z",
+        "updatedAt": "2026-10-28T01:16:36.898541432Z",
+        "narrative": "Updated persistent narrative about a wire transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Locked PUT must not persist",
+          "outcomeAssessment": "UNRESOLVED",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 595
+    },
+    {
+      "method": "GET",
+      "path": "/api/health",
+      "status": 200,
+      "ms": 16,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "status": "UP",
+        "database": "UP"
+      },
+      "bytes": 31
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?source=ANALYST",
+      "status": 200,
+      "ms": 16,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "items": [
+          {
+            "id": "2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+            "source": "ANALYST",
+            "product": "Checking or savings account",
+            "subProduct": "Checking account",
+            "issue": "Managing an account",
+            "subIssue": "Deposits and withdrawals",
+            "receivedDate": "2024-12-01",
+            "company": "Updated Bank",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:14:48.781228802Z",
+            "updatedAt": "2026-10-28T01:16:36.898541432Z"
+          }
+        ],
+        "page": 0,
+        "size": 20,
+        "totalElements": 1,
+        "totalPages": 1,
+        "hasNext": false
+      },
+      "bytes": 450
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 503,
+      "ms": 31,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "DATABASE_BUSY",
+        "message": "Database sedang sibuk; coba kembali.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T01:16:51.11933581Z"
+      },
+      "bytes": 134
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 503,
+      "ms": 31,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "DATABASE_BUSY",
+        "message": "Database sedang sibuk; coba kembali.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T01:16:51.121761618Z"
+      },
+      "bytes": 135
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "locked.csv",
+            "type": "text/csv",
+            "size": 170
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 157
+          }
+        ]
+      },
+      "status": 503,
+      "ms": 31,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "DATABASE_BUSY",
+        "message": "Database sedang sibuk; coba kembali.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T01:16:51.123187482Z"
+      },
+      "bytes": 135
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+      "status": 200,
+      "ms": 6,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+        "product": "Checking or savings account",
+        "subProduct": "Checking account",
+        "issue": "Managing an account",
+        "subIssue": "Deposits and withdrawals",
+        "receivedDate": "2024-12-01",
+        "company": "Updated Bank",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:14:48.781228802Z",
+        "updatedAt": "2026-10-28T01:16:36.898541432Z",
+        "narrative": "Updated persistent narrative about a wire transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Locked PUT must not persist",
+          "outcomeAssessment": "UNRESOLVED",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 595
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 16,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "2d3fddf4-6844-43fa-81b3-65d8cdcdd19b",
+        "product": "Checking or savings account",
+        "subProduct": "Checking account",
+        "issue": "Managing an account",
+        "subIssue": "Deposits and withdrawals",
+        "receivedDate": "2024-12-01",
+        "company": "Updated Bank",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:14:48.781228802Z",
+        "updatedAt": "2026-10-28T01:16:51.145593087Z",
+        "narrative": "Updated persistent narrative about a wire transfer.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Locked PUT must not persist",
+          "outcomeAssessment": "UNRESOLVED",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 595
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "locked.csv",
+            "type": "text/csv",
+            "size": 170
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 157
+          }
+        ]
+      },
+      "status": 201,
+      "ms": 11,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "55de3035-4e6f-4628-bd35-13b5c14b735e",
+        "replayed": false,
+        "metadata": {
+          "archiveUrl": "https://example.com/locked-1793150211097.zip",
+          "sourceFileName": "locked-1793150211097.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "2c16dbd077eb271258fa153a2b804592468a9e2bf2d65028e1f660596a02e601",
+        "processed": 1,
+        "imported": 1,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T01:16:51.160508156Z"
+      },
+      "bytes": 452
+    }
+  ],
+  "result": "PASS",
+  "failures": [],
+  "lockCalls": [
+    {
+      "name": "PUT",
+      "status": 503,
+      "code": "DATABASE_BUSY",
+      "ms": 31
+    },
+    {
+      "name": "POST",
+      "status": 503,
+      "code": "DATABASE_BUSY",
+      "ms": 32
+    },
+    {
+      "name": "import",
+      "status": 503,
+      "code": "DATABASE_BUSY",
+      "ms": 32
+    },
+    {
+      "name": "health",
+      "status": 200,
+      "body": {
+        "status": "UP",
+        "database": "UP"
+      },
+      "ms": 16
+    },
+    {
+      "name": "read",
+      "status": 200,
+      "total": 1,
+      "ms": 16
+    }
+  ],
+  "counts": {
+    "before": {
+      "cases": 503,
+      "batches": 3
+    },
+    "during": {
+      "cases": 503,
+      "batches": 3
+    },
+    "final": {
+      "cases": 504,
+      "batches": 4
+    }
+  },
+  "healthWhileLocked": {
+    "name": "health",
+    "status": 200,
+    "body": {
+      "status": "UP",
+      "database": "UP"
+    },
+    "ms": 16
+  },
+  "readWhileLocked": {
+    "name": "read",
+    "status": 200,
+    "total": 1,
+    "ms": 16
+  },
+  "retry": {
+    "put": 200,
+    "import": 201,
+    "importBatch": "55de3035-4e6f-4628-bd35-13b5c14b735e"
+  },
+  "putUnchangedWhileLocked": true,
+  "note": "503 latency is observed, not an SLA; reads remain available in WAL mode."
+}

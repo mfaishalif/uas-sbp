@@ -1,0 +1,20 @@
+PASS UNI-00
+PASS UNI-01
+PASS UNI-02
+PASS UNI-03
+PASS UNI-04
+PASS UNI-05
+PASS UNI-06
+PASS UNI-07
+PASS UNI-08
+PASS UNI-09
+PASS UNI-10
+PASS UNI-11
+PASS UNI-12
+PASS UNI-13
+PASS UNI-14
+PASS UNI-15
+PASS UNI-16
+PASS UNI-17
+PASS UNI-18
+{"output":"/workspaces/uas-sbp/docs/testing/results/2026-10-28-retest-unicode-integrity.json","scenarios":19,"passed":19,"failed":0,"blocked":0,"observations":0,"httpRequests":33,"exitCode":0}

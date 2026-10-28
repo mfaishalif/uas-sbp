@@ -1,0 +1,5786 @@
+{
+  "testedAt": "2026-10-28T02:15:23.869Z",
+  "baseUrl": "http://127.0.0.1:19106",
+  "checks": 140,
+  "passed": 140,
+  "failed": 0,
+  "httpRequests": 201,
+  "context": {
+    "batchId": "138689ff-df5c-4d35-8b3d-92a28f531ae0",
+    "categories": {
+      "items": [
+        {
+          "product": "Checking or savings account",
+          "subProduct": "CD (Certificate of Deposit)",
+          "issue": "Closing an account",
+          "subIssue": "Can't close your account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "CD (Certificate of Deposit)",
+          "issue": "Closing an account",
+          "subIssue": "Company closed your account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "CD (Certificate of Deposit)",
+          "issue": "Closing an account",
+          "subIssue": "Fees charged for closing account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "CD (Certificate of Deposit)",
+          "issue": "Closing an account",
+          "subIssue": "Funds not received from closed account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "CD (Certificate of Deposit)",
+          "issue": "Managing an account",
+          "subIssue": "Banking errors"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "CD (Certificate of Deposit)",
+          "issue": "Managing an account",
+          "subIssue": "Deposits or withdrawals"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "CD (Certificate of Deposit)",
+          "issue": "Managing an account",
+          "subIssue": "Funds not handled or disbursed as instructed"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "CD (Certificate of Deposit)",
+          "issue": "Managing an account",
+          "subIssue": "Problem accessing account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "CD (Certificate of Deposit)",
+          "issue": "Managing an account",
+          "subIssue": "Problem with renewal"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Closing an account",
+          "subIssue": "Can't close your account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Closing an account",
+          "subIssue": "Company closed your account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Closing an account",
+          "subIssue": "Funds not received from closed account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Banking errors"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Deposits and withdrawals"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Funds not handled or disbursed as instructed"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem accessing account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem making or receiving payments"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem using a debit or ATM card"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Opening an account",
+          "subIssue": "Account opened without my consent or knowledge"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Opening an account",
+          "subIssue": "Confusing or missing disclosures"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Opening an account",
+          "subIssue": "Didn't receive terms that were advertised"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Opening an account",
+          "subIssue": "Unable to open an account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem caused by your funds being low",
+          "subIssue": "Bounced checks or returned payments"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem caused by your funds being low",
+          "subIssue": "Non-sufficient funds and associated fees"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem caused by your funds being low",
+          "subIssue": "Overdrafts and overdraft fees"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Can't stop withdrawals from your account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Money was taken from your account on the wrong day or for the wrong amount"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Transaction was not authorized"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Closing an account",
+          "subIssue": "Can't close your account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Closing an account",
+          "subIssue": "Company closed your account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Closing an account",
+          "subIssue": "Fees charged for closing account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Closing an account",
+          "subIssue": "Funds not received from closed account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Managing an account",
+          "subIssue": "Banking errors"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Managing an account",
+          "subIssue": "Deposits and withdrawals"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Managing an account",
+          "subIssue": "Funds not handled or disbursed as instructed"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Managing an account",
+          "subIssue": "Problem accessing account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Managing an account",
+          "subIssue": "Problem making or receiving payments"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Managing an account",
+          "subIssue": "Problem using a debit or ATM card"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Opening an account",
+          "subIssue": "Account opened without my consent or knowledge"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Opening an account",
+          "subIssue": "Confusing or missing disclosures"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Opening an account",
+          "subIssue": "Unable to open an account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Problem caused by your funds being low",
+          "subIssue": "Late or other fees"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Problem caused by your funds being low",
+          "subIssue": "Overdrafts and overdraft fees"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Money was taken from your account on the wrong day or for the wrong amount"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Transaction was not authorized"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Closing an account",
+          "subIssue": "Can't close your account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Closing an account",
+          "subIssue": "Fees charged for closing account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Closing an account",
+          "subIssue": "Funds not received from closed account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Managing an account",
+          "subIssue": "Banking errors"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Managing an account",
+          "subIssue": "Deposits and withdrawals"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Managing an account",
+          "subIssue": "Fee problem"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Managing an account",
+          "subIssue": "Funds not handled or disbursed as instructed"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Managing an account",
+          "subIssue": "Problem accessing account"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Managing an account",
+          "subIssue": "Problem making or receiving payments"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Opening an account",
+          "subIssue": "Account opened without my consent or knowledge"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Opening an account",
+          "subIssue": "Didn't receive terms that were advertised"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Problem caused by your funds being low",
+          "subIssue": "Bounced checks or returned payments"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Problem caused by your funds being low",
+          "subIssue": "Non-sufficient funds and associated fees"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Money was taken from your account on the wrong day or for the wrong amount"
+        },
+        {
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Transaction was not authorized"
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Check cashing service",
+          "issue": "Fraud or scam",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Check cashing service",
+          "issue": "Problem with customer service",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Check cashing service",
+          "issue": "Unexpected or other fees",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Domestic (US) money transfer",
+          "issue": "Fraud or scam",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Domestic (US) money transfer",
+          "issue": "Money was not available when promised",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Domestic (US) money transfer",
+          "issue": "Other transaction problem",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Foreign currency exchange",
+          "issue": "Fraud or scam",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Foreign currency exchange",
+          "issue": "Problem with customer service",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "International money transfer",
+          "issue": "Confusing or missing disclosures",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "International money transfer",
+          "issue": "Fraud or scam",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "International money transfer",
+          "issue": "Money was not available when promised",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "International money transfer",
+          "issue": "Other transaction problem",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "International money transfer",
+          "issue": "Wrong amount charged or received",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Mobile or digital wallet",
+          "issue": "Fraud or scam",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Mobile or digital wallet",
+          "issue": "Managing, opening, or closing your mobile wallet account",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Mobile or digital wallet",
+          "issue": "Trouble accessing funds in your mobile or digital wallet",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Mobile or digital wallet",
+          "issue": "Unauthorized transactions or other transaction problem",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Mobile or digital wallet",
+          "issue": "Unexpected or other fees",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Money order, traveler's check or cashier's check",
+          "issue": "Fraud or scam",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Money order, traveler's check or cashier's check",
+          "issue": "Lost or stolen money order",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Money order, traveler's check or cashier's check",
+          "issue": "Problem with customer service",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Virtual currency",
+          "issue": "Fraud or scam",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Virtual currency",
+          "issue": "Money was not available when promised",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Virtual currency",
+          "issue": "Other service problem",
+          "subIssue": null
+        },
+        {
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Virtual currency",
+          "issue": "Other transaction problem",
+          "subIssue": null
+        }
+      ],
+      "scope": "IMPORTED_CFPB_SAMPLE"
+    },
+    "cfpb": {
+      "source": "CFPB",
+      "id": "013194fc-e3bb-4ab9-8cab-77edb42b5e4f",
+      "product": "Checking or savings account",
+      "subProduct": "Checking account",
+      "issue": "Managing an account",
+      "subIssue": "Problem using a debit or ATM card",
+      "receivedDate": "2024-11-01",
+      "company": "CITIZENS FINANCIAL GROUP, INC.",
+      "companyResponse": "Closed with explanation",
+      "createdAt": "2026-10-28T02:15:19.613378962Z",
+      "updatedAt": "2026-10-28T02:15:19.613378962Z",
+      "narrative": "Unauthorized withdrawal, {$2100.00} on XXXX XXXX XXXX. Fraud or bank error, from my Citizens Checking Debit Card account. \nCitizens has not been honest or transparent about how this happened. They have told me three different reasons through two different customer support and service.",
+      "provenance": {
+        "complaintId": "10657453",
+        "importBatchId": "138689ff-df5c-4d35-8b3d-92a28f531ae0",
+        "archiveUrl": "https://files.consumerfinance.gov/f/documents/CCDB_Export_8_November_2024_through_December_2024.zip",
+        "sourceFileName": "finresolve-sample.csv",
+        "periodStart": "2024-11-01",
+        "periodEnd": "2024-12-31",
+        "csvSha256": "682bb04cf77a7df10104c822ab24af4bd42e1a088cd2678c7c72921b7983a644"
+      },
+      "analystNotes": null,
+      "referenceCaseIds": []
+    },
+    "evaluation": [
+      {
+        "queryId": "Q01",
+        "kind": "complaint",
+        "scenario": "Close wording for a missing or misapplied deposit",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 51,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q02",
+        "kind": "complaint",
+        "scenario": "Paraphrase with low lexical overlap",
+        "status": "MATCHES",
+        "returnedCount": 1,
+        "ms": 51,
+        "topIds": [
+          "f7a389be-c9f5-4ee6-97a4-af998177cdb7"
+        ],
+        "topScores": [
+          0.5046660008756592
+        ]
+      },
+      {
+        "queryId": "Q03",
+        "kind": "complaint",
+        "scenario": "Both optional category fields omitted",
+        "status": "MATCHES",
+        "returnedCount": 5,
+        "ms": 49,
+        "topIds": [
+          "0a398aaa-eeb9-4ea6-8f6a-12c60c6b7079",
+          "d7e7d47f-2f8e-48f2-a07e-4dd511ebbfaf",
+          "9cd92899-685e-4ae6-bc10-3abdf7c2d7bc",
+          "2e9f66bf-e020-4803-bc5b-9eba1b3a2bf7",
+          "d26a5d9c-df8c-4d4c-be14-ff60114232fb"
+        ],
+        "topScores": [
+          0.5353185806271532,
+          0.5270502712953654,
+          0.5261340758012236,
+          0.5159375651410314,
+          0.512056303518661
+        ]
+      },
+      {
+        "queryId": "Q04",
+        "kind": "complaint",
+        "scenario": "Independent valid optional branch",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 50,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q05",
+        "kind": "complaint",
+        "scenario": "Cross-product narrative mentions a checking account",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 63,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q06",
+        "kind": "complaint",
+        "scenario": "Numeric and redacted date filler mixed with meaningful text",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 52,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q07",
+        "kind": "negative",
+        "scenario": "Unrelated narrative with a matching category tuple",
+        "status": "MATCHES",
+        "returnedCount": 1,
+        "ms": 49,
+        "topIds": [
+          "e2ebeea3-7084-4926-88d8-098a0a4d711d"
+        ],
+        "topScores": [
+          0.5424393331124167
+        ]
+      },
+      {
+        "queryId": "Q08",
+        "kind": "complaint",
+        "scenario": "Domestic transfer fraud wording",
+        "status": "MATCHES",
+        "returnedCount": 2,
+        "ms": 51,
+        "topIds": [
+          "b4e1ef34-5992-48d1-aca0-646492ef69a3",
+          "ed31eb45-397c-43fb-8471-3e328a615ebb"
+        ],
+        "topScores": [
+          0.5716337028509754,
+          0.5201617581265292
+        ]
+      },
+      {
+        "queryId": "Q09",
+        "kind": "complaint",
+        "scenario": "International transfer availability paraphrase",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 50,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q10",
+        "kind": "complaint",
+        "scenario": "Virtual-currency transaction problem",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 48,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q11",
+        "kind": "complaint",
+        "scenario": "Savings-account fee problem",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 51,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q12",
+        "kind": "complaint",
+        "scenario": "ATM card problem",
+        "status": "MATCHES",
+        "returnedCount": 2,
+        "ms": 49,
+        "topIds": [
+          "ad104cdd-e10f-4eed-a485-5a9c20751984",
+          "242fa9b8-0bad-4537-810a-b3dfa48ec729"
+        ],
+        "topScores": [
+          0.5122310685616676,
+          0.5021944722460281
+        ]
+      },
+      {
+        "queryId": "Q13",
+        "kind": "complaint",
+        "scenario": "Paraphrase of an ATM dispense failure with a duplicate debit",
+        "status": "MATCHES",
+        "returnedCount": 1,
+        "ms": 49,
+        "topIds": [
+          "242fa9b8-0bad-4537-810a-b3dfa48ec729"
+        ],
+        "topScores": [
+          0.5138918495540229
+        ]
+      },
+      {
+        "queryId": "Q14",
+        "kind": "complaint",
+        "scenario": "Optional sub-issue omitted with a checking-account cross-reference",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 52,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q15",
+        "kind": "complaint",
+        "scenario": "Optional sub-issue omitted for a locked wallet balance",
+        "status": "MATCHES",
+        "returnedCount": 2,
+        "ms": 51,
+        "topIds": [
+          "dcccc04f-c476-45eb-9bc4-3d8e8212ccc9",
+          "fca1f956-1f2e-4e77-b3a6-4e9b7e1831a7"
+        ],
+        "topScores": [
+          0.5134498752938125,
+          0.5017023005692557
+        ]
+      },
+      {
+        "queryId": "Q16",
+        "kind": "complaint",
+        "scenario": "Recurring merchant charge described as unauthorized",
+        "status": "MATCHES",
+        "returnedCount": 2,
+        "ms": 48,
+        "topIds": [
+          "07d9b91d-0f0c-483b-89e6-d053de4a1eb7",
+          "4f1ca090-ae52-47ec-8d8f-6e5aa3800011"
+        ],
+        "topScores": [
+          0.5198235267556062,
+          0.5000848417605523
+        ]
+      },
+      {
+        "queryId": "Q17",
+        "kind": "complaint",
+        "scenario": "Closed account with an unreleased balance",
+        "status": "MATCHES",
+        "returnedCount": 3,
+        "ms": 49,
+        "topIds": [
+          "4e510d92-3adc-4884-93f5-0bb1ba5f7544",
+          "6db9ce9c-7bf6-474d-a945-949fd1bd884d",
+          "537c09f3-9773-4f19-9f3a-cbbb0afd2850"
+        ],
+        "topScores": [
+          0.5214367117004262,
+          0.506037263220695,
+          0.5020307734128391
+        ]
+      },
+      {
+        "queryId": "Q18",
+        "kind": "negative",
+        "scenario": "Unrelated praise sharing branch and account words",
+        "status": "MATCHES",
+        "returnedCount": 1,
+        "ms": 49,
+        "topIds": [
+          "e2ebeea3-7084-4926-88d8-098a0a4d711d"
+        ],
+        "topScores": [
+          0.5224849705827939
+        ]
+      },
+      {
+        "queryId": "Q19",
+        "kind": "negative",
+        "scenario": "Travel question sharing currency and exchange words",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 48,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q20",
+        "kind": "negative",
+        "scenario": "General account-opening question with no problem to resolve",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 51,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q21",
+        "kind": "negative",
+        "scenario": "Payroll question sharing funds, deposit, and low-balance words",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 55,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q22",
+        "kind": "negative",
+        "scenario": "Phishing text sharing fraud, scam, text, and delayed words",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 53,
+        "topIds": [],
+        "topScores": []
+      },
+      {
+        "queryId": "Q23",
+        "kind": "negative",
+        "scenario": "Retail fee question sharing charge and fee words",
+        "status": 400,
+        "code": "INVALID_CATEGORY",
+        "fieldErrors": [
+          {
+            "field": "issue",
+            "code": "INVALID_VALUE",
+            "message": "Nilai issue tidak tersedia untuk produk tersebut."
+          }
+        ],
+        "ms": 14,
+        "negative": true
+      },
+      {
+        "queryId": "Q24",
+        "kind": "negative",
+        "scenario": "General savings question sharing deposit and account words",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 51,
+        "topIds": [],
+        "topScores": []
+      }
+    ],
+    "analyst": {
+      "source": "ANALYST",
+      "id": "f9fed7e2-08cb-47b0-8263-19e950c6771d",
+      "product": "Checking or savings account",
+      "subProduct": null,
+      "issue": "Managing an account",
+      "subIssue": null,
+      "receivedDate": null,
+      "company": null,
+      "companyResponse": null,
+      "createdAt": "2026-10-28T02:15:23.033736543Z",
+      "updatedAt": "2026-10-28T02:15:23.230595075Z",
+      "narrative": "My transfer is missing from my checking account.",
+      "provenance": null,
+      "analystNotes": {
+        "handlingNotes": "Exploratory test: requested a transfer trace.",
+        "outcomeAssessment": "RESOLVED",
+        "evaluationNotes": null
+      },
+      "referenceCaseIds": []
+    },
+    "finalPage": {
+      "items": [
+        {
+          "id": "1f227244-024a-4200-a1eb-e18c84325b8e",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": null,
+          "issue": "Managing an account",
+          "subIssue": null,
+          "receivedDate": "2024-11-12",
+          "company": null,
+          "companyResponse": null,
+          "createdAt": "2026-10-28T02:15:23.324289587Z",
+          "updatedAt": "2026-10-28T02:15:23.324289587Z"
+        },
+        {
+          "id": "d9ffc9bb-2df3-429d-a417-37992c4f5f51",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": null,
+          "issue": "Managing an account",
+          "subIssue": null,
+          "receivedDate": "2024-11-12",
+          "company": null,
+          "companyResponse": null,
+          "createdAt": "2026-10-28T02:15:23.313713021Z",
+          "updatedAt": "2026-10-28T02:15:23.313713021Z"
+        },
+        {
+          "id": "5917b90f-ebe3-4778-801e-0cfa8e9a0d07",
+          "source": "ANALYST",
+          "product": "Checking or savings account",
+          "subProduct": null,
+          "issue": "Managing an account",
+          "subIssue": null,
+          "receivedDate": null,
+          "company": null,
+          "companyResponse": null,
+          "createdAt": "2026-10-28T02:15:23.296107579Z",
+          "updatedAt": "2026-10-28T02:15:23.296107579Z"
+        },
+        {
+          "id": "4fa5dd97-319b-4c41-9302-ee4c53065d3a",
+          "source": "ANALYST",
+          "product": "Checking or savings account",
+          "subProduct": null,
+          "issue": "Managing an account",
+          "subIssue": null,
+          "receivedDate": null,
+          "company": null,
+          "companyResponse": null,
+          "createdAt": "2026-10-28T02:15:23.291227618Z",
+          "updatedAt": "2026-10-28T02:15:23.291227618Z"
+        },
+        {
+          "id": "6350751c-64a8-423e-b970-206902aa265f",
+          "source": "ANALYST",
+          "product": "Checking or savings account",
+          "subProduct": null,
+          "issue": "Managing an account",
+          "subIssue": null,
+          "receivedDate": null,
+          "company": null,
+          "companyResponse": null,
+          "createdAt": "2026-10-28T02:15:23.287758833Z",
+          "updatedAt": "2026-10-28T02:15:23.287758833Z"
+        },
+        {
+          "id": "c2f4d697-cc21-4026-9e59-7a6abdfcd49e",
+          "source": "ANALYST",
+          "product": "Checking or savings account",
+          "subProduct": null,
+          "issue": "Managing an account",
+          "subIssue": null,
+          "receivedDate": null,
+          "company": null,
+          "companyResponse": null,
+          "createdAt": "2026-10-28T02:15:23.284513559Z",
+          "updatedAt": "2026-10-28T02:15:23.284513559Z"
+        },
+        {
+          "id": "893b8ad5-d0c9-4874-a45e-2403e70d590c",
+          "source": "ANALYST",
+          "product": "Checking or savings account",
+          "subProduct": null,
+          "issue": "Managing an account",
+          "subIssue": null,
+          "receivedDate": null,
+          "company": null,
+          "companyResponse": null,
+          "createdAt": "2026-10-28T02:15:23.281137079Z",
+          "updatedAt": "2026-10-28T02:15:23.281137079Z"
+        },
+        {
+          "id": "2dba5b16-2c3b-4c1a-83ba-32450c275911",
+          "source": "ANALYST",
+          "product": "Checking or savings account",
+          "subProduct": null,
+          "issue": "Managing an account",
+          "subIssue": null,
+          "receivedDate": null,
+          "company": null,
+          "companyResponse": null,
+          "createdAt": "2026-10-28T02:15:23.277941308Z",
+          "updatedAt": "2026-10-28T02:15:23.277941308Z"
+        },
+        {
+          "id": "bbbfe8b9-2d2b-4173-9429-690c0bdfed92",
+          "source": "ANALYST",
+          "product": "Checking or savings account",
+          "subProduct": null,
+          "issue": "Managing an account",
+          "subIssue": null,
+          "receivedDate": null,
+          "company": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀",
+          "companyResponse": null,
+          "createdAt": "2026-10-28T02:15:23.247020853Z",
+          "updatedAt": "2026-10-28T02:15:23.247020853Z"
+        },
+        {
+          "id": "f9fed7e2-08cb-47b0-8263-19e950c6771d",
+          "source": "ANALYST",
+          "product": "Checking or savings account",
+          "subProduct": null,
+          "issue": "Managing an account",
+          "subIssue": null,
+          "receivedDate": null,
+          "company": null,
+          "companyResponse": null,
+          "createdAt": "2026-10-28T02:15:23.033736543Z",
+          "updatedAt": "2026-10-28T02:15:23.230595075Z"
+        },
+        {
+          "id": "013194fc-e3bb-4ab9-8cab-77edb42b5e4f",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem using a debit or ATM card",
+          "receivedDate": "2024-11-01",
+          "company": "CITIZENS FINANCIAL GROUP, INC.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "01514f7f-f422-472e-a4a5-be8bea09908c",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Managing an account",
+          "subIssue": "Problem using a debit or ATM card",
+          "receivedDate": "2024-11-05",
+          "company": "TRUIST FINANCIAL CORPORATION",
+          "companyResponse": "Closed with monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0167afcc-8682-4c79-bcee-099f7b3e18b4",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Closing an account",
+          "subIssue": "Can't close your account",
+          "receivedDate": "2024-11-01",
+          "company": "UNITED SERVICES AUTOMOBILE ASSOCIATION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0201148e-4f01-4319-8ee7-d89f1168837b",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Closing an account",
+          "subIssue": "Company closed your account",
+          "receivedDate": "2024-11-03",
+          "company": "Netspend Corporation",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "023d5c32-722d-46e7-9e79-39631fce7e8a",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Transaction was not authorized",
+          "receivedDate": "2024-11-05",
+          "company": "Experian Information Solutions Inc.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "044b26f1-e69a-44cc-a4c5-49b08681c971",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Opening an account",
+          "subIssue": "Confusing or missing disclosures",
+          "receivedDate": "2024-11-04",
+          "company": "DreamSpring",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "04575683-9c0b-4c1a-a87b-1a8427a9e203",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Managing an account",
+          "subIssue": "Funds not handled or disbursed as instructed",
+          "receivedDate": "2024-11-02",
+          "company": "JPMORGAN CHASE & CO.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "04a32c48-9514-47d9-b30c-59c78f69e8f8",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Funds not handled or disbursed as instructed",
+          "receivedDate": "2024-11-04",
+          "company": "TRUIST FINANCIAL CORPORATION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "04bb0c60-2797-48d2-be33-0d7c20b53ad9",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Opening an account",
+          "subIssue": "Unable to open an account",
+          "receivedDate": "2024-11-05",
+          "company": "BMO BANK NATIONAL ASSOCIATION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0512afc1-5a48-4910-a2fd-52517c864729",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Deposits and withdrawals",
+          "receivedDate": "2024-11-02",
+          "company": "U.S. BANCORP",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "057c507e-8c28-4f31-8524-c4b69239188b",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem making or receiving payments",
+          "receivedDate": "2024-11-02",
+          "company": "JPMORGAN CHASE & CO.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "072b058e-3029-48ba-a424-e736cd8dee0e",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Domestic (US) money transfer",
+          "issue": "Other transaction problem",
+          "subIssue": null,
+          "receivedDate": "2024-11-04",
+          "company": "Block, Inc.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "074cb65c-8985-4df9-ab13-87ae5a4c1508",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Transaction was not authorized",
+          "receivedDate": "2024-11-05",
+          "company": "HW Holding, Inc",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "07a00c71-b551-42d3-b9e5-0e7c9a58fbe4",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Mobile or digital wallet",
+          "issue": "Fraud or scam",
+          "subIssue": null,
+          "receivedDate": "2024-11-02",
+          "company": "Early Warning Services, LLC",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "07ba1e9f-7c00-4a70-8868-d963174d0c6b",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Deposits and withdrawals",
+          "receivedDate": "2024-11-05",
+          "company": "CAPITAL ONE FINANCIAL CORPORATION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "07d9b91d-0f0c-483b-89e6-d053de4a1eb7",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Transaction was not authorized",
+          "receivedDate": "2024-11-04",
+          "company": "WELLS FARGO & COMPANY",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "080280f7-1349-43e9-8628-2d33478c098d",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "CD (Certificate of Deposit)",
+          "issue": "Managing an account",
+          "subIssue": "Funds not handled or disbursed as instructed",
+          "receivedDate": "2024-11-04",
+          "company": "UNITED SERVICES AUTOMOBILE ASSOCIATION",
+          "companyResponse": "Closed with non-monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0809383e-7e50-48e4-a019-2a03d2c2bda6",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Deposits and withdrawals",
+          "receivedDate": "2024-11-04",
+          "company": "SOFI TECHNOLOGIES, INC.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "08519a1a-d14c-4596-aabb-c631df48c5a0",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem accessing account",
+          "receivedDate": "2024-11-01",
+          "company": "VYSTAR CREDIT UNION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "08cd9bfa-bd93-4cd8-b685-213db20d1cd6",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Opening an account",
+          "subIssue": "Didn't receive terms that were advertised",
+          "receivedDate": "2024-11-05",
+          "company": "WELLS FARGO & COMPANY",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "09208acd-f75d-48de-bd00-cae80ed22d2b",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem caused by your funds being low",
+          "subIssue": "Overdrafts and overdraft fees",
+          "receivedDate": "2024-11-01",
+          "company": "TRUIST FINANCIAL CORPORATION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0a1c85e7-3461-463b-a924-0e232e04ea7b",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Virtual currency",
+          "issue": "Fraud or scam",
+          "subIssue": null,
+          "receivedDate": "2024-11-03",
+          "company": "PNC Bank N.A.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0a398aaa-eeb9-4ea6-8f6a-12c60c6b7079",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Managing an account",
+          "subIssue": "Problem accessing account",
+          "receivedDate": "2024-11-04",
+          "company": "BARCLAYS BANK DELAWARE",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0a605b12-34ce-46fa-81a2-10c92e23ee1a",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Closing an account",
+          "subIssue": "Can't close your account",
+          "receivedDate": "2024-11-01",
+          "company": "HUNTINGTON NATIONAL BANK, THE",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0aebb98d-a649-4863-b2bd-29cf064c7bae",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem using a debit or ATM card",
+          "receivedDate": "2024-11-01",
+          "company": "WELLS FARGO & COMPANY",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0aff59d8-1c21-4892-82c1-dbc9aa993a66",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem accessing account",
+          "receivedDate": "2024-11-05",
+          "company": "Chime Financial Inc",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0b38a7d3-baae-4af5-bdc4-ac8544f86049",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Deposits and withdrawals",
+          "receivedDate": "2024-11-04",
+          "company": "WELLS FARGO & COMPANY",
+          "companyResponse": "Closed with non-monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0bcc8708-3534-4e3b-8074-b1cb8df6d64e",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Closing an account",
+          "subIssue": "Funds not received from closed account",
+          "receivedDate": "2024-11-04",
+          "company": "CITIZENS FINANCIAL GROUP, INC.",
+          "companyResponse": "Closed with monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0c0e5181-4756-4b1d-af8c-4acb2c59e9b8",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem making or receiving payments",
+          "receivedDate": "2024-11-01",
+          "company": "TD BANK US HOLDING COMPANY",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0c40dd12-45c4-4288-b090-9e01600f7e85",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Virtual currency",
+          "issue": "Money was not available when promised",
+          "subIssue": null,
+          "receivedDate": "2024-11-05",
+          "company": "Winklevoss Exchange LLC",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0c73fcf0-f5f6-4acf-a61a-6b82fca27a4f",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Transaction was not authorized",
+          "receivedDate": "2024-11-03",
+          "company": "WELLS FARGO & COMPANY",
+          "companyResponse": "Closed with monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0ce76606-9f35-4c1e-a34e-20e6984d7733",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Closing an account",
+          "subIssue": "Funds not received from closed account",
+          "receivedDate": "2024-11-04",
+          "company": "BANK OF AMERICA, NATIONAL ASSOCIATION",
+          "companyResponse": "Closed with monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0dae4a11-18f1-4704-bd78-9dee387b3833",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Deposits and withdrawals",
+          "receivedDate": "2024-11-02",
+          "company": "TRUSTMARK CORPORATION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0deb3243-e4f1-4ff0-b21b-6036b73cfb2e",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Mobile or digital wallet",
+          "issue": "Fraud or scam",
+          "subIssue": null,
+          "receivedDate": "2024-11-01",
+          "company": "Paypal Holdings, Inc",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0e3b7a15-d4d0-4af4-8f62-cfd6284b73aa",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Transaction was not authorized",
+          "receivedDate": "2024-11-01",
+          "company": "Netspend Corporation",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0ed67f31-6cf1-4fc7-9e10-0fb0f5999710",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem using a debit or ATM card",
+          "receivedDate": "2024-11-03",
+          "company": "SOFI TECHNOLOGIES, INC.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0fcde026-d613-4a4c-81c8-6b5772d395a6",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem using a debit or ATM card",
+          "receivedDate": "2024-11-04",
+          "company": "Chime Financial Inc",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "0fde226a-b3fc-4ec5-a76a-f1a57c5d1131",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "CD (Certificate of Deposit)",
+          "issue": "Managing an account",
+          "subIssue": "Problem with renewal",
+          "receivedDate": "2024-11-05",
+          "company": "CITIBANK, N.A.",
+          "companyResponse": "Closed with monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "13601fd1-a4d9-4e76-97ab-e0bb89ba137c",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Mobile or digital wallet",
+          "issue": "Unauthorized transactions or other transaction problem",
+          "subIssue": null,
+          "receivedDate": "2024-11-01",
+          "company": "Chime Financial Inc",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "13aa305d-e5e5-4822-a6a0-1e7a0b9b4bab",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Can't stop withdrawals from your account",
+          "receivedDate": "2024-11-01",
+          "company": "TRUIST FINANCIAL CORPORATION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "13b32ac2-c0a0-47fe-9a40-f0351163dbeb",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem using a debit or ATM card",
+          "receivedDate": "2024-11-02",
+          "company": "WELLS FARGO & COMPANY",
+          "companyResponse": "Closed with monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "13bbec51-5f92-4dfa-a56b-5c81011dbe7b",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Can't stop withdrawals from your account",
+          "receivedDate": "2024-11-04",
+          "company": "SANTANDER HOLDINGS USA, INC.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "14264234-0eca-48d7-b87f-e10fb8ec5fff",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Problem caused by your funds being low",
+          "subIssue": "Overdrafts and overdraft fees",
+          "receivedDate": "2024-11-03",
+          "company": "NAVY FEDERAL CREDIT UNION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "158ad4db-97a8-4a12-9c48-a3dbcb9d4c3e",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Domestic (US) money transfer",
+          "issue": "Fraud or scam",
+          "subIssue": null,
+          "receivedDate": "2024-11-01",
+          "company": "Early Warning Services, LLC",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "15ea522e-0963-4594-a965-6736ca152769",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Transaction was not authorized",
+          "receivedDate": "2024-11-02",
+          "company": "WELLS FARGO & COMPANY",
+          "companyResponse": "Closed with monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "1788c8aa-2311-4ed1-be86-1fa7ff5d87f7",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Transaction was not authorized",
+          "receivedDate": "2024-11-01",
+          "company": "BANK OF AMERICA, NATIONAL ASSOCIATION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "1798f16c-b962-440a-be1a-2a28ef74381b",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Virtual currency",
+          "issue": "Fraud or scam",
+          "subIssue": null,
+          "receivedDate": "2024-11-05",
+          "company": "WELLS FARGO & COMPANY",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "1815a6cb-3ce3-4d74-8726-4d905d2b2979",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Other banking product or service",
+          "issue": "Closing an account",
+          "subIssue": "Funds not received from closed account",
+          "receivedDate": "2024-11-02",
+          "company": "M&T BANK CORPORATION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "1854d70f-bfc6-436b-a228-6b0f559ac652",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem making or receiving payments",
+          "receivedDate": "2024-11-04",
+          "company": "WELLS FARGO & COMPANY",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "18785e0c-2e40-43e3-a513-67869b61881f",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Deposits and withdrawals",
+          "receivedDate": "2024-11-04",
+          "company": "Block, Inc.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "19d05a54-0870-4bef-ab87-d3f71542ccbf",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Transaction was not authorized",
+          "receivedDate": "2024-11-02",
+          "company": "JPMORGAN CHASE & CO.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "1a415436-5782-44a6-a24f-0c62f8e5919c",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Virtual currency",
+          "issue": "Fraud or scam",
+          "subIssue": null,
+          "receivedDate": "2024-11-04",
+          "company": "CAPITAL ONE FINANCIAL CORPORATION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "1acf55c6-a03d-4eab-b7a6-9e9dc0b0dc1c",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Virtual currency",
+          "issue": "Other transaction problem",
+          "subIssue": null,
+          "receivedDate": "2024-11-03",
+          "company": "Payward Ventures Inc. dba Kraken",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "1ae0de6e-940f-4130-aad4-f8c7b704ab98",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Mobile or digital wallet",
+          "issue": "Unexpected or other fees",
+          "subIssue": null,
+          "receivedDate": "2024-11-04",
+          "company": "Paypal Holdings, Inc",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "1b19f8ef-290b-431c-b336-6faf73801f5e",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Closing an account",
+          "subIssue": "Can't close your account",
+          "receivedDate": "2024-11-04",
+          "company": "CAPITAL ONE FINANCIAL CORPORATION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "1ca02fb4-e098-44f9-842d-f1fc5d7d9db9",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem accessing account",
+          "receivedDate": "2024-11-01",
+          "company": "CITIBANK, N.A.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "1ccb2eea-a3d9-45e7-b37a-8254a7d0ae35",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Deposits and withdrawals",
+          "receivedDate": "2024-11-04",
+          "company": "CAPITAL ONE FINANCIAL CORPORATION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "1d89e177-3b7a-4f7f-b589-24fc4183a4ca",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Closing an account",
+          "subIssue": "Company closed your account",
+          "receivedDate": "2024-11-04",
+          "company": "CHARLES SCHWAB CORPORATION, THE",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "1e51a6bf-12d3-413f-8db3-371a04813939",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Deposits and withdrawals",
+          "receivedDate": "2024-11-05",
+          "company": "U.S. BANCORP",
+          "companyResponse": "Closed with monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "1f665438-bd02-483f-b8a1-fb0d1ad9e2f0",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Closing an account",
+          "subIssue": "Fees charged for closing account",
+          "receivedDate": "2024-11-01",
+          "company": "M&T BANK CORPORATION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "1fa6906d-7000-42e3-9ba1-6bca1464cd82",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "CD (Certificate of Deposit)",
+          "issue": "Closing an account",
+          "subIssue": "Fees charged for closing account",
+          "receivedDate": "2024-11-02",
+          "company": "SANTANDER HOLDINGS USA, INC.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "20353153-5aff-4fa0-8a14-e405881eee6e",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem caused by your funds being low",
+          "subIssue": "Bounced checks or returned payments",
+          "receivedDate": "2024-11-05",
+          "company": "TD BANK US HOLDING COMPANY",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "204a176e-ff06-45e9-9796-22117305bb9d",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem caused by your funds being low",
+          "subIssue": "Overdrafts and overdraft fees",
+          "receivedDate": "2024-11-02",
+          "company": "Early Warning Services, LLC",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "2058f93b-f35f-436e-8efc-fb41f3d6efa6",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Opening an account",
+          "subIssue": "Didn't receive terms that were advertised",
+          "receivedDate": "2024-11-05",
+          "company": "CITIZENS FINANCIAL GROUP, INC.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "20aa5dcf-0953-4328-9fb4-c71cd972ac69",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Banking errors",
+          "receivedDate": "2024-11-04",
+          "company": "Netspend Corporation",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "20b8a434-debf-4692-bd1d-3e99b7b3949e",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Funds not handled or disbursed as instructed",
+          "receivedDate": "2024-11-01",
+          "company": "Credit Karma, LLC",
+          "companyResponse": "Closed with monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "20f1c51d-1677-40f2-87d0-362171ce84b0",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Mobile or digital wallet",
+          "issue": "Trouble accessing funds in your mobile or digital wallet",
+          "subIssue": null,
+          "receivedDate": "2024-11-05",
+          "company": "Skrill USA, Inc.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "21334bce-b6fb-47bf-b3bc-c1374e68c650",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Virtual currency",
+          "issue": "Money was not available when promised",
+          "subIssue": null,
+          "receivedDate": "2024-11-01",
+          "company": "ROBINHOOD MARKETS INC.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "21d69912-da8b-4df1-95d0-ace916467f30",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem using a debit or ATM card",
+          "receivedDate": "2024-11-01",
+          "company": "WELLS FARGO & COMPANY",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "2313d956-520c-4a45-bbe9-87bee565d71e",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem using a debit or ATM card",
+          "receivedDate": "2024-11-02",
+          "company": "JPMORGAN CHASE & CO.",
+          "companyResponse": "Closed with monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "237e649f-1013-4aa7-baec-2f641f21e2ce",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Opening an account",
+          "subIssue": "Didn't receive terms that were advertised",
+          "receivedDate": "2024-11-04",
+          "company": "Chime Financial Inc",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "23a4f28b-3e2d-4a6d-9728-a19950d03cfe",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Deposits and withdrawals",
+          "receivedDate": "2024-11-02",
+          "company": "TRUIST FINANCIAL CORPORATION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "23c2896b-da82-402f-884f-c6b54046c1a4",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Opening an account",
+          "subIssue": "Account opened without my consent or knowledge",
+          "receivedDate": "2024-11-01",
+          "company": "Block, Inc.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "242fa9b8-0bad-4537-810a-b3dfa48ec729",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem using a debit or ATM card",
+          "receivedDate": "2024-11-02",
+          "company": "BANK OF AMERICA, NATIONAL ASSOCIATION",
+          "companyResponse": "Closed with monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "246a29e2-9381-43a6-96f5-d0bf4030c82d",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Virtual currency",
+          "issue": "Other transaction problem",
+          "subIssue": null,
+          "receivedDate": "2024-11-03",
+          "company": "Coinbase, Inc.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "24f23992-81be-4833-9b92-23f3f88795bc",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Problem using a debit or ATM card",
+          "receivedDate": "2024-11-05",
+          "company": "Paypal Holdings, Inc",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "25eb5dfa-aa74-4ed6-8d2e-1ede3a71f566",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Mobile or digital wallet",
+          "issue": "Fraud or scam",
+          "subIssue": null,
+          "receivedDate": "2024-11-02",
+          "company": "AMERICA FIRST FEDERAL CREDIT UNION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "25f9eb6f-acf1-4a12-bccd-aac5e1208356",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Virtual currency",
+          "issue": "Other transaction problem",
+          "subIssue": null,
+          "receivedDate": "2024-11-03",
+          "company": "Coinbase, Inc.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "2699d130-7a4d-41d3-b626-7d64f2677bf7",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Banking errors",
+          "receivedDate": "2024-11-01",
+          "company": "NAVY FEDERAL CREDIT UNION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "26fdbe5a-cf5a-4e56-a372-9fb01498c96d",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Problem with a lender or other company charging your account",
+          "subIssue": "Transaction was not authorized",
+          "receivedDate": "2024-11-04",
+          "company": "TD BANK US HOLDING COMPANY",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "27301f5d-c061-4954-bd40-d6b1ad65a85c",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Deposits and withdrawals",
+          "receivedDate": "2024-11-02",
+          "company": "FinCo Services Inc DBA Current",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "27d623e4-1953-4172-8f93-91d40a24b936",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Opening an account",
+          "subIssue": "Didn't receive terms that were advertised",
+          "receivedDate": "2024-11-03",
+          "company": "AMERICAN EXPRESS COMPANY",
+          "companyResponse": "Closed with monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "27daba6e-b2eb-4428-97c6-771f498576e0",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Managing an account",
+          "subIssue": "Banking errors",
+          "receivedDate": "2024-11-04",
+          "company": "BANCO POPULAR DE PUERTO RICO",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "27de5085-e64c-4d03-96b5-38cd118eccea",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Mobile or digital wallet",
+          "issue": "Unauthorized transactions or other transaction problem",
+          "subIssue": null,
+          "receivedDate": "2024-11-03",
+          "company": "Chime Financial Inc",
+          "companyResponse": "Closed with monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "284a7835-8495-4ca9-ad04-3d82e1288c50",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Deposits and withdrawals",
+          "receivedDate": "2024-11-05",
+          "company": "BANK OF AMERICA, NATIONAL ASSOCIATION",
+          "companyResponse": "Closed with monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "28d20981-83c2-4537-8d2f-dd4aa77e029d",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Savings account",
+          "issue": "Managing an account",
+          "subIssue": "Banking errors",
+          "receivedDate": "2024-11-03",
+          "company": "AMERICAN EXPRESS COMPANY",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "28ec338d-e6bb-4f03-80d0-e420941e6a62",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Domestic (US) money transfer",
+          "issue": "Fraud or scam",
+          "subIssue": null,
+          "receivedDate": "2024-11-04",
+          "company": "BANK OF AMERICA, NATIONAL ASSOCIATION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "292eb70a-e460-4464-8fa4-c74c507f27da",
+          "source": "CFPB",
+          "product": "Checking or savings account",
+          "subProduct": "Checking account",
+          "issue": "Managing an account",
+          "subIssue": "Deposits and withdrawals",
+          "receivedDate": "2024-11-01",
+          "company": "BMO BANK NATIONAL ASSOCIATION",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "292f9913-5be7-4ac3-bc76-cb46458462aa",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "Mobile or digital wallet",
+          "issue": "Trouble accessing funds in your mobile or digital wallet",
+          "subIssue": null,
+          "receivedDate": "2024-11-03",
+          "company": "ALLY FINANCIAL INC.",
+          "companyResponse": "Closed with explanation",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        },
+        {
+          "id": "2980e888-6b02-4e20-8fb0-fe394d57bf0b",
+          "source": "CFPB",
+          "product": "Money transfer, virtual currency, or money service",
+          "subProduct": "International money transfer",
+          "issue": "Fraud or scam",
+          "subIssue": null,
+          "receivedDate": "2024-11-05",
+          "company": "Paypal Holdings, Inc",
+          "companyResponse": "Closed with monetary relief",
+          "createdAt": "2026-10-28T02:15:19.613378962Z",
+          "updatedAt": "2026-10-28T02:15:19.613378962Z"
+        }
+      ],
+      "page": 0,
+      "size": 100,
+      "totalElements": 510,
+      "totalPages": 6,
+      "hasNext": true
+    }
+  },
+  "results": [
+    {
+      "name": "empty health/categories/list",
+      "passed": true,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "ms": 8,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200,
+          "ms": 14,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "empty search validates narrative before returning EMPTY_KNOWLEDGE_BASE",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 138,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 23,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retention before import rejected",
+      "passed": true,
+      "detail": {
+        "code": "EMPTY_CATEGORY_CATALOG",
+        "message": "Katalog kategori sampel masih kosong. Impor sampel CFPB terlebih dahulu.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:19.227867639Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 409,
+          "ms": 60,
+          "code": "EMPTY_CATEGORY_CATALOG",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import rejects missing file",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Bagian permintaan wajib diisi.",
+        "fieldErrors": [
+          {
+            "field": "file",
+            "code": "REQUIRED",
+            "message": "Bagian permintaan wajib diisi."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:19.26752776Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 38,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import rejects missing metadata",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Bagian permintaan wajib diisi.",
+        "fieldErrors": [
+          {
+            "field": "metadata",
+            "code": "REQUIRED",
+            "message": "Bagian permintaan wajib diisi."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:19.27518027Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 7,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import rejects empty file",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CSV",
+        "message": "Header wajib tidak ditemukan: Complaint ID.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:19.349126926Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 74,
+          "code": "INVALID_CSV",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import rejects header only",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CSV",
+        "message": "Berkas CSV hanya berisi header.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:19.36248494Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 12,
+          "code": "INVALID_CSV",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import rejects missing required header",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CSV",
+        "message": "Header wajib tidak ditemukan: Complaint ID.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:19.371654731Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 8,
+          "code": "INVALID_CSV",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import rejects duplicate header",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CSV",
+        "message": "Berkas CSV tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:19.38099273Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 9,
+          "code": "INVALID_CSV",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import rejects broken quoted field",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CSV",
+        "message": "Berkas CSV tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:19.391415488Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 9,
+          "code": "INVALID_CSV",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import rejects invalid UTF-8",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CSV",
+        "message": "Berkas CSV harus menggunakan UTF-8 yang valid.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:19.401892048Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 10,
+          "code": "INVALID_CSV",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import metadata rejects HTTP URL",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "archiveUrl",
+            "code": "INVALID_FORMAT",
+            "message": "Format nilai tidak sesuai."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:19.409735968Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 7,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import metadata rejects URL without host",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "archiveUrl",
+            "code": "INVALID_FORMAT",
+            "message": "URI tidak valid."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:19.419580695Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 8,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import metadata rejects path in source filename",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Metadata impor tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "metadata.sourceFileName",
+            "code": "INVALID_FORMAT",
+            "message": "Nama berkas sumber tidak boleh memuat path."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:19.427939242Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 8,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import metadata rejects reversed period",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Metadata impor tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "metadata.periodEnd",
+            "code": "OUT_OF_RANGE",
+            "message": "Periode akhir tidak boleh sebelum periode mulai."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:19.436702111Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 8,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import metadata rejects impossible date",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "periodStart",
+            "code": "INVALID_FORMAT",
+            "message": "Tanggal harus berformat YYYY-MM-DD."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:19.444953052Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 8,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import metadata rejects unknown property",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "UNKNOWN_FIELD",
+            "message": "Properti tidak dikenal dan harus dihilangkan."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:19.451785118Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "import committed sample: 500 accepted and SHA-256 matches manifest",
+      "passed": true,
+      "detail": {
+        "imported": 500,
+        "batchId": "138689ff-df5c-4d35-8b3d-92a28f531ae0"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 201,
+          "ms": 345,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "identical and whitespace-normalized import replay",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 200,
+          "ms": 82,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 200,
+          "ms": 48,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "same CSV with different metadata reports 500 duplicates",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 201,
+          "ms": 58,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "category tuple uniqueness and detail provenance",
+      "passed": true,
+      "detail": {
+        "tuples": 85
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200,
+          "ms": 17,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?source=CFPB&size=1",
+          "status": 200,
+          "ms": 34,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/013194fc-e3bb-4ab9-8cab-77edb42b5e4f",
+          "status": 200,
+          "ms": 31,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "pagination covers 500 unique cases in stable order",
+      "passed": true,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=0&size=100",
+          "status": 200,
+          "ms": 34,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=1&size=100",
+          "status": 200,
+          "ms": 32,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=2&size=100",
+          "status": 200,
+          "ms": 23,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=3&size=100",
+          "status": 200,
+          "ms": 15,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=4&size=100",
+          "status": 200,
+          "ms": 17,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=5&size=100",
+          "status": 200,
+          "ms": 8,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=2147483647&size=100",
+          "status": 200,
+          "ms": 7,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects page=-1",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_VALUE",
+            "message": "Nilai parameter tidak valid."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.292150075Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=-1",
+          "status": 400,
+          "ms": 48,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects size=0",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "size",
+            "code": "INVALID_VALUE",
+            "message": "Nilai parameter tidak valid."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.299269456Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?size=0",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects size=101",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "size",
+            "code": "INVALID_VALUE",
+            "message": "Nilai parameter tidak valid."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.307094275Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?size=101",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects page=abc",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Format parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_FORMAT",
+            "message": "Format nilai parameter tidak sesuai."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.313756731Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=abc",
+          "status": 400,
+          "ms": 6,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects page=1.5",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Format parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_FORMAT",
+            "message": "Format nilai parameter tidak sesuai."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.321290934Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=1.5",
+          "status": 400,
+          "ms": 5,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects page=2147483648",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Format parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_FORMAT",
+            "message": "Format nilai parameter tidak sesuai."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.326552515Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=2147483648",
+          "status": 400,
+          "ms": 5,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects page=",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "page",
+            "code": "INVALID_FORMAT",
+            "message": "Parameter tidak boleh kosong."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.331204764Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=",
+          "status": 400,
+          "ms": 3,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects size=",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "size",
+            "code": "INVALID_FORMAT",
+            "message": "Parameter tidak boleh kosong."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.336490947Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?size=",
+          "status": 400,
+          "ms": 4,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects source=",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "INVALID_FORMAT",
+            "message": "Parameter tidak boleh kosong."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.340950586Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?source=",
+          "status": 400,
+          "ms": 4,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects source=cfpb",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "INVALID_VALUE",
+            "message": "Nilai source harus CFPB atau ANALYST."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.346845201Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?source=cfpb",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects source=UNKNOWN",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "INVALID_VALUE",
+            "message": "Nilai source harus CFPB atau ANALYST."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.352304993Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?source=UNKNOWN",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "list rejects source=%27%20OR%201%3D1--",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "INVALID_VALUE",
+            "message": "Nilai source harus CFPB atau ANALYST."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.357981897Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?source=%27%20OR%201%3D1--",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "detail invalid/missing 1-1-1-1-1",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Format parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "id",
+            "code": "INVALID_FORMAT",
+            "message": "Format nilai parameter tidak sesuai."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.363056068Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases/1-1-1-1-1",
+          "status": 400,
+          "ms": 5,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "detail invalid/missing not-a-uuid",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Format parameter permintaan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "id",
+            "code": "INVALID_FORMAT",
+            "message": "Format nilai parameter tidak sesuai."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.370459064Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases/not-a-uuid",
+          "status": 400,
+          "ms": 6,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "detail invalid/missing 00000000-0000-4000-8000-000000000000",
+      "passed": true,
+      "detail": {
+        "code": "CASE_NOT_FOUND",
+        "message": "Kasus tidak ditemukan.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:20.375270222Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases/00000000-0000-4000-8000-000000000000",
+          "status": 404,
+          "ms": 4,
+          "code": "CASE_NOT_FOUND",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "exact narrative retrieval ranks original CFPB case first",
+      "passed": true,
+      "detail": {
+        "topScore": 1,
+        "returnedCount": 1,
+        "ms": 150
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 150,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search NO_RELEVANT_CASES and no persistence",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 86,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 8,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "case/spacing normalization and optional blank categories",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 77,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 81,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects unknown category",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CATEGORY",
+        "message": "Kategori tidak sesuai dengan katalog sampel.",
+        "fieldErrors": [
+          {
+            "field": "product",
+            "code": "INVALID_VALUE",
+            "message": "Nilai product tidak tersedia pada katalog."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.805514239Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 22,
+          "code": "INVALID_CATEGORY",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects invalid issue",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CATEGORY",
+        "message": "Kategori tidak sesuai dengan katalog sampel.",
+        "fieldErrors": [
+          {
+            "field": "issue",
+            "code": "INVALID_VALUE",
+            "message": "Nilai issue tidak tersedia untuk produk tersebut."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.827194499Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 21,
+          "code": "INVALID_CATEGORY",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects wrong subproduct",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CATEGORY",
+        "message": "Kategori tidak sesuai dengan katalog sampel.",
+        "fieldErrors": [
+          {
+            "field": "subProduct",
+            "code": "INVALID_VALUE",
+            "message": "Nilai subProduct tidak tersedia untuk produk tersebut."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.850904667Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 22,
+          "code": "INVALID_CATEGORY",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects wrong subissue",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_CATEGORY",
+        "message": "Kategori tidak sesuai dengan katalog sampel.",
+        "fieldErrors": [
+          {
+            "field": "subIssue",
+            "code": "INVALID_VALUE",
+            "message": "Nilai subIssue tidak tersedia untuk produk dan masalah tersebut."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.867569559Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 16,
+          "code": "INVALID_CATEGORY",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects blank required field",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input pengaduan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "product",
+            "code": "REQUIRED",
+            "message": "Produk wajib diisi."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.874855048Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects empty narrative",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "INVALID_VALUE",
+            "message": "Panjang minimal 1 karakter."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.880256037Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects stopwords only",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input pengaduan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "NO_MEANINGFUL_TOKENS",
+            "message": "Narasi harus mengandung setidaknya satu kata bermakna."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.886797887Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects numbers only",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input pengaduan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "NO_MEANINGFUL_TOKENS",
+            "message": "Narasi harus mengandung setidaknya satu kata bermakna."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.892718404Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects redaction only",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input pengaduan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "NO_MEANINGFUL_TOKENS",
+            "message": "Narasi harus mengandung setidaknya satu kata bermakna."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.903265868Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 10,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects Unicode punctuation only",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input pengaduan tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "NO_MEANINGFUL_TOKENS",
+            "message": "Narasi harus mengandung setidaknya satu kata bermakna."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.911071786Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects narrative over 50000",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "TOO_LONG",
+            "message": "Panjang maksimal 50000 karakter."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.922080275Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 10,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects category over 500",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "product",
+            "code": "TOO_LONG",
+            "message": "Panjang maksimal 500 karakter."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.927085143Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects unknown field",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "UNKNOWN_FIELD",
+            "message": "Properti tidak dikenal dan harus dihilangkan."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.932693943Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 4,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects null limit",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "limit",
+            "code": "INVALID_VALUE",
+            "message": "Field tidak boleh null."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.937569103Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 4,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects zero limit",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "limit",
+            "code": "OUT_OF_RANGE",
+            "message": "Nilai di bawah batas minimum."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.942820384Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects over limit",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "limit",
+            "code": "OUT_OF_RANGE",
+            "message": "Nilai di atas batas maksimum."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.948295677Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 4,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects fraction limit",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "limit",
+            "code": "INVALID_FORMAT",
+            "message": "Tipe nilai tidak sesuai dengan kontrak."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.954962134Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects string limit",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "limit",
+            "code": "INVALID_FORMAT",
+            "message": "Tipe nilai tidak sesuai dengan kontrak."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.960409625Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 4,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects null narrative",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "INVALID_VALUE",
+            "message": "Field tidak boleh null."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.964253331Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 3,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects array category",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "product",
+            "code": "INVALID_FORMAT",
+            "message": "Tipe nilai tidak sesuai dengan kontrak."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.969682621Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects malformed/invalid object \"{\"",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:20.974846898Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 4,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects malformed/invalid object \"null\"",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan harus berupa objek JSON.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:20.979764461Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 4,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects malformed/invalid object \"[]\"",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan harus berupa objek JSON.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:20.98480063Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 4,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects malformed/invalid object \"42\"",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan harus berupa objek JSON.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:20.989200766Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 4,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects malformed/invalid object \"{}\"",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "product",
+            "code": "REQUIRED",
+            "message": "Field wajib diisi."
+          },
+          {
+            "field": "issue",
+            "code": "REQUIRED",
+            "message": "Field wajib diisi."
+          },
+          {
+            "field": "narrative",
+            "code": "REQUIRED",
+            "message": "Field wajib diisi."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:20.993521797Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 4,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects malformed/invalid object \"\"",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:20.999665825Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 6,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search rejects malformed/invalid object \"{\\\"product\\\":\\\"Checking or savings account\\\",\\\"issue\\\"",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:21.005272625Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 4,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "search accepts limit boundaries and 50000-character narrative",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 72,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 61,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 542,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q01: Close wording for a missing or misapplied deposit",
+      "passed": true,
+      "detail": {
+        "queryId": "Q01",
+        "kind": "complaint",
+        "scenario": "Close wording for a missing or misapplied deposit",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 51,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 6,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 51,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q02: Paraphrase with low lexical overlap",
+      "passed": true,
+      "detail": {
+        "queryId": "Q02",
+        "kind": "complaint",
+        "scenario": "Paraphrase with low lexical overlap",
+        "status": "MATCHES",
+        "returnedCount": 1,
+        "ms": 51,
+        "topIds": [
+          "f7a389be-c9f5-4ee6-97a4-af998177cdb7"
+        ],
+        "topScores": [
+          0.5046660008756592
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 5,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 51,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q03: Both optional category fields omitted",
+      "passed": true,
+      "detail": {
+        "queryId": "Q03",
+        "kind": "complaint",
+        "scenario": "Both optional category fields omitted",
+        "status": "MATCHES",
+        "returnedCount": 5,
+        "ms": 49,
+        "topIds": [
+          "0a398aaa-eeb9-4ea6-8f6a-12c60c6b7079",
+          "d7e7d47f-2f8e-48f2-a07e-4dd511ebbfaf",
+          "9cd92899-685e-4ae6-bc10-3abdf7c2d7bc",
+          "2e9f66bf-e020-4803-bc5b-9eba1b3a2bf7",
+          "d26a5d9c-df8c-4d4c-be14-ff60114232fb"
+        ],
+        "topScores": [
+          0.5353185806271532,
+          0.5270502712953654,
+          0.5261340758012236,
+          0.5159375651410314,
+          0.512056303518661
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 5,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 49,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q04: Independent valid optional branch",
+      "passed": true,
+      "detail": {
+        "queryId": "Q04",
+        "kind": "complaint",
+        "scenario": "Independent valid optional branch",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 50,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 5,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 50,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q05: Cross-product narrative mentions a checking account",
+      "passed": true,
+      "detail": {
+        "queryId": "Q05",
+        "kind": "complaint",
+        "scenario": "Cross-product narrative mentions a checking account",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 63,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 5,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 63,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q06: Numeric and redacted date filler mixed with meaningful text",
+      "passed": true,
+      "detail": {
+        "queryId": "Q06",
+        "kind": "complaint",
+        "scenario": "Numeric and redacted date filler mixed with meaningful text",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 52,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 4,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 52,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q07: Unrelated narrative with a matching category tuple",
+      "passed": true,
+      "detail": {
+        "queryId": "Q07",
+        "kind": "negative",
+        "scenario": "Unrelated narrative with a matching category tuple",
+        "status": "MATCHES",
+        "returnedCount": 1,
+        "ms": 49,
+        "topIds": [
+          "e2ebeea3-7084-4926-88d8-098a0a4d711d"
+        ],
+        "topScores": [
+          0.5424393331124167
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 5,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 49,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q08: Domestic transfer fraud wording",
+      "passed": true,
+      "detail": {
+        "queryId": "Q08",
+        "kind": "complaint",
+        "scenario": "Domestic transfer fraud wording",
+        "status": "MATCHES",
+        "returnedCount": 2,
+        "ms": 51,
+        "topIds": [
+          "b4e1ef34-5992-48d1-aca0-646492ef69a3",
+          "ed31eb45-397c-43fb-8471-3e328a615ebb"
+        ],
+        "topScores": [
+          0.5716337028509754,
+          0.5201617581265292
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 5,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 51,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q09: International transfer availability paraphrase",
+      "passed": true,
+      "detail": {
+        "queryId": "Q09",
+        "kind": "complaint",
+        "scenario": "International transfer availability paraphrase",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 50,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 5,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 50,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q10: Virtual-currency transaction problem",
+      "passed": true,
+      "detail": {
+        "queryId": "Q10",
+        "kind": "complaint",
+        "scenario": "Virtual-currency transaction problem",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 48,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 5,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 48,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q11: Savings-account fee problem",
+      "passed": true,
+      "detail": {
+        "queryId": "Q11",
+        "kind": "complaint",
+        "scenario": "Savings-account fee problem",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 51,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 8,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 51,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q12: ATM card problem",
+      "passed": true,
+      "detail": {
+        "queryId": "Q12",
+        "kind": "complaint",
+        "scenario": "ATM card problem",
+        "status": "MATCHES",
+        "returnedCount": 2,
+        "ms": 49,
+        "topIds": [
+          "ad104cdd-e10f-4eed-a485-5a9c20751984",
+          "242fa9b8-0bad-4537-810a-b3dfa48ec729"
+        ],
+        "topScores": [
+          0.5122310685616676,
+          0.5021944722460281
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 4,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 49,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q13: Paraphrase of an ATM dispense failure with a duplicate debit",
+      "passed": true,
+      "detail": {
+        "queryId": "Q13",
+        "kind": "complaint",
+        "scenario": "Paraphrase of an ATM dispense failure with a duplicate debit",
+        "status": "MATCHES",
+        "returnedCount": 1,
+        "ms": 49,
+        "topIds": [
+          "242fa9b8-0bad-4537-810a-b3dfa48ec729"
+        ],
+        "topScores": [
+          0.5138918495540229
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 5,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 49,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q14: Optional sub-issue omitted with a checking-account cross-reference",
+      "passed": true,
+      "detail": {
+        "queryId": "Q14",
+        "kind": "complaint",
+        "scenario": "Optional sub-issue omitted with a checking-account cross-reference",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 52,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 5,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 52,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q15: Optional sub-issue omitted for a locked wallet balance",
+      "passed": true,
+      "detail": {
+        "queryId": "Q15",
+        "kind": "complaint",
+        "scenario": "Optional sub-issue omitted for a locked wallet balance",
+        "status": "MATCHES",
+        "returnedCount": 2,
+        "ms": 51,
+        "topIds": [
+          "dcccc04f-c476-45eb-9bc4-3d8e8212ccc9",
+          "fca1f956-1f2e-4e77-b3a6-4e9b7e1831a7"
+        ],
+        "topScores": [
+          0.5134498752938125,
+          0.5017023005692557
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 4,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 51,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q16: Recurring merchant charge described as unauthorized",
+      "passed": true,
+      "detail": {
+        "queryId": "Q16",
+        "kind": "complaint",
+        "scenario": "Recurring merchant charge described as unauthorized",
+        "status": "MATCHES",
+        "returnedCount": 2,
+        "ms": 48,
+        "topIds": [
+          "07d9b91d-0f0c-483b-89e6-d053de4a1eb7",
+          "4f1ca090-ae52-47ec-8d8f-6e5aa3800011"
+        ],
+        "topScores": [
+          0.5198235267556062,
+          0.5000848417605523
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 4,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 48,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q17: Closed account with an unreleased balance",
+      "passed": true,
+      "detail": {
+        "queryId": "Q17",
+        "kind": "complaint",
+        "scenario": "Closed account with an unreleased balance",
+        "status": "MATCHES",
+        "returnedCount": 3,
+        "ms": 49,
+        "topIds": [
+          "4e510d92-3adc-4884-93f5-0bb1ba5f7544",
+          "6db9ce9c-7bf6-474d-a945-949fd1bd884d",
+          "537c09f3-9773-4f19-9f3a-cbbb0afd2850"
+        ],
+        "topScores": [
+          0.5214367117004262,
+          0.506037263220695,
+          0.5020307734128391
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 4,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 49,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q18: Unrelated praise sharing branch and account words",
+      "passed": true,
+      "detail": {
+        "queryId": "Q18",
+        "kind": "negative",
+        "scenario": "Unrelated praise sharing branch and account words",
+        "status": "MATCHES",
+        "returnedCount": 1,
+        "ms": 49,
+        "topIds": [
+          "e2ebeea3-7084-4926-88d8-098a0a4d711d"
+        ],
+        "topScores": [
+          0.5224849705827939
+        ]
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 4,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 49,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q19: Travel question sharing currency and exchange words",
+      "passed": true,
+      "detail": {
+        "queryId": "Q19",
+        "kind": "negative",
+        "scenario": "Travel question sharing currency and exchange words",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 48,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 5,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 48,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q20: General account-opening question with no problem to resolve",
+      "passed": true,
+      "detail": {
+        "queryId": "Q20",
+        "kind": "negative",
+        "scenario": "General account-opening question with no problem to resolve",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 51,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 4,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 51,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q21: Payroll question sharing funds, deposit, and low-balance words",
+      "passed": true,
+      "detail": {
+        "queryId": "Q21",
+        "kind": "negative",
+        "scenario": "Payroll question sharing funds, deposit, and low-balance words",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 55,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 6,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 55,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q22: Phishing text sharing fraud, scam, text, and delayed words",
+      "passed": true,
+      "detail": {
+        "queryId": "Q22",
+        "kind": "negative",
+        "scenario": "Phishing text sharing fraud, scam, text, and delayed words",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 53,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 9,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 53,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q23: Retail fee question sharing charge and fee words",
+      "passed": true,
+      "detail": {
+        "queryId": "Q23",
+        "kind": "negative",
+        "scenario": "Retail fee question sharing charge and fee words",
+        "status": 400,
+        "code": "INVALID_CATEGORY",
+        "fieldErrors": [
+          {
+            "field": "issue",
+            "code": "INVALID_VALUE",
+            "message": "Nilai issue tidak tersedia untuk produk tersebut."
+          }
+        ],
+        "ms": 14,
+        "negative": true
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 4,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 14,
+          "code": "INVALID_CATEGORY",
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 5,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "evaluation query Q24: General savings question sharing deposit and account words",
+      "passed": true,
+      "detail": {
+        "queryId": "Q24",
+        "kind": "negative",
+        "scenario": "General savings question sharing deposit and account words",
+        "status": "NO_RELEVANT_CASES",
+        "returnedCount": 0,
+        "ms": 51,
+        "topIds": [],
+        "topScores": []
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 5,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 51,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "create analyst with notes, date, reference and Location",
+      "passed": true,
+      "detail": {
+        "id": "f9fed7e2-08cb-47b0-8263-19e950c6771d"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201,
+          "ms": 29,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/f9fed7e2-08cb-47b0-8263-19e950c6771d",
+          "status": 200,
+          "ms": 5,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "analyst is immediately searchable; category catalog stays unchanged",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 55,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200,
+          "ms": 6,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects missing handling notes",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "handlingNotes",
+            "code": "REQUIRED",
+            "message": "Field wajib diisi."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.127270347Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 4,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects blank notes",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input retensi tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "handlingNotes",
+            "code": "REQUIRED",
+            "message": "Catatan penanganan wajib diisi."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.131946497Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 4,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects notes over 10000",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "handlingNotes",
+            "code": "TOO_LONG",
+            "message": "Panjang maksimal 10000 karakter."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.137025969Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 4,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects evaluation over 10000",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "evaluationNotes",
+            "code": "TOO_LONG",
+            "message": "Panjang maksimal 10000 karakter."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.142797778Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 4,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects company over 500",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "company",
+            "code": "TOO_LONG",
+            "message": "Panjang maksimal 500 karakter."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.147300119Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 4,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects response over 2000",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "companyResponse",
+            "code": "TOO_LONG",
+            "message": "Panjang maksimal 2000 karakter."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.151378737Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 3,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects invalid outcome",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "outcomeAssessment",
+            "code": "INVALID_VALUE",
+            "message": "Nilai tidak dikenal."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.155592462Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 4,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects invalid date",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "receivedDate",
+            "code": "INVALID_FORMAT",
+            "message": "Tanggal harus berformat YYYY-MM-DD."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.160758139Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 3,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects null reference array",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "referenceCaseIds",
+            "code": "INVALID_VALUE",
+            "message": "Field tidak boleh null."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.164469837Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 3,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects unknown reference",
+      "passed": true,
+      "detail": {
+        "code": "INVALID_REFERENCE",
+        "message": "Referensi kasus tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "referenceCaseIds[0]",
+            "code": "NOT_FOUND",
+            "message": "Kasus referensi tidak ditemukan."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.170760974Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 5,
+          "code": "INVALID_REFERENCE",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects duplicate references",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "referenceCaseIds[1]",
+            "code": "DUPLICATE",
+            "message": "Item tidak boleh duplikat."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.175880148Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects abbreviated reference UUID",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "referenceCaseIds[0]",
+            "code": "INVALID_FORMAT",
+            "message": "UUID harus memakai format lengkap 8-4-4-4-12."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.180137275Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 3,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects null reference member",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "referenceCaseIds[0]",
+            "code": "INVALID_VALUE",
+            "message": "Field tidak boleh null."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.184399603Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 4,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects 21 references",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "referenceCaseIds",
+            "code": "OUT_OF_RANGE",
+            "message": "Jumlah item maksimal 20."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.189670385Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects source injection",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "source",
+            "code": "UNKNOWN_FIELD",
+            "message": "Properti tidak dikenal dan harus dihilangkan."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.195500697Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 3,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "retain rejects id injection",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "id",
+            "code": "UNKNOWN_FIELD",
+            "message": "Properti tidak dikenal dan harus dihilangkan."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.1992948Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 3,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "failed retention is atomic",
+      "passed": true,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 5,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "CFPB update immutable; missing case and self-reference rejected",
+      "passed": true,
+      "requests": [
+        {
+          "method": "PUT",
+          "path": "/api/cases/013194fc-e3bb-4ab9-8cab-77edb42b5e4f",
+          "status": 409,
+          "ms": 6,
+          "code": "IMMUTABLE_CFPB_CASE",
+          "contentType": "application/json"
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/00000000-0000-4000-8000-000000000000",
+          "status": 404,
+          "ms": 4,
+          "code": "CASE_NOT_FOUND",
+          "contentType": "application/json"
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/f9fed7e2-08cb-47b0-8263-19e950c6771d",
+          "status": 400,
+          "ms": 6,
+          "code": "INVALID_REFERENCE",
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/f9fed7e2-08cb-47b0-8263-19e950c6771d",
+          "status": 200,
+          "ms": 3,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "full PUT clears omitted fields and preserves identity/createdAt",
+      "passed": true,
+      "requests": [
+        {
+          "method": "PUT",
+          "path": "/api/cases/f9fed7e2-08cb-47b0-8263-19e950c6771d",
+          "status": 200,
+          "ms": 9,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "Unicode supplementary characters respect code-point length",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201,
+          "ms": 19,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 6,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "concurrent retention preserves all six writes",
+      "passed": true,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases?source=ANALYST",
+          "status": 200,
+          "ms": 7,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201,
+          "ms": 10,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201,
+          "ms": 14,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201,
+          "ms": 18,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201,
+          "ms": 20,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201,
+          "ms": 25,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201,
+          "ms": 27,
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?source=ANALYST",
+          "status": 200,
+          "ms": 6,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "concurrent identical imports replay the same batch once",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 201,
+          "ms": 11,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 200,
+          "ms": 11,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 200,
+          "ms": 11,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "mixed CSV reports rejected rows and duplicates without overwriting",
+      "passed": true,
+      "detail": {
+        "processed": 5,
+        "imported": 1,
+        "duplicates": 1,
+        "rejected": 3
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 201,
+          "ms": 13,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "CSV record limit is atomic",
+      "passed": true,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 7,
+          "contentType": "application/json"
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 57,
+          "code": "IMPORT_LIMIT_EXCEEDED",
+          "contentType": "application/json"
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 10,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "multipart file over 20 MiB rejected with JSON 413",
+      "passed": true,
+      "detail": {
+        "code": "PAYLOAD_TOO_LARGE",
+        "message": "Ukuran unggahan melebihi batas.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:23.559669379Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 413,
+          "ms": 129,
+          "code": "PAYLOAD_TOO_LARGE",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "routing PATCH /api/health",
+      "passed": true,
+      "detail": {
+        "code": "METHOD_NOT_ALLOWED",
+        "message": "Metode HTTP tidak didukung.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:23.567810415Z"
+      },
+      "requests": [
+        {
+          "method": "PATCH",
+          "path": "/api/health",
+          "status": 405,
+          "ms": 8,
+          "code": "METHOD_NOT_ALLOWED",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "routing DELETE /api/cases",
+      "passed": true,
+      "detail": {
+        "code": "METHOD_NOT_ALLOWED",
+        "message": "Metode HTTP tidak didukung.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:23.572705577Z"
+      },
+      "requests": [
+        {
+          "method": "DELETE",
+          "path": "/api/cases",
+          "status": 405,
+          "ms": 3,
+          "code": "METHOD_NOT_ALLOWED",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "routing GET /api/search",
+      "passed": true,
+      "detail": {
+        "code": "METHOD_NOT_ALLOWED",
+        "message": "Metode HTTP tidak didukung.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:23.576052156Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/search",
+          "status": 405,
+          "ms": 3,
+          "code": "METHOD_NOT_ALLOWED",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "routing GET /api/imports/cfpb",
+      "passed": true,
+      "detail": {
+        "code": "METHOD_NOT_ALLOWED",
+        "message": "Metode HTTP tidak didukung.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:23.579482739Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/imports/cfpb",
+          "status": 405,
+          "ms": 2,
+          "code": "METHOD_NOT_ALLOWED",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "routing GET /api/not-found",
+      "passed": true,
+      "detail": {
+        "code": "ROUTE_NOT_FOUND",
+        "message": "Route tidak ditemukan.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:23.586919337Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/not-found",
+          "status": 404,
+          "ms": 7,
+          "code": "ROUTE_NOT_FOUND",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "routing GET /api/api/health",
+      "passed": true,
+      "detail": {
+        "code": "ROUTE_NOT_FOUND",
+        "message": "Route tidak ditemukan.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:23.591310872Z"
+      },
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/api/health",
+          "status": 404,
+          "ms": 4,
+          "code": "ROUTE_NOT_FOUND",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "wrong content type returns 415",
+      "passed": true,
+      "detail": {
+        "code": "UNSUPPORTED_MEDIA_TYPE",
+        "message": "Tipe konten permintaan tidak didukung.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:23.596527551Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 415,
+          "ms": 4,
+          "code": "UNSUPPORTED_MEDIA_TYPE",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "allowed CORS preflight and actual response",
+      "passed": true,
+      "requests": [
+        {
+          "method": "OPTIONS",
+          "path": "/api/cases",
+          "status": 204,
+          "ms": 3,
+          "contentType": null
+        },
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 200,
+          "ms": 29,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "CORS rejects foreign origin and unapproved headers",
+      "passed": true,
+      "requests": [
+        {
+          "method": "OPTIONS",
+          "path": "/api/cases",
+          "status": 403,
+          "ms": 3,
+          "contentType": null
+        },
+        {
+          "method": "OPTIONS",
+          "path": "/api/cases",
+          "status": 403,
+          "ms": 2,
+          "contentType": null
+        }
+      ]
+    },
+    {
+      "name": "strict JSON parsing: trailing JSON object",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:23.640107083Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 5,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "strict JSON parsing: trailing scalar",
+      "passed": true,
+      "detail": {
+        "code": "MALFORMED_REQUEST",
+        "message": "Badan permintaan tidak dapat dibaca.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T02:15:23.644788933Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400,
+          "ms": 4,
+          "code": "MALFORMED_REQUEST",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "observe duplicate JSON keys: last value wins (contract has no explicit policy)",
+      "passed": true,
+      "detail": {
+        "policy": "Last duplicate key wins",
+        "status": 200
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 66,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "unsupported Accept is a controlled client error",
+      "passed": true,
+      "requests": [
+        {
+          "method": "GET",
+          "path": "/api/health",
+          "status": 406,
+          "ms": 33,
+          "contentType": null
+        }
+      ]
+    },
+    {
+      "name": "integer-valued decimal limit follows OpenAPI integer semantics",
+      "passed": true,
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200,
+          "ms": 67,
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "RFC3339 full-date rejects expanded years",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "receivedDate",
+            "code": "INVALID_FORMAT",
+            "message": "Tanggal harus berformat YYYY-MM-DD."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.820469632Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "date rejects negative years",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "receivedDate",
+            "code": "INVALID_FORMAT",
+            "message": "Tanggal harus berformat YYYY-MM-DD."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.825373094Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 400,
+          "ms": 4,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "PUT rejects expanded date before writing",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "receivedDate",
+            "code": "INVALID_FORMAT",
+            "message": "Tanggal harus berformat YYYY-MM-DD."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.831794137Z"
+      },
+      "requests": [
+        {
+          "method": "PUT",
+          "path": "/api/cases/f9fed7e2-08cb-47b0-8263-19e950c6771d",
+          "status": 400,
+          "ms": 5,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "405 response advertises supported methods in Allow",
+      "passed": true,
+      "requests": [
+        {
+          "method": "PATCH",
+          "path": "/api/health",
+          "status": 405,
+          "ms": 4,
+          "code": "METHOD_NOT_ALLOWED",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "metadata rejects wrong JSON type: number filename",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "sourceFileName",
+            "code": "INVALID_FORMAT",
+            "message": "Tipe nilai tidak sesuai dengan kontrak."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.845167153Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 7,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "metadata rejects wrong JSON type: boolean filename",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "sourceFileName",
+            "code": "INVALID_FORMAT",
+            "message": "Tipe nilai tidak sesuai dengan kontrak."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.852415941Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 7,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    },
+    {
+      "name": "metadata rejects wrong JSON type: date array",
+      "passed": true,
+      "detail": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "periodStart",
+            "code": "INVALID_FORMAT",
+            "message": "Tipe nilai tidak sesuai dengan kontrak."
+          }
+        ],
+        "timestamp": "2026-10-28T02:15:23.859574724Z"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400,
+          "ms": 4,
+          "code": "VALIDATION_ERROR",
+          "contentType": "application/json"
+        }
+      ]
+    }
+  ]
+}

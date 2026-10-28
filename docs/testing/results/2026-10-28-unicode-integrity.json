@@ -1,0 +1,1319 @@
+{
+  "session": "unicode-integrity",
+  "startedAt": "2026-10-28T01:12:12.184Z",
+  "completedAt": "2026-10-28T01:12:13.155Z",
+  "baseUrl": "http://127.0.0.1:18101",
+  "dbPath": "/tmp/opencode/finresolve/unicode2.db",
+  "summary": {
+    "scenarios": 11,
+    "passed": 3,
+    "failed": 7,
+    "blocked": 0,
+    "observations": 1,
+    "httpRequests": 16
+  },
+  "results": [
+    {
+      "id": "UNI-00",
+      "hypothesis": "A valid CFPB row establishes the category catalog used by retention probes.",
+      "result": "PASS",
+      "durationMs": 579,
+      "detail": {
+        "cases": 1,
+        "batches": 1
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "unicode.csv",
+                "type": "text/csv",
+                "size": 174
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 131
+              }
+            ]
+          },
+          "status": 201,
+          "ms": 465,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "db682222-63ac-4c22-9485-bd45c6dc7689",
+            "replayed": false,
+            "metadata": {
+              "archiveUrl": "https://example.com/unicode.zip",
+              "sourceFileName": "unicode.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "127e07474e0e6e537a285b1029600dff302209740243f314272625c49a9aed7f",
+            "processed": 1,
+            "imported": 1,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T01:12:12.692082267Z"
+          },
+          "bytes": 426
+        }
+      ]
+    },
+    {
+      "id": "UNI-01",
+      "hypothesis": "A leading U+0000 in narrative is rejected as a validation error, not an internal server error.",
+      "result": "FAIL",
+      "durationMs": 142,
+      "detail": {
+        "status": 500,
+        "code": "INTERNAL_ERROR",
+        "fieldErrors": [],
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        },
+        "expected": "400 VALIDATION_ERROR and no write"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 500,
+          "ms": 141,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "INTERNAL_ERROR",
+            "message": "Terjadi kesalahan internal.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T01:12:12.90695861Z"
+          },
+          "bytes": 126
+        }
+      ]
+    },
+    {
+      "id": "UNI-02",
+      "hypothesis": "A leading U+0000 in handlingNotes is rejected as a validation error, not an internal server error.",
+      "result": "FAIL",
+      "durationMs": 9,
+      "detail": {
+        "status": 500,
+        "code": "INTERNAL_ERROR",
+        "fieldErrors": [],
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        },
+        "expected": "400 VALIDATION_ERROR and no write"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 500,
+          "ms": 9,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "INTERNAL_ERROR",
+            "message": "Terjadi kesalahan internal.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T01:12:12.923356275Z"
+          },
+          "bytes": 127
+        }
+      ]
+    },
+    {
+      "id": "UNI-03",
+      "hypothesis": "A leading U+0000 in import narrative leading U+0000 must not turn a row/metadata validation failure into HTTP 500 or lose valid rows.",
+      "result": "FAIL",
+      "durationMs": 14,
+      "detail": {
+        "status": 500,
+        "code": "INTERNAL_ERROR",
+        "fieldErrors": [],
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        },
+        "expected": "400 file-level rejection or 201 with the malformed row rejected and the valid row imported"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "unicode.csv",
+                "type": "text/csv",
+                "size": 264
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 131
+              }
+            ]
+          },
+          "status": 500,
+          "ms": 13,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "INTERNAL_ERROR",
+            "message": "Terjadi kesalahan internal.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T01:12:12.937375516Z"
+          },
+          "bytes": 127
+        }
+      ]
+    },
+    {
+      "id": "UNI-04",
+      "hypothesis": "A leading U+0000 in import product leading U+0000 must not turn a row/metadata validation failure into HTTP 500 or lose valid rows.",
+      "result": "FAIL",
+      "durationMs": 14,
+      "detail": {
+        "status": 500,
+        "code": "INTERNAL_ERROR",
+        "fieldErrors": [],
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        },
+        "expected": "400 file-level rejection or 201 with the malformed row rejected and the valid row imported"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "unicode.csv",
+                "type": "text/csv",
+                "size": 266
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 131
+              }
+            ]
+          },
+          "status": 500,
+          "ms": 14,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "INTERNAL_ERROR",
+            "message": "Terjadi kesalahan internal.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T01:12:12.951422557Z"
+          },
+          "bytes": 127
+        }
+      ]
+    },
+    {
+      "id": "UNI-05",
+      "hypothesis": "A leading U+0000 in import metadata sourceFileName leading U+0000 must not turn a row/metadata validation failure into HTTP 500 or lose valid rows.",
+      "result": "FAIL",
+      "durationMs": 12,
+      "detail": {
+        "status": 500,
+        "code": "INTERNAL_ERROR",
+        "fieldErrors": [],
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        },
+        "expected": "400 file-level rejection or 201 with the malformed row rejected and the valid row imported"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "unicode.csv",
+                "type": "text/csv",
+                "size": 159
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 134
+              }
+            ]
+          },
+          "status": 500,
+          "ms": 11,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "INTERNAL_ERROR",
+            "message": "Terjadi kesalahan internal.",
+            "fieldErrors": [],
+            "timestamp": "2026-10-28T01:12:12.963501295Z"
+          },
+          "bytes": 127
+        }
+      ]
+    },
+    {
+      "id": "UNI-06",
+      "hypothesis": "A valid UTF-8 supplementary character (emoji) survives POST and GET unchanged.",
+      "result": "PASS",
+      "durationMs": 73,
+      "detail": {
+        "id": "3e4fece1-cfad-4c25-8505-c103f7afefda"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 58,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/3e4fece1-cfad-4c25-8505-c103f7afefda",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "3e4fece1-cfad-4c25-8505-c103f7afefda",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "Bank 😀",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:12:12.977383628Z",
+            "updatedAt": "2026-10-28T01:12:12.977383628Z",
+            "narrative": "Transfer 😀 account.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Notes 😀.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "Eval 😀"
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 499
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/3e4fece1-cfad-4c25-8505-c103f7afefda",
+          "status": 200,
+          "ms": 15,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "3e4fece1-cfad-4c25-8505-c103f7afefda",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "Bank 😀",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:12:12.977383628Z",
+            "updatedAt": "2026-10-28T01:12:12.977383628Z",
+            "narrative": "Transfer 😀 account.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Notes 😀.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "Eval 😀"
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 499
+        }
+      ]
+    },
+    {
+      "id": "UNI-07",
+      "hypothesis": "A lone UTF-16 surrogate is rejected instead of being accepted and silently replaced on persistence.",
+      "result": "FAIL",
+      "durationMs": 22,
+      "detail": {
+        "status": 201,
+        "post": {
+          "narrative": "transfer\ud800account",
+          "handlingNotes": "notes\ud800",
+          "company": "company\ud800",
+          "evaluationNotes": "eval\ud800"
+        },
+        "get": {
+          "narrative": "transfer?account",
+          "handlingNotes": "notes?",
+          "company": "company?",
+          "evaluationNotes": "eval?"
+        },
+        "id": "ca23f991-0c12-4480-9b5c-6e0803d66c3b",
+        "expected": "POST response and subsequent GET response describe the same stored characters"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 15,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/ca23f991-0c12-4480-9b5c-6e0803d66c3b",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "ca23f991-0c12-4480-9b5c-6e0803d66c3b",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "company\ud800",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:12:13.046441473Z",
+            "updatedAt": "2026-10-28T01:12:13.046441473Z",
+            "narrative": "transfer\ud800account",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "notes\ud800",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "eval\ud800"
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 511
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/ca23f991-0c12-4480-9b5c-6e0803d66c3b",
+          "status": 200,
+          "ms": 7,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "ca23f991-0c12-4480-9b5c-6e0803d66c3b",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "company?",
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:12:13.046441473Z",
+            "updatedAt": "2026-10-28T01:12:13.046441473Z",
+            "narrative": "transfer?account",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "notes?",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "eval?"
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 491
+        }
+      ]
+    },
+    {
+      "id": "UNI-08",
+      "hypothesis": "A lone surrogate in import metadata is rejected or persisted consistently across the import report, replay, and provenance.",
+      "result": "FAIL",
+      "durationMs": 44,
+      "detail": {
+        "first": {
+          "status": 201,
+          "source": "sur\ud800.csv",
+          "batch": "2290993c-b8a1-48fe-839e-bddbb0d427b2"
+        },
+        "replay": {
+          "status": 200,
+          "source": "sur?.csv",
+          "batch": "2290993c-b8a1-48fe-839e-bddbb0d427b2",
+          "replayed": true
+        },
+        "expected": "the same metadata string in the first report, replay report, and stored provenance"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "unicode.csv",
+                "type": "text/csv",
+                "size": 165
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 133
+              }
+            ]
+          },
+          "status": 201,
+          "ms": 20,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "2290993c-b8a1-48fe-839e-bddbb0d427b2",
+            "replayed": false,
+            "metadata": {
+              "archiveUrl": "https://example.com/unicode.zip",
+              "sourceFileName": "sur\ud800.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "add16e775c5c1b303dcfbdbeca649c684c90b1119188424a7d7e7a715d9b9344",
+            "processed": 1,
+            "imported": 1,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T01:12:13.072385543Z"
+          },
+          "bytes": 428
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "unicode.csv",
+                "type": "text/csv",
+                "size": 165
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 133
+              }
+            ]
+          },
+          "status": 200,
+          "ms": 23,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "2290993c-b8a1-48fe-839e-bddbb0d427b2",
+            "replayed": true,
+            "metadata": {
+              "archiveUrl": "https://example.com/unicode.zip",
+              "sourceFileName": "sur?.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "add16e775c5c1b303dcfbdbeca649c684c90b1119188424a7d7e7a715d9b9344",
+            "processed": 1,
+            "imported": 1,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T01:12:13.072385543Z"
+          },
+          "bytes": 422
+        }
+      ]
+    },
+    {
+      "id": "UNI-09",
+      "hypothesis": "A U+0000 in the middle or at the end of a text field round-trips without a server error.",
+      "result": "PASS",
+      "durationMs": 29,
+      "detail": {
+        "id": "bd6e9b7f-f1b7-46c5-bcf0-b57884f3e1fd"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 22,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/bd6e9b7f-f1b7-46c5-bcf0-b57884f3e1fd",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "bd6e9b7f-f1b7-46c5-bcf0-b57884f3e1fd",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:12:13.115320709Z",
+            "updatedAt": "2026-10-28T01:12:13.115320709Z",
+            "narrative": "transfer\u0000account",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "notes\u0000middle",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 498
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/bd6e9b7f-f1b7-46c5-bcf0-b57884f3e1fd",
+          "status": 200,
+          "ms": 7,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "bd6e9b7f-f1b7-46c5-bcf0-b57884f3e1fd",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T01:12:13.115320709Z",
+            "updatedAt": "2026-10-28T01:12:13.115320709Z",
+            "narrative": "transfer\u0000account",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "notes\u0000middle",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 498
+        }
+      ]
+    },
+    {
+      "id": "UNI-10",
+      "hypothesis": "Optional text fields with a leading U+0000 are stored and read consistently (documented as an observation).",
+      "result": "OBSERVATION",
+      "durationMs": 21,
+      "detail": {
+        "company": "\u0000company",
+        "companyResponse": "\u0000response",
+        "evaluationNotes": "\u0000evaluation"
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 14,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/71bfd030-dc97-4a09-bdfa-d0131d1ec7a2",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "71bfd030-dc97-4a09-bdfa-d0131d1ec7a2",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "\u0000company",
+            "companyResponse": "\u0000response",
+            "createdAt": "2026-10-28T01:12:13.141985717Z",
+            "updatedAt": "2026-10-28T01:12:13.141985717Z",
+            "narrative": "Transfer narrative.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Notes.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "\u0000evaluation"
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 522
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/71bfd030-dc97-4a09-bdfa-d0131d1ec7a2",
+          "status": 200,
+          "ms": 6,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "71bfd030-dc97-4a09-bdfa-d0131d1ec7a2",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "\u0000company",
+            "companyResponse": "\u0000response",
+            "createdAt": "2026-10-28T01:12:13.141985717Z",
+            "updatedAt": "2026-10-28T01:12:13.141985717Z",
+            "narrative": "Transfer narrative.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Notes.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "\u0000evaluation"
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 522
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "unicode.csv",
+            "type": "text/csv",
+            "size": 174
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 131
+          }
+        ]
+      },
+      "status": 201,
+      "ms": 465,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "db682222-63ac-4c22-9485-bd45c6dc7689",
+        "replayed": false,
+        "metadata": {
+          "archiveUrl": "https://example.com/unicode.zip",
+          "sourceFileName": "unicode.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "127e07474e0e6e537a285b1029600dff302209740243f314272625c49a9aed7f",
+        "processed": 1,
+        "imported": 1,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T01:12:12.692082267Z"
+      },
+      "bytes": 426
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 500,
+      "ms": 141,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "INTERNAL_ERROR",
+        "message": "Terjadi kesalahan internal.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T01:12:12.90695861Z"
+      },
+      "bytes": 126
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 500,
+      "ms": 9,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "INTERNAL_ERROR",
+        "message": "Terjadi kesalahan internal.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T01:12:12.923356275Z"
+      },
+      "bytes": 127
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "unicode.csv",
+            "type": "text/csv",
+            "size": 264
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 131
+          }
+        ]
+      },
+      "status": 500,
+      "ms": 13,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "INTERNAL_ERROR",
+        "message": "Terjadi kesalahan internal.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T01:12:12.937375516Z"
+      },
+      "bytes": 127
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "unicode.csv",
+            "type": "text/csv",
+            "size": 266
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 131
+          }
+        ]
+      },
+      "status": 500,
+      "ms": 14,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "INTERNAL_ERROR",
+        "message": "Terjadi kesalahan internal.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T01:12:12.951422557Z"
+      },
+      "bytes": 127
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "unicode.csv",
+            "type": "text/csv",
+            "size": 159
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 134
+          }
+        ]
+      },
+      "status": 500,
+      "ms": 11,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "INTERNAL_ERROR",
+        "message": "Terjadi kesalahan internal.",
+        "fieldErrors": [],
+        "timestamp": "2026-10-28T01:12:12.963501295Z"
+      },
+      "bytes": 127
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 58,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/3e4fece1-cfad-4c25-8505-c103f7afefda",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "3e4fece1-cfad-4c25-8505-c103f7afefda",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "Bank 😀",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:12:12.977383628Z",
+        "updatedAt": "2026-10-28T01:12:12.977383628Z",
+        "narrative": "Transfer 😀 account.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Notes 😀.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "Eval 😀"
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 499
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/3e4fece1-cfad-4c25-8505-c103f7afefda",
+      "status": 200,
+      "ms": 15,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "3e4fece1-cfad-4c25-8505-c103f7afefda",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "Bank 😀",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:12:12.977383628Z",
+        "updatedAt": "2026-10-28T01:12:12.977383628Z",
+        "narrative": "Transfer 😀 account.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Notes 😀.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "Eval 😀"
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 499
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 15,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/ca23f991-0c12-4480-9b5c-6e0803d66c3b",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "ca23f991-0c12-4480-9b5c-6e0803d66c3b",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "company\ud800",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:12:13.046441473Z",
+        "updatedAt": "2026-10-28T01:12:13.046441473Z",
+        "narrative": "transfer\ud800account",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "notes\ud800",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "eval\ud800"
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 511
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/ca23f991-0c12-4480-9b5c-6e0803d66c3b",
+      "status": 200,
+      "ms": 7,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "ca23f991-0c12-4480-9b5c-6e0803d66c3b",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "company?",
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:12:13.046441473Z",
+        "updatedAt": "2026-10-28T01:12:13.046441473Z",
+        "narrative": "transfer?account",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "notes?",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "eval?"
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 491
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "unicode.csv",
+            "type": "text/csv",
+            "size": 165
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 133
+          }
+        ]
+      },
+      "status": 201,
+      "ms": 20,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "2290993c-b8a1-48fe-839e-bddbb0d427b2",
+        "replayed": false,
+        "metadata": {
+          "archiveUrl": "https://example.com/unicode.zip",
+          "sourceFileName": "sur\ud800.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "add16e775c5c1b303dcfbdbeca649c684c90b1119188424a7d7e7a715d9b9344",
+        "processed": 1,
+        "imported": 1,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T01:12:13.072385543Z"
+      },
+      "bytes": 428
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "unicode.csv",
+            "type": "text/csv",
+            "size": 165
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 133
+          }
+        ]
+      },
+      "status": 200,
+      "ms": 23,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "2290993c-b8a1-48fe-839e-bddbb0d427b2",
+        "replayed": true,
+        "metadata": {
+          "archiveUrl": "https://example.com/unicode.zip",
+          "sourceFileName": "sur?.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "add16e775c5c1b303dcfbdbeca649c684c90b1119188424a7d7e7a715d9b9344",
+        "processed": 1,
+        "imported": 1,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T01:12:13.072385543Z"
+      },
+      "bytes": 422
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 22,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/bd6e9b7f-f1b7-46c5-bcf0-b57884f3e1fd",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "bd6e9b7f-f1b7-46c5-bcf0-b57884f3e1fd",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:12:13.115320709Z",
+        "updatedAt": "2026-10-28T01:12:13.115320709Z",
+        "narrative": "transfer\u0000account",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "notes\u0000middle",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 498
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/bd6e9b7f-f1b7-46c5-bcf0-b57884f3e1fd",
+      "status": 200,
+      "ms": 7,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "bd6e9b7f-f1b7-46c5-bcf0-b57884f3e1fd",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T01:12:13.115320709Z",
+        "updatedAt": "2026-10-28T01:12:13.115320709Z",
+        "narrative": "transfer\u0000account",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "notes\u0000middle",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 498
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 14,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/71bfd030-dc97-4a09-bdfa-d0131d1ec7a2",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "71bfd030-dc97-4a09-bdfa-d0131d1ec7a2",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "\u0000company",
+        "companyResponse": "\u0000response",
+        "createdAt": "2026-10-28T01:12:13.141985717Z",
+        "updatedAt": "2026-10-28T01:12:13.141985717Z",
+        "narrative": "Transfer narrative.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Notes.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "\u0000evaluation"
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 522
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/71bfd030-dc97-4a09-bdfa-d0131d1ec7a2",
+      "status": 200,
+      "ms": 6,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "71bfd030-dc97-4a09-bdfa-d0131d1ec7a2",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "\u0000company",
+        "companyResponse": "\u0000response",
+        "createdAt": "2026-10-28T01:12:13.141985717Z",
+        "updatedAt": "2026-10-28T01:12:13.141985717Z",
+        "narrative": "Transfer narrative.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Notes.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "\u0000evaluation"
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 522
+    }
+  ],
+  "finalCounts": {
+    "cases": 6,
+    "batches": 2
+  }
+}
