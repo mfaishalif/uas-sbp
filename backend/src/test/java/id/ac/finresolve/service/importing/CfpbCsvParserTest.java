@@ -208,8 +208,53 @@ class CfpbCsvParserTest {
     }
 
     @Test
+    void rejectsNulTextPerRowWhileKeepingOtherValidRows() {
+        String csv = HEADER + "\n"
+                + "650,Product A,Sub A,Issue A,,A valid row before NUL,Company A,Closed,\n"
+                + "651,Product A,Sub A,Issue A,,\"\u0000NUL narrative\",Company A,Closed,\n"
+                + "652,\u0000Product A,Sub A,Issue A,,Another valid narrative,Company A,Closed,\n"
+                + "653,Product A,Sub A,Issue A,,A valid row after NUL,Company\u0000,Closed,\n";
+
+        ParsedImport parsed = parse(csv);
+
+        assertThat(parsed.processed()).isEqualTo(4);
+        assertThat(parsed.rows()).extracting(ParsedImport.Row::complaintId)
+                .containsExactly("650");
+        assertThat(parsed.rejected()).isEqualTo(3);
+        assertThat(parsed.errors()).extracting(ImportRowProblem::recordNumber)
+                .containsExactly(2, 3, 4);
+        assertThat(parsed.errors()).extracting(ImportRowProblem::field)
+                .containsExactly("Consumer complaint narrative", "Product", "Company");
+        assertThat(parsed.errors()).extracting(ImportRowProblem::code)
+                .containsExactly("INVALID_FORMAT", "INVALID_FORMAT", "INVALID_FORMAT");
+    }
+
+    @Test
+    void ignoresEmptyLinesButKeepsMultilineAndBlankLikeRecords() {
+        String csv = HEADER + "\n\n"
+                + "660,Product A,Sub A,Issue A,,\"Line one\n\nLine two\",Company A,Closed,\n"
+                + "\r\n\r\n"
+                + "   \r\n"
+                + ",\r\n";
+
+        ParsedImport parsed = parse(csv);
+
+        assertThat(parsed.processed()).isEqualTo(3);
+        assertThat(parsed.rows()).hasSize(1);
+        assertThat(parsed.rows().get(0).recordNumber()).isEqualTo(1);
+        assertThat(parsed.rows().get(0).complaint().narrative())
+                .isEqualTo("Line one\n\nLine two");
+        assertThat(parsed.rejected()).isEqualTo(2);
+        assertThat(parsed.errors()).extracting(ImportRowProblem::recordNumber)
+                .containsExactly(2, 3);
+        assertThat(parsed.errors()).extracting(ImportRowProblem::field)
+                .containsExactly("Complaint ID", "Complaint ID");
+    }
+
+    @Test
     void rejectsHeaderOnlyMissingAndDuplicateHeaders() {
         assertInvalidCsv(HEADER + "\n");
+        assertInvalidCsv(HEADER + "\n\n\r\n");
         assertInvalidCsv(HEADER.replace("Issue,", "") + "\n"
                 + "700,Product A,Sub A,A meaningful narrative,Company A,Closed\n");
         assertInvalidCsv("Complaint ID,Complaint ID,Product,Issue,Consumer complaint narrative\n"

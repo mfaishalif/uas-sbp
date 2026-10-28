@@ -40,6 +40,8 @@ import org.apache.commons.csv.DuplicateHeaderMode;
  * <p>File-level failures (byte limit, record limit, invalid UTF-8, missing/duplicate headers, a
  * broken quote, or a header-only file) abort the whole import. Record-level failures become safe
  * {@link ImportRowProblem} values, capped at 20, and leave the rest of the file importable.
+ * Physically empty lines outside quoted fields are ignored; lines containing spaces, delimiters,
+ * or empty quoted fields remain records and are validated.
  */
 public final class CfpbCsvParser {
 
@@ -78,7 +80,7 @@ public final class CfpbCsvParser {
                 .setSkipHeaderRecord(true)
                 .setDuplicateHeaderMode(DuplicateHeaderMode.DISALLOW)
                 .setAllowMissingColumnNames(false)
-                .setIgnoreEmptyLines(false)
+                .setIgnoreEmptyLines(true)
                 .build();
 
         try (CSVParser parser = CSVParser.parse(new StringReader(text), format)) {

@@ -230,6 +230,91 @@ class InputRulesTest {
     }
 
     @Test
+    void rejectsNulAndUnpairedSurrogatesInEveryComplaintTextField() {
+        assertRejectedWithField(
+                complaint(
+                        new CategoryValues("\u0000Product", null, "Issue", null),
+                        "A meaningful narrative", null, null),
+                "product",
+                "INVALID_FORMAT");
+        assertRejectedWithField(
+                complaint(
+                        new CategoryValues("Product", "Sub\u0000product", "Issue", null),
+                        "A meaningful narrative", null, null),
+                "subProduct",
+                "INVALID_FORMAT");
+        assertRejectedWithField(
+                complaint(
+                        new CategoryValues("Product", null, "Iss\u0000ue", null),
+                        "A meaningful narrative", null, null),
+                "issue",
+                "INVALID_FORMAT");
+        assertRejectedWithField(
+                complaint(
+                        new CategoryValues("Product", null, "Issue", "Sub issue\u0000"),
+                        "A meaningful narrative", null, null),
+                "subIssue",
+                "INVALID_FORMAT");
+        assertRejectedWithField(
+                complaint(
+                        new CategoryValues("Product", null, "Issue", null),
+                        "transfer\u0000account", null, null),
+                "narrative",
+                "INVALID_FORMAT");
+        assertRejectedWithField(
+                complaint(
+                        new CategoryValues("Product", null, "Issue", null),
+                        "transfer\uD800account", null, null),
+                "narrative",
+                "INVALID_FORMAT");
+        assertRejectedWithField(
+                complaint(
+                        new CategoryValues("Product", null, "Issue", null),
+                        "transfer\uDC00account", null, null),
+                "narrative",
+                "INVALID_FORMAT");
+        assertRejectedWithField(
+                complaint(
+                        new CategoryValues("Product", null, "Issue", null),
+                        "A meaningful narrative", "Company\u0000", null),
+                "company",
+                "INVALID_FORMAT");
+        assertRejectedWithField(
+                complaint(
+                        new CategoryValues("Product", null, "Issue", null),
+                        "A meaningful narrative", "Company\uD800", null),
+                "company",
+                "INVALID_FORMAT");
+        assertRejectedWithField(
+                complaint(
+                        new CategoryValues("Product", null, "Issue", null),
+                        "A meaningful narrative", null, "Response\u0000"),
+                "companyResponse",
+                "INVALID_FORMAT");
+        assertRejectedWithField(
+                complaint(
+                        new CategoryValues("Product", null, "Issue", null),
+                        "A meaningful narrative", null, "Response\uDC00"),
+                "companyResponse",
+                "INVALID_FORMAT");
+    }
+
+    @Test
+    void keepsValidSurrogatePairsTabsAndNewlines() {
+        String narrative = "Line one 😀\twith tab.\nLine two 𝄞.";
+        ComplaintInput normalized = InputRules.complaint(new ComplaintInput(
+                new CategoryValues("Product", null, "Issue", null),
+                "  " + narrative + "  ",
+                null,
+                "  Bank 😀  ",
+                "  Response 𝄞\nSecond line.  "));
+
+        assertThat(normalized.narrative()).isEqualTo(narrative);
+        assertThat(normalized.company()).isEqualTo("Bank 😀");
+        assertThat(normalized.companyResponse()).isEqualTo("Response 𝄞\nSecond line.");
+    }
+
+    @Test
     void acceptsValuesAtTheirExactLimits() {
         ComplaintInput input = new ComplaintInput(
                 new CategoryValues(
@@ -302,12 +387,19 @@ class InputRulesTest {
     }
 
     private ComplaintInput input(String narrative) {
-        return new ComplaintInput(
+        return complaint(
                 new CategoryValues("Checking account", null, "Managing an account", null),
                 narrative,
                 null,
-                null,
                 null);
+    }
+
+    private ComplaintInput complaint(
+            CategoryValues categories,
+            String narrative,
+            String company,
+            String companyResponse) {
+        return new ComplaintInput(categories, narrative, null, company, companyResponse);
     }
 
     private void assertRejectedWithField(String narrative, String field, String code) {

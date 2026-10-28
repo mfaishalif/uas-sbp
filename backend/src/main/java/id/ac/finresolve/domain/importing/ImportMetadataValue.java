@@ -2,6 +2,7 @@ package id.ac.finresolve.domain.importing;
 
 import id.ac.finresolve.domain.error.BusinessException;
 import id.ac.finresolve.domain.error.BusinessException.Problem;
+import id.ac.finresolve.domain.text.UnicodeText;
 import java.net.URI;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public record ImportMetadataValue(
         sourceFileName = trim(sourceFileName);
 
         List<Problem> problems = new ArrayList<>();
+        UnicodeText.addProblemIfInvalid(archiveUrl, "metadata.archiveUrl", problems);
+        UnicodeText.addProblemIfInvalid(sourceFileName, "metadata.sourceFileName", problems);
         validateArchiveUrl(archiveUrl, problems);
         validateSourceFileName(sourceFileName, problems);
         if (periodStart == null) {
@@ -90,12 +93,23 @@ public record ImportMetadataValue(
                     "TOO_LONG",
                     "Nama berkas sumber maksimal 255 karakter."));
         }
-        if (value.indexOf('/') >= 0 || value.indexOf('\\') >= 0) {
+        if (value.indexOf('/') >= 0
+                || value.indexOf('\\') >= 0
+                || value.equals(".")
+                || value.equals("..")
+                || isDriveRelative(value)) {
             problems.add(new Problem(
                     "metadata.sourceFileName",
                     "INVALID_FORMAT",
                     "Nama berkas sumber tidak boleh memuat path."));
         }
+    }
+
+    private static boolean isDriveRelative(String value) {
+        return value.length() >= 2
+                && value.charAt(1) == ':'
+                && ((value.charAt(0) >= 'A' && value.charAt(0) <= 'Z')
+                        || (value.charAt(0) >= 'a' && value.charAt(0) <= 'z'));
     }
 
     private static String trim(String value) {

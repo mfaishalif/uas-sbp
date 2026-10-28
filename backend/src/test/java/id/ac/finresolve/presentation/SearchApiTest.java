@@ -123,6 +123,38 @@ class SearchApiTest {
     }
 
     @Test
+    void rejectsNulAndLoneSurrogatesBeforeScoringWithoutWriting() throws Exception {
+        seedCfpb("A transfer is missing from my checking account.");
+        Long before = jdbc.queryForObject("SELECT COUNT(*) FROM cases", Long.class);
+
+        for (String[] scenario : List.of(
+                new String[] {"narrative", queryRaw(
+                        "Checking or savings account", "Managing an account",
+                        "transfer\\u0000account")},
+                new String[] {"narrative", queryRaw(
+                        "Checking or savings account", "Managing an account",
+                        "transfer\\ud800account")},
+                new String[] {"product", queryRaw(
+                        "Checking\\u0000 or savings account", "Managing an account",
+                        "A missing transfer narrative.")},
+                new String[] {"issue", queryRaw(
+                        "Checking or savings account", "Managing\\udfff an account",
+                        "A missing transfer narrative.")})) {
+            ApiResponse response = search(scenario[1]);
+
+            assertThat(response.status()).as(scenario[0]).isEqualTo(400);
+            JsonNode error = JSON.readTree(response.body());
+            assertThat(error.get("code").asString()).isEqualTo("VALIDATION_ERROR");
+            assertThat(error.get("fieldErrors")).anySatisfy(problem -> {
+                assertThat(problem.get("field").asString()).isEqualTo(scenario[0]);
+                assertThat(problem.get("code").asString()).isEqualTo("INVALID_FORMAT");
+            });
+        }
+        assertThat(jdbc.queryForObject("SELECT COUNT(*) FROM cases", Long.class))
+                .isEqualTo(before);
+    }
+
+    @Test
     void outOfVocabularyTextReturnsNoRelevantCases() throws Exception {
         seedCfpb("A transfer is missing from my checking account.");
 
@@ -279,6 +311,13 @@ class SearchApiTest {
         assertThat(configuration.get("requiresTextOverlap").asBoolean()).isTrue();
         assertThat(configuration.get("algorithmVersion").asString())
                 .isEqualTo("tfidf-cosine-v1");
+    }
+
+    /** Builds a raw JSON body so escapes such as \\u0000 reach Jackson as text, not replacement characters. */
+    private static String queryRaw(String product, String issue, String narrative) {
+        return "{\"product\":\"" + product + "\","
+                + "\"issue\":\"" + issue + "\","
+                + "\"narrative\":\"" + narrative + "\"}";
     }
 
     private String query(

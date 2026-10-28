@@ -232,6 +232,81 @@ class RetentionApiTest {
     }
 
     @Test
+    void postRejectsNulAndLoneSurrogatesInEveryTextFieldWithoutWriting() throws Exception {
+        seedCfpb("A transfer is missing from my checking account.");
+        long before = caseCount();
+        List<String[]> attempts = List.of(
+                new String[] {"narrative", "\"transfer\\u0000account\""},
+                new String[] {"narrative", "\"transfer\\ud800account\""},
+                new String[] {"product", "\"\\u0000Checking account\""},
+                new String[] {"issue", "\"Managing\\udfff an account\""},
+                new String[] {"company", "\"Company\\u0000\""},
+                new String[] {"companyResponse", "\"\\ud800Closed\""},
+                new String[] {"handlingNotes", "\"Notes\\u0000\""},
+                new String[] {"evaluationNotes", "\"Eval\\ud800\""});
+
+        for (String[] attempt : attempts) {
+            String body = withRawField(FULL_BODY, attempt[0], attempt[1]);
+            ApiResponse response = request("POST", "/api/cases", body);
+
+            assertThat(response.status()).as(attempt[0]).isEqualTo(400);
+            JsonNode error = JSON.readTree(response.body());
+            assertThat(error.get("code").asString()).isEqualTo("VALIDATION_ERROR");
+            assertThat(error.get("fieldErrors")).anySatisfy(problem -> {
+                assertThat(problem.get("field").asString()).isEqualTo(attempt[0]);
+                assertThat(problem.get("code").asString()).isEqualTo("INVALID_FORMAT");
+            });
+            assertThat(response.body()).doesNotContain("transfer");
+        }
+        assertThat(caseCount()).isEqualTo(before);
+    }
+
+    @Test
+    void fullPutRejectsInvalidUnicodeAndPreservesThePreviousCase() throws Exception {
+        seedCfpb("A transfer is missing from my checking account.");
+        ApiResponse created = request("POST", "/api/cases", FULL_BODY);
+        assertThat(created.status()).isEqualTo(201);
+        String location = created.location();
+        JsonNode before = JSON.readTree(request("GET", location, null).body());
+
+        for (String[] attempt : List.of(
+                new String[] {"narrative", "\"Replacement\\u0000narrative\""},
+                new String[] {"handlingNotes", "\"Replacement\\ud800 notes\""},
+                new String[] {"evaluationNotes", "\"Replacement\\udfff evaluation\""})) {
+            ApiResponse response = request(
+                    "PUT", location, withRawField(FULL_BODY, attempt[0], attempt[1]));
+            assertThat(response.status()).isEqualTo(400);
+            JsonNode error = JSON.readTree(response.body());
+            assertThat(error.get("code").asString()).isEqualTo("VALIDATION_ERROR");
+            assertThat(error.get("fieldErrors")).anySatisfy(problem -> {
+                assertThat(problem.get("field").asString()).isEqualTo(attempt[0]);
+                assertThat(problem.get("code").asString()).isEqualTo("INVALID_FORMAT");
+            });
+            assertThat(JSON.readTree(request("GET", location, null).body())).isEqualTo(before);
+        }
+    }
+
+    @Test
+    void validUnicodeSurrogatePairsTabsAndNewlinesRoundTrip() throws Exception {
+        seedCfpb("A transfer is missing from my checking account.");
+        String narrative = "Line one 😀\\twith tab.\\nLine two 𝄞.";
+        String handlingNotes = "Notes 😀\\tkept.\\nSecond note.";
+        String body = withRawField(
+                withRawField(FULL_BODY, "narrative", "\"" + narrative + "\""),
+                "handlingNotes",
+                "\"" + handlingNotes + "\"");
+
+        ApiResponse created = request("POST", "/api/cases", body);
+
+        assertThat(created.status()).isEqualTo(201);
+        JsonNode read = JSON.readTree(request("GET", created.location(), null).body());
+        assertThat(read.get("narrative").asString())
+                .isEqualTo("Line one 😀\twith tab.\nLine two 𝄞.");
+        assertThat(read.get("analystNotes").get("handlingNotes").asString())
+                .isEqualTo("Notes 😀\tkept.\nSecond note.");
+    }
+
+    @Test
     void supplementaryCharactersUseContractCodePointLimits() throws Exception {
         seedCfpb("A transfer is missing from my checking account.");
         String narrative = "transfer " + "\uD83D\uDE00".repeat(25_000);
@@ -245,6 +320,13 @@ class RetentionApiTest {
         assertThat(created.get("narrative").asString()).isEqualTo(narrative);
         assertThat(created.get("narrative").asString().codePointCount(
                 0, created.get("narrative").asString().length())).isEqualTo(25_009);
+    }
+
+    /** Replaces one string-valued FULL_BODY property with a raw JSON literal. */
+    private static String withRawField(String body, String field, String rawValue) {
+        return body.replaceFirst(
+                "(\"" + field + "\": )\"[^\"]*\"",
+                "$1" + java.util.regex.Matcher.quoteReplacement(rawValue));
     }
 
     private String withReferences(UUID... references) {

@@ -154,6 +154,7 @@ class ImportApiTest {
     @Test
     void rejectsMalformedFilesWithoutWritingAnything() throws Exception {
         assertFileRejected(csv(HEADER + "\n"), "INVALID_CSV");
+        assertFileRejected(csv(HEADER + "\n\n\r\n"), "INVALID_CSV");
         assertFileRejected(csv(HEADER.replace("Issue,", "") + "\n"
                 + "930000001,Product A,Sub A,A meaningful narrative,Company A,Closed\n"),
                 "INVALID_CSV");
@@ -175,6 +176,152 @@ class ImportApiTest {
 
         assertThat(caseCount()).isZero();
         assertThat(batchCount()).isZero();
+    }
+
+    @Test
+    void rejectsInvalidUnicodeMetadataWithPrefixedFieldsAndNoWrite() throws Exception {
+        byte[] csv = csvWithHeader(row("956000001", "Product A", null, "Issue A", null,
+                "A meaningful narrative", "Company A", "Closed", ""));
+
+        for (String[] scenario : List.of(
+                new String[] {metadataWithRawSourceFileName("\"\\u0000file.csv\""), "metadata.sourceFileName"},
+                new String[] {metadataWithRawSourceFileName("\"file\\u0000.csv\""), "metadata.sourceFileName"},
+                new String[] {metadataWithRawSourceFileName("\"file.csv\\u0000\""), "metadata.sourceFileName"},
+                new String[] {metadataWithRawSourceFileName("\"file\\ud800.csv\""), "metadata.sourceFileName"},
+                new String[] {metadataWithRawSourceFileName("\"file\\udfff.csv\""), "metadata.sourceFileName"},
+                new String[] {metadataWithRawArchiveUrl("\"https://example.com/\\u0000archive.zip\""), "metadata.archiveUrl"},
+                new String[] {metadataWithRawArchiveUrl("\"https://example.com/\\udfffarchive.zip\""), "metadata.archiveUrl"})) {
+            ApiResponse response = postMultipart(multipart(
+                    scenario[0], "application/json", csv, "text/csv", "sample.csv",
+                    null, true, true));
+
+            assertThat(response.status()).as(scenario[1]).isEqualTo(400);
+            JsonNode error = JSON.readTree(response.body());
+            assertThat(error.get("code").asString()).isEqualTo("VALIDATION_ERROR");
+            assertThat(error.get("fieldErrors")).anySatisfy(problem -> {
+                assertThat(problem.get("field").asString()).isEqualTo(scenario[1]);
+                assertThat(problem.get("code").asString()).isEqualTo("INVALID_FORMAT");
+            });
+        }
+        assertThat(caseCount()).isZero();
+        assertThat(batchCount()).isZero();
+    }
+
+    @Test
+    void rejectsPathLikeSourceFileNamesAfterTrimAndAcceptsBasenames() throws Exception {
+        byte[] csv = csvWithHeader(row("956000010", "Product A", null, "Issue A", null,
+                "A meaningful narrative", "Company A", "Closed", ""));
+
+        for (String sourceFileName : List.of(
+                ".", "..", " . ", " .. ", "../x.csv", "a/b.csv", "a\\b.csv", "C:x", " C:x ")) {
+            ApiResponse response = importCsv(csv, metadataJson(
+                    sourceFileName, ARCHIVE_URL, PERIOD_START, PERIOD_END));
+
+            assertThat(response.status()).as(sourceFileName).isEqualTo(400);
+            JsonNode error = JSON.readTree(response.body());
+            assertThat(error.get("code").asString()).isEqualTo("VALIDATION_ERROR");
+            assertThat(error.get("fieldErrors")).anySatisfy(problem -> {
+                assertThat(problem.get("field").asString()).isEqualTo("metadata.sourceFileName");
+                assertThat(problem.get("code").asString()).isEqualTo("INVALID_FORMAT");
+            });
+        }
+        assertThat(caseCount()).isZero();
+        assertThat(batchCount()).isZero();
+
+        ApiResponse accepted = importCsv(csv, metadataJson(
+                "  normal-name  ", ARCHIVE_URL, PERIOD_START, PERIOD_END));
+        assertThat(accepted.status()).isEqualTo(201);
+        assertThat(JSON.readTree(accepted.body()).get("metadata").get("sourceFileName").asString())
+                .isEqualTo("normal-name");
+        assertThat(caseCount()).isEqualTo(1);
+        assertThat(batchCount()).isEqualTo(1);
+    }
+
+    @Test
+    void importsValidRowsWhileRejectingNulRows() throws Exception {
+        byte[] csv = csvWithHeader(
+                row("957000001", "Product A", null, "Issue A", null,
+                        "A valid row before the malformed row", "Company A", "Closed", ""),
+                row("957000002", "Product A", null, "Issue A", null,
+                        "\u0000NUL narrative", "Company A", "Closed", ""));
+
+        ApiResponse response = importCsv(csv, metadataJson(
+                "nul-row.csv", ARCHIVE_URL, PERIOD_START, PERIOD_END));
+
+        assertThat(response.status()).isEqualTo(201);
+        JsonNode body = JSON.readTree(response.body());
+        assertThat(body.get("processed").asInt()).isEqualTo(2);
+        assertThat(body.get("imported").asInt()).isEqualTo(1);
+        assertThat(body.get("rejected").asInt()).isEqualTo(1);
+        assertThat(body.get("duplicates").asInt()).isZero();
+        assertThat(body.get("errors")).hasSize(1);
+        assertThat(body.get("errors").get(0).get("recordNumber").asInt()).isEqualTo(2);
+        assertThat(body.get("errors").get(0).get("field").asString())
+                .isEqualTo("Consumer complaint narrative");
+        assertThat(body.get("errors").get(0).get("code").asString()).isEqualTo("INVALID_FORMAT");
+        assertThat(caseCount()).isEqualTo(1);
+        assertThat(batchCount()).isEqualTo(1);
+
+        JsonNode detail = detailByComplaintId("957000001");
+        assertThat(detail.get("narrative").asString())
+                .isEqualTo("A valid row before the malformed row");
+    }
+
+    @Test
+    void validUnicodeMetadataReplaysAndMatchesGetProvenance() throws Exception {
+        String sourceFileName = "sur-😀-𝄞.csv";
+        byte[] csv = csvWithHeader(row("958000001", "Product A", null, "Issue A", null,
+                "A narrative with valid Unicode metadata", "Company A", "Closed", ""));
+
+        ApiResponse first = importCsv(csv, metadataJson(
+                sourceFileName, ARCHIVE_URL, PERIOD_START, PERIOD_END));
+        assertThat(first.status()).isEqualTo(201);
+        JsonNode firstBody = JSON.readTree(first.body());
+        assertThat(firstBody.get("metadata").get("sourceFileName").asString())
+                .isEqualTo(sourceFileName);
+
+        ApiResponse replay = importCsv(csv, metadataJson(
+                sourceFileName, ARCHIVE_URL, PERIOD_START, PERIOD_END));
+        assertThat(replay.status()).isEqualTo(200);
+        JsonNode replayBody = JSON.readTree(replay.body());
+        assertThat(replayBody.get("replayed").asBoolean()).isTrue();
+        assertThat(replayBody.get("batchId").asString())
+                .isEqualTo(firstBody.get("batchId").asString());
+        assertThat(replayBody.get("metadata").get("sourceFileName").asString())
+                .isEqualTo(sourceFileName);
+        assertThat(caseCount()).isEqualTo(1);
+        assertThat(batchCount()).isEqualTo(1);
+
+        JsonNode provenance = detailByComplaintId("958000001").get("provenance");
+        assertThat(provenance.get("sourceFileName").asString()).isEqualTo(sourceFileName);
+        assertThat(provenance.get("importBatchId").asString())
+                .isEqualTo(firstBody.get("batchId").asString());
+    }
+
+    @Test
+    void ignoresBlankLinesAndPreservesQuotedMultilineOverHttp() throws Exception {
+        byte[] csv = csvWithHeader(
+                "",
+                row("959000001", "Product A", null, "Issue A", null,
+                        "Line one\n\nLine two", "Company A", "Closed", ""),
+                "\r\n\r\n",
+                "   \r\n",
+                ",\r\n");
+
+        ApiResponse response = importCsv(csv, metadataJson(
+                "blank-boundaries.csv", ARCHIVE_URL, PERIOD_START, PERIOD_END));
+
+        assertThat(response.status()).isEqualTo(201);
+        JsonNode body = JSON.readTree(response.body());
+        assertThat(body.get("processed").asInt()).isEqualTo(3);
+        assertThat(body.get("imported").asInt()).isEqualTo(1);
+        assertThat(body.get("rejected").asInt()).isEqualTo(2);
+        assertThat(body.get("duplicates").asInt()).isZero();
+        assertThat(body.get("errors")).hasSize(2);
+        assertThat(caseCount()).isEqualTo(1);
+        assertThat(batchCount()).isEqualTo(1);
+        assertThat(detailByComplaintId("959000001").get("narrative").asString())
+                .isEqualTo("Line one\n\nLine two");
     }
 
     @Test
@@ -427,6 +574,23 @@ class ImportApiTest {
         return new ApiResponse(response.statusCode(), response.body());
     }
 
+    private JsonNode detailByComplaintId(String complaintId) throws Exception {
+        JsonNode firstPage = JSON.readTree(get("/api/cases?source=CFPB&size=100").body());
+        int totalPages = firstPage.get("totalPages").asInt();
+        for (int page = 0; page < totalPages; page++) {
+            JsonNode list = page == 0
+                    ? firstPage
+                    : JSON.readTree(get("/api/cases?source=CFPB&page=" + page + "&size=100").body());
+            for (JsonNode item : list.get("items")) {
+                JsonNode detail = JSON.readTree(get("/api/cases/" + item.get("id").asString()).body());
+                if (complaintId.equals(detail.get("provenance").get("complaintId").asString())) {
+                    return detail;
+                }
+            }
+        }
+        throw new AssertionError("CFPB complaint not found: " + complaintId);
+    }
+
     private ApiResponse postMultipart(byte[] body) throws Exception {
         HttpRequest request = HttpRequest.newBuilder(
                         URI.create("http://127.0.0.1:" + port + "/api/imports/cfpb"))
@@ -523,6 +687,20 @@ class ImportApiTest {
 
     private static String quote(String value) {
         return "\"" + value.replace("\"", "\"\"") + "\"";
+    }
+
+    private static String metadataWithRawSourceFileName(String rawSourceFileName) {
+        return "{\"archiveUrl\":\"" + ARCHIVE_URL + "\""
+                + ",\"sourceFileName\":" + rawSourceFileName
+                + ",\"periodStart\":\"" + PERIOD_START + "\""
+                + ",\"periodEnd\":\"" + PERIOD_END + "\"}";
+    }
+
+    private static String metadataWithRawArchiveUrl(String rawArchiveUrl) {
+        return "{\"archiveUrl\":" + rawArchiveUrl
+                + ",\"sourceFileName\":\"sample.csv\""
+                + ",\"periodStart\":\"" + PERIOD_START + "\""
+                + ",\"periodEnd\":\"" + PERIOD_END + "\"}";
     }
 
     private static String metadataJson(

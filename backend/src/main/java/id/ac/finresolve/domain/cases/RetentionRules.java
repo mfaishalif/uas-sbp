@@ -2,6 +2,7 @@ package id.ac.finresolve.domain.cases;
 
 import id.ac.finresolve.domain.error.BusinessException;
 import id.ac.finresolve.domain.error.BusinessException.Problem;
+import id.ac.finresolve.domain.text.UnicodeText;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -29,6 +30,14 @@ public final class RetentionRules {
         List<Problem> problems = new ArrayList<>();
 
         CaseRecord.Notes requestedNotes = command.notes();
+        UnicodeText.addProblemIfInvalid(
+                requestedNotes == null ? null : requestedNotes.handlingNotes(),
+                "handlingNotes",
+                problems);
+        UnicodeText.addProblemIfInvalid(
+                requestedNotes == null ? null : requestedNotes.evaluationNotes(),
+                "evaluationNotes",
+                problems);
         String handlingNotes = trim(requestedNotes == null ? null : requestedNotes.handlingNotes());
         if (handlingNotes == null || handlingNotes.isEmpty()) {
             problems.add(new Problem(

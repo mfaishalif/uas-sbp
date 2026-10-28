@@ -4,6 +4,7 @@ import id.ac.finresolve.domain.category.CategoryValues;
 import id.ac.finresolve.domain.error.BusinessException;
 import id.ac.finresolve.domain.error.BusinessException.Problem;
 import id.ac.finresolve.domain.similarity.EnglishTokenizer;
+import id.ac.finresolve.domain.text.UnicodeText;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -66,6 +67,7 @@ public final class InputRules {
         List<Problem> problems = new ArrayList<>();
         CategoryValues categories = normalizeCategories(input.categories(), problems);
 
+        UnicodeText.addProblemIfInvalid(input.narrative(), "narrative", problems);
         String narrative = trimUnicode(input.narrative());
         if (narrative == null || narrative.isEmpty()) {
             problems.add(new Problem("narrative", "REQUIRED", "Narasi wajib diisi."));
@@ -114,6 +116,11 @@ public final class InputRules {
                     "categories", "REQUIRED", "Kategori pengaduan wajib diisi."));
             return null;
         }
+
+        UnicodeText.addProblemIfInvalid(requested.product(), "product", problems);
+        UnicodeText.addProblemIfInvalid(requested.subProduct(), "subProduct", problems);
+        UnicodeText.addProblemIfInvalid(requested.issue(), "issue", problems);
+        UnicodeText.addProblemIfInvalid(requested.subIssue(), "subIssue", problems);
 
         String product = normalizeCategory(requested.product());
         String subProduct = normalizeCategory(requested.subProduct());
@@ -171,6 +178,7 @@ public final class InputRules {
             int maxCodePoints,
             String tooLongMessage,
             List<Problem> problems) {
+        UnicodeText.addProblemIfInvalid(value, field, problems);
         String trimmed = trimUnicode(value);
         if (trimmed == null || trimmed.isEmpty()) {
             return null;
