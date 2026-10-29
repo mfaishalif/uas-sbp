@@ -257,7 +257,6 @@ export function FindPrecedentsPage() {
               onChange={(event) => updateSearchForm({ narrative: event.target.value })}
               error={errors.narrative}
               hint={`${textLength(searchForm.narrative).toLocaleString('en-US')} / 50,000 characters. Use the same language as the source narrative.`}
-              maxLength={50_000}
               rows={7}
               placeholder="Describe what happened, what the consumer expected, and the key facts of the complaint."
               required
