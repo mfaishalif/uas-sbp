@@ -1,0 +1,5 @@
+START self port=18401 db=/tmp/finresolve-qa-YdLwui/self.db mode=baseline reset=yes
+READY self pid=1306701
+intentional-failure exit=7
+RESULT_DIR=docs/testing/results/2026-10-28-retest-fs01-170711/runner-checks/failure
+STATUS=1

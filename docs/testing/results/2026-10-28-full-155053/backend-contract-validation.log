@@ -1,0 +1,20 @@
+PASS CTR-01
+PASS CTR-02
+PASS CTR-03-negative page
+PASS CTR-03-non-numeric page
+PASS CTR-03-fraction page
+PASS CTR-03-empty page
+PASS CTR-03-zero size
+PASS CTR-03-size above maximum
+PASS CTR-03-empty size
+PASS CTR-03-empty source
+PASS CTR-03-lowercase source
+PASS CTR-03-unknown source
+PASS CTR-04
+PASS CTR-05
+PASS CTR-06
+PASS CTR-07
+PASS CTR-08
+PASS CTR-09
+PASS CTR-10
+{"output":"/workspaces/uas-sbp/docs/testing/results/2026-10-28-full-155053/backend-contract-validation.json","scenarios":19,"passed":19,"failed":0,"blocked":0,"observations":0,"httpRequests":83,"exitCode":0}

@@ -1,0 +1,40 @@
+START unicode port=18210 db=/tmp/finresolve-qa-1793203168/unicode.db mode=baseline
+READY unicode pid=1218869
+backend-unicode exit=0
+STOP unicode
+START import port=18211 db=/tmp/finresolve-qa-1793203168/import.db mode=baseline
+READY import pid=1219083
+backend-import-provenance exit=0
+STOP import
+START contract port=18212 db=/tmp/finresolve-qa-1793203168/contract.db mode=baseline
+READY contract pid=1219299
+backend-contract-validation exit=0
+STOP contract
+START capacity port=18213 db=/tmp/finresolve-qa-1793203168/capacity.db mode=baseline
+READY capacity pid=1219513
+backend-capacity-race exit=0
+STOP capacity
+START concurrency port=18214 db=/tmp/finresolve-qa-1793203168/concurrency.db mode=baseline
+READY concurrency pid=1219720
+backend-concurrency exit=0
+STOP concurrency
+START persistence-seed port=18215 db=/tmp/finresolve-qa-1793203168/persistence.db mode=baseline
+READY persistence-seed pid=1219899
+backend-persistence-seed exit=0
+STOP persistence-seed
+START persistence-verify port=18215 db=/tmp/finresolve-qa-1793203168/persistence.db mode=baseline
+READY persistence-verify pid=1220103
+backend-persistence-verify exit=1
+backend-persistence-busy exit=1
+STOP persistence-verify
+START search-baseline port=18216 db=/tmp/finresolve-qa-1793203168/search-baseline.db mode=baseline
+READY search-baseline pid=1220324
+seed-search-baseline exit=0
+START search-phrases port=18217 db=/tmp/finresolve-qa-1793203168/search-phrases.db mode=phrases
+READY search-phrases pid=1220496
+seed-search-phrases exit=0
+START search-empty port=18218 db=/tmp/finresolve-qa-1793203168/search-empty.db mode=baseline
+READY search-empty pid=1220687
+backend-search-phrases exit=0
+STOP search-empty
+TMP=/tmp/finresolve-qa-1793203168

@@ -1,0 +1,8 @@
+START regression port=18220 db=/tmp/finresolve-qa-fQElhp/regression.db mode=baseline reset=yes
+READY regression pid=1281694
+seed-regression exit=0
+regression exit=0
+regression-summary exit=0
+STOP regression pid=1281694
+RESULT_DIR=docs/testing/results/2026-10-28-retest-fs01-170711/regression
+STATUS=0

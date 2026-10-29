@@ -1,0 +1,4 @@
+PASS EMOJI-API
+FAIL EMOJI-UI: textarea kept 25004 code points of 26009; counter=25,004 / 50,000 characters. Use the same language as the source narrative.
+{"output":"/workspaces/uas-sbp/docs/testing/results/2026-10-28-full-155053/emoji-input.json","scenarios":2,"passed":1,"failed":1}
+97e8d54f8a7255106f66cf1b213c4a4d7b558d21310b1c2bfedc3d0d526dddda  /tmp/finresolve-emoji-qa.db

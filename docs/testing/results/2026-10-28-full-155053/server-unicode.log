@@ -1,0 +1,31 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-10-28T15:59:30.479Z  INFO 1218869 --- [finresolve-backend] [           main] id.ac.finresolve.FinresolveApplication   : Starting FinresolveApplication v0.1.0 using Java 21.0.8 with PID 1218869 (/workspaces/uas-sbp/backend/target/finresolve-backend-0.1.0.jar started by vscode in /workspaces/uas-sbp)
+2026-10-28T15:59:30.490Z  INFO 1218869 --- [finresolve-backend] [           main] id.ac.finresolve.FinresolveApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-10-28T15:59:33.243Z  INFO 1218869 --- [finresolve-backend] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 18210 (http)
+2026-10-28T15:59:33.266Z  INFO 1218869 --- [finresolve-backend] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-28T15:59:33.267Z  INFO 1218869 --- [finresolve-backend] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.27]
+2026-10-28T15:59:33.313Z  INFO 1218869 --- [finresolve-backend] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2649 ms
+2026-10-28T15:59:33.511Z  INFO 1218869 --- [finresolve-backend] [           main] i.a.f.config.DatabaseConfiguration       : SQLite database configured at /tmp/finresolve-qa-1793203168/unicode.db
+2026-10-28T15:59:33.573Z  INFO 1218869 --- [finresolve-backend] [           main] com.zaxxer.hikari.HikariDataSource       : finresolve-sqlite - Starting...
+2026-10-28T15:59:33.769Z  INFO 1218869 --- [finresolve-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : finresolve-sqlite - Added connection org.sqlite.jdbc4.JDBC4Connection@5568c66f
+2026-10-28T15:59:33.773Z  INFO 1218869 --- [finresolve-backend] [           main] com.zaxxer.hikari.HikariDataSource       : finresolve-sqlite - Start completed.
+2026-10-28T15:59:35.016Z  INFO 1218869 --- [finresolve-backend] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 18210 (http) with context path '/'
+2026-10-28T15:59:35.036Z  INFO 1218869 --- [finresolve-backend] [           main] id.ac.finresolve.FinresolveApplication   : Started FinresolveApplication in 5.702 seconds (process running for 6.745)
+2026-10-28T15:59:35.545Z  INFO 1218869 --- [finresolve-backend] [.1-18210-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-28T15:59:35.546Z  INFO 1218869 --- [finresolve-backend] [.1-18210-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-28T15:59:35.548Z  INFO 1218869 --- [finresolve-backend] [.1-18210-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2026-10-28T15:59:36.619Z  WARN 1218869 --- [finresolve-backend] [.1-18210-exec-6] o.h.v.i.m.a.CascadingMetaDataBuilder     : HV000271: Using `@Valid` on a container (org.openapitools.jackson.nullable.JsonNullable) is deprecated. You should apply the annotation on the type argument(s). Affected element: RetainCaseRequest#getReceivedDate()
+2026-10-28T15:59:36.623Z  WARN 1218869 --- [finresolve-backend] [.1-18210-exec-6] o.h.v.i.m.a.CascadingMetaDataBuilder     : HV000271: Using `@Valid` on a container (org.openapitools.jackson.nullable.JsonNullable) is deprecated. You should apply the annotation on the type argument(s). Affected element: RetainCaseRequest#getReceivedDate()
+2026-10-28T15:59:36.977Z  INFO 1218869 --- [finresolve-backend] [ionShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-28T15:59:36.984Z  INFO 1218869 --- [finresolve-backend] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-10-28T15:59:36.989Z  INFO 1218869 --- [finresolve-backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : finresolve-sqlite - Shutdown initiated...
+2026-10-28T15:59:36.999Z  INFO 1218869 --- [finresolve-backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : finresolve-sqlite - Shutdown completed.

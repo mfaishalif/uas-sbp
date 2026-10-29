@@ -1,0 +1,9 @@
+file:///workspaces/uas-sbp/docs/testing/probes/persistence.mjs:201
+    const analystId = analystPage.data.items[0].id;
+                                                ^
+
+TypeError: Cannot read properties of undefined (reading 'id')
+    at file:///workspaces/uas-sbp/docs/testing/probes/persistence.mjs:201:49
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+
+Node.js v24.22.1

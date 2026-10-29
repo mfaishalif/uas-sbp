@@ -108,6 +108,42 @@ describe('retention payload', () => {
     expect(self.referenceCaseIds).toMatch(/itself/i);
   });
 
+  it('measures every limited field in code points, not UTF-16 units', () => {
+    const base = {
+      ...emptyCaseForm(),
+      product: 'Checking or savings account',
+      issue: 'Managing an account',
+      narrative: 'A valid narrative.',
+      handlingNotes: 'Handled.',
+    };
+    const cases: Array<{
+      field: 'narrative' | 'handlingNotes' | 'evaluationNotes' | 'company' | 'companyResponse';
+      limit: number;
+    }> = [
+      { field: 'narrative', limit: 50_000 },
+      { field: 'handlingNotes', limit: 10_000 },
+      { field: 'evaluationNotes', limit: 10_000 },
+      { field: 'company', limit: 500 },
+      { field: 'companyResponse', limit: 2_000 },
+    ];
+
+    for (const { field, limit } of cases) {
+      for (const unit of ['BMP', 'astral'] as const) {
+        const atLimit = unit === 'BMP' ? 'x'.repeat(limit) : '😀'.repeat(limit);
+        expect(Array.from(atLimit)).toHaveLength(limit);
+        expect(validateCaseForm({ ...base, [field]: atLimit })[field]).toBeUndefined();
+
+        const overLimit = `${atLimit}😀`;
+        expect(Array.from(overLimit)).toHaveLength(limit + 1);
+        expect(validateCaseForm({ ...base, [field]: overLimit })[field]).toMatch(
+          new RegExp(`${limit.toLocaleString('en-US')}`),
+        );
+        // The value is never truncated by validation.
+        expect(overLimit).toHaveLength(unit === 'BMP' ? limit + 2 : limit * 2 + 2);
+      }
+    }
+  });
+
   it('deduplicates references case-insensitively and caps at 20', () => {
     let ids = new Set<string>();
     ids = addReference(ids, cfpbId.toUpperCase());

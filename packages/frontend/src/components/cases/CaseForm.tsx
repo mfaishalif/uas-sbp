@@ -261,7 +261,6 @@ export function CaseForm({
             label="Complaint narrative"
             required
             rows={9}
-            maxLength={50_000}
             value={values.narrative}
             onChange={(event) => setField('narrative', event.target.value)}
             error={errors.narrative ?? errorForField(serverError, 'narrative')}
@@ -290,7 +289,6 @@ export function CaseForm({
               id={FIELD_IDS.company}
               label="Company"
               optional
-              maxLength={500}
               value={values.company}
               onChange={(event) => setField('company', event.target.value)}
               error={errors.company ?? errorForField(serverError, 'company')}
@@ -301,7 +299,6 @@ export function CaseForm({
             label="Company response"
             optional
             rows={4}
-            maxLength={2_000}
             value={values.companyResponse}
             onChange={(event) => setField('companyResponse', event.target.value)}
             error={errors.companyResponse ?? errorForField(serverError, 'companyResponse')}
@@ -322,7 +319,6 @@ export function CaseForm({
             label="Handling notes"
             required
             rows={6}
-            maxLength={10_000}
             value={values.handlingNotes}
             onChange={(event) => setField('handlingNotes', event.target.value)}
             error={errors.handlingNotes ?? errorForField(serverError, 'handlingNotes')}
@@ -349,7 +345,6 @@ export function CaseForm({
             label="Evaluation notes"
             optional
             rows={4}
-            maxLength={10_000}
             value={values.evaluationNotes}
             onChange={(event) => setField('evaluationNotes', event.target.value)}
             error={errors.evaluationNotes ?? errorForField(serverError, 'evaluationNotes')}

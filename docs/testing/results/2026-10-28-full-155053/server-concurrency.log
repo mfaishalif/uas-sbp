@@ -1,0 +1,41 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-10-28T16:00:06.862Z  INFO 1219720 --- [finresolve-backend] [           main] id.ac.finresolve.FinresolveApplication   : Starting FinresolveApplication v0.1.0 using Java 21.0.8 with PID 1219720 (/workspaces/uas-sbp/backend/target/finresolve-backend-0.1.0.jar started by vscode in /workspaces/uas-sbp)
+2026-10-28T16:00:06.874Z  INFO 1219720 --- [finresolve-backend] [           main] id.ac.finresolve.FinresolveApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-10-28T16:00:09.359Z  INFO 1219720 --- [finresolve-backend] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 18214 (http)
+2026-10-28T16:00:09.381Z  INFO 1219720 --- [finresolve-backend] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-28T16:00:09.382Z  INFO 1219720 --- [finresolve-backend] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.27]
+2026-10-28T16:00:09.430Z  INFO 1219720 --- [finresolve-backend] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2413 ms
+2026-10-28T16:00:09.608Z  INFO 1219720 --- [finresolve-backend] [           main] i.a.f.config.DatabaseConfiguration       : SQLite database configured at /tmp/finresolve-qa-1793203168/concurrency.db
+2026-10-28T16:00:09.677Z  INFO 1219720 --- [finresolve-backend] [           main] com.zaxxer.hikari.HikariDataSource       : finresolve-sqlite - Starting...
+2026-10-28T16:00:09.861Z  INFO 1219720 --- [finresolve-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : finresolve-sqlite - Added connection org.sqlite.jdbc4.JDBC4Connection@5568c66f
+2026-10-28T16:00:09.866Z  INFO 1219720 --- [finresolve-backend] [           main] com.zaxxer.hikari.HikariDataSource       : finresolve-sqlite - Start completed.
+2026-10-28T16:00:10.925Z  INFO 1219720 --- [finresolve-backend] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 18214 (http) with context path '/'
+2026-10-28T16:00:10.939Z  INFO 1219720 --- [finresolve-backend] [           main] id.ac.finresolve.FinresolveApplication   : Started FinresolveApplication in 5.146 seconds (process running for 6.24)
+2026-10-28T16:00:11.414Z  INFO 1219720 --- [finresolve-backend] [.1-18214-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-28T16:00:11.415Z  INFO 1219720 --- [finresolve-backend] [.1-18214-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-28T16:00:11.417Z  INFO 1219720 --- [finresolve-backend] [.1-18214-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-10-28T16:00:12.433Z  WARN 1219720 --- [finresolve-backend] [.1-18214-exec-9] o.h.v.i.m.a.CascadingMetaDataBuilder     : HV000271: Using `@Valid` on a container (org.openapitools.jackson.nullable.JsonNullable) is deprecated. You should apply the annotation on the type argument(s). Affected element: RetainCaseRequest#getReceivedDate()
+2026-10-28T16:00:12.433Z  WARN 1219720 --- [finresolve-backend] [1-18214-exec-10] o.h.v.i.m.a.CascadingMetaDataBuilder     : HV000271: Using `@Valid` on a container (org.openapitools.jackson.nullable.JsonNullable) is deprecated. You should apply the annotation on the type argument(s). Affected element: RetainCaseRequest#getReceivedDate()
+2026-10-28T16:00:12.433Z  WARN 1219720 --- [finresolve-backend] [.1-18214-exec-7] o.h.v.i.m.a.CascadingMetaDataBuilder     : HV000271: Using `@Valid` on a container (org.openapitools.jackson.nullable.JsonNullable) is deprecated. You should apply the annotation on the type argument(s). Affected element: RetainCaseRequest#getReceivedDate()
+2026-10-28T16:00:12.433Z  WARN 1219720 --- [finresolve-backend] [.1-18214-exec-1] o.h.v.i.m.a.CascadingMetaDataBuilder     : HV000271: Using `@Valid` on a container (org.openapitools.jackson.nullable.JsonNullable) is deprecated. You should apply the annotation on the type argument(s). Affected element: RetainCaseRequest#getReceivedDate()
+2026-10-28T16:00:12.433Z  WARN 1219720 --- [finresolve-backend] [.1-18214-exec-2] o.h.v.i.m.a.CascadingMetaDataBuilder     : HV000271: Using `@Valid` on a container (org.openapitools.jackson.nullable.JsonNullable) is deprecated. You should apply the annotation on the type argument(s). Affected element: RetainCaseRequest#getReceivedDate()
+2026-10-28T16:00:12.433Z  WARN 1219720 --- [finresolve-backend] [.1-18214-exec-8] o.h.v.i.m.a.CascadingMetaDataBuilder     : HV000271: Using `@Valid` on a container (org.openapitools.jackson.nullable.JsonNullable) is deprecated. You should apply the annotation on the type argument(s). Affected element: RetainCaseRequest#getReceivedDate()
+2026-10-28T16:00:12.437Z  WARN 1219720 --- [finresolve-backend] [1-18214-exec-10] o.h.v.i.m.a.CascadingMetaDataBuilder     : HV000271: Using `@Valid` on a container (org.openapitools.jackson.nullable.JsonNullable) is deprecated. You should apply the annotation on the type argument(s). Affected element: RetainCaseRequest#getReceivedDate()
+2026-10-28T16:00:12.437Z  WARN 1219720 --- [finresolve-backend] [.1-18214-exec-1] o.h.v.i.m.a.CascadingMetaDataBuilder     : HV000271: Using `@Valid` on a container (org.openapitools.jackson.nullable.JsonNullable) is deprecated. You should apply the annotation on the type argument(s). Affected element: RetainCaseRequest#getReceivedDate()
+2026-10-28T16:00:12.437Z  WARN 1219720 --- [finresolve-backend] [.1-18214-exec-9] o.h.v.i.m.a.CascadingMetaDataBuilder     : HV000271: Using `@Valid` on a container (org.openapitools.jackson.nullable.JsonNullable) is deprecated. You should apply the annotation on the type argument(s). Affected element: RetainCaseRequest#getReceivedDate()
+2026-10-28T16:00:12.437Z  WARN 1219720 --- [finresolve-backend] [.1-18214-exec-7] o.h.v.i.m.a.CascadingMetaDataBuilder     : HV000271: Using `@Valid` on a container (org.openapitools.jackson.nullable.JsonNullable) is deprecated. You should apply the annotation on the type argument(s). Affected element: RetainCaseRequest#getReceivedDate()
+2026-10-28T16:00:12.444Z  WARN 1219720 --- [finresolve-backend] [.1-18214-exec-2] o.h.v.i.m.a.CascadingMetaDataBuilder     : HV000271: Using `@Valid` on a container (org.openapitools.jackson.nullable.JsonNullable) is deprecated. You should apply the annotation on the type argument(s). Affected element: RetainCaseRequest#getReceivedDate()
+2026-10-28T16:00:12.445Z  WARN 1219720 --- [finresolve-backend] [.1-18214-exec-8] o.h.v.i.m.a.CascadingMetaDataBuilder     : HV000271: Using `@Valid` on a container (org.openapitools.jackson.nullable.JsonNullable) is deprecated. You should apply the annotation on the type argument(s). Affected element: RetainCaseRequest#getReceivedDate()
+2026-10-28T16:00:13.134Z  INFO 1219720 --- [finresolve-backend] [ionShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-28T16:00:13.139Z  INFO 1219720 --- [finresolve-backend] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-10-28T16:00:13.144Z  INFO 1219720 --- [finresolve-backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : finresolve-sqlite - Shutdown initiated...
+2026-10-28T16:00:13.157Z  INFO 1219720 --- [finresolve-backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : finresolve-sqlite - Shutdown completed.

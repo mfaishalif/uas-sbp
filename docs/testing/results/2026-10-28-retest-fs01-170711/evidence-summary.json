@@ -1,0 +1,88 @@
+{
+  "session": "2026-10-28-retest-fs01",
+  "generatedAt": "2026-10-28T18:02:15.812Z",
+  "baseCommit": "eefef2efa48657e35e0da41586b91fcc15268bd1",
+  "workingTree": "frontend FS-01 fix + test tooling + reports",
+  "jar": "backend/target/finresolve-backend-0.1.0.jar",
+  "jarSha256": "9e08c984896ecabc1f0dd490f37b6233911aa9dfd9f574cfc6ba8ebb06e53b13",
+  "sampleSha256": "682bb04cf77a7df10104c822ab24af4bd42e1a088cd2678c7c72921b7983a644",
+  "verify": {
+    "backend": 294,
+    "frontend": 29,
+    "generation": 13,
+    "tooling": 4,
+    "client": 3,
+    "liveContract": 5,
+    "totalAutomatedTests": 348,
+    "result": "PASS"
+  },
+  "frontendE2e": {
+    "scenarios": 2,
+    "passed": 2,
+    "failed": 0,
+    "log": "frontend-e2e.log"
+  },
+  "backendProbes": {
+    "scenarios": 141,
+    "passed": 141,
+    "failed": 0,
+    "blocked": 0,
+    "persistenceRestart": "PASS",
+    "persistenceCaseCount": 501,
+    "busy": {
+      "scenarios": 1,
+      "passed": 1,
+      "failed": 0,
+      "blocked": 0,
+      "observations": 0,
+      "httpRequests": 10
+    }
+  },
+  "regression": {
+    "checks": 140,
+    "passed": 140,
+    "failed": 0,
+    "httpRequests": 201
+  },
+  "browser": {
+    "exploratory": {
+      "scenarios": 42,
+      "passed": 42,
+      "failed": 0,
+      "blocked": 0,
+      "observations": 0,
+      "pageErrors": 0,
+      "consoleErrors": 8,
+      "apiCalls": 85
+    },
+    "restart": {
+      "scenarios": 5,
+      "passed": 5,
+      "failed": 0
+    },
+    "phrases": {
+      "scenarios": 2,
+      "passed": 2,
+      "failed": 0
+    }
+  },
+  "fs01": {
+    "originalEmojiScenario": {
+      "scenarios": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "unicodeBoundary": {
+      "scenarios": 27,
+      "passed": 27,
+      "failed": 0
+    },
+    "note": "Historical FAIL remains in results/2026-10-28-full-155053/emoji-input.json; this retest records the repaired behaviour."
+  },
+  "runnerSelfTest": {
+    "checks": 4,
+    "failed": 0,
+    "result": "PASS"
+  },
+  "historicalChecksums": "unchanged (39 files)"
+}

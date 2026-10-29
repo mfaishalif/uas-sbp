@@ -1,0 +1,29 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::                (v4.1.2)
+
+2026-10-28T16:00:23.466Z  INFO 1220103 --- [finresolve-backend] [           main] id.ac.finresolve.FinresolveApplication   : Starting FinresolveApplication v0.1.0 using Java 21.0.8 with PID 1220103 (/workspaces/uas-sbp/backend/target/finresolve-backend-0.1.0.jar started by vscode in /workspaces/uas-sbp)
+2026-10-28T16:00:23.477Z  INFO 1220103 --- [finresolve-backend] [           main] id.ac.finresolve.FinresolveApplication   : No active profile set, falling back to 1 default profile: "default"
+2026-10-28T16:00:26.058Z  INFO 1220103 --- [finresolve-backend] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 18215 (http)
+2026-10-28T16:00:26.082Z  INFO 1220103 --- [finresolve-backend] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-28T16:00:26.084Z  INFO 1220103 --- [finresolve-backend] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.27]
+2026-10-28T16:00:26.126Z  INFO 1220103 --- [finresolve-backend] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 2501 ms
+2026-10-28T16:00:26.301Z  INFO 1220103 --- [finresolve-backend] [           main] i.a.f.config.DatabaseConfiguration       : SQLite database configured at /tmp/finresolve-qa-1793203168/persistence.db
+2026-10-28T16:00:26.355Z  INFO 1220103 --- [finresolve-backend] [           main] com.zaxxer.hikari.HikariDataSource       : finresolve-sqlite - Starting...
+2026-10-28T16:00:26.530Z  INFO 1220103 --- [finresolve-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : finresolve-sqlite - Added connection org.sqlite.jdbc4.JDBC4Connection@5568c66f
+2026-10-28T16:00:26.535Z  INFO 1220103 --- [finresolve-backend] [           main] com.zaxxer.hikari.HikariDataSource       : finresolve-sqlite - Start completed.
+2026-10-28T16:00:27.717Z  INFO 1220103 --- [finresolve-backend] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 18215 (http) with context path '/'
+2026-10-28T16:00:27.731Z  INFO 1220103 --- [finresolve-backend] [           main] id.ac.finresolve.FinresolveApplication   : Started FinresolveApplication in 5.392 seconds (process running for 6.325)
+2026-10-28T16:00:28.106Z  INFO 1220103 --- [finresolve-backend] [.1-18215-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-28T16:00:28.107Z  INFO 1220103 --- [finresolve-backend] [.1-18215-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-28T16:00:28.109Z  INFO 1220103 --- [finresolve-backend] [.1-18215-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-10-28T16:00:29.898Z  INFO 1220103 --- [finresolve-backend] [ionShutdownHook] o.s.boot.tomcat.GracefulShutdown         : Commencing graceful shutdown. Waiting for active requests to complete
+2026-10-28T16:00:29.902Z  INFO 1220103 --- [finresolve-backend] [tomcat-shutdown] o.s.boot.tomcat.GracefulShutdown         : Graceful shutdown complete
+2026-10-28T16:00:29.907Z  INFO 1220103 --- [finresolve-backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : finresolve-sqlite - Shutdown initiated...
+2026-10-28T16:00:29.916Z  INFO 1220103 --- [finresolve-backend] [ionShutdownHook] com.zaxxer.hikari.HikariDataSource       : finresolve-sqlite - Shutdown completed.

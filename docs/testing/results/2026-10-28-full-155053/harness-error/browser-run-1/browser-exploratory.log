@@ -1,0 +1,87 @@
+PASS B-01
+PASS B-02
+PASS B-03
+PASS B-04
+PASS B-05
+PASS B-06
+PASS B-07
+PASS B-08
+PASS B-09
+PASS B-10
+PASS B-11
+PASS B-12
+PASS B-13
+PASS B-14
+FAIL B-15: locator.waitFor: Timeout 60000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('heading', { name: 'Import completed' }) to be visible[22m
+
+FAIL B-16: locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('button', { name: 'Import another file' })[22m
+
+FAIL B-17: locator.selectOption: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByLabel('Sub-product', { exact: true })[22m
+
+PASS B-18
+PASS B-19
+PASS B-20
+PASS B-21
+PASS B-22
+PASS B-23
+PASS B-24
+FAIL B-25: locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('heading', { name: 'Precedent matches' }) to be visible[22m
+
+PASS B-26
+FAIL B-27: locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for locator('article').filter({ hasText: 'Similarity score' }).first().getByRole('button', { name: 'Use as reference' })[22m
+
+FAIL B-28: locator.fill: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByLabel('Handling notes', { exact: true })[22m
+
+FAIL B-29: locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByText('Reviewed the duplicate authorization and requested a transfer trace.') to be visible[22m
+
+FAIL B-30: locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('link', { name: 'Edit case' })[22m
+
+FAIL B-31: locator.click: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('link', { name: 'Edit case' })[22m
+
+FAIL B-32: The input did not match the regular expression /50[0-9] cases · 20 per page/. Input:
+
+'Loading cases…'
+
+PASS B-33
+FAIL B-34: locator.waitFor: Timeout 20000ms exceeded.
+Call log:
+[2m  - waiting for getByText('Something went wrong') to be visible[22m
+
+PASS B-35
+FAIL B-36: locator.waitFor: Timeout 30000ms exceeded.
+Call log:
+[2m  - waiting for getByRole('heading', { name: 'Complaint narrative' }).first() to be visible[22m
+
+PASS B-37
+PASS B-38
+PASS B-39
+PASS B-40
+PASS B-41
+PASS B-42
+file:///workspaces/uas-sbp/docs/testing/probes/browser-exploratory.mjs:945
+    handlingNotes: analystDetail.analystNotes.handlingNotes,
+                                              ^
+
+TypeError: Cannot read properties of undefined (reading 'handlingNotes')
+    at file:///workspaces/uas-sbp/docs/testing/probes/browser-exploratory.mjs:945:47
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+
+Node.js v24.22.1

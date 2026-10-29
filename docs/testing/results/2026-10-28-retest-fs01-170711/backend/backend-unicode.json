@@ -1,0 +1,2841 @@
+{
+  "session": "unicode-integrity",
+  "startedAt": "2026-10-28T17:21:12.210Z",
+  "completedAt": "2026-10-28T17:21:13.969Z",
+  "baseUrl": "http://127.0.0.1:18210",
+  "dbPath": "/tmp/finresolve-qa-cYNMe5/unicode.db",
+  "summary": {
+    "scenarios": 19,
+    "passed": 19,
+    "failed": 0,
+    "blocked": 0,
+    "observations": 0,
+    "httpRequests": 33
+  },
+  "results": [
+    {
+      "id": "UNI-00",
+      "hypothesis": "A valid CFPB row establishes the category catalog used by retention probes.",
+      "result": "PASS",
+      "durationMs": 714,
+      "detail": {
+        "cases": 1,
+        "batches": 1
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "unicode.csv",
+                "type": "text/csv",
+                "size": 174
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 131
+              }
+            ]
+          },
+          "status": 201,
+          "ms": 670,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "7a347fd1-c62b-43c9-bd3d-472938f76392",
+            "replayed": false,
+            "metadata": {
+              "archiveUrl": "https://example.com/unicode.zip",
+              "sourceFileName": "unicode.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "127e07474e0e6e537a285b1029600dff302209740243f314272625c49a9aed7f",
+            "processed": 1,
+            "imported": 1,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T17:21:12.805723277Z"
+          },
+          "bytes": 426
+        }
+      ]
+    },
+    {
+      "id": "UNI-01",
+      "hypothesis": "U+0000 anywhere in narrative is rejected before persistence with no case or batch write.",
+      "result": "PASS",
+      "durationMs": 64,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 63,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "narrative",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:12.95966319Z"
+          },
+          "bytes": 228
+        }
+      ]
+    },
+    {
+      "id": "UNI-02",
+      "hypothesis": "U+0000 anywhere in handlingNotes is rejected before persistence with no case or batch write.",
+      "result": "PASS",
+      "durationMs": 14,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "handlingNotes",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 14,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "handlingNotes",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.004651076Z"
+          },
+          "bytes": 233
+        }
+      ]
+    },
+    {
+      "id": "UNI-03",
+      "hypothesis": "U+0000 anywhere in product is rejected before persistence with no case or batch write.",
+      "result": "PASS",
+      "durationMs": 14,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "product",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 13,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "product",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.020741894Z"
+          },
+          "bytes": 227
+        }
+      ]
+    },
+    {
+      "id": "UNI-04",
+      "hypothesis": "U+0000 anywhere in issue is rejected before persistence with no case or batch write.",
+      "result": "PASS",
+      "durationMs": 13,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "issue",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 12,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "issue",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.035497003Z"
+          },
+          "bytes": 225
+        }
+      ]
+    },
+    {
+      "id": "UNI-05",
+      "hypothesis": "U+0000 anywhere in company is rejected before persistence with no case or batch write.",
+      "result": "PASS",
+      "durationMs": 15,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "company",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 15,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "company",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.051499114Z"
+          },
+          "bytes": 227
+        }
+      ]
+    },
+    {
+      "id": "UNI-06",
+      "hypothesis": "U+0000 anywhere in companyResponse is rejected before persistence with no case or batch write.",
+      "result": "PASS",
+      "durationMs": 14,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "companyResponse",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 13,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "companyResponse",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.067443621Z"
+          },
+          "bytes": 235
+        }
+      ]
+    },
+    {
+      "id": "UNI-07",
+      "hypothesis": "U+0000 anywhere in evaluationNotes is rejected before persistence with no case or batch write.",
+      "result": "PASS",
+      "durationMs": 13,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "evaluationNotes",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 12,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "evaluationNotes",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.082642966Z"
+          },
+          "bytes": 235
+        }
+      ]
+    },
+    {
+      "id": "UNI-08",
+      "hypothesis": "An unpaired UTF-16 surrogate in narrative is rejected before persistence.",
+      "result": "PASS",
+      "durationMs": 15,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 14,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "narrative",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.098245344Z"
+          },
+          "bytes": 229
+        }
+      ]
+    },
+    {
+      "id": "UNI-09",
+      "hypothesis": "An unpaired UTF-16 surrogate in handlingNotes is rejected before persistence.",
+      "result": "PASS",
+      "durationMs": 14,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "handlingNotes",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 13,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "handlingNotes",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.114832303Z"
+          },
+          "bytes": 233
+        }
+      ]
+    },
+    {
+      "id": "UNI-10",
+      "hypothesis": "An unpaired UTF-16 surrogate in company is rejected before persistence.",
+      "result": "PASS",
+      "durationMs": 15,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "company",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 14,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "company",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.130716805Z"
+          },
+          "bytes": 227
+        }
+      ]
+    },
+    {
+      "id": "UNI-11",
+      "hypothesis": "An unpaired UTF-16 surrogate in evaluationNotes is rejected before persistence.",
+      "result": "PASS",
+      "durationMs": 12,
+      "detail": {
+        "status": 400,
+        "code": "VALIDATION_ERROR",
+        "fieldErrors": [
+          {
+            "field": "evaluationNotes",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 12,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "evaluationNotes",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.146314283Z"
+          },
+          "bytes": 235
+        }
+      ]
+    },
+    {
+      "id": "UNI-12",
+      "hypothesis": "Search rejects U+0000 and unpaired surrogates without changing the case or batch count.",
+      "result": "PASS",
+      "durationMs": 22,
+      "detail": {
+        "nul": {
+          "status": 400,
+          "fieldErrors": [
+            {
+              "field": "narrative",
+              "code": "INVALID_FORMAT",
+              "message": "Nilai teks mengandung karakter yang tidak didukung."
+            },
+            {
+              "field": "handlingNotes",
+              "code": "UNKNOWN_FIELD",
+              "message": "Properti tidak dikenal dan harus dihilangkan."
+            },
+            {
+              "field": "outcomeAssessment",
+              "code": "UNKNOWN_FIELD",
+              "message": "Properti tidak dikenal dan harus dihilangkan."
+            },
+            {
+              "field": "referenceCaseIds",
+              "code": "UNKNOWN_FIELD",
+              "message": "Properti tidak dikenal dan harus dihilangkan."
+            }
+          ]
+        },
+        "surrogate": {
+          "status": 400,
+          "fieldErrors": [
+            {
+              "field": "product",
+              "code": "INVALID_FORMAT",
+              "message": "Nilai teks mengandung karakter yang tidak didukung."
+            },
+            {
+              "field": "handlingNotes",
+              "code": "UNKNOWN_FIELD",
+              "message": "Properti tidak dikenal dan harus dihilangkan."
+            },
+            {
+              "field": "outcomeAssessment",
+              "code": "UNKNOWN_FIELD",
+              "message": "Properti tidak dikenal dan harus dihilangkan."
+            },
+            {
+              "field": "referenceCaseIds",
+              "code": "UNKNOWN_FIELD",
+              "message": "Properti tidak dikenal dan harus dihilangkan."
+            }
+          ]
+        },
+        "before": {
+          "cases": 1,
+          "batches": 1
+        },
+        "after": {
+          "cases": 1,
+          "batches": 1
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 11,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "narrative",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              },
+              {
+                "field": "handlingNotes",
+                "code": "UNKNOWN_FIELD",
+                "message": "Properti tidak dikenal dan harus dihilangkan."
+              },
+              {
+                "field": "outcomeAssessment",
+                "code": "UNKNOWN_FIELD",
+                "message": "Properti tidak dikenal dan harus dihilangkan."
+              },
+              {
+                "field": "referenceCaseIds",
+                "code": "UNKNOWN_FIELD",
+                "message": "Properti tidak dikenal dan harus dihilangkan."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.16006721Z"
+          },
+          "bytes": 556
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 11,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "product",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              },
+              {
+                "field": "handlingNotes",
+                "code": "UNKNOWN_FIELD",
+                "message": "Properti tidak dikenal dan harus dihilangkan."
+              },
+              {
+                "field": "outcomeAssessment",
+                "code": "UNKNOWN_FIELD",
+                "message": "Properti tidak dikenal dan harus dihilangkan."
+              },
+              {
+                "field": "referenceCaseIds",
+                "code": "UNKNOWN_FIELD",
+                "message": "Properti tidak dikenal dan harus dihilangkan."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.169310267Z"
+          },
+          "bytes": 555
+        }
+      ]
+    },
+    {
+      "id": "UNI-13",
+      "hypothesis": "Emoji, a valid surrogate pair, tab, and newline survive POST and GET unchanged.",
+      "result": "PASS",
+      "durationMs": 336,
+      "detail": {
+        "id": "d17872b1-b5cc-485b-ab51-13de2854cd51",
+        "narrative": "Transfer 😀\taccount.\nSecond line about 𝄞 music."
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 317,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/d17872b1-b5cc-485b-ab51-13de2854cd51",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "d17872b1-b5cc-485b-ab51-13de2854cd51",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "Bank 😀",
+            "companyResponse": "Closed 😀 with explanation.",
+            "createdAt": "2026-10-28T17:21:13.398897678Z",
+            "updatedAt": "2026-10-28T17:21:13.398897678Z",
+            "narrative": "Transfer 😀\taccount.\nSecond line about 𝄞 music.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Notes 😀\tkept.\nSecond note.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "Eval 𝄞\nkept."
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 581
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/d17872b1-b5cc-485b-ab51-13de2854cd51",
+          "status": 200,
+          "ms": 19,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "d17872b1-b5cc-485b-ab51-13de2854cd51",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": "Bank 😀",
+            "companyResponse": "Closed 😀 with explanation.",
+            "createdAt": "2026-10-28T17:21:13.398897678Z",
+            "updatedAt": "2026-10-28T17:21:13.398897678Z",
+            "narrative": "Transfer 😀\taccount.\nSecond line about 𝄞 music.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Notes 😀\tkept.\nSecond note.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": "Eval 𝄞\nkept."
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 581
+        }
+      ]
+    },
+    {
+      "id": "UNI-14",
+      "hypothesis": "A rejected PUT leaves every field of the prior analyst case unchanged.",
+      "result": "PASS",
+      "durationMs": 90,
+      "detail": {
+        "id": "4d4d7e94-76b2-4611-b548-767ea88bf74e",
+        "fieldErrors": [
+          "VALIDATION_ERROR",
+          "VALIDATION_ERROR",
+          "VALIDATION_ERROR"
+        ]
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 201,
+          "ms": 21,
+          "headers": {
+            "content-type": "application/json",
+            "location": "/api/cases/4d4d7e94-76b2-4611-b548-767ea88bf74e",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "4d4d7e94-76b2-4611-b548-767ea88bf74e",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T17:21:13.520251579Z",
+            "updatedAt": "2026-10-28T17:21:13.520251579Z",
+            "narrative": "Original PUT narrative.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Original notes.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 498
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/4d4d7e94-76b2-4611-b548-767ea88bf74e",
+          "status": 200,
+          "ms": 9,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "4d4d7e94-76b2-4611-b548-767ea88bf74e",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T17:21:13.520251579Z",
+            "updatedAt": "2026-10-28T17:21:13.520251579Z",
+            "narrative": "Original PUT narrative.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Original notes.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 498
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/4d4d7e94-76b2-4611-b548-767ea88bf74e",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 9,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "narrative",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.546768151Z"
+          },
+          "bytes": 229
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/4d4d7e94-76b2-4611-b548-767ea88bf74e",
+          "status": 200,
+          "ms": 11,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "4d4d7e94-76b2-4611-b548-767ea88bf74e",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T17:21:13.520251579Z",
+            "updatedAt": "2026-10-28T17:21:13.520251579Z",
+            "narrative": "Original PUT narrative.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Original notes.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 498
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/4d4d7e94-76b2-4611-b548-767ea88bf74e",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 8,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "handlingNotes",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.565445482Z"
+          },
+          "bytes": 233
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/4d4d7e94-76b2-4611-b548-767ea88bf74e",
+          "status": 200,
+          "ms": 11,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "4d4d7e94-76b2-4611-b548-767ea88bf74e",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T17:21:13.520251579Z",
+            "updatedAt": "2026-10-28T17:21:13.520251579Z",
+            "narrative": "Original PUT narrative.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Original notes.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 498
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/4d4d7e94-76b2-4611-b548-767ea88bf74e",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 400,
+          "ms": 10,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Input tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "evaluationNotes",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.585572031Z"
+          },
+          "bytes": 235
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/4d4d7e94-76b2-4611-b548-767ea88bf74e",
+          "status": 200,
+          "ms": 11,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "ANALYST",
+            "id": "4d4d7e94-76b2-4611-b548-767ea88bf74e",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": null,
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T17:21:13.520251579Z",
+            "updatedAt": "2026-10-28T17:21:13.520251579Z",
+            "narrative": "Original PUT narrative.",
+            "provenance": null,
+            "analystNotes": {
+              "handlingNotes": "Original notes.",
+              "outcomeAssessment": "UNKNOWN",
+              "evaluationNotes": null
+            },
+            "referenceCaseIds": []
+          },
+          "bytes": 498
+        }
+      ]
+    },
+    {
+      "id": "UNI-15",
+      "hypothesis": "A NUL narrative row is rejected per record while the valid row in the same CSV is imported.",
+      "result": "PASS",
+      "durationMs": 69,
+      "detail": {
+        "status": 201,
+        "counts": {
+          "cases": 4,
+          "batches": 2
+        },
+        "errors": [
+          {
+            "recordNumber": 2,
+            "field": "Consumer complaint narrative",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ]
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "unicode.csv",
+                "type": "text/csv",
+                "size": 264
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 131
+              }
+            ]
+          },
+          "status": 201,
+          "ms": 67,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "f6ecaf7b-551f-494e-857b-ac16ee1cd0d3",
+            "replayed": false,
+            "metadata": {
+              "archiveUrl": "https://example.com/unicode.zip",
+              "sourceFileName": "nul-row.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "322c0cc62beb360b77e2b1546421b38c4b5ec27884a9b8a036539041864786f9",
+            "processed": 2,
+            "imported": 1,
+            "duplicates": 0,
+            "rejected": 1,
+            "errors": [
+              {
+                "recordNumber": 2,
+                "field": "Consumer complaint narrative",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T17:21:13.620792717Z"
+          },
+          "bytes": 571
+        }
+      ]
+    },
+    {
+      "id": "UNI-16",
+      "hypothesis": "A NUL product row is rejected per record while the valid row in the same CSV is imported.",
+      "result": "PASS",
+      "durationMs": 30,
+      "detail": {
+        "status": 201,
+        "counts": {
+          "cases": 5,
+          "batches": 3
+        },
+        "errors": [
+          {
+            "recordNumber": 2,
+            "field": "Product",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ]
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "unicode.csv",
+                "type": "text/csv",
+                "size": 266
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 135
+              }
+            ]
+          },
+          "status": 201,
+          "ms": 28,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "ef500ef6-c7c0-4879-b5fc-d8b4fe302f27",
+            "replayed": false,
+            "metadata": {
+              "archiveUrl": "https://example.com/unicode.zip",
+              "sourceFileName": "nul-product.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "71a3a1128277f1e75543152c0cd5ed54ed856ecee6fbe80b31ab19ada71e48bb",
+            "processed": 2,
+            "imported": 1,
+            "duplicates": 0,
+            "rejected": 1,
+            "errors": [
+              {
+                "recordNumber": 2,
+                "field": "Product",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T17:21:13.689037708Z"
+          },
+          "bytes": 554
+        }
+      ]
+    },
+    {
+      "id": "UNI-17",
+      "hypothesis": "Invalid metadata text is a 400 with metadata.* field paths and no case or batch write.",
+      "result": "PASS",
+      "durationMs": 49,
+      "detail": {
+        "before": {
+          "cases": 5,
+          "batches": 3
+        },
+        "after": {
+          "cases": 5,
+          "batches": 3
+        },
+        "details": [
+          {
+            "status": 400,
+            "code": "VALIDATION_ERROR",
+            "fieldErrors": [
+              {
+                "field": "metadata.sourceFileName",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ]
+          },
+          {
+            "status": 400,
+            "code": "VALIDATION_ERROR",
+            "fieldErrors": [
+              {
+                "field": "metadata.sourceFileName",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ]
+          },
+          {
+            "status": 400,
+            "code": "VALIDATION_ERROR",
+            "fieldErrors": [
+              {
+                "field": "metadata.archiveUrl",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ]
+          }
+        ]
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "unicode.csv",
+                "type": "text/csv",
+                "size": 159
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 134
+              }
+            ]
+          },
+          "status": 400,
+          "ms": 14,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Metadata impor tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "metadata.sourceFileName",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.715511877Z"
+          },
+          "bytes": 252
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "unicode.csv",
+                "type": "text/csv",
+                "size": 159
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 133
+              }
+            ]
+          },
+          "status": 400,
+          "ms": 15,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Metadata impor tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "metadata.sourceFileName",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.731127357Z"
+          },
+          "bytes": 252
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "unicode.csv",
+                "type": "text/csv",
+                "size": 159
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 137
+              }
+            ]
+          },
+          "status": 400,
+          "ms": 18,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "code": "VALIDATION_ERROR",
+            "message": "Metadata impor tidak valid.",
+            "fieldErrors": [
+              {
+                "field": "metadata.archiveUrl",
+                "code": "INVALID_FORMAT",
+                "message": "Nilai teks mengandung karakter yang tidak didukung."
+              }
+            ],
+            "timestamp": "2026-10-28T17:21:13.745977974Z"
+          },
+          "bytes": 248
+        }
+      ]
+    },
+    {
+      "id": "UNI-18",
+      "hypothesis": "Valid Unicode metadata imports once, replays the same batch, and matches GET provenance.",
+      "result": "PASS",
+      "durationMs": 211,
+      "detail": {
+        "first": {
+          "status": 201,
+          "batch": "508ca7b3-3a7d-493e-babc-3612da75fc8c",
+          "source": "sur-😀-𝄞.csv"
+        },
+        "replay": {
+          "status": 200,
+          "batch": "508ca7b3-3a7d-493e-babc-3612da75fc8c",
+          "replayed": true
+        },
+        "provenance": {
+          "complaintId": "993000007",
+          "importBatchId": "508ca7b3-3a7d-493e-babc-3612da75fc8c",
+          "archiveUrl": "https://example.com/unicode.zip",
+          "sourceFileName": "sur-😀-𝄞.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31",
+          "csvSha256": "3b1b4590f8f587420073b6986180e3d5b3dbd9fbac8a2b1d0537f9be26deeeaa"
+        }
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "unicode.csv",
+                "type": "text/csv",
+                "size": 169
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 137
+              }
+            ]
+          },
+          "status": 201,
+          "ms": 37,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "508ca7b3-3a7d-493e-babc-3612da75fc8c",
+            "replayed": false,
+            "metadata": {
+              "archiveUrl": "https://example.com/unicode.zip",
+              "sourceFileName": "sur-😀-𝄞.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "3b1b4590f8f587420073b6986180e3d5b3dbd9fbac8a2b1d0537f9be26deeeaa",
+            "processed": 1,
+            "imported": 1,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T17:21:13.781300068Z"
+          },
+          "bytes": 428
+        },
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "requestBody": {
+            "multipart": [
+              {
+                "name": "file",
+                "filename": "unicode.csv",
+                "type": "text/csv",
+                "size": 169
+              },
+              {
+                "name": "metadata",
+                "filename": "blob",
+                "type": "application/json",
+                "size": 137
+              }
+            ]
+          },
+          "status": 200,
+          "ms": 36,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "batchId": "508ca7b3-3a7d-493e-babc-3612da75fc8c",
+            "replayed": true,
+            "metadata": {
+              "archiveUrl": "https://example.com/unicode.zip",
+              "sourceFileName": "sur-😀-𝄞.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31"
+            },
+            "csvSha256": "3b1b4590f8f587420073b6986180e3d5b3dbd9fbac8a2b1d0537f9be26deeeaa",
+            "processed": 1,
+            "imported": 1,
+            "duplicates": 0,
+            "rejected": 0,
+            "errors": [],
+            "errorsTruncated": false,
+            "importedAt": "2026-10-28T17:21:13.781300068Z"
+          },
+          "bytes": 427
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?source=CFPB&size=100",
+          "status": 200,
+          "ms": 108,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "items": [
+              {
+                "id": "0e7866ea-e676-4fae-bcd7-21c2feae7cd9",
+                "source": "CFPB",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": "2024-11-12",
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T17:21:13.781300068Z",
+                "updatedAt": "2026-10-28T17:21:13.781300068Z"
+              },
+              {
+                "id": "1be598b7-95eb-4800-8d51-79515df0dcf2",
+                "source": "CFPB",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": "2024-11-12",
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T17:21:13.689037708Z",
+                "updatedAt": "2026-10-28T17:21:13.689037708Z"
+              },
+              {
+                "id": "311e0e65-4b14-4f52-b9bf-e1af6d961baa",
+                "source": "CFPB",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": "2024-11-12",
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T17:21:13.620792717Z",
+                "updatedAt": "2026-10-28T17:21:13.620792717Z"
+              },
+              {
+                "id": "377743b6-c8da-4a70-be50-a347e5280440",
+                "source": "CFPB",
+                "product": "Checking or savings account",
+                "subProduct": null,
+                "issue": "Managing an account",
+                "subIssue": null,
+                "receivedDate": "2024-11-12",
+                "company": null,
+                "companyResponse": null,
+                "createdAt": "2026-10-28T17:21:12.805723277Z",
+                "updatedAt": "2026-10-28T17:21:12.805723277Z"
+              }
+            ],
+            "page": 0,
+            "size": 100,
+            "totalElements": 4,
+            "totalPages": 1,
+            "hasNext": false
+          },
+          "bytes": 1368
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/0e7866ea-e676-4fae-bcd7-21c2feae7cd9",
+          "status": 200,
+          "ms": 28,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "source": "CFPB",
+            "id": "0e7866ea-e676-4fae-bcd7-21c2feae7cd9",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": "2024-11-12",
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T17:21:13.781300068Z",
+            "updatedAt": "2026-10-28T17:21:13.781300068Z",
+            "narrative": "Valid Unicode metadata row.",
+            "provenance": {
+              "complaintId": "993000007",
+              "importBatchId": "508ca7b3-3a7d-493e-babc-3612da75fc8c",
+              "archiveUrl": "https://example.com/unicode.zip",
+              "sourceFileName": "sur-😀-𝄞.csv",
+              "periodStart": "2024-11-01",
+              "periodEnd": "2024-12-31",
+              "csvSha256": "3b1b4590f8f587420073b6986180e3d5b3dbd9fbac8a2b1d0537f9be26deeeaa"
+            },
+            "analystNotes": null,
+            "referenceCaseIds": []
+          },
+          "bytes": 712
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "unicode.csv",
+            "type": "text/csv",
+            "size": 174
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 131
+          }
+        ]
+      },
+      "status": 201,
+      "ms": 670,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "7a347fd1-c62b-43c9-bd3d-472938f76392",
+        "replayed": false,
+        "metadata": {
+          "archiveUrl": "https://example.com/unicode.zip",
+          "sourceFileName": "unicode.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "127e07474e0e6e537a285b1029600dff302209740243f314272625c49a9aed7f",
+        "processed": 1,
+        "imported": 1,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T17:21:12.805723277Z"
+      },
+      "bytes": 426
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 63,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:12.95966319Z"
+      },
+      "bytes": 228
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 14,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "handlingNotes",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.004651076Z"
+      },
+      "bytes": 233
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 13,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "product",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.020741894Z"
+      },
+      "bytes": 227
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 12,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "issue",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.035497003Z"
+      },
+      "bytes": 225
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 15,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "company",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.051499114Z"
+      },
+      "bytes": 227
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 13,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "companyResponse",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.067443621Z"
+      },
+      "bytes": 235
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 12,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "evaluationNotes",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.082642966Z"
+      },
+      "bytes": 235
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 14,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.098245344Z"
+      },
+      "bytes": 229
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 13,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "handlingNotes",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.114832303Z"
+      },
+      "bytes": 233
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 14,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "company",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.130716805Z"
+      },
+      "bytes": 227
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 12,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "evaluationNotes",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.146314283Z"
+      },
+      "bytes": 235
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 11,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          },
+          {
+            "field": "handlingNotes",
+            "code": "UNKNOWN_FIELD",
+            "message": "Properti tidak dikenal dan harus dihilangkan."
+          },
+          {
+            "field": "outcomeAssessment",
+            "code": "UNKNOWN_FIELD",
+            "message": "Properti tidak dikenal dan harus dihilangkan."
+          },
+          {
+            "field": "referenceCaseIds",
+            "code": "UNKNOWN_FIELD",
+            "message": "Properti tidak dikenal dan harus dihilangkan."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.16006721Z"
+      },
+      "bytes": 556
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 11,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "product",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          },
+          {
+            "field": "handlingNotes",
+            "code": "UNKNOWN_FIELD",
+            "message": "Properti tidak dikenal dan harus dihilangkan."
+          },
+          {
+            "field": "outcomeAssessment",
+            "code": "UNKNOWN_FIELD",
+            "message": "Properti tidak dikenal dan harus dihilangkan."
+          },
+          {
+            "field": "referenceCaseIds",
+            "code": "UNKNOWN_FIELD",
+            "message": "Properti tidak dikenal dan harus dihilangkan."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.169310267Z"
+      },
+      "bytes": 555
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 317,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/d17872b1-b5cc-485b-ab51-13de2854cd51",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "d17872b1-b5cc-485b-ab51-13de2854cd51",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "Bank 😀",
+        "companyResponse": "Closed 😀 with explanation.",
+        "createdAt": "2026-10-28T17:21:13.398897678Z",
+        "updatedAt": "2026-10-28T17:21:13.398897678Z",
+        "narrative": "Transfer 😀\taccount.\nSecond line about 𝄞 music.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Notes 😀\tkept.\nSecond note.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "Eval 𝄞\nkept."
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 581
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d17872b1-b5cc-485b-ab51-13de2854cd51",
+      "status": 200,
+      "ms": 19,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "d17872b1-b5cc-485b-ab51-13de2854cd51",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": "Bank 😀",
+        "companyResponse": "Closed 😀 with explanation.",
+        "createdAt": "2026-10-28T17:21:13.398897678Z",
+        "updatedAt": "2026-10-28T17:21:13.398897678Z",
+        "narrative": "Transfer 😀\taccount.\nSecond line about 𝄞 music.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Notes 😀\tkept.\nSecond note.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": "Eval 𝄞\nkept."
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 581
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 201,
+      "ms": 21,
+      "headers": {
+        "content-type": "application/json",
+        "location": "/api/cases/4d4d7e94-76b2-4611-b548-767ea88bf74e",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "4d4d7e94-76b2-4611-b548-767ea88bf74e",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T17:21:13.520251579Z",
+        "updatedAt": "2026-10-28T17:21:13.520251579Z",
+        "narrative": "Original PUT narrative.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Original notes.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 498
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/4d4d7e94-76b2-4611-b548-767ea88bf74e",
+      "status": 200,
+      "ms": 9,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "4d4d7e94-76b2-4611-b548-767ea88bf74e",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T17:21:13.520251579Z",
+        "updatedAt": "2026-10-28T17:21:13.520251579Z",
+        "narrative": "Original PUT narrative.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Original notes.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 498
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/4d4d7e94-76b2-4611-b548-767ea88bf74e",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 9,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "narrative",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.546768151Z"
+      },
+      "bytes": 229
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/4d4d7e94-76b2-4611-b548-767ea88bf74e",
+      "status": 200,
+      "ms": 11,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "4d4d7e94-76b2-4611-b548-767ea88bf74e",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T17:21:13.520251579Z",
+        "updatedAt": "2026-10-28T17:21:13.520251579Z",
+        "narrative": "Original PUT narrative.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Original notes.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 498
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/4d4d7e94-76b2-4611-b548-767ea88bf74e",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 8,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "handlingNotes",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.565445482Z"
+      },
+      "bytes": 233
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/4d4d7e94-76b2-4611-b548-767ea88bf74e",
+      "status": 200,
+      "ms": 11,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "4d4d7e94-76b2-4611-b548-767ea88bf74e",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T17:21:13.520251579Z",
+        "updatedAt": "2026-10-28T17:21:13.520251579Z",
+        "narrative": "Original PUT narrative.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Original notes.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 498
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/4d4d7e94-76b2-4611-b548-767ea88bf74e",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 400,
+      "ms": 10,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Input tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "evaluationNotes",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.585572031Z"
+      },
+      "bytes": 235
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/4d4d7e94-76b2-4611-b548-767ea88bf74e",
+      "status": 200,
+      "ms": 11,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "ANALYST",
+        "id": "4d4d7e94-76b2-4611-b548-767ea88bf74e",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": null,
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T17:21:13.520251579Z",
+        "updatedAt": "2026-10-28T17:21:13.520251579Z",
+        "narrative": "Original PUT narrative.",
+        "provenance": null,
+        "analystNotes": {
+          "handlingNotes": "Original notes.",
+          "outcomeAssessment": "UNKNOWN",
+          "evaluationNotes": null
+        },
+        "referenceCaseIds": []
+      },
+      "bytes": 498
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "unicode.csv",
+            "type": "text/csv",
+            "size": 264
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 131
+          }
+        ]
+      },
+      "status": 201,
+      "ms": 67,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "f6ecaf7b-551f-494e-857b-ac16ee1cd0d3",
+        "replayed": false,
+        "metadata": {
+          "archiveUrl": "https://example.com/unicode.zip",
+          "sourceFileName": "nul-row.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "322c0cc62beb360b77e2b1546421b38c4b5ec27884a9b8a036539041864786f9",
+        "processed": 2,
+        "imported": 1,
+        "duplicates": 0,
+        "rejected": 1,
+        "errors": [
+          {
+            "recordNumber": 2,
+            "field": "Consumer complaint narrative",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T17:21:13.620792717Z"
+      },
+      "bytes": 571
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "unicode.csv",
+            "type": "text/csv",
+            "size": 266
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 135
+          }
+        ]
+      },
+      "status": 201,
+      "ms": 28,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "ef500ef6-c7c0-4879-b5fc-d8b4fe302f27",
+        "replayed": false,
+        "metadata": {
+          "archiveUrl": "https://example.com/unicode.zip",
+          "sourceFileName": "nul-product.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "71a3a1128277f1e75543152c0cd5ed54ed856ecee6fbe80b31ab19ada71e48bb",
+        "processed": 2,
+        "imported": 1,
+        "duplicates": 0,
+        "rejected": 1,
+        "errors": [
+          {
+            "recordNumber": 2,
+            "field": "Product",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T17:21:13.689037708Z"
+      },
+      "bytes": 554
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "unicode.csv",
+            "type": "text/csv",
+            "size": 159
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 134
+          }
+        ]
+      },
+      "status": 400,
+      "ms": 14,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Metadata impor tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "metadata.sourceFileName",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.715511877Z"
+      },
+      "bytes": 252
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "unicode.csv",
+            "type": "text/csv",
+            "size": 159
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 133
+          }
+        ]
+      },
+      "status": 400,
+      "ms": 15,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Metadata impor tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "metadata.sourceFileName",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.731127357Z"
+      },
+      "bytes": 252
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "unicode.csv",
+            "type": "text/csv",
+            "size": 159
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 137
+          }
+        ]
+      },
+      "status": 400,
+      "ms": 18,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "code": "VALIDATION_ERROR",
+        "message": "Metadata impor tidak valid.",
+        "fieldErrors": [
+          {
+            "field": "metadata.archiveUrl",
+            "code": "INVALID_FORMAT",
+            "message": "Nilai teks mengandung karakter yang tidak didukung."
+          }
+        ],
+        "timestamp": "2026-10-28T17:21:13.745977974Z"
+      },
+      "bytes": 248
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "unicode.csv",
+            "type": "text/csv",
+            "size": 169
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 137
+          }
+        ]
+      },
+      "status": 201,
+      "ms": 37,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "508ca7b3-3a7d-493e-babc-3612da75fc8c",
+        "replayed": false,
+        "metadata": {
+          "archiveUrl": "https://example.com/unicode.zip",
+          "sourceFileName": "sur-😀-𝄞.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "3b1b4590f8f587420073b6986180e3d5b3dbd9fbac8a2b1d0537f9be26deeeaa",
+        "processed": 1,
+        "imported": 1,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T17:21:13.781300068Z"
+      },
+      "bytes": 428
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "requestBody": {
+        "multipart": [
+          {
+            "name": "file",
+            "filename": "unicode.csv",
+            "type": "text/csv",
+            "size": 169
+          },
+          {
+            "name": "metadata",
+            "filename": "blob",
+            "type": "application/json",
+            "size": 137
+          }
+        ]
+      },
+      "status": 200,
+      "ms": 36,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "batchId": "508ca7b3-3a7d-493e-babc-3612da75fc8c",
+        "replayed": true,
+        "metadata": {
+          "archiveUrl": "https://example.com/unicode.zip",
+          "sourceFileName": "sur-😀-𝄞.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31"
+        },
+        "csvSha256": "3b1b4590f8f587420073b6986180e3d5b3dbd9fbac8a2b1d0537f9be26deeeaa",
+        "processed": 1,
+        "imported": 1,
+        "duplicates": 0,
+        "rejected": 0,
+        "errors": [],
+        "errorsTruncated": false,
+        "importedAt": "2026-10-28T17:21:13.781300068Z"
+      },
+      "bytes": 427
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?source=CFPB&size=100",
+      "status": 200,
+      "ms": 108,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "items": [
+          {
+            "id": "0e7866ea-e676-4fae-bcd7-21c2feae7cd9",
+            "source": "CFPB",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": "2024-11-12",
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T17:21:13.781300068Z",
+            "updatedAt": "2026-10-28T17:21:13.781300068Z"
+          },
+          {
+            "id": "1be598b7-95eb-4800-8d51-79515df0dcf2",
+            "source": "CFPB",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": "2024-11-12",
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T17:21:13.689037708Z",
+            "updatedAt": "2026-10-28T17:21:13.689037708Z"
+          },
+          {
+            "id": "311e0e65-4b14-4f52-b9bf-e1af6d961baa",
+            "source": "CFPB",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": "2024-11-12",
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T17:21:13.620792717Z",
+            "updatedAt": "2026-10-28T17:21:13.620792717Z"
+          },
+          {
+            "id": "377743b6-c8da-4a70-be50-a347e5280440",
+            "source": "CFPB",
+            "product": "Checking or savings account",
+            "subProduct": null,
+            "issue": "Managing an account",
+            "subIssue": null,
+            "receivedDate": "2024-11-12",
+            "company": null,
+            "companyResponse": null,
+            "createdAt": "2026-10-28T17:21:12.805723277Z",
+            "updatedAt": "2026-10-28T17:21:12.805723277Z"
+          }
+        ],
+        "page": 0,
+        "size": 100,
+        "totalElements": 4,
+        "totalPages": 1,
+        "hasNext": false
+      },
+      "bytes": 1368
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/0e7866ea-e676-4fae-bcd7-21c2feae7cd9",
+      "status": 200,
+      "ms": 28,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "source": "CFPB",
+        "id": "0e7866ea-e676-4fae-bcd7-21c2feae7cd9",
+        "product": "Checking or savings account",
+        "subProduct": null,
+        "issue": "Managing an account",
+        "subIssue": null,
+        "receivedDate": "2024-11-12",
+        "company": null,
+        "companyResponse": null,
+        "createdAt": "2026-10-28T17:21:13.781300068Z",
+        "updatedAt": "2026-10-28T17:21:13.781300068Z",
+        "narrative": "Valid Unicode metadata row.",
+        "provenance": {
+          "complaintId": "993000007",
+          "importBatchId": "508ca7b3-3a7d-493e-babc-3612da75fc8c",
+          "archiveUrl": "https://example.com/unicode.zip",
+          "sourceFileName": "sur-😀-𝄞.csv",
+          "periodStart": "2024-11-01",
+          "periodEnd": "2024-12-31",
+          "csvSha256": "3b1b4590f8f587420073b6986180e3d5b3dbd9fbac8a2b1d0537f9be26deeeaa"
+        },
+        "analystNotes": null,
+        "referenceCaseIds": []
+      },
+      "bytes": 712
+    }
+  ],
+  "finalCounts": {
+    "cases": 6,
+    "batches": 4
+  },
+  "exitCode": 0
+}

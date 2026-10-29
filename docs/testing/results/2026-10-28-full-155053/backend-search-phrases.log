@@ -1,0 +1,77 @@
+PASS SRCH-01
+PASS SRCH-02
+PASS SRCH-03
+PASS SRCH-04
+PASS SRCH-05-stopwords
+PASS SRCH-05-numbers
+PASS SRCH-05-redaction
+PASS SRCH-05-emoji
+PASS SRCH-05-single letters
+PASS SRCH-06
+PASS SRCH-07
+PASS SRCH-08
+PASS SRCH-09
+PASS SRCH-EVAL-Q01
+PASS SRCH-EVAL-Q02
+PASS SRCH-EVAL-Q03
+PASS SRCH-EVAL-Q04
+PASS SRCH-EVAL-Q05
+PASS SRCH-EVAL-Q06
+PASS SRCH-EVAL-Q07
+PASS SRCH-EVAL-Q08
+PASS SRCH-EVAL-Q09
+PASS SRCH-EVAL-Q10
+PASS SRCH-EVAL-Q11
+PASS SRCH-EVAL-Q12
+PASS SRCH-EVAL-Q13
+PASS SRCH-EVAL-Q14
+PASS SRCH-EVAL-Q15
+PASS SRCH-EVAL-Q16
+PASS SRCH-EVAL-Q17
+PASS SRCH-EVAL-Q18
+PASS SRCH-EVAL-Q19
+PASS SRCH-EVAL-Q20
+PASS SRCH-EVAL-Q21
+PASS SRCH-EVAL-Q22
+PASS SRCH-EVAL-Q23
+PASS SRCH-EVAL-Q24
+PASS SRCH-EVAL-Q01
+PASS SRCH-EVAL-Q02
+PASS SRCH-EVAL-Q03
+PASS SRCH-EVAL-Q04
+PASS SRCH-EVAL-Q05
+PASS SRCH-EVAL-Q06
+PASS SRCH-EVAL-Q07
+PASS SRCH-EVAL-Q08
+PASS SRCH-EVAL-Q09
+PASS SRCH-EVAL-Q10
+PASS SRCH-EVAL-Q11
+PASS SRCH-EVAL-Q12
+PASS SRCH-EVAL-Q13
+PASS SRCH-EVAL-Q14
+PASS SRCH-EVAL-Q15
+PASS SRCH-EVAL-Q16
+PASS SRCH-EVAL-Q17
+PASS SRCH-EVAL-Q18
+PASS SRCH-EVAL-Q19
+PASS SRCH-EVAL-Q20
+PASS SRCH-EVAL-Q21
+PASS SRCH-EVAL-Q22
+PASS SRCH-EVAL-Q23
+PASS SRCH-EVAL-Q24
+PASS SRCH-10
+PASS SRCH-11
+PASS SRCH-12-cash machine
+PASS SRCH-12-charged twice
+PASS SRCH-12-balance held
+PASS SRCH-12-withheld balance
+PASS SRCH-12-automated teller machine
+PASS SRCH-12-repeated whitespace
+PASS SRCH-12-case insensitive
+PASS SRCH-13
+PASS SRCH-14
+PASS SRCH-15
+{"output":"/workspaces/uas-sbp/docs/testing/results/2026-10-28-full-155053/backend-search-phrases-baseline.json","scenarios":39,"passed":39,"failed":0,"blocked":0,"observations":0,"httpRequests":92,"exitCode":0}
+{"output":"/workspaces/uas-sbp/docs/testing/results/2026-10-28-full-155053/backend-search-phrases.json","scenarios":33,"passed":33,"failed":0,"blocked":0,"observations":0,"httpRequests":62,"exitCode":0}
+{"output":"/workspaces/uas-sbp/docs/testing/results/2026-10-28-full-155053/backend-search-phrases-empty.json","scenarios":1,"passed":1,"failed":0,"blocked":0,"observations":0,"httpRequests":4,"exitCode":0}
+{"baseline":{"scenarios":39,"passed":39,"failed":0,"blocked":0,"observations":0,"httpRequests":92},"phrases":33,"empty":1}

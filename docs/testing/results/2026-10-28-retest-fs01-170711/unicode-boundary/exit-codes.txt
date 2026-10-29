@@ -1,0 +1,3 @@
+seed-unicode exit=0
+unicode-boundary exit=0
+STATUS=0

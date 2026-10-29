@@ -1,0 +1,17 @@
+START api port=8080 db=/tmp/finresolve-qa-9svJqo/browser.db mode=baseline reset=yes
+READY api pid=1282430
+WEB READY pid=1282706
+browser-exploratory exit=0
+STOP api pid=1282430
+START api port=8080 db=/tmp/finresolve-qa-9svJqo/browser.db mode=baseline reset=no
+READY api pid=1283589
+browser-restart exit=0
+STOP api pid=1283589
+START api port=8080 db=/tmp/finresolve-qa-9svJqo/browser.db mode=phrases reset=no
+READY api pid=1284038
+browser-phrases exit=0
+STOP web pid=1282706
+STOP api pid=1284038
+DB=/tmp/finresolve-qa-9svJqo/browser.db
+RESULT_DIR=docs/testing/results/2026-10-28-retest-fs01-170711/browser
+STATUS=0

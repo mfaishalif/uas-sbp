@@ -1,0 +1,15 @@
+node:internal/fs/promises:1345
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open '/workspaces/uas-sbp/docs/testing/results/2026-10-28-full-155053/screenshots/browser-restart-state.json'
+    at async open (node:internal/fs/promises:1345:25)
+    at async readFile (node:internal/fs/promises:2003:14)
+    at async file:///workspaces/uas-sbp/docs/testing/probes/browser-restart-verify.mjs:9:26 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/workspaces/uas-sbp/docs/testing/results/2026-10-28-full-155053/screenshots/browser-restart-state.json'
+}
+
+Node.js v24.22.1

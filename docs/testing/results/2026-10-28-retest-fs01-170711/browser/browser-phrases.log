@@ -1,0 +1,3 @@
+PASS PHR-UI-01
+PASS PHR-UI-02
+{"output":"docs/testing/results/2026-10-28-retest-fs01-170711/browser/browser-phrases.json","scenarios":2,"passed":2,"failed":0}
