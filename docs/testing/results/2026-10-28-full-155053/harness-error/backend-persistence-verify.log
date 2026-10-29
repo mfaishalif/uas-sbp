@@ -1,0 +1,1 @@
+{"session":"persistence-restart","checkedAt":"2026-10-28T16:00:29.729Z","baseUrl":"http://127.0.0.1:18215","result":"FAIL","mismatches":["categories","pages","caseIds","details"],"comparisons":["health","categories","pages","caseIds","details","replayMetadata"],"replay":{"status":201,"replayed":false,"batchId":"441e2a61-3f6f-4724-8214-4e1866fce80b"},"caseCount":0,"detailIds":[]}

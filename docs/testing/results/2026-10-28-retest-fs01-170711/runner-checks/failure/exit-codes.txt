@@ -1,0 +1,2 @@
+intentional-failure exit=7
+STATUS=1

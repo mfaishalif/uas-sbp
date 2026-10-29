@@ -1,0 +1,134 @@
+{
+  "session": "2026-10-28-full-155053",
+  "commit": "eefef2efa48657e35e0da41586b91fcc15268bd1",
+  "jarSha256": "aa04c6f1f06eb68f81028f0c5252d2144172705bb4dcc18d340a9b9d3e4a761c",
+  "verify": {
+    "backend": 294,
+    "frontend": 22,
+    "generation": 13,
+    "tooling": 4,
+    "client": 3,
+    "liveContract": 5,
+    "total": 341,
+    "result": "PASS"
+  },
+  "frontendE2e": {
+    "tests": 2,
+    "passed": 2,
+    "failed": 0
+  },
+  "backendProbes": {
+    "backend-unicode.json": {
+      "scenarios": 19,
+      "passed": 19,
+      "failed": 0,
+      "blocked": 0,
+      "observations": 0,
+      "httpRequests": 33
+    },
+    "backend-import-provenance.json": {
+      "scenarios": 15,
+      "passed": 15,
+      "failed": 0,
+      "blocked": 0,
+      "observations": 0,
+      "httpRequests": 560
+    },
+    "backend-contract-validation.json": {
+      "scenarios": 19,
+      "passed": 19,
+      "failed": 0,
+      "blocked": 0,
+      "observations": 0,
+      "httpRequests": 83
+    },
+    "backend-capacity-race.json": {
+      "scenarios": 8,
+      "passed": 8,
+      "failed": 0,
+      "blocked": 0,
+      "observations": 0,
+      "httpRequests": 11
+    },
+    "backend-concurrency.json": {
+      "scenarios": 5,
+      "passed": 5,
+      "failed": 0,
+      "blocked": 0,
+      "observations": 0,
+      "httpRequests": 37
+    },
+    "backend-search-phrases-baseline.json": {
+      "scenarios": 39,
+      "passed": 39,
+      "failed": 0,
+      "blocked": 0,
+      "observations": 0,
+      "httpRequests": 92
+    },
+    "backend-search-phrases.json": {
+      "scenarios": 33,
+      "passed": 33,
+      "failed": 0,
+      "blocked": 0,
+      "observations": 0,
+      "httpRequests": 62
+    },
+    "backend-search-phrases-empty.json": {
+      "scenarios": 1,
+      "passed": 1,
+      "failed": 0,
+      "blocked": 0,
+      "observations": 0,
+      "httpRequests": 4
+    },
+    "backend-persistence-busy.json": {
+      "scenarios": 1,
+      "passed": 1,
+      "failed": 0,
+      "blocked": 0,
+      "observations": 0,
+      "httpRequests": 10
+    },
+    "backend-persistence-restart.json": {
+      "passed": 1,
+      "failed": 0
+    },
+    "total": {
+      "passed": 141,
+      "failed": 0,
+      "blocked": 0
+    }
+  },
+  "browserExploratory": {
+    "scenarios": 42,
+    "passed": 42,
+    "failed": 0,
+    "blocked": 0,
+    "observations": 0,
+    "pageErrors": 0,
+    "consoleErrors": 8,
+    "apiCalls": 85
+  },
+  "browserRestart": {
+    "scenarios": 5,
+    "passed": 5,
+    "failed": 0
+  },
+  "browserPhrases": {
+    "scenarios": 2,
+    "passed": 2,
+    "failed": 0
+  },
+  "emojiBoundary": {
+    "scenarios": 2,
+    "passed": 1,
+    "failed": 1
+  },
+  "targetedTotal": {
+    "scenarios": 192,
+    "passed": 191,
+    "failed": 1,
+    "blocked": 0
+  }
+}

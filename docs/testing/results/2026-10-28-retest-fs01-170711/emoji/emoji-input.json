@@ -1,0 +1,34 @@
+{
+  "session": "emoji-input",
+  "summary": {
+    "scenarios": 2,
+    "passed": 2,
+    "failed": 0
+  },
+  "apiStatus": 200,
+  "apiBody": {
+    "status": "NO_RELEVANT_CASES"
+  },
+  "results": [
+    {
+      "id": "EMOJI-API",
+      "hypothesis": "The API accepts a 26,009-code-point narrative below the 50,000 limit.",
+      "result": "PASS",
+      "detail": {
+        "status": 200,
+        "codePoints": 26009,
+        "utf16Units": 52009
+      }
+    },
+    {
+      "id": "EMOJI-UI",
+      "hypothesis": "The search textarea accepts the same 26,009-code-point narrative under its 50,000-character limit.",
+      "result": "PASS",
+      "detail": {
+        "codePoints": 26009,
+        "utf16Units": 52009,
+        "counter": "26,009 / 50,000 characters. Use the same language as the source narrative."
+      }
+    }
+  ]
+}

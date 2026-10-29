@@ -18,3 +18,7 @@ tests/contract/dist/
 .env.*
 !.env.example
 *.tsbuildinfo
+
+# Generated upload fixtures and copied Playwright artifacts inside test evidence
+docs/testing/results/**/screenshots/oversized.csv
+docs/testing/results/**/playwright-test-results/

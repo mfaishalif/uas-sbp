@@ -1,0 +1,55 @@
+{
+  "session": "browser-restart",
+  "summary": {
+    "scenarios": 5,
+    "passed": 5,
+    "failed": 0
+  },
+  "results": [
+    {
+      "id": "REST-01",
+      "hypothesis": "API counts and analyst detail are unchanged after a backend restart on the same SQLite file.",
+      "result": "PASS",
+      "detail": {
+        "counts": {
+          "total": 503,
+          "cfpb": 501,
+          "analyst": 2
+        },
+        "analystId": "d8a317d1-e6f4-44cb-adfe-04260325edd5"
+      }
+    },
+    {
+      "id": "REST-02",
+      "hypothesis": "Analyst detail, references, and metadata render from persisted data in the browser.",
+      "result": "PASS",
+      "detail": {
+        "referenceLinks": 1
+      }
+    },
+    {
+      "id": "REST-03",
+      "hypothesis": "Case library still exposes the full corpus and the ANALYST filter after restart.",
+      "result": "PASS",
+      "detail": {
+        "expected": "2 cases in this source · 20 per page"
+      }
+    },
+    {
+      "id": "REST-04",
+      "hypothesis": "Search still returns the retained analyst case by its narrative after restart.",
+      "result": "PASS",
+      "detail": {
+        "foundAnalystCase": true
+      }
+    },
+    {
+      "id": "REST-05",
+      "hypothesis": "CFPB archive case detail still renders provenance after restart.",
+      "result": "PASS",
+      "detail": {
+        "cfpbId": "d35e816a-6b53-4026-848f-5d43fc638ab0"
+      }
+    }
+  ]
+}

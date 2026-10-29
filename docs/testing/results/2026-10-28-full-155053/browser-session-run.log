@@ -1,0 +1,11 @@
+API READY mode=baseline pid=1236618
+WEB READY pid=1236780
+browser-exploratory exit=0
+API STOPPED
+API READY mode=baseline pid=1237177
+browser-restart exit=0
+API STOPPED
+API READY mode=phrases pid=1237474
+browser-phrases exit=0
+API STOPPED
+DB=/tmp/finresolve-browser-qa.db

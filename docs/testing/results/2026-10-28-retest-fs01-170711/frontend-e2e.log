@@ -1,0 +1,82 @@
+
+> finresolve@0.1.0 frontend:e2e
+> npm run client:build && npm run build --workspace @finresolve/frontend && npm run test:e2e --workspace @finresolve/frontend
+
+
+> finresolve@0.1.0 client:build
+> tsc -p packages/api-client/tsconfig.build.json
+
+
+> @finresolve/frontend@0.1.0 build
+> next build
+
+▲ Next.js 16.4.3 (Turbopack)
+✓ Running next.config.ts took 962ms
+- Experiments (use with caution):
+  · proxyClientMaxBodySize: 23068672
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 5.1s
+  Running TypeScript ...
+  Finished TypeScript in 4.6s ...
+  Collecting page data using 9 workers ...
+  Generating static pages using 9 workers (0/6) ...
+  Generating static pages using 9 workers (1/6) 
+  Generating static pages using 9 workers (2/6) 
+  Generating static pages using 9 workers (4/6) 
+✓ Generating static pages using 9 workers (6/6) in 10.2s
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /_not-found
+├ ○ /cases
+├ ƒ /cases/[id]
+├ ƒ /cases/[id]/edit
+├ ○ /cases/new
+└ ○ /imports
+
+
+ƒ Proxy (Middleware)
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+
+
+> @finresolve/frontend@0.1.0 test:e2e
+> playwright test
+
+[WebServer] 
+[WebServer]   .   ____          _            __ _ _
+[WebServer]  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+[WebServer] ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+[WebServer]  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+[WebServer]   '  |____| .__|_| |_|_| |_\__, | / / / /
+[WebServer]  =========|_|==============|___/=/_/_/_/
+[WebServer] 
+[WebServer]  :: Spring Boot ::                (v4.1.2)
+[WebServer] 
+[WebServer] 2026-10-28T17:19:43.861Z  INFO 1277302 --- [finresolve-backend] [           main] id.ac.finresolve.FinresolveApplication   : Starting FinresolveApplication v0.1.0 using Java 21.0.8 with PID 1277302 (/workspaces/uas-sbp/backend/target/finresolve-backend-0.1.0.jar started by vscode in /workspaces/uas-sbp)
+[WebServer] 2026-10-28T17:19:43.878Z  INFO 1277302 --- [finresolve-backend] [           main] id.ac.finresolve.FinresolveApplication   : No active profile set, falling back to 1 default profile: "default"
+[WebServer] 2026-10-28T17:19:49.760Z  INFO 1277302 --- [finresolve-backend] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat initialized with port 8080 (http)
+[WebServer] 2026-10-28T17:19:49.841Z  INFO 1277302 --- [finresolve-backend] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+[WebServer] 2026-10-28T17:19:49.842Z  INFO 1277302 --- [finresolve-backend] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/11.0.27]
+[WebServer] 2026-10-28T17:19:49.981Z  INFO 1277302 --- [finresolve-backend] [           main] b.w.c.s.WebApplicationContextInitializer : Root WebApplicationContext: initialization completed in 5797 ms
+[WebServer] 2026-10-28T17:19:50.300Z  INFO 1277302 --- [finresolve-backend] [           main] i.a.f.config.DatabaseConfiguration       : SQLite database configured at /tmp/finresolve-e2e-T2pfvH/finresolve.db
+[WebServer] 2026-10-28T17:19:50.383Z  INFO 1277302 --- [finresolve-backend] [           main] com.zaxxer.hikari.HikariDataSource       : finresolve-sqlite - Starting...
+[WebServer] 2026-10-28T17:19:50.745Z  INFO 1277302 --- [finresolve-backend] [           main] com.zaxxer.hikari.pool.HikariPool        : finresolve-sqlite - Added connection org.sqlite.jdbc4.JDBC4Connection@2ceee4b6
+[WebServer] 2026-10-28T17:19:50.763Z  INFO 1277302 --- [finresolve-backend] [           main] com.zaxxer.hikari.HikariDataSource       : finresolve-sqlite - Start completed.
+[WebServer] 2026-10-28T17:19:52.618Z  INFO 1277302 --- [finresolve-backend] [           main] o.s.boot.tomcat.TomcatWebServer          : Tomcat started on port 8080 (http) with context path '/'
+[WebServer] 2026-10-28T17:19:52.636Z  INFO 1277302 --- [finresolve-backend] [           main] id.ac.finresolve.FinresolveApplication   : Started FinresolveApplication in 11.072 seconds (process running for 13.124)
+[WebServer] 2026-10-28T17:19:53.582Z  INFO 1277302 --- [finresolve-backend] [0.1-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+[WebServer] 2026-10-28T17:19:53.583Z  INFO 1277302 --- [finresolve-backend] [0.1-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+[WebServer] 2026-10-28T17:19:53.588Z  INFO 1277302 --- [finresolve-backend] [0.1-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+
+Running 2 tests using 1 worker
+
+[WebServer] 2026-10-28T17:20:27.365Z  WARN 1277302 --- [finresolve-backend] [0.1-8080-exec-8] o.h.v.i.m.a.CascadingMetaDataBuilder     : HV000271: Using `@Valid` on a container (org.openapitools.jackson.nullable.JsonNullable) is deprecated. You should apply the annotation on the type argument(s). Affected element: RetainCaseRequest#getReceivedDate()
+[WebServer] 2026-10-28T17:20:27.371Z  WARN 1277302 --- [finresolve-backend] [0.1-8080-exec-8] o.h.v.i.m.a.CascadingMetaDataBuilder     : HV000271: Using `@Valid` on a container (org.openapitools.jackson.nullable.JsonNullable) is deprecated. You should apply the annotation on the type argument(s). Affected element: RetainCaseRequest#getReceivedDate()
+  ✓  1 [desktop-chromium] › e2e/analyst-flow.spec.ts:22:1 › import, search, select reference, retain, view, and edit in the browser (11.9s)
+  ✓  2 [desktop-chromium] › e2e/analyst-flow.spec.ts:201:1 › uploads a near-limit CSV through the Next.js proxy (3.3s)
+
+  2 passed (57.3s)

@@ -1,0 +1,5 @@
+PASS auto-port-refusal exit=1
+PASS failure-propagation-and-cleanup exit=1 pid=1306701
+PASS cleanup-freed-port-18401
+PASS unique-result-directories first=/workspaces/uas-sbp/docs/testing/results/retest-20261028T180808Z-1307042 second=/workspaces/uas-sbp/docs/testing/results/retest-20261028T180808Z-1307052
+SUMMARY checks=4 failed=0

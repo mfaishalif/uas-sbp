@@ -1,0 +1,4 @@
+seed exit=0
+verify exit=0
+busy exit=0
+b14f1d60c7c9d9b7ca2bb0df90e96776120d1c9f2aaf9461e4c68e1852980d09  /tmp/finresolve-qa-persistence-rerun.db

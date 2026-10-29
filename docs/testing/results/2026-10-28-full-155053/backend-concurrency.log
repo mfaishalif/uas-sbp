@@ -1,0 +1,6 @@
+PASS CONC-09
+PASS CONC-10
+PASS CONC-11
+PASS CONC-12
+PASS CONC-13
+{"output":"/workspaces/uas-sbp/docs/testing/results/2026-10-28-full-155053/backend-concurrency.json","scenarios":5,"passed":5,"failed":0,"blocked":0,"observations":0,"httpRequests":37,"exitCode":0}

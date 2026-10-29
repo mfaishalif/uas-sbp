@@ -1,0 +1,45 @@
+START unicode port=18210 db=/tmp/finresolve-qa-cYNMe5/unicode.db mode=baseline reset=yes
+READY unicode pid=1278264
+backend-unicode exit=0
+STOP unicode pid=1278264
+START import port=18211 db=/tmp/finresolve-qa-cYNMe5/import.db mode=baseline reset=yes
+READY import pid=1278574
+backend-import-provenance exit=0
+STOP import pid=1278574
+START contract port=18212 db=/tmp/finresolve-qa-cYNMe5/contract.db mode=baseline reset=yes
+READY contract pid=1278873
+SEED sample ok processed=500
+backend-contract-validation exit=0
+STOP contract pid=1278873
+START capacity port=18213 db=/tmp/finresolve-qa-cYNMe5/capacity.db mode=baseline reset=yes
+READY capacity pid=1279142
+backend-capacity-race exit=0
+STOP capacity pid=1279142
+START concurrency port=18214 db=/tmp/finresolve-qa-cYNMe5/concurrency.db mode=baseline reset=yes
+READY concurrency pid=1279474
+backend-concurrency exit=0
+STOP concurrency pid=1279474
+START persistence-seed port=18215 db=/tmp/finresolve-qa-cYNMe5/persistence.db mode=baseline reset=yes
+READY persistence-seed pid=1279762
+backend-persistence-seed exit=0
+STOP persistence-seed pid=1279762
+START persistence-verify port=18215 db=/tmp/finresolve-qa-cYNMe5/persistence.db mode=baseline reset=no
+READY persistence-verify pid=1280036
+backend-persistence-verify exit=0
+backend-persistence-busy exit=0
+STOP persistence-verify pid=1280036
+START search-baseline port=18216 db=/tmp/finresolve-qa-cYNMe5/search-baseline.db mode=baseline reset=yes
+READY search-baseline pid=1280320
+seed-search-baseline exit=0
+START search-phrases port=18217 db=/tmp/finresolve-qa-cYNMe5/search-phrases.db mode=phrases reset=yes
+READY search-phrases pid=1280635
+seed-search-phrases exit=0
+START search-empty port=18218 db=/tmp/finresolve-qa-cYNMe5/search-empty.db mode=baseline reset=yes
+READY search-empty pid=1280942
+backend-search-phrases exit=0
+STOP search-empty pid=1280942
+STOP search-phrases pid=1280635
+STOP search-baseline pid=1280320
+TMP=/tmp/finresolve-qa-cYNMe5
+RESULT_DIR=docs/testing/results/2026-10-28-retest-fs01-170711/backend
+STATUS=0

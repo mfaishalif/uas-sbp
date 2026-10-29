@@ -1,0 +1,27 @@
+{
+  "session": "browser-phrases",
+  "summary": {
+    "scenarios": 2,
+    "passed": 2,
+    "failed": 0
+  },
+  "results": [
+    {
+      "id": "PHR-UI-01",
+      "hypothesis": "Search response and UI report tfidf-phrases-v2 when the server runs in phrases mode.",
+      "result": "PASS",
+      "detail": {
+        "algorithm": "tfidf-phrases-v2",
+        "results": 4
+      }
+    },
+    {
+      "id": "PHR-UI-02",
+      "hypothesis": "Baseline wording is absent from the configuration panel in phrases mode.",
+      "result": "PASS",
+      "detail": {
+        "config": "Actual server configurationAlgorithmtfidf-phrases-v2Category weight0.40Text weight0.60Threshold0.50Text overlap requiredYesField weightsProduct 0.35 · Sub-product 0.15 · Issue 0.35 · Sub-issue 0.15"
+      }
+    }
+  ]
+}

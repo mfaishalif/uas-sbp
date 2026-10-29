@@ -1,0 +1,10 @@
+START api port=8080 db=/tmp/finresolve-qa-ApKp1k/emoji.db mode=baseline reset=yes
+READY api pid=1295674
+WEB READY pid=1295960
+seed_http=201
+seed-emoji exit=0
+emoji-input exit=0
+STOP web pid=1295960
+STOP api pid=1295674
+RESULT_DIR=docs/testing/results/2026-10-28-retest-fs01-170711/emoji
+STATUS=0

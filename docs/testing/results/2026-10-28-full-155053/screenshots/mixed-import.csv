@@ -1,0 +1,3 @@
+Complaint ID,Product,Sub-product,Issue,Sub-issue,Consumer complaint narrative,Company,Company response to consumer,Date received
+995000001,Checking or savings account,Checking account,Managing an account,Deposits and withdrawals,"A mixed import narrative about a missing transfer.",Example Bank,Closed with explanation,2024-11-12
+,Checking or savings account,Checking account,Managing an account,Deposits and withdrawals,"A row without an id.",Example Bank,Closed with explanation,2024-11-12

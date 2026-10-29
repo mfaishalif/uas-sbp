@@ -1,0 +1,3 @@
+seed-emoji exit=0
+emoji-input exit=0
+STATUS=0

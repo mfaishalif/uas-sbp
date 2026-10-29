@@ -1,0 +1,15 @@
+{
+  "analystId": "d8a317d1-e6f4-44cb-adfe-04260325edd5",
+  "analystCreatedAt": "2026-10-28T17:26:04.758303374Z",
+  "total": 503,
+  "cfpb": 501,
+  "analyst": 2,
+  "narrative": "Money left my bank balance twice even though I only authorized one payment.",
+  "handlingNotes": "Reviewed the duplicate authorization and requested a transfer trace.",
+  "evaluationNotes": "Edited evaluation after QA review.",
+  "outcomeAssessment": "RESOLVED",
+  "referenceIds": [
+    "d35e816a-6b53-4026-848f-5d43fc638ab0"
+  ],
+  "cfpbId": "d35e816a-6b53-4026-848f-5d43fc638ab0"
+}

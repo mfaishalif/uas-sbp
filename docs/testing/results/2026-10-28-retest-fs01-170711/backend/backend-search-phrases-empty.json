@@ -1,0 +1,214 @@
+{
+  "session": "search-empty",
+  "startedAt": "2026-10-28T17:23:50.162Z",
+  "completedAt": "2026-10-28T17:24:01.560Z",
+  "baseUrl": "http://127.0.0.1:18218",
+  "mode": "baseline",
+  "summary": {
+    "scenarios": 1,
+    "passed": 1,
+    "failed": 0,
+    "blocked": 0,
+    "observations": 0,
+    "httpRequests": 4
+  },
+  "results": [
+    {
+      "id": "SRCH-01",
+      "hypothesis": "Empty knowledge base returns EMPTY_KNOWLEDGE_BASE without category membership checks.",
+      "result": "PASS",
+      "durationMs": 480,
+      "detail": {
+        "status": "EMPTY_KNOWLEDGE_BASE",
+        "corpusSize": 0
+      },
+      "requests": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "requestBody": {
+            "binary": true
+          },
+          "status": 200,
+          "ms": 414,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "status": "EMPTY_KNOWLEDGE_BASE",
+            "message": "Basis kasus masih kosong; impor sampel CFPB terlebih dahulu.",
+            "results": [],
+            "returnedCount": 0,
+            "limit": 5,
+            "corpusSize": 0,
+            "warnings": [
+              "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Kalibrasi eksploratif dan belum divalidasi manusia."
+            ],
+            "configuration": {
+              "categoryWeight": 0.4,
+              "textWeight": 0.6,
+              "categoryFieldWeights": {
+                "product": 0.35,
+                "subProduct": 0.15,
+                "issue": 0.35,
+                "subIssue": 0.15
+              },
+              "threshold": 0.5,
+              "requiresTextOverlap": true,
+              "algorithmVersion": "tfidf-cosine-v1"
+            }
+          },
+          "bytes": 520
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases",
+          "status": 200,
+          "ms": 48,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "items": [],
+            "page": 0,
+            "size": 20,
+            "totalElements": 0,
+            "totalPages": 0,
+            "hasNext": false
+          },
+          "bytes": 80
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200,
+          "ms": 16,
+          "headers": {
+            "content-type": "application/json",
+            "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+          },
+          "body": {
+            "items": [],
+            "scope": "IMPORTED_CFPB_SAMPLE"
+          },
+          "bytes": 43
+        }
+      ]
+    }
+  ],
+  "requests": [
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 414,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "status": "EMPTY_KNOWLEDGE_BASE",
+        "message": "Basis kasus masih kosong; impor sampel CFPB terlebih dahulu.",
+        "results": [],
+        "returnedCount": 0,
+        "limit": 5,
+        "corpusSize": 0,
+        "warnings": [
+          "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Kalibrasi eksploratif dan belum divalidasi manusia."
+        ],
+        "configuration": {
+          "categoryWeight": 0.4,
+          "textWeight": 0.6,
+          "categoryFieldWeights": {
+            "product": 0.35,
+            "subProduct": 0.15,
+            "issue": 0.35,
+            "subIssue": 0.15
+          },
+          "threshold": 0.5,
+          "requiresTextOverlap": true,
+          "algorithmVersion": "tfidf-cosine-v1"
+        }
+      },
+      "bytes": 520
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases",
+      "status": 200,
+      "ms": 48,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "items": [],
+        "page": 0,
+        "size": 20,
+        "totalElements": 0,
+        "totalPages": 0,
+        "hasNext": false
+      },
+      "bytes": 80
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200,
+      "ms": 16,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "items": [],
+        "scope": "IMPORTED_CFPB_SAMPLE"
+      },
+      "bytes": 43
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "requestBody": {
+        "binary": true
+      },
+      "status": 200,
+      "ms": 12,
+      "headers": {
+        "content-type": "application/json",
+        "vary": "Origin, Access-Control-Request-Method, Access-Control-Request-Headers"
+      },
+      "body": {
+        "status": "EMPTY_KNOWLEDGE_BASE",
+        "message": "Basis kasus masih kosong; impor sampel CFPB terlebih dahulu.",
+        "results": [],
+        "returnedCount": 0,
+        "limit": 5,
+        "corpusSize": 0,
+        "warnings": [
+          "Kemiripan dan respons historis bukan bukti keberhasilan penanganan. Kalibrasi eksploratif dan belum divalidasi manusia."
+        ],
+        "configuration": {
+          "categoryWeight": 0.4,
+          "textWeight": 0.6,
+          "categoryFieldWeights": {
+            "product": 0.35,
+            "subProduct": 0.15,
+            "issue": 0.35,
+            "subIssue": 0.15
+          },
+          "threshold": 0.5,
+          "requiresTextOverlap": true,
+          "algorithmVersion": "tfidf-cosine-v1"
+        }
+      },
+      "bytes": 520
+    }
+  ],
+  "exitCode": 0
+}

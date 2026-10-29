@@ -1,0 +1,1422 @@
+{
+  "session": "browser-exploratory",
+  "baseUrl": "http://127.0.0.1:3000",
+  "apiUrl": "http://127.0.0.1:8080",
+  "startedAt": "2026-10-28T17:26:20.754Z",
+  "summary": {
+    "scenarios": 42,
+    "passed": 42,
+    "failed": 0,
+    "blocked": 0,
+    "observations": 0,
+    "pageErrors": 0,
+    "consoleErrors": 8,
+    "apiCalls": 85
+  },
+  "results": [
+    {
+      "id": "B-01",
+      "hypothesis": "Home renders the empty-catalog state with both columns on desktop.",
+      "result": "PASS",
+      "durationMs": 536,
+      "detail": {
+        "columns": 2,
+        "catalogEmpty": true
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-02",
+      "hypothesis": "Submitting the empty-catalog search form is blocked client-side and focuses Product.",
+      "result": "PASS",
+      "durationMs": 117,
+      "detail": {
+        "focus": "search-product",
+        "requests": 0
+      },
+      "apiCalls": []
+    },
+    {
+      "id": "B-03",
+      "hypothesis": "Case library shows its empty state with zero cases and no pagination.",
+      "result": "PASS",
+      "durationMs": 563,
+      "detail": {
+        "count": 0
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=0&size=20",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-04",
+      "hypothesis": "Add-case page on an empty catalog cannot save and reports required fields.",
+      "result": "PASS",
+      "durationMs": 376,
+      "detail": {
+        "focus": "case-product",
+        "requests": 0
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-05",
+      "hypothesis": "Import page starts with no report and a visible empty-report explanation.",
+      "result": "PASS",
+      "durationMs": 449,
+      "detail": {
+        "reportVisible": false
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-06",
+      "hypothesis": "Invalid case id is mapped to a readable API error instead of crashing.",
+      "result": "PASS",
+      "durationMs": 1050,
+      "detail": {
+        "title": "Request not understood"
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/not-a-uuid",
+          "status": 400
+        }
+      ]
+    },
+    {
+      "id": "B-07",
+      "hypothesis": "Well-formed but unknown case UUID shows Case not found.",
+      "result": "PASS",
+      "durationMs": 354,
+      "detail": {
+        "title": "Case not found"
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/00000000-0000-4000-8000-000000000000",
+          "status": 404
+        }
+      ]
+    },
+    {
+      "id": "B-08",
+      "hypothesis": "Unknown frontend route renders the Next.js 404 page.",
+      "result": "PASS",
+      "durationMs": 750,
+      "detail": {
+        "heading": "Page not found"
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-09",
+      "hypothesis": "Submitting the import form without a file or metadata is blocked and focuses the file input.",
+      "result": "PASS",
+      "durationMs": 148,
+      "detail": {
+        "focus": "import-file"
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-10",
+      "hypothesis": "Invalid metadata (non-HTTPS URL, unsafe file name, reversed dates) is rejected before upload.",
+      "result": "PASS",
+      "durationMs": 797,
+      "detail": {
+        "requests": 0
+      },
+      "apiCalls": []
+    },
+    {
+      "id": "B-11",
+      "hypothesis": "A file larger than 20 MiB is rejected client-side without a network request.",
+      "result": "PASS",
+      "durationMs": 913,
+      "detail": {
+        "bytes": 20971521,
+        "requests": 0
+      },
+      "apiCalls": []
+    },
+    {
+      "id": "B-12",
+      "hypothesis": "A corrupt CSV reports INVALID_CSV and keeps the form and file selection intact.",
+      "result": "PASS",
+      "durationMs": 1371,
+      "detail": {
+        "casesBefore": 0,
+        "casesAfter": 0,
+        "title": "CSV file not accepted"
+      },
+      "apiCalls": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 400
+        }
+      ]
+    },
+    {
+      "id": "B-13",
+      "hypothesis": "The committed 500-case sample imports through the UI and the catalog refreshes.",
+      "result": "PASS",
+      "durationMs": 1782,
+      "detail": {
+        "batchId": "6b79dc8a-9d4d-45e0-8035-a99cd6b6fcf0",
+        "counts": 500,
+        "categories": 85,
+        "casesBefore": 0
+      },
+      "apiCalls": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 201
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-14",
+      "hypothesis": "Replaying the same bytes and metadata is shown as a replay of the same batch.",
+      "result": "PASS",
+      "durationMs": 807,
+      "detail": {
+        "batchId": "6b79dc8a-9d4d-45e0-8035-a99cd6b6fcf0",
+        "casesBefore": 500,
+        "casesAfter": 500
+      },
+      "apiCalls": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-15",
+      "hypothesis": "A CSV containing only existing CFPB ids reports duplicates without adding cases.",
+      "result": "PASS",
+      "durationMs": 733,
+      "detail": {
+        "processed": 3,
+        "imported": 0,
+        "duplicates": 3,
+        "cases": 500
+      },
+      "apiCalls": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 201
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-16",
+      "hypothesis": "A mixed valid/invalid CSV stores the valid row, rejects the invalid row, and keeps counts consistent.",
+      "result": "PASS",
+      "durationMs": 766,
+      "detail": {
+        "processed": 2,
+        "imported": 1,
+        "rejected": 1,
+        "casesBefore": 500,
+        "casesAfter": 501
+      },
+      "apiCalls": [
+        {
+          "method": "POST",
+          "path": "/api/imports/cfpb",
+          "status": 201
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-17",
+      "hypothesis": "Category selects cascade: product enables issue, issue enables sub-issue, and changing product resets descendants.",
+      "result": "PASS",
+      "durationMs": 542,
+      "detail": {
+        "products": 3,
+        "issues": 6,
+        "resetDescendants": true
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-18",
+      "hypothesis": "Blank or whitespace-only narratives are rejected with focus on the narrative field.",
+      "result": "PASS",
+      "durationMs": 126,
+      "detail": {
+        "focus": "search-narrative"
+      },
+      "apiCalls": []
+    },
+    {
+      "id": "B-19",
+      "hypothesis": "Narrative without meaningful tokens maps NO_MEANINGFUL_TOKENS to actionable text.",
+      "result": "PASS",
+      "durationMs": 468,
+      "detail": {
+        "fieldCode": "NO_MEANINGFUL_TOKENS"
+      },
+      "apiCalls": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 400
+        }
+      ]
+    },
+    {
+      "id": "B-20",
+      "hypothesis": "An unrelated narrative returns NO_RELEVANT_CASES with an empty state and configuration.",
+      "result": "PASS",
+      "durationMs": 684,
+      "detail": {
+        "status": "NO_RELEVANT_CASES",
+        "corpus": "500+"
+      },
+      "apiCalls": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-21",
+      "hypothesis": "A known complaint returns ranked matches with scores, four category reasons, shared terms, and warnings.",
+      "result": "PASS",
+      "durationMs": 775,
+      "detail": {
+        "matches": 1,
+        "scores": [
+          50.5
+        ]
+      },
+      "apiCalls": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-22",
+      "hypothesis": "Selecting a precedent toggles the reference control and updates the selection bar.",
+      "result": "PASS",
+      "durationMs": 499,
+      "detail": {
+        "selected": 1
+      },
+      "apiCalls": []
+    },
+    {
+      "id": "B-23",
+      "hypothesis": "Client navigation keeps search results and selection, while a full refresh clears them (documented behavior).",
+      "result": "PASS",
+      "durationMs": 480,
+      "detail": {
+        "spaPreserved": true,
+        "forwardWorks": true,
+        "refreshCleared": true
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/cases?page=0&size=20",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=0&size=20",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-24",
+      "hypothesis": "A rapid double submit of the search form produces exactly one POST /api/search.",
+      "result": "PASS",
+      "durationMs": 470,
+      "detail": {
+        "requests": 1
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-25",
+      "hypothesis": "A transport failure shows a recoverable error, keeps inputs, and retry succeeds.",
+      "result": "PASS",
+      "durationMs": 1459,
+      "detail": {
+        "recovered": true
+      },
+      "apiCalls": [
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "failed": "net::ERR_FAILED"
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-26",
+      "hypothesis": "Desktop results pass a full axe accessibility scan.",
+      "result": "PASS",
+      "durationMs": 1971,
+      "detail": {
+        "rulesPassed": 43,
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "nodes": [
+              "#search-product",
+              "#search-sub-product",
+              "#search-issue",
+              "#search-sub-issue",
+              "#search-narrative"
+            ]
+          }
+        ]
+      },
+      "apiCalls": []
+    },
+    {
+      "id": "B-27",
+      "hypothesis": "Continue to retention carries category, narrative, and selected references without URL state.",
+      "result": "PASS",
+      "durationMs": 393,
+      "detail": {
+        "references": 1
+      },
+      "apiCalls": []
+    },
+    {
+      "id": "B-28",
+      "hypothesis": "Saving a retained case with a synthetic double submit creates exactly one case and navigates to it.",
+      "result": "PASS",
+      "durationMs": 438,
+      "detail": {
+        "analystId": "d8a317d1-e6f4-44cb-adfe-04260325edd5",
+        "casesBefore": 501,
+        "casesAfter": 502,
+        "posts": 1
+      },
+      "apiCalls": [
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-29",
+      "hypothesis": "Analyst detail shows notes, outcome, references, provenance, and an editable link.",
+      "result": "PASS",
+      "durationMs": 38,
+      "detail": {
+        "references": 1
+      },
+      "apiCalls": []
+    },
+    {
+      "id": "B-30",
+      "hypothesis": "Edit form preloads the complete case; clearing optional fields and removing references persists.",
+      "result": "PASS",
+      "durationMs": 950,
+      "detail": {
+        "createdAtPreserved": true,
+        "referencesBefore": 1,
+        "referencesAfter": 0,
+        "company": null,
+        "companyResponse": null
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+          "status": 200
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-31",
+      "hypothesis": "Reference picker opens as a dialog, filters/paginates, adds a reference, and closes with Escape.",
+      "result": "PASS",
+      "durationMs": 696,
+      "detail": {
+        "referencesBefore": 0,
+        "referencesAfter": 1
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=0&size=10",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=0&size=10&source=CFPB",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=0&size=10&source=CFPB",
+          "status": 200
+        },
+        {
+          "method": "PUT",
+          "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-32",
+      "hypothesis": "Case library filters CFPB and ANALYST, paginates 20 per page, and keeps counts consistent.",
+      "result": "PASS",
+      "durationMs": 728,
+      "detail": {
+        "all": "502 cases · 20 per page",
+        "cfpb": 501,
+        "analyst": 1
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=0&size=20",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=1&size=20",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=0&size=20",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=0&size=20&source=CFPB",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=0&size=20&source=ANALYST",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-33",
+      "hypothesis": "A CFPB archive case is read-only in the UI and its edit route refuses editing.",
+      "result": "PASS",
+      "durationMs": 844,
+      "detail": {
+        "cfpbId": "d35e816a-6b53-4026-848f-5d43fc638ab0"
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-34",
+      "hypothesis": "A simulated 500 on case detail shows an error and recovers through Try again.",
+      "result": "PASS",
+      "durationMs": 399,
+      "detail": {
+        "recovered": true
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+          "status": 500
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-35",
+      "hypothesis": "A failed analyst-case save keeps every field, then retry succeeds exactly once.",
+      "result": "PASS",
+      "durationMs": 709,
+      "detail": {
+        "fieldsRetained": true,
+        "casesBefore": 502,
+        "casesAfter": 503
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "failed": "net::ERR_FAILED"
+        },
+        {
+          "method": "POST",
+          "path": "/api/cases",
+          "status": 201
+        }
+      ]
+    },
+    {
+      "id": "B-36",
+      "hypothesis": "Full axe scans pass on case library, analyst detail, edit, import, and empty-catalog pages.",
+      "result": "PASS",
+      "durationMs": 5744,
+      "detail": {
+        "pages": [
+          {
+            "label": "case-library",
+            "rulesPassed": 39
+          },
+          {
+            "label": "case-detail-analyst",
+            "rulesPassed": 38
+          },
+          {
+            "label": "case-edit-analyst",
+            "rulesPassed": 43
+          },
+          {
+            "label": "imports",
+            "rulesPassed": 39
+          },
+          {
+            "label": "case-new",
+            "rulesPassed": 41
+          }
+        ]
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=0&size=20",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-37",
+      "hypothesis": "Keyboard skip link is first, becomes visible on focus, and jumps to main content.",
+      "result": "PASS",
+      "durationMs": 73,
+      "detail": {
+        "skipLinkFocus": true
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-38",
+      "hypothesis": "Keyboard traversal reaches navigation and form controls with a visible focus indicator.",
+      "result": "PASS",
+      "durationMs": 16,
+      "detail": {
+        "tag": "TEXTAREA",
+        "text": "",
+        "outline": "solid",
+        "boxShadow": "none"
+      },
+      "apiCalls": []
+    },
+    {
+      "id": "B-39",
+      "hypothesis": "Mobile 390x844: empty catalog, search results, library, and imports have no horizontal overflow and 48px targets.",
+      "result": "PASS",
+      "durationMs": 3706,
+      "detail": {
+        "columns": 1,
+        "overflow": 0,
+        "casesOverflow": 0,
+        "importsOverflow": 0,
+        "resultColumns": 1,
+        "resultsOverflow": 0,
+        "detailOverflow": 0,
+        "editOverflow": 0,
+        "newOverflow": 0,
+        "targets": [
+          {
+            "label": "Find precedents",
+            "height": 50
+          },
+          {
+            "label": "Product select",
+            "height": 48
+          }
+        ]
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases?page=0&size=20",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "POST",
+          "path": "/api/search",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-40",
+      "hypothesis": "Mobile pages pass a full axe scan.",
+      "result": "PASS",
+      "durationMs": 1039,
+      "detail": {
+        "rulesPassed": 40,
+        "incomplete": [
+          {
+            "id": "color-contrast",
+            "impact": "serious",
+            "nodes": [
+              "#search-product",
+              "#search-narrative",
+              ".L-MlMa_mark"
+            ]
+          }
+        ]
+      },
+      "apiCalls": [
+        {
+          "method": "GET",
+          "path": "/api/categories",
+          "status": 200
+        }
+      ]
+    },
+    {
+      "id": "B-41",
+      "hypothesis": "No uncaught page errors occurred during the session.",
+      "result": "PASS",
+      "durationMs": 0,
+      "detail": {
+        "pageErrors": []
+      },
+      "apiCalls": []
+    },
+    {
+      "id": "B-42",
+      "hypothesis": "Console errors are limited to deliberately simulated network/API failures.",
+      "result": "PASS",
+      "durationMs": 1,
+      "detail": {
+        "consoleErrorCount": 8,
+        "unexpected": []
+      },
+      "apiCalls": []
+    }
+  ],
+  "pageErrors": [],
+  "consoleErrors": [
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 404 (Not Found)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: the server responded with a status of 400 (Bad Request)",
+    "Failed to load resource: net::ERR_FAILED",
+    "Failed to load resource: the server responded with a status of 500 (Internal Server Error)",
+    "Failed to load resource: net::ERR_FAILED"
+  ],
+  "apiCalls": [
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=0&size=20",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/not-a-uuid",
+      "status": 400
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/00000000-0000-4000-8000-000000000000",
+      "status": 404
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "status": 400
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/imports/cfpb",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "status": 400
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=0&size=20",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=0&size=20",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "failed": "net::ERR_FAILED"
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=0&size=10",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=0&size=10&source=CFPB",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=0&size=10&source=CFPB",
+      "status": 200
+    },
+    {
+      "method": "PUT",
+      "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=0&size=20",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=1&size=20",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=0&size=20",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=0&size=20&source=CFPB",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=0&size=20&source=ANALYST",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+      "status": 500
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "failed": "net::ERR_FAILED"
+    },
+    {
+      "method": "POST",
+      "path": "/api/cases",
+      "status": 201
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=0&size=20",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases?page=0&size=20",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "POST",
+      "path": "/api/search",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/categories",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d8a317d1-e6f4-44cb-adfe-04260325edd5",
+      "status": 200
+    },
+    {
+      "method": "GET",
+      "path": "/api/cases/d35e816a-6b53-4026-848f-5d43fc638ab0",
+      "status": 200
+    }
+  ]
+}

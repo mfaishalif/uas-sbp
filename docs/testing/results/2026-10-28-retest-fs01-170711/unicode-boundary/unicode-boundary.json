@@ -1,0 +1,259 @@
+{
+  "session": "unicode-boundary",
+  "baseUrl": "http://127.0.0.1:3000",
+  "apiUrl": "http://127.0.0.1:8080",
+  "summary": {
+    "scenarios": 27,
+    "passed": 27,
+    "failed": 0
+  },
+  "results": [
+    {
+      "id": "SEARCH-BMP-AT-LIMIT",
+      "hypothesis": "BMP input with exactly 50000 code points is sent intact.",
+      "result": "PASS",
+      "detail": {
+        "codePoints": 50000,
+        "utf16Units": 50000
+      }
+    },
+    {
+      "id": "SEARCH-BMP-OVER-LIMIT",
+      "hypothesis": "BMP input with 50001 code points is rejected before any API call and stays intact.",
+      "result": "PASS",
+      "detail": {
+        "codePoints": 50001,
+        "utf16Units": 50001
+      }
+    },
+    {
+      "id": "SEARCH-astral-AT-LIMIT",
+      "hypothesis": "astral input with exactly 50000 code points is sent intact.",
+      "result": "PASS",
+      "detail": {
+        "codePoints": 50000,
+        "utf16Units": 99991
+      }
+    },
+    {
+      "id": "SEARCH-astral-OVER-LIMIT",
+      "hypothesis": "astral input with 50001 code points is rejected before any API call and stays intact.",
+      "result": "PASS",
+      "detail": {
+        "codePoints": 50001,
+        "utf16Units": 99993
+      }
+    },
+    {
+      "id": "CASE-case-narrative-BMP-AT-LIMIT",
+      "hypothesis": "Complaint narrative accepts exactly 50000 BMP code points and preserves them through create and GET.",
+      "result": "PASS",
+      "detail": {
+        "id": "5ad09a59-df74-4519-a01e-62fa35320ec1",
+        "codePoints": 50000,
+        "utf16UnitsAtLimit": 50000
+      }
+    },
+    {
+      "id": "CASE-case-narrative-BMP-OVER-LIMIT",
+      "hypothesis": "Complaint narrative refuses 50001 BMP code points without an API call and without truncation.",
+      "result": "PASS",
+      "detail": {
+        "codePoints": 50001,
+        "utf16Units": 50001
+      }
+    },
+    {
+      "id": "CASE-case-narrative-astral-AT-LIMIT",
+      "hypothesis": "Complaint narrative accepts exactly 50000 astral code points and preserves them through create and GET.",
+      "result": "PASS",
+      "detail": {
+        "id": "3871b9d9-740e-4ecb-a763-e1a9009ef059",
+        "codePoints": 50000,
+        "utf16UnitsAtLimit": 99991
+      }
+    },
+    {
+      "id": "CASE-case-narrative-astral-OVER-LIMIT",
+      "hypothesis": "Complaint narrative refuses 50001 astral code points without an API call and without truncation.",
+      "result": "PASS",
+      "detail": {
+        "codePoints": 50001,
+        "utf16Units": 99993
+      }
+    },
+    {
+      "id": "CASE-case-handling-notes-BMP-AT-LIMIT",
+      "hypothesis": "Handling notes accepts exactly 10000 BMP code points and preserves them through create and GET.",
+      "result": "PASS",
+      "detail": {
+        "id": "dc9f0279-ae52-4f32-8c46-d935c66792e7",
+        "codePoints": 10000,
+        "utf16UnitsAtLimit": 10000
+      }
+    },
+    {
+      "id": "CASE-case-handling-notes-BMP-OVER-LIMIT",
+      "hypothesis": "Handling notes refuses 10001 BMP code points without an API call and without truncation.",
+      "result": "PASS",
+      "detail": {
+        "codePoints": 10001,
+        "utf16Units": 10001
+      }
+    },
+    {
+      "id": "CASE-case-handling-notes-astral-AT-LIMIT",
+      "hypothesis": "Handling notes accepts exactly 10000 astral code points and preserves them through create and GET.",
+      "result": "PASS",
+      "detail": {
+        "id": "058a2bf8-9479-45c9-8d7d-74bf47d1954a",
+        "codePoints": 10000,
+        "utf16UnitsAtLimit": 20000
+      }
+    },
+    {
+      "id": "CASE-case-handling-notes-astral-OVER-LIMIT",
+      "hypothesis": "Handling notes refuses 10001 astral code points without an API call and without truncation.",
+      "result": "PASS",
+      "detail": {
+        "codePoints": 10001,
+        "utf16Units": 20002
+      }
+    },
+    {
+      "id": "CASE-case-evaluation-notes-BMP-AT-LIMIT",
+      "hypothesis": "Evaluation notes accepts exactly 10000 BMP code points and preserves them through create and GET.",
+      "result": "PASS",
+      "detail": {
+        "id": "3af0a48a-810d-4e47-b08e-47545828897d",
+        "codePoints": 10000,
+        "utf16UnitsAtLimit": 10000
+      }
+    },
+    {
+      "id": "CASE-case-evaluation-notes-BMP-OVER-LIMIT",
+      "hypothesis": "Evaluation notes refuses 10001 BMP code points without an API call and without truncation.",
+      "result": "PASS",
+      "detail": {
+        "codePoints": 10001,
+        "utf16Units": 10001
+      }
+    },
+    {
+      "id": "CASE-case-evaluation-notes-astral-AT-LIMIT",
+      "hypothesis": "Evaluation notes accepts exactly 10000 astral code points and preserves them through create and GET.",
+      "result": "PASS",
+      "detail": {
+        "id": "49e14165-5307-4d37-9222-7161e871c0e5",
+        "codePoints": 10000,
+        "utf16UnitsAtLimit": 20000
+      }
+    },
+    {
+      "id": "CASE-case-evaluation-notes-astral-OVER-LIMIT",
+      "hypothesis": "Evaluation notes refuses 10001 astral code points without an API call and without truncation.",
+      "result": "PASS",
+      "detail": {
+        "codePoints": 10001,
+        "utf16Units": 20002
+      }
+    },
+    {
+      "id": "CASE-case-company-BMP-AT-LIMIT",
+      "hypothesis": "Company accepts exactly 500 BMP code points and preserves them through create and GET.",
+      "result": "PASS",
+      "detail": {
+        "id": "4f30a16e-741a-4d3a-bd94-15bbd2b41257",
+        "codePoints": 500,
+        "utf16UnitsAtLimit": 500
+      }
+    },
+    {
+      "id": "CASE-case-company-BMP-OVER-LIMIT",
+      "hypothesis": "Company refuses 501 BMP code points without an API call and without truncation.",
+      "result": "PASS",
+      "detail": {
+        "codePoints": 501,
+        "utf16Units": 501
+      }
+    },
+    {
+      "id": "CASE-case-company-astral-AT-LIMIT",
+      "hypothesis": "Company accepts exactly 500 astral code points and preserves them through create and GET.",
+      "result": "PASS",
+      "detail": {
+        "id": "f2ace396-1b94-4328-a2f3-00ad9ded2505",
+        "codePoints": 500,
+        "utf16UnitsAtLimit": 1000
+      }
+    },
+    {
+      "id": "CASE-case-company-astral-OVER-LIMIT",
+      "hypothesis": "Company refuses 501 astral code points without an API call and without truncation.",
+      "result": "PASS",
+      "detail": {
+        "codePoints": 501,
+        "utf16Units": 1002
+      }
+    },
+    {
+      "id": "CASE-case-company-response-BMP-AT-LIMIT",
+      "hypothesis": "Company response accepts exactly 2000 BMP code points and preserves them through create and GET.",
+      "result": "PASS",
+      "detail": {
+        "id": "045584a2-9f6b-4805-9284-8d8d976d5f37",
+        "codePoints": 2000,
+        "utf16UnitsAtLimit": 2000
+      }
+    },
+    {
+      "id": "CASE-case-company-response-BMP-OVER-LIMIT",
+      "hypothesis": "Company response refuses 2001 BMP code points without an API call and without truncation.",
+      "result": "PASS",
+      "detail": {
+        "codePoints": 2001,
+        "utf16Units": 2001
+      }
+    },
+    {
+      "id": "CASE-case-company-response-astral-AT-LIMIT",
+      "hypothesis": "Company response accepts exactly 2000 astral code points and preserves them through create and GET.",
+      "result": "PASS",
+      "detail": {
+        "id": "59862527-98b0-4d31-8cd8-086126707ef7",
+        "codePoints": 2000,
+        "utf16UnitsAtLimit": 4000
+      }
+    },
+    {
+      "id": "CASE-case-company-response-astral-OVER-LIMIT",
+      "hypothesis": "Company response refuses 2001 astral code points without an API call and without truncation.",
+      "result": "PASS",
+      "detail": {
+        "codePoints": 2001,
+        "utf16Units": 4002
+      }
+    },
+    {
+      "id": "ROUNDTRIP-CREATE-GET",
+      "hypothesis": "Unicode values survive create and a fresh GET.",
+      "result": "PASS",
+      "detail": {
+        "id": "159ff80c-bfd5-407f-a92c-1ae8447db233"
+      }
+    },
+    {
+      "id": "ROUNDTRIP-EDIT-LOAD",
+      "hypothesis": "The edit form loads the same Unicode values unchanged.",
+      "result": "PASS"
+    },
+    {
+      "id": "ROUNDTRIP-EDIT-GET",
+      "hypothesis": "An edit preserves the other Unicode fields and stores the new value.",
+      "result": "PASS",
+      "detail": {
+        "id": "159ff80c-bfd5-407f-a92c-1ae8447db233"
+      }
+    }
+  ]
+}
