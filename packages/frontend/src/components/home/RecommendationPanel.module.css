@@ -1,0 +1,148 @@
+.panel {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  align-items: start;
+  gap: var(--space-lg);
+}
+
+.vote,
+.save {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.title {
+  font-family: var(--font-interface);
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+}
+
+.intro {
+  color: var(--color-body);
+  font-size: 0.9375rem;
+}
+
+.shares {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  margin: var(--space-sm) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.share {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.shareHead {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.shareName {
+  font-weight: 600;
+}
+
+.sharePercent {
+  margin-left: auto;
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+}
+
+.bar {
+  height: 12px;
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+  background: var(--color-canvas-soft);
+}
+
+.fill,
+.fillRecommended {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-pill);
+}
+
+.fill {
+  background: var(--color-body);
+}
+
+.fillRecommended {
+  background: var(--color-ink);
+}
+
+.shareMeta {
+  color: var(--color-body);
+  font-size: 0.8125rem;
+}
+
+.note {
+  color: var(--color-body);
+  font-size: 0.875rem;
+}
+
+.formula {
+  border-radius: var(--radius-md);
+  background: var(--color-canvas-soft);
+  padding: var(--space-md);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-canvas-soft);
+  padding: var(--space-md) var(--space-lg);
+  font-size: 0.875rem;
+}
+
+.summary dt {
+  color: var(--color-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.summary dd {
+  margin: 2px 0 0;
+  overflow-wrap: anywhere;
+}
+
+.errorList {
+  margin: var(--space-sm) 0 0;
+  padding-left: 1.2rem;
+}
+
+@media (max-width: 900px) {
+  .panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .summary {
+    grid-template-columns: 1fr;
+  }
+}

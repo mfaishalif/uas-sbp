@@ -4,7 +4,6 @@ import type {
   CaseSummary,
   CategoryTuple,
   CfpbCase,
-  ImportReport,
   SearchMatch,
   SearchResponse,
 } from '@finresolve/api-client';
@@ -146,15 +145,36 @@ export const matchFixture: SearchMatch = {
   ],
 };
 
+export const secondCfpbId = '55555555-5555-4555-8555-555555555555';
+export const thirdCfpbId = '66666666-6666-4666-8666-666666666666';
+
+/** A precedent with a chosen id, score, and company response. */
+export function makeMatch(id: string, score: number, companyResponse: string | null): SearchMatch {
+  return {
+    ...matchFixture,
+    _case: { ...cfpbCase, id, companyResponse },
+    score,
+  };
+}
+
+/** Three precedents: explanation wins with 0.81 + 0.55 against monetary relief's 0.62. */
+export const threeMatches: SearchMatch[] = [
+  makeMatch(cfpbId, 0.81, 'Closed with explanation'),
+  makeMatch(secondCfpbId, 0.62, 'Closed with monetary relief'),
+  makeMatch(thirdCfpbId, 0.55, 'Closed with explanation'),
+];
+
 export function searchResponse(
   status: SearchResponse['status'] = 'MATCHES',
+  results: SearchMatch[] = [matchFixture],
 ): SearchResponse {
+  const shown = status === 'MATCHES' ? results : [];
   return {
     status,
     message: 'Synthetic fixture.',
-    results: status === 'MATCHES' ? [matchFixture] : [],
-    returnedCount: status === 'MATCHES' ? 1 : 0,
-    limit: 5,
+    results: shown,
+    returnedCount: shown.length,
+    limit: 3,
     corpusSize: status === 'EMPTY_KNOWLEDGE_BASE' ? 0 : 500,
     _configuration: {
       categoryWeight: 0.4,
@@ -191,32 +211,6 @@ export function casePage(
   };
 }
 
-export const importReport: ImportReport = {
-  batchId: '44444444-4444-4444-8444-444444444444',
-  replayed: false,
-  metadata: {
-    archiveUrl: 'https://example.gov/archive.zip',
-    sourceFileName: 'sample.csv',
-    periodStart: '2024-11-01',
-    periodEnd: '2024-12-31',
-  },
-  csvSha256: 'deadbeef',
-  processed: 3,
-  imported: 1,
-  duplicates: 1,
-  rejected: 1,
-  errors: [
-    {
-      recordNumber: 2,
-      field: 'Consumer complaint narrative',
-      code: 'INVALID_FORMAT',
-      message: 'ignored backend text',
-    },
-  ],
-  errorsTruncated: false,
-  importedAt: '2026-10-28T10:00:00Z',
-};
-
 export function makeClient(overrides: Record<string, unknown> = {}) {
   return {
     categories: {
@@ -229,10 +223,6 @@ export function makeClient(overrides: Record<string, unknown> = {}) {
       listCases: async () => casePage([cfpbSummary]),
       getCase: async () => cfpbCase,
       retainCase: async () => analystCase,
-      replaceAnalystCase: async () => analystCase,
-    },
-    imports: {
-      importCfpb: async () => importReport,
     },
     ...overrides,
   };

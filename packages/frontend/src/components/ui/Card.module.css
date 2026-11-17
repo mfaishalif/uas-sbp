@@ -16,7 +16,8 @@
   background: var(--color-primary-pale);
 }
 
+/* card-feature-dark: polarity-flipped, lime text on ink (13:1 contrast). */
 .dark {
   background: var(--color-ink);
-  color: var(--color-canvas-soft);
+  color: var(--color-primary);
 }

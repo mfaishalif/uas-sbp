@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { CFPB_DATABASE_URL } from '@/components/home/DataSource';
 import styles from './SiteFooter.module.css';
 
 export function SiteFooter() {
@@ -13,9 +14,12 @@ export function SiteFooter() {
           </p>
         </div>
         <nav aria-label="Footer navigation" className={styles.links}>
-          <Link href="/">Find precedents</Link>
+          <Link href="/#find">Find precedents</Link>
+          <Link href="/#how-it-works">How it works</Link>
           <Link href="/cases">Case library</Link>
-          <Link href="/imports">Import data</Link>
+          <a href={CFPB_DATABASE_URL} target="_blank" rel="noreferrer noopener">
+            CFPB data<span className="visually-hidden"> (opens in a new tab)</span>
+          </a>
         </nav>
       </div>
     </footer>

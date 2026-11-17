@@ -1,34 +1,30 @@
 import { describe, expect, it } from 'vitest';
 import {
-  addReference,
-  buildRetainCaseRequest,
-  caseDetailToForm,
-  emptyCaseForm,
-  hasReference,
-  removeReference,
-  validateCaseForm,
+  buildSaveCaseRequest,
+  categoryPath,
+  EMPTY_COMPLAINT_FORM,
+  sameComplaint,
+  validateSaveCase,
 } from '@/lib/case';
-import { analystCase, analystId, cfpbId } from './fixtures';
+import { cfpbId, secondCfpbId } from './fixtures';
 
-describe('retention payload', () => {
-  it('builds a complete replacement payload with every contract field', () => {
-    const values = {
-      ...emptyCaseForm(),
-      product: 'Checking or savings account',
-      subProduct: 'Checking account',
-      issue: 'Managing an account',
-      subIssue: '',
-      narrative: 'My transfer is missing from my checking account.',
-      receivedDate: '',
-      company: '',
-      companyResponse: '',
-      handlingNotes: 'Reviewed transfer evidence and requested a trace.',
-      outcomeAssessment: 'UNKNOWN' as const,
-      evaluationNotes: '',
-      referenceCaseIds: new Set([cfpbId]),
-    };
+const complaint = {
+  ...EMPTY_COMPLAINT_FORM,
+  product: 'Checking or savings account',
+  subProduct: 'Checking account',
+  issue: 'Managing an account',
+  narrative: 'My transfer is missing from my checking account.',
+};
 
-    const payload = buildRetainCaseRequest(values);
+describe('save case payload', () => {
+  it('sends the complaint, chosen response, notes, UNKNOWN outcome, and references', () => {
+    const payload = buildSaveCaseRequest({
+      complaint,
+      companyResponse: 'Closed with monetary relief',
+      handlingNotes: 'Refunded the duplicate transfer.',
+      referenceCaseIds: [cfpbId, secondCfpbId],
+    });
+
     expect(payload).toEqual({
       product: 'Checking or savings account',
       subProduct: 'Checking account',
@@ -37,124 +33,35 @@ describe('retention payload', () => {
       narrative: 'My transfer is missing from my checking account.',
       receivedDate: null,
       company: null,
-      companyResponse: null,
-      handlingNotes: 'Reviewed transfer evidence and requested a trace.',
+      companyResponse: 'Closed with monetary relief',
+      handlingNotes: 'Refunded the duplicate transfer.',
       outcomeAssessment: 'UNKNOWN',
       evaluationNotes: null,
-      referenceCaseIds: new Set([cfpbId]),
+      referenceCaseIds: new Set([cfpbId, secondCfpbId]),
     });
     expect(payload.referenceCaseIds).toBeInstanceOf(Set);
-    expect(Object.keys(payload).sort()).toEqual([
-      'company',
-      'companyResponse',
-      'evaluationNotes',
-      'handlingNotes',
-      'issue',
-      'narrative',
-      'outcomeAssessment',
-      'product',
-      'receivedDate',
-      'referenceCaseIds',
-      'subIssue',
-      'subProduct',
-    ]);
   });
 
-  it('loads every detail field from an analyst case', () => {
-    const values = caseDetailToForm(analystCase);
-    expect(values.narrative).toBe(analystCase.narrative);
-    expect(values.handlingNotes).toBe(analystCase.analystNotes.handlingNotes);
-    expect(values.outcomeAssessment).toBe('PARTIALLY_RESOLVED');
-    expect(values.evaluationNotes).toBe(analystCase.analystNotes.evaluationNotes);
-    expect(values.referenceCaseIds).toEqual(new Set([cfpbId]));
+  it('requires a response and handling notes, measured in code points', () => {
+    expect(validateSaveCase({ companyResponse: '', handlingNotes: '  ' })).toEqual({
+      companyResponse: 'Choose a company response.',
+      handlingNotes: 'Add notes about how the case is being handled.',
+    });
+
+    const atLimit = '😀'.repeat(10_000);
+    expect(validateSaveCase({ companyResponse: 'Closed with explanation', handlingNotes: atLimit }))
+      .toEqual({});
+    expect(
+      validateSaveCase({ companyResponse: 'Closed with explanation', handlingNotes: `${atLimit}x` })
+        .handlingNotes,
+    ).toMatch(/10,000 characters or fewer/);
   });
 
-  it('rejects archive cases from the editable form model', () => {
-    expect(() => caseDetailToForm({
-      ...analystCase,
-      source: 'CFPB',
-    } as never)).toThrow(/read-only/i);
-  });
-
-  it('validates required values, limits, self-references, and dates', () => {
-    const errors = validateCaseForm(
-      {
-        ...emptyCaseForm(),
-        product: '',
-        issue: '',
-        narrative: ' ',
-        handlingNotes: '',
-        receivedDate: '2026-02-30',
-      },
-      { currentCaseId: cfpbId },
+  it('compares complaints field by field and formats the category path', () => {
+    expect(sameComplaint(complaint, { ...complaint })).toBe(true);
+    expect(sameComplaint(complaint, { ...complaint, narrative: 'Changed.' })).toBe(false);
+    expect(categoryPath(complaint)).toBe(
+      'Checking or savings account / Checking account / Managing an account',
     );
-    expect(errors.product).toBeDefined();
-    expect(errors.issue).toBeDefined();
-    expect(errors.narrative).toBeDefined();
-    expect(errors.handlingNotes).toBeDefined();
-    expect(errors.receivedDate).toBeDefined();
-
-    const self = validateCaseForm(
-      {
-        ...emptyCaseForm(),
-        product: 'P',
-        issue: 'I',
-        narrative: 'A sufficiently meaningful narrative.',
-        handlingNotes: 'Handled.',
-        referenceCaseIds: new Set([cfpbId]),
-      },
-      { currentCaseId: cfpbId },
-    );
-    expect(self.referenceCaseIds).toMatch(/itself/i);
-  });
-
-  it('measures every limited field in code points, not UTF-16 units', () => {
-    const base = {
-      ...emptyCaseForm(),
-      product: 'Checking or savings account',
-      issue: 'Managing an account',
-      narrative: 'A valid narrative.',
-      handlingNotes: 'Handled.',
-    };
-    const cases: Array<{
-      field: 'narrative' | 'handlingNotes' | 'evaluationNotes' | 'company' | 'companyResponse';
-      limit: number;
-    }> = [
-      { field: 'narrative', limit: 50_000 },
-      { field: 'handlingNotes', limit: 10_000 },
-      { field: 'evaluationNotes', limit: 10_000 },
-      { field: 'company', limit: 500 },
-      { field: 'companyResponse', limit: 2_000 },
-    ];
-
-    for (const { field, limit } of cases) {
-      for (const unit of ['BMP', 'astral'] as const) {
-        const atLimit = unit === 'BMP' ? 'x'.repeat(limit) : '😀'.repeat(limit);
-        expect(Array.from(atLimit)).toHaveLength(limit);
-        expect(validateCaseForm({ ...base, [field]: atLimit })[field]).toBeUndefined();
-
-        const overLimit = `${atLimit}😀`;
-        expect(Array.from(overLimit)).toHaveLength(limit + 1);
-        expect(validateCaseForm({ ...base, [field]: overLimit })[field]).toMatch(
-          new RegExp(`${limit.toLocaleString('en-US')}`),
-        );
-        // The value is never truncated by validation.
-        expect(overLimit).toHaveLength(unit === 'BMP' ? limit + 2 : limit * 2 + 2);
-      }
-    }
-  });
-
-  it('deduplicates references case-insensitively and caps at 20', () => {
-    let ids = new Set<string>();
-    ids = addReference(ids, cfpbId.toUpperCase());
-    expect(hasReference(ids, cfpbId)).toBe(true);
-    expect(addReference(ids, cfpbId).size).toBe(1);
-    expect(removeReference(ids, cfpbId).size).toBe(0);
-
-    for (let index = 0; index < 20; index += 1) {
-      ids = addReference(ids, `00000000-0000-4000-8000-${String(index).padStart(12, '0')}`);
-    }
-    expect(ids.size).toBe(20);
-    expect(addReference(ids, analystId).size).toBe(20);
   });
 });

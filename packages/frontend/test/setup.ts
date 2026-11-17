@@ -6,6 +6,10 @@ afterEach(() => {
   cleanup();
 });
 
+if (!Element.prototype.scrollIntoView) {
+  Element.prototype.scrollIntoView = () => {};
+}
+
 if (!window.matchMedia) {
   window.matchMedia = (query: string) => ({
     matches: false,

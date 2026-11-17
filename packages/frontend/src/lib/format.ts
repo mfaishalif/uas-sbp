@@ -45,22 +45,15 @@ export function textLength(value: string): number {
   return Array.from(value).length;
 }
 
-export function outcomeLabel(value: string): string {
-  switch (value) {
-    case 'RESOLVED':
-      return 'Resolved';
-    case 'PARTIALLY_RESOLVED':
-      return 'Partially resolved';
-    case 'UNRESOLVED':
-      return 'Unresolved';
-    default:
-      return 'Not assessed';
-  }
-}
-
 export function sourceLabel(value: string): string {
-  // Source values are contract data and stay exactly as the API returns them.
-  return value;
+  switch (value) {
+    case 'CFPB':
+      return 'CFPB';
+    case 'ANALYST':
+      return 'Analyst';
+    default:
+      return value;
+  }
 }
 
 export function categoryReasonLabel(status: string): string {
