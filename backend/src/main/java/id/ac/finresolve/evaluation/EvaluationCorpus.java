@@ -1,10 +1,10 @@
 package id.ac.finresolve.evaluation;
 
-import id.ac.finresolve.domain.cases.CaseRecord;
-import id.ac.finresolve.domain.cases.ComplaintInput;
-import id.ac.finresolve.service.importing.CfpbCsvParser;
-import id.ac.finresolve.domain.importing.ImportMetadataValue;
-import id.ac.finresolve.service.importing.ParsedImport;
+import id.ac.finresolve.cases.CaseRecord;
+import id.ac.finresolve.cases.ComplaintInput;
+import id.ac.finresolve.importing.CfpbCsvParser;
+import id.ac.finresolve.importing.ImportMetadataValue;
+import id.ac.finresolve.importing.ParsedImport;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
