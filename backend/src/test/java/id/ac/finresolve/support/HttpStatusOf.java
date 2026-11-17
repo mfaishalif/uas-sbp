@@ -1,7 +1,7 @@
 package id.ac.finresolve.support;
 
-import id.ac.finresolve.domain.error.BusinessException;
-import id.ac.finresolve.presentation.error.BusinessErrorStatus;
+import id.ac.finresolve.shared.error.BusinessException;
+import id.ac.finresolve.shared.error.BusinessErrorStatus;
 
 /** Test-only bridge that keeps non-presentation tests out of the presentation package. */
 public final class HttpStatusOf {
