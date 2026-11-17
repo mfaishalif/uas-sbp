@@ -1,33 +1,23 @@
 # FinResolve
 
-FinResolve adalah aplikasi web untuk membantu analis menangani pengaduan konsumen jasa keuangan dengan pendekatan **Case-Based Reasoning (CBR)**. Aplikasi mencari kasus terdahulu yang serupa dan menampilkan informasi penanganannya sebagai bahan pertimbangan analis. Proyek ini menggunakan frontend Next.js, backend Java Spring Boot, dan database SQLite.
+FinResolve membantu analis mencari kasus pengaduan konsumen jasa keuangan yang serupa sebagai referensi penanganan.
 
 ## Prasyarat
 
-- Docker Engine atau Docker Desktop dengan Docker Compose **2.32.2 atau lebih baru**.
-- Koneksi internet untuk mengunduh image dan dependensi saat build pertama.
+- Docker Engine atau Docker Desktop dalam keadaan berjalan, dengan Docker Compose **2.32.2 atau lebih baru**.
+- Koneksi internet untuk build pertama.
 
-Jalankan semua perintah berikut dari folder root proyek.
-
-## Dev Container
-
-Ada dua profil: **FinResolve** untuk seluruh anggota tim dan **FinResolve AI**
-untuk pengguna Codex/OpenCode. Profil AI memerlukan environment variable host
-`FINRESOLVE_SCREENSHOTS_DIR` yang menunjuk ke direktori screenshot absolut yang
-sudah ada; profil standar tidak memerlukannya. Lihat
-[.devcontainer/README.md](.devcontainer/README.md) untuk memilih profil,
-mengatur screenshot, login CLI, dan rebuild.
+Jalankan semua perintah dari folder root proyek. Pilih salah satu mode berikut.
 
 ## Menjalankan demo
 
 ```bash
-docker compose -f compose.demo.yaml up --build
+docker compose -f compose.demo.yaml up -d --build --wait
 ```
 
-Sebanyak 500 kasus sampel dimuat otomatis saat startup. Tunggu hingga layanan API siap dan frontend berjalan, lalu akses:
+Setelah perintah selesai, buka <http://localhost:13000>. Sebanyak 500 kasus sampel dimuat otomatis.
 
-- Frontend: <http://127.0.0.1:3000>
-- API: <http://127.0.0.1:8080>
+Jika `.env` mengatur `FINRESOLVE_FRONTEND_PORT`, gunakan port tersebut pada alamat browser.
 
 Untuk menghentikan demo:
 
@@ -41,10 +31,14 @@ docker compose -f compose.demo.yaml down
 docker compose up --build --watch
 ```
 
-Mode ini memakai alamat yang sama dengan demo dan menerapkan perubahan kode secara otomatis. Hentikan mode yang sedang berjalan sebelum beralih mode karena keduanya memakai port yang sama.
+Setelah frontend siap, buka <http://localhost:13000>, atau gunakan port dari `.env` jika tersedia. Perubahan kode diterapkan secara otomatis.
 
-Untuk menghentikan development:
+Untuk menghentikan development, tekan **Ctrl+C**, lalu jalankan:
 
 ```bash
 docker compose down
 ```
+
+Hentikan mode yang sedang berjalan sebelum beralih ke mode lainnya.
+
+Untuk menyiapkan lingkungan kerja VS Code, lihat [panduan Dev Container](.devcontainer/README.md).
