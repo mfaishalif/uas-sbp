@@ -12,7 +12,7 @@ export default function ErrorPage({
   reset: () => void;
 }) {
   return (
-    <div className={`fin-container ${styles.page}`}>
+    <div className={`fin-container fin-page ${styles.page}`}>
       <Card className={styles.card}>
         <p className="page-eyebrow">Unexpected error</p>
         <h1>Something interrupted this page</h1>

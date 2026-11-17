@@ -23,7 +23,9 @@ const child = spawn(
     env: {
       ...process.env,
       FINRESOLVE_DB_PATH: database,
-      FINRESOLVE_DEMO_ENABLED: 'false',
+      // The UI no longer imports CSV; the 500-case sample loads at startup instead.
+      FINRESOLVE_DEMO_ENABLED: 'true',
+      FINRESOLVE_DEMO_SAMPLE_PATH: path.join(root, 'data/cfpb/sample.csv'),
       FINRESOLVE_CORS_ORIGINS:
         'http://localhost:3000,http://127.0.0.1:3000',
       SERVER_ADDRESS: '127.0.0.1',

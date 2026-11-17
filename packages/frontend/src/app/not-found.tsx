@@ -4,7 +4,7 @@ import styles from './StatusPage.module.css';
 
 export default function NotFound() {
   return (
-    <div className={`fin-container ${styles.page}`}>
+    <div className={`fin-container fin-page ${styles.page}`}>
       <Card className={styles.card}>
         <p className="page-eyebrow">404</p>
         <h1>Page not found</h1>

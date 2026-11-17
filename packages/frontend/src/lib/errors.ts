@@ -31,14 +31,6 @@ const CODE_MESSAGES: Record<string, { title: string; message: string }> = {
     title: 'Reference not available',
     message: 'One or more selected case references are unavailable. Remove them and try again.',
   },
-  INVALID_CSV: {
-    title: 'CSV file not accepted',
-    message: 'The file is not a valid CFPB CSV. Check the required header and try again.',
-  },
-  IMPORT_LIMIT_EXCEEDED: {
-    title: 'Import is too large',
-    message: 'The CSV exceeds the 5,000-record import limit. Split the file and try again.',
-  },
   CASE_NOT_FOUND: {
     title: 'Case not found',
     message: 'This case is not available. It may have been removed or the link may be wrong.',
@@ -47,29 +39,17 @@ const CODE_MESSAGES: Record<string, { title: string; message: string }> = {
     title: 'Page not found',
     message: 'The requested resource does not exist.',
   },
-  IMMUTABLE_CFPB_CASE: {
-    title: 'Archive case is read-only',
-    message: 'CFPB archive cases cannot be edited. Analyst cases are the only editable cases.',
-  },
   EMPTY_CATEGORY_CATALOG: {
     title: 'No categories yet',
-    message: 'Import a CFPB CSV before creating analyst cases.',
+    message: 'The category catalog is empty. Start the API with demo data enabled, then try again.',
   },
   KNOWLEDGE_BASE_LIMIT_EXCEEDED: {
     title: 'Knowledge base is full',
-    message: 'This demo stores at most 5,000 cases. Remove no data automatically; use a fresh database for a new demo.',
-  },
-  PAYLOAD_TOO_LARGE: {
-    title: 'Upload too large',
-    message: 'The file must be 20 MiB or smaller and the whole request must stay under 21 MiB.',
+    message: 'This demo stores at most 5,000 cases. Use a fresh database to save more cases.',
   },
   METHOD_NOT_ALLOWED: {
     title: 'Action not supported',
     message: 'The server does not allow this action on this page.',
-  },
-  UNSUPPORTED_MEDIA_TYPE: {
-    title: 'Unsupported file type',
-    message: 'Send the CSV as text/csv or application/octet-stream and metadata as JSON.',
   },
   DATABASE_BUSY: {
     title: 'Database is busy',
@@ -99,9 +79,7 @@ const FIELD_CODE_MESSAGES: Record<string, string> = {
   NOT_FOUND: 'The referenced value was not found.',
   TOO_LONG: 'This value is too long.',
   NO_MEANINGFUL_TOKENS: 'Add meaningful words to the narrative.',
-  INVALID_CATEGORY: 'This category is not in the imported catalog.',
-  IMPORT_LIMIT_EXCEEDED: 'The file exceeds an import limit.',
-  PAYLOAD_TOO_LARGE: 'The file exceeds the upload size limit.',
+  INVALID_CATEGORY: 'This category is not in the catalog.',
 };
 
 export function fieldCodeMessage(code: string): string {

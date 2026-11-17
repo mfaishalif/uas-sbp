@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     template: '%s · FinResolve',
   },
   description:
-    'Find historical complaint precedents, inspect why they match, and retain analyst case knowledge.',
+    'Find the three closest complaint precedents, see why they match, get a similarity-weighted response recommendation, and save the case.',
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {

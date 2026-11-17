@@ -13,6 +13,7 @@
   --color-ink: #0e0f0c;
   --color-ink-deep: #163300;
   --color-body: #454745;
+  /* design.md mute is #868685; darkened to pass WCAG AA (4.5:1) on white and sage. */
   --color-mute: #5f625e;
   --color-placeholder: #5f625e;
   --color-canvas: #ffffff;
@@ -25,6 +26,7 @@
   --color-warning-content: #4a3b1c;
   --color-negative: #d03238;
   --color-negative-deep: #a72027;
+  /* design.md negative-darkest is #a7000d; darkened for AA contrast on the error tint. */
   --color-negative-darkest: #8f000b;
   --color-negative-bg: #320707;
   --color-error-bg: #f8e9e9;
@@ -46,6 +48,7 @@
   --space-3xl: 48px;
 
   --container: 1200px;
+  --header-height: 76px;
   --font-interface: var(--font-inter), 'InterFallback', system-ui, -apple-system, sans-serif;
 }
 
@@ -59,7 +62,7 @@ html {
   min-width: 320px;
   background: var(--color-canvas-soft);
   color-scheme: light;
-  scroll-padding-top: 96px;
+  scroll-padding-top: calc(var(--header-height) + var(--space-lg));
 }
 
 body {
@@ -136,7 +139,12 @@ svg {
   margin-inline: auto;
 }
 
+/* Pages own their vertical rhythm so the landing page bands can run full-bleed. */
 .fin-main {
+  display: block;
+}
+
+.fin-page {
   padding-block: clamp(32px, 5vw, 64px) var(--space-3xl);
 }
 

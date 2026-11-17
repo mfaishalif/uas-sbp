@@ -1,0 +1,425 @@
+/* Bands alternate sage → white so surface contrast carries the depth (design.md). */
+.contentBand,
+.sageBand,
+.darkBand {
+  padding-block: clamp(48px, 7vw, 96px);
+  scroll-margin-top: var(--header-height);
+}
+
+.contentBand {
+  background: var(--color-canvas);
+}
+
+.sageBand {
+  background: var(--color-canvas-soft);
+}
+
+.darkBand {
+  background: var(--color-ink);
+  color: var(--color-canvas-soft);
+}
+
+.heading {
+  display: flex;
+  max-width: 720px;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-2xl);
+}
+
+/* content-band headline: display-md, weight 900. */
+.title {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+}
+
+.lead {
+  color: var(--color-body);
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  line-height: 1.6;
+}
+
+/* How it works */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-lg);
+  margin: 0;
+  padding: 0;
+  counter-reset: none;
+  list-style: none;
+}
+
+.step {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--space-sm);
+  border-radius: var(--radius-xl);
+  background: var(--color-canvas-soft);
+  padding: var(--space-xl);
+}
+
+.stepNumber {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  margin-bottom: var(--space-sm);
+  border-radius: var(--radius-pill);
+  background: var(--color-ink);
+  color: var(--color-primary);
+  font-size: 1.125rem;
+  font-weight: 900;
+}
+
+.stepName {
+  color: var(--color-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.stepTitle {
+  font-family: var(--font-interface);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.stepBody {
+  color: var(--color-body);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+/* Scoring */
+.configTag {
+  display: inline-block;
+  margin-top: var(--space-xs);
+  border-radius: var(--radius-pill);
+  background: var(--color-canvas);
+  padding: 2px 12px;
+  color: var(--color-ink);
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.scoringGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+
+.scoringCard {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: var(--space-md);
+  border-radius: var(--radius-xl);
+  background: var(--color-canvas);
+  padding: var(--space-xl);
+}
+
+.cardTitle {
+  font-family: var(--font-interface);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+}
+
+.formula {
+  border-radius: var(--radius-md);
+  background: var(--color-canvas-soft);
+  padding: var(--space-md) var(--space-lg);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.body {
+  color: var(--color-body);
+  font-size: 0.9375rem;
+  line-height: 1.55;
+}
+
+.rules {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin: 0;
+  padding-left: 1.2rem;
+  color: var(--color-body);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.rules strong {
+  color: var(--color-ink);
+}
+
+.splitBar,
+.fieldBar {
+  display: flex;
+  overflow: hidden;
+  border: 1px solid var(--color-ink);
+  border-radius: var(--radius-md);
+}
+
+.splitInk,
+.splitLight {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  justify-content: center;
+  padding-inline: var(--space-xs);
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.splitInk {
+  background: var(--color-ink);
+  color: var(--color-canvas);
+}
+
+.splitLight {
+  background: var(--color-primary-neutral);
+  color: var(--color-ink);
+}
+
+.fieldBar > span + span {
+  border-left: 1px solid var(--color-canvas);
+}
+
+.legend {
+  color: var(--color-body);
+  font-size: 0.8125rem;
+}
+
+.statusList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin: 0;
+  font-size: 0.875rem;
+}
+
+.statusList div {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: var(--space-md);
+}
+
+.statusList dt {
+  font-weight: 600;
+}
+
+.statusList dd {
+  margin: 0;
+  color: var(--color-body);
+}
+
+/* Data source */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: start;
+  gap: clamp(32px, 5vw, 64px);
+}
+
+.split .heading {
+  margin-bottom: 0;
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+  font-weight: 600;
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+  margin: 0;
+}
+
+.fact {
+  border-radius: var(--radius-xl);
+  background: var(--color-canvas-soft);
+  padding: var(--space-lg) var(--space-xl);
+}
+
+.fact:last-child {
+  grid-column: 1 / -1;
+}
+
+.fact dt {
+  color: var(--color-body);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.fact dd {
+  margin: var(--space-xs) 0 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.mix {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.mix li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-md);
+  font-size: 0.9375rem;
+}
+
+.mix span {
+  font-weight: 400;
+}
+
+/* FAQ */
+.faqLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+  align-items: start;
+  gap: var(--space-2xl);
+}
+
+.faqLayout .heading {
+  margin-bottom: 0;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.faqItem {
+  border-radius: var(--radius-xl);
+  background: var(--color-canvas);
+}
+
+.faqItem summary {
+  display: flex;
+  min-height: 56px;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-xl);
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faqItem summary::-webkit-details-marker {
+  display: none;
+}
+
+.faqItem summary::after {
+  content: '+';
+  flex: 0 0 auto;
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.faqItem[open] summary::after {
+  content: '−';
+}
+
+.faqItem summary:focus-visible {
+  border-radius: var(--radius-xl);
+}
+
+.faqItem p {
+  padding: 0 var(--space-xl) var(--space-xl);
+  color: var(--color-body);
+  line-height: 1.6;
+}
+
+/* Closing CTA (hero-band-dark) */
+.closing {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  text-align: center;
+}
+
+.closingTitle {
+  max-width: 18ch;
+  color: var(--color-primary);
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+}
+
+.closingLead {
+  max-width: 52ch;
+  color: var(--color-canvas-soft);
+  font-size: 1.125rem;
+  line-height: 1.55;
+}
+
+.closingActions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+}
+
+.darkBand :focus-visible {
+  outline-color: var(--color-primary);
+}
+
+@media (max-width: 1023px) {
+  .steps {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .split,
+  .faqLayout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .steps,
+  .scoringGrid,
+  .facts {
+    grid-template-columns: 1fr;
+  }
+
+  .scoringCard,
+  .step {
+    padding: var(--space-lg);
+  }
+
+  .statusList div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
