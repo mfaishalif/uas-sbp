@@ -159,31 +159,5 @@ volume lama tidak dihapus oleh perubahan ini.
 
 ## Menjalankan aplikasi
 
-Hook `postCreateCommand` dan `postStartCommand` hanya menyiapkan direktori,
-permission, dan memeriksa tool yang tersedia pada profil. Instalasi dependensi
-proyek dan startup aplikasi tetap manual.
-
-Contoh:
-
-```bash
-npm ci
-npm run frontend:dev
-```
-
-Backend dapat dijalankan dari folder `backend` memakai Maven Wrapper sesuai
-dokumentasi proyek. Untuk menjalankan aplikasi dengan Compose dari dalam
-container:
-
-```bash
-docker compose -f compose.demo.yaml up --build
-```
-
-Atau mode development dengan hot reload:
-
-```bash
-docker compose up --build --watch
-```
-
-Frontend tersedia di <http://127.0.0.1:3000> dan API di
-<http://127.0.0.1:8080>. Hentikan dengan `docker compose down` atau
-`docker compose -f compose.demo.yaml down`.
+Dev Container tidak menyalakan aplikasi secara otomatis. Ikuti
+[panduan menjalankan demo atau development](../README.md) dari root proyek.

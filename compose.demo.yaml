@@ -6,12 +6,12 @@ services:
       target: runtime
     image: finresolve-demo:local
     ports:
-      - "127.0.0.1:8080:8080"
+      - "127.0.0.1:${FINRESOLVE_API_PORT:-18080}:8080"
     environment:
       FINRESOLVE_DB_PATH: /data/finresolve.db
       FINRESOLVE_DEMO_ENABLED: "true"
       FINRESOLVE_DEMO_SAMPLE_PATH: /app/data/cfpb/sample.csv
-      FINRESOLVE_CORS_ORIGINS: http://localhost:3000,http://127.0.0.1:3000
+      FINRESOLVE_CORS_ORIGINS: http://localhost:${FINRESOLVE_FRONTEND_PORT:-13000},http://127.0.0.1:${FINRESOLVE_FRONTEND_PORT:-13000}
       SERVER_ADDRESS: 0.0.0.0
     volumes:
       - type: volume
@@ -39,7 +39,7 @@ services:
         FINRESOLVE_API_ORIGIN: http://api:8080
     image: finresolve-frontend-demo:local
     ports:
-      - "127.0.0.1:3000:3000"
+      - "127.0.0.1:${FINRESOLVE_FRONTEND_PORT:-13000}:3000"
     environment:
       FINRESOLVE_API_ORIGIN: http://api:8080
       NODE_ENV: production
