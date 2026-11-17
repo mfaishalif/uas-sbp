@@ -9,6 +9,15 @@ FinResolve adalah aplikasi web untuk membantu analis menangani pengaduan konsume
 
 Jalankan semua perintah berikut dari folder root proyek.
 
+## Dev Container
+
+Ada dua profil: **FinResolve** untuk seluruh anggota tim dan **FinResolve AI**
+untuk pengguna Codex/OpenCode. Profil AI memerlukan environment variable host
+`FINRESOLVE_SCREENSHOTS_DIR` yang menunjuk ke direktori screenshot absolut yang
+sudah ada; profil standar tidak memerlukannya. Lihat
+[.devcontainer/README.md](.devcontainer/README.md) untuk memilih profil,
+mengatur screenshot, login CLI, dan rebuild.
+
 ## Menjalankan demo
 
 ```bash

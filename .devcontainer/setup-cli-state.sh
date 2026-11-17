@@ -1,33 +1,88 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Docker may create mount parents and new volumes as root. Only change Linux
-# directories here; the Windows bind mounts contain shared host data.
-cli_user="$(id -un)"
-cli_group="$(id -gn)"
-sudo install -d -o "$cli_user" -g "$cli_group" \
-  /home/vscode/.local \
-  /home/vscode/.local/share \
-  /home/vscode/.local/state \
-  /home/vscode/.local/state/gh \
-  /home/vscode/.local/state/codex-home \
-  /home/vscode/.local/state/codex \
-  /home/vscode/.local/state/opencode
-sudo chown -R "$cli_user:$cli_group" /home/vscode/.local/state
-chmod 700 /home/vscode/.local/state/gh
+usage() {
+  echo "Usage: $0 <standard|ai>" >&2
+  exit 64
+}
 
-# Keep Linux sockets, locks, temporary files and runtime metadata off the
-# Windows mount. Share only portable settings and seed credentials once.
-codex_home=/home/vscode/.local/state/codex-home
-host_codex=/home/vscode/.codex
-for entry in config.toml AGENTS.md AGENTS.override.md skills; do
-  if [[ -e "$host_codex/$entry" && ! -e "$codex_home/$entry" && ! -L "$codex_home/$entry" ]]; then
-    ln -s "$host_codex/$entry" "$codex_home/$entry"
+profile="${1:-}"
+case "$profile" in
+  standard|ai) ;;
+  *) usage ;;
+esac
+
+cli_user="vscode"
+cli_group="$(id -gn "$cli_user" 2>/dev/null || printf '%s' "$cli_user")"
+home_dir="/home/vscode"
+state_dir="$home_dir/.local/state"
+
+run_as_root() {
+  if [[ "$(id -u)" -eq 0 ]]; then
+    "$@"
+  else
+    sudo "$@"
   fi
-done
-if [[ -f "$host_codex/auth.json" && ! -e "$codex_home/auth.json" ]]; then
-  install -m 600 "$host_codex/auth.json" "$codex_home/auth.json"
+}
+
+# Docker creates named-volume mount points as root. Create and reclaim only
+# this profile's directories; host data is never bind-mounted any more.
+state_dirs=(
+  "$home_dir/.local"
+  "$home_dir/.local/share"
+  "$state_dir"
+  "$state_dir/gh"
+)
+volume_dirs=()
+
+if [[ "$profile" == "ai" ]]; then
+  state_dirs+=(
+    "$state_dir/codex-home"
+    "$state_dir/codex"
+    "$state_dir/opencode"
+  )
+  volume_dirs=(
+    "$home_dir/.config"
+    "$home_dir/.config/opencode"
+    "$home_dir/.local/share/opencode"
+  )
 fi
 
-test -w /home/vscode/.local/state/codex
-test -w /home/vscode/.local/state/opencode
+for dir in "${state_dirs[@]}" "${volume_dirs[@]}"; do
+  run_as_root install -d -m 0755 -o "$cli_user" -g "$cli_group" "$dir"
+done
+
+# Existing volume contents may come from containers created by another UID.
+run_as_root chown -R "$cli_user:$cli_group" "$state_dir"
+for dir in "${volume_dirs[@]}"; do
+  run_as_root chown -R "$cli_user:$cli_group" "$dir"
+done
+
+# GitHub CLI stores credentials in this directory.
+chmod 700 "$state_dir/gh"
+
+# Fail early if a profile cannot write to its persistent state.
+test -w "$state_dir/gh"
+if [[ "$profile" == "ai" ]]; then
+  test -w "$state_dir/codex-home"
+  test -w "$state_dir/codex"
+  test -w "$state_dir/opencode"
+  test -w "$home_dir/.config/opencode"
+  test -w "$home_dir/.local/share/opencode"
+fi
+
+# Version output stays profile-specific so the standard image never needs the
+# AI CLIs and the AI image verifies its extra tools.
+tools=(node npm java mvn gradle gh)
+if [[ "$profile" == "ai" ]]; then
+  tools+=(codex opencode)
+fi
+
+echo "FinResolve dev container profile: $profile"
+for tool in "${tools[@]}"; do
+  if ! command -v "$tool" >/dev/null 2>&1; then
+    echo "Missing required tool for profile '$profile': $tool" >&2
+    exit 1
+  fi
+  "$tool" --version
+done

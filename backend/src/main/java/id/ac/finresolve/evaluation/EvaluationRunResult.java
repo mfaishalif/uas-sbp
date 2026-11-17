@@ -1,6 +1,6 @@
 package id.ac.finresolve.evaluation;
 
-import id.ac.finresolve.domain.similarity.SimilarityResult;
+import id.ac.finresolve.similarity.SimilarityResult;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;

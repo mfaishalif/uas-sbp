@@ -1,0 +1,49 @@
+{
+  "name": "FinResolve AI",
+  "build": {
+    "dockerfile": "../Dockerfile",
+    "target": "ai"
+  },
+  "remoteUser": "vscode",
+  "containerEnv": {
+    "GH_CONFIG_DIR": "/home/vscode/.local/state/gh",
+    "CODEX_HOME": "/home/vscode/.local/state/codex-home",
+    "CODEX_SQLITE_HOME": "/home/vscode/.local/state/codex",
+    "OPENCODE_DB": "/home/vscode/.local/state/opencode/opencode.db"
+  },
+  "mounts": [
+    "source=${devcontainerId}-ai-state,target=/home/vscode/.local/state,type=volume",
+    "source=${devcontainerId}-ai-opencode-config,target=/home/vscode/.config/opencode,type=volume",
+    "source=${devcontainerId}-ai-opencode-data,target=/home/vscode/.local/share/opencode,type=volume",
+    "source=${localEnv:FINRESOLVE_SCREENSHOTS_DIR},target=/home/vscode/Pictures/Screenshots,type=bind,readonly"
+  ],
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1.1.3": {},
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {}
+  },
+  "forwardPorts": [3000, 8080],
+  "portsAttributes": {
+    "3000": {
+      "label": "Next.js",
+      "onAutoForward": "notify"
+    },
+    "8080": {
+      "label": "Java backend",
+      "onAutoForward": "notify"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "java.import.gradle.java.home": "/usr/lib/jvm/msopenjdk-current"
+      },
+      "extensions": [
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "vscjava.vscode-java-pack"
+      ]
+    }
+  },
+  "postCreateCommand": "bash .devcontainer/setup-cli-state.sh ai",
+  "postStartCommand": "bash .devcontainer/setup-cli-state.sh ai"
+}

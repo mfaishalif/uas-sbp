@@ -1,11 +1,11 @@
 package id.ac.finresolve.config;
 
-import id.ac.finresolve.domain.importing.BatchRecord;
-import id.ac.finresolve.service.importing.CfpbCsvParser;
-import id.ac.finresolve.domain.importing.ImportMetadataValue;
-import id.ac.finresolve.service.importing.ImportService;
-import id.ac.finresolve.service.importing.ParsedImport;
-import id.ac.finresolve.service.system.DemoReadiness;
+import id.ac.finresolve.importing.BatchRecord;
+import id.ac.finresolve.importing.CfpbCsvParser;
+import id.ac.finresolve.importing.ImportMetadataValue;
+import id.ac.finresolve.importing.ImportService;
+import id.ac.finresolve.importing.ParsedImport;
+import id.ac.finresolve.system.DemoReadiness;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.nio.file.Files;
